@@ -152,14 +152,30 @@
 .add-comment__buttons {
 	float: right;
 	margin-top: 5px;
+	display: none;
+}
+
+.add-comment__buttons:after {
+	content: " ";
+	display: block;
+	border-bottom: 2px solid black;
 }
 
 .add-comment__button {
-	display: inline-block;
-	border: 1px solid black;
+	display: block;
 	font-size: 13px;
 	border-radius: 2px;
 	padding: 3px;
+	font-size: 16px;
+	margin: 10px 0;
+}
+
+.btn-cancel {
+
+}
+
+.btn-send {
+	color: #990000;
 }
 
 .comment {

@@ -49,11 +49,11 @@
 			<div class="add-comment">
 				<img class="comment__user-image" src="" >
 				<div class="comment__desc">
-				<textarea class="add-comment__text" placeholder="leave a comment"></textarea>
-					<footer class="add-comment__buttons">
-						<button class="add-comment__button btn-clear">cancle</button>
-						<button class="add-comment__button btn-send">send</button>
-					</footer>
+				<textarea class="add-comment__text" placeholder="leave a comment" onfocus="showCommentButtons(true)" onblur="showCommentButtons(false)"></textarea>
+				<footer class="add-comment__buttons">
+					<span class="add-comment__button btn-clear">Cancle</span>
+					<span class="add-comment__button btn-send">Send comment</span>
+				</footer>
 				</div>
 			</div>
 
@@ -90,5 +90,15 @@
 			</div>
 		</section>
 	</main>
+
+	<script type="text/javascript">
+		function showCommentButtons(isShow){
+			if(isShow) {
+				event.target.nextElementSibling.style.display = 'block';
+			} else {
+				event.target.nextElementSibling.style.display = 'none';
+			}
+		}
+	</script>
 </body>
 </html>
