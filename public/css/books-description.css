@@ -1,0 +1,208 @@
+.history-back {
+	display: block;
+	z-index: 5;
+	text-decoration: none;
+	color: #085394;
+	font-size: 20px;
+	text-align: right;
+	padding: 55px 15px 15px 15px;
+	position: relative;
+}
+
+.history-back:before {
+	content: "\f060  ";
+  	font-family: FontAwesome;
+  	font-size: 30px;
+  	position: absolute;
+  	right: 65px;
+  	top: 50px;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	cursor: pointer;
+}
+
+.books-description {
+	padding: 15px;
+	width: 100%;
+	box-sizing: border-box;
+	background-color: #fff;
+	display: flex;
+	flex-flow: column;
+	align-items: flex-start;
+	justify-content: space-around;
+}
+
+.books-description__book-cover {
+	min-height: 276px;
+	width: 100%;
+	max-width: 290px;
+}
+
+.books-description__title {
+	margin-top: 10px;
+	font-size: 20px;
+	color: #990000;
+}
+
+.books-description__author {
+	margin-top: 5px;
+	font-size: 14px;
+}
+
+.books-description__rating { 
+	border: none;
+	margin-top: 10px;
+}
+
+.books-description__rating > input { 
+	display: none; 
+} 
+
+.books-description__rating > label:before { 
+	margin: 5px;
+	font-size: 32px;
+	font-family: FontAwesome;
+	display: inline-block;
+	content: "\f005";
+}
+
+.books-description__rating > .half:before { 
+	content: "\f089";
+	position: absolute;
+}
+
+.books-description__rating > label { 
+	color: #ddd; 
+	float: right; 
+}
+
+.books-description__rating > input:checked ~ label,
+.books-description__rating:not(:checked) > label:hover,
+.books-description__rating:not(:checked) > label:hover ~ label { color: #FFD700;  }
+
+.books-description__rating > input:checked + label:hover,
+.books-description__rating > input:checked ~ label:hover,
+.books-description__rating > label:hover ~ input:checked ~ label,
+.books-description__rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+
+.books-description__reviews {
+	margin-top: 10px;
+	color: #990000;
+	font-size: 13px;
+}
+
+.books-description__reviews span:last-child {
+	color: #000;
+	text-decoration: underline;
+	margin-left: 35px;
+}
+
+.books-description__buttons {
+	margin-top: 15px;
+	width: 100%;
+	display: flex;
+	flex-flow: row;
+	justify-content: flex-start;
+
+}
+
+.books-description__button {
+	display: inline-block;
+	border: 2px solid black;
+	font-size: 20px;
+	border-radius: 2px;
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+	padding: 5px 10px;
+}
+
+.btn-read {
+
+}
+
+.btn-download {
+	background-color: #b6d7a8;
+	margin-left: 105px;
+}
+
+.books-description__comments {
+	margin-top: 20px;
+}
+
+.add-comment {
+	display: flex;
+	flex-flow: row;
+}
+
+.add-comment__desc {
+	display: flex;
+	flex-flow: column;
+	align-items: flex-end;
+	width: 100%;
+	box-sizing: border-box;
+	margin-left: 10px;
+}
+
+.add-comment__text {
+	resize: none;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.add-comment__buttons {
+	float: right;
+	margin-top: 5px;
+}
+
+.add-comment__button {
+	display: inline-block;
+	border: 1px solid black;
+	font-size: 13px;
+	border-radius: 2px;
+	padding: 3px;
+}
+
+.comment {
+	display: flex;
+	flex-flow: row;
+	align-items: flex-start;
+	justify-content: flex-start;
+	font-size: 13px;
+	margin-top: 15px;
+}
+
+.comment__user-image {
+	display: inline-block;
+}
+
+.comment__user-image:before {
+	content: "\f2be";
+	font-size: 48px;
+	transform: translate(0, 10px);
+	font-family: FontAwesome;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.comment__desc {
+	display: flex;
+	flex-flow: column;
+	width: 100%;
+	box-sizing: border-box;
+	margin-left: 10px;
+}
+
+.comment__author {
+	color: #990000;
+}
+
+.comment__time {
+	color: #999;
+	margin-left: 5px;
+}
+
+.comment__text {
+	margin-top: 8px;
+	line-height: 1.25em;
+}

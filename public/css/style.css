@@ -29,24 +29,6 @@ body {
 	cursor: pointer;
 }
 
-.history-back {
-	display: block;
-	z-index: 5;
-	text-decoration: none;
-	text-align: right;
-}
-
-.history-back:before {
-	content: "\f060  ";
-	color: #085394;
-	font-size: 20px;
-  	font-family: FontAwesome;
-	text-rendering: auto;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	cursor: pointer;
-}
-
 .header-nav__logo {
 	color: #fff;
 	font-size: 20px;
