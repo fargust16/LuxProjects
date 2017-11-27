@@ -135,6 +135,10 @@ body {
 	cursor: pointer;
 }
 
+.menu__options li > a {
+	text-decoration: none;
+}
+
 .search {
 	width: 100%;
 	height: 100px;
@@ -207,6 +211,29 @@ body {
 	padding-top: 125px;
 	user-select: none;
 	z-index: 1;
+}
+
+.main-header {
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+}
+
+.main-header .history-back {
+	flex-grow: 3;
+}
+
+.main-header__info {
+	flex-grow: 4;
+	color: #990000;
+	font-size: 20px;
+}
+
+.main-header__info:after {
+	content: " ";
+	display: block;
+	margin-top: 5px;
+	border-bottom: 2px solid black;
 }
 
 .main__category {

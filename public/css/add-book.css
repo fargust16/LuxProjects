@@ -1,0 +1,153 @@
+.add-book {
+	padding: 55px 15px 0;
+	background-color: #fff;
+}
+
+.add-book__content {
+	margin-top: 15px;
+}
+
+.add-book__content header {
+	font-size: 13px;
+}
+
+.add-book__content input {
+	margin: 8px auto 7px;
+	width: 100%;
+	box-sizing: border-box;
+	font-size: 16px;
+	padding: 7px 5px;
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75); 
+	border: none;
+	border-radius: 4px;
+}
+
+.add-book__main-options {
+
+}
+
+.add-book__main-options::after {
+	content: " ";
+	display: block;
+	height: 2px;
+	background-color: #000;
+	margin: 10px auto;
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75); 
+}
+
+.main-options__title {
+
+}
+
+.main-options__author {
+
+}
+
+.main-options__source {
+
+}
+
+.main-options__description {
+	resize: none;
+	width: 100%;
+	box-sizing: border-box;
+	margin: 7px auto 4px;
+	font-size: 16px;
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+	border-radius: 5px;
+	border: none;
+}
+
+.main-options__publish-date {
+	display: flex;
+	flex-flow: row;
+	align-items: center;
+	font-size: 16px;
+}
+
+.main-options__publish-date input {
+	margin-left: 10px;
+	padding: 4px;
+}
+
+.add-book__external-options {
+	margin-top: 15px;
+}
+
+.add-book__external-options::after {
+	content: " ";
+	display: block;
+	height: 2px;
+	background-color: #000;
+	margin: 7px auto 4px;
+}
+
+.external-options__content {
+	display: none;
+}
+
+.add-book__external-options header {
+	display: flex;
+	flex-flow: row;
+	align-items: center;
+}
+
+.add-book__external-options header > h2 {
+	transform: translate(0, -3px);
+}
+
+.close-header::before {
+	content: "\f196";
+	font-size: 32px;
+	font-family: FontAwesome;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	margin-right: 5px;
+}
+
+.open-header::before {
+	content: "\f147";
+	font-size: 32px;
+	font-family: FontAwesome;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	margin-right: 5px;
+}
+
+.external-options__genre {
+
+}
+
+.external-options__topics {
+
+}
+
+.external-options__cover-image {
+
+}
+
+.captcha {
+	margin-top: 15px;
+	border: 1px solid black;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.captcha input {
+	display: inline-block;
+	width: auto;
+	box-shadow: none;
+}
+
+.add-book__upload-btn {
+	padding: 6px;
+	font-size: 20px;
+	background-color: #eee;
+	margin-top: 15px;
+	width: 100%;
+	border: 2px solid black;
+	border-radius: 5px;
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75); 
+}

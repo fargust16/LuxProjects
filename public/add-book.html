@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Online Library</title><meta content="width=device-width,maximum-scale=1.0,initial-scale=1.0,minimum-scale=1.0,user-scalable=yes" name="viewport">
+	<link rel="stylesheet" type="text/css" href="./css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<link rel="stylesheet" type="text/css" href="./css/add-book.css">
+</head>
+<body>
+	<header class="header-nav">
+		<a href="index.html" class="header-nav__logo">Online Library</a>
+		<nav id="menu" class="menu">
+			<div class="menu__profile"><a href="#Sign In">Sign In</a></div>
+			<ul class="menu__options">
+				<li>Home</li>
+				<li><a href="./add-book.html">Add a new book</a></li>
+				<li>Recent</li>
+				<li>Support</li>
+			</ul>
+		</nav>
+	</header>
+	<main class="add-book">
+		<header class="main-header">
+			<p class="main-header__info">Add a new book</p>
+			<span class="history-back" onclick="window.history.back()">back</span>
+		</header>
+		<article class="add-book__content">
+			<section class="add-book__main-options">
+				<header><h2>main info</h2></header>
+				<div class="main-options__content">
+					<input type="text" name="title" placeholder="title" class="main-options__title">
+					<input type="text" name="author" placeholder="author" class="main-options__author">
+					<input type="text" name="source" placeholder="source" class="main-options__source">
+					<textarea class="main-options__description" placeholder="description" rows="4"></textarea>
+					<label for="publish-date" class="main-options__publish-date">Publishing <input type="date" name="publish-date" id="publish-date"></label>
+				</div>
+			</section>
+			<section class="add-book__external-options">
+				<header onclick="showExternalOptions(this)" class="close-header"><h2>external options</h2></header>
+				<div class="external-options__content">
+					<input type="text" name="genre" placeholder="genre" class="external-options__genre">
+					<input type="text" name="topics" placeholder="topics" class="external-options__topics">
+					<input type="text" name="cover-image" placeholder="cover-image" class="external-options__cover-image">
+				</div>
+			</section>
+			<div class="captcha">
+				<input type="checkbox" id="isRobot" name="isRobot">
+				<label for="isRobot">I`m not a robot?</label></div>
+			<button class="add-book__upload-btn">Upload book</button>
+		</article>
+	</main>
+	<script type="text/javascript">
+		function showExternalOptions(e){
+			if(getComputedStyle(e.nextElementSibling).display == 'none') {
+				e.nextElementSibling.style.display = 'block';
+				e.className = 'open-header';
+			} else {
+				e.nextElementSibling.style.display = 'none';
+				e.className = 'close-header';
+			}
+		}
+	</script>
+</body>
+</html>

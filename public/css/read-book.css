@@ -1,40 +1,19 @@
-.book-content {
+.read-book {
 	padding: 55px 15px 0;
 	background-color: #fff;
 }
 
-.book-content__header {
-	display: flex;
-	flex-flow: row;
-	justify-content: space-between;
-}
-
-.header__info {
-	flex-grow: 4;
-}
-
-.book-content__header .history-back {
-	flex-grow: 3;
-}
-
-.header__info:after {
-	content: " ";
+.read-book .main-header__info span:first-child {
 	display: block;
-	margin-top: 5px;
-	border-bottom: 2px solid black;
-}
-
-.header__info span:first-child {
-	display: block;
-	color: #990000;
 	font-size: 24px;
 }
 
-.header__info span:last-child {
+.read-book .main-header__info span:last-child {
 	font-size: 13px;
+	color: black;
 }
 
-.book-content__text {
+.read-book__content {
 	line-height: 1.25em;
 	font-size: 1em;
 	margin-top: 15px;
