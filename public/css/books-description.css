@@ -1,29 +1,11 @@
-.history-back {
-	display: block;
-	z-index: 5;
-	text-decoration: none;
-	color: #085394;
-	font-size: 20px;
-	text-align: right;
-	padding: 55px 15px 15px 15px;
-	position: relative;
-}
-
-.history-back:before {
-	content: "\f060  ";
-  	font-family: FontAwesome;
-  	font-size: 30px;
-  	position: absolute;
-  	right: 65px;
-  	top: 50px;
-	text-rendering: auto;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	cursor: pointer;
+.books-description .history-back {
+	position: absolute;
+	top: 55px;
+	right: 15px;
 }
 
 .books-description {
-	padding: 15px;
+	padding: 55px 15px 0;
 	width: 100%;
 	box-sizing: border-box;
 	background-color: #fff;
@@ -37,6 +19,7 @@
 	min-height: 276px;
 	width: 100%;
 	max-width: 290px;
+	margin-top: 30px;
 }
 
 .books-description__title {
@@ -117,7 +100,8 @@
 }
 
 .btn-read {
-
+	text-decoration: none;
+	color: black;
 }
 
 .btn-download {

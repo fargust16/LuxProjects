@@ -21,11 +21,11 @@
 			</ul>
 		</nav>
 	</header>
-	<span class="history-back" onclick="window.history.back()">back</span>
 	<main class="books-description">
 		<img class="books-description__book-cover" src="./images/books-cover.png" alt="book`s name">
 		<p class="books-description__title">The alchemist</p>
 		<p class="books-description__author">Paulo Coelho</p>
+		<span class="history-back" onclick="window.history.back()">back</span>
 
 		<fieldset class="books-description__rating">
 		    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
@@ -42,8 +42,8 @@
 
 		<section class="books-description__reviews"><span>125 reviews</span><span>See more...</span></section>
 		<footer class="books-description__buttons">
-			<button class="books-description__button btn-read">Read</button>
-			<button class="books-description__button btn-download">Download</button>
+			<a href="./read-book.html" class="books-description__button btn-read">Read</a>
+			<a class="books-description__button btn-download">Download</a>
 		</footer>
 		<section class="books-description__comments">
 			<div class="add-comment">
@@ -51,7 +51,7 @@
 				<div class="comment__desc">
 				<textarea class="add-comment__text" placeholder="leave a comment" onfocus="showCommentButtons(true)" onblur="showCommentButtons(false)"></textarea>
 				<footer class="add-comment__buttons">
-					<span class="add-comment__button btn-clear">Cancle</span>
+					<span class="add-comment__button btn-clear">Cancel</span>
 					<span class="add-comment__button btn-send">Send comment</span>
 				</footer>
 				</div>

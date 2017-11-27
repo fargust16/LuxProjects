@@ -1,0 +1,44 @@
+.book-content {
+	padding: 55px 15px 0;
+	background-color: #fff;
+}
+
+.book-content__header {
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+}
+
+.header__info {
+	flex-grow: 4;
+}
+
+.book-content__header .history-back {
+	flex-grow: 3;
+}
+
+.header__info:after {
+	content: " ";
+	display: block;
+	margin-top: 5px;
+	border-bottom: 2px solid black;
+}
+
+.header__info span:first-child {
+	display: block;
+	color: #990000;
+	font-size: 24px;
+}
+
+.header__info span:last-child {
+	font-size: 13px;
+}
+
+.book-content__text {
+	line-height: 1.25em;
+	font-size: 1em;
+	margin-top: 15px;
+	text-indent: 40px;
+	word-spacing: 1.5px;
+	text-align: justify;
+}
