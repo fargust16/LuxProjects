@@ -8,9 +8,11 @@
 	<link rel="stylesheet" type="text/css" href="./css/recent.css">
 </head>
 <body>
-	<header class="header-nav">
+	<header class="header-nav" id="header-nav">
 		<a href="index.html" class="header-nav__logo">Online Library</a>
+		<i class="fa fa-bars" aria-hidden="true" onclick="displayMenu(true)"></i>
 		<nav id="menu" class="menu">
+			<i class="fa fa-times" aria-hidden="true" onclick="displayMenu(false)"></i>
 			<div class="menu__profile"><a href="#Sign In">Sign In</a></div>
 			<ul class="menu__options">
 				<li><a href="./index.html">Home</a></li>
@@ -22,10 +24,7 @@
 		</nav>
 	</header>
 	<main class="main-block recent">
-		<header class="main-header">
-			<p class="main-header__info">Recently</p>
-			<span class="history-back" onclick="window.history.back()">back</span>
-		</header>
+		<h1 class="main-header"><span>Recently</span></h1>
 		<article class="recent__content">
 			<section class="recent__category">
 				<header class="recent__category-date">today</header>
@@ -75,6 +74,12 @@
 
 		</article>
 	</main>
+	<script type="text/javascript">
+		function displayMenu(show){
+			if(show) menu.style.display = "block";
+			else menu.style.display = "none";
+		}
+	</script>
 
 </body>
 </html>

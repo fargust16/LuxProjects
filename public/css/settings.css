@@ -7,7 +7,7 @@
 }
 
 .settings__option {
-	margin-bottom: 20px;
+
 }
 
 .settings__option input {
@@ -21,8 +21,23 @@
 	border-radius: 4px;
 }
 
-.option__name {
+.settings__option-info {
+	color: #999;
 	font-size: 13px;
+}
+
+.settings__option-email {
+	font-weight: bold;
+	margin-top: 5px;
+	font-size: 16px;
+}
+
+.settings__option-content {
+	display: none;
+}
+
+.option__name {
+
 }
 
 .option__email {
@@ -65,4 +80,37 @@
 
 .btn-submit {
 	background-color: #b6d7a8;
+}
+
+.close-header, .open-header {
+	margin-top: 15px;
+	position: relative;
+	padding-left: 30px;
+	line-height: 32px;
+}
+
+.close-header::before {
+	content: "\f196";
+	position: absolute;
+	top: 2px;
+	left: 0;
+	font-size: 32px;
+	font-family: FontAwesome;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	margin-right: 5px;
+}
+
+.open-header::before {
+	content: "\f147";
+	position: absolute;
+	top: 2px;
+	left: 0;
+	font-size: 32px;
+	font-family: FontAwesome;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	margin-right: 5px;
 }

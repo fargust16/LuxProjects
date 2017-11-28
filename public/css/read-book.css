@@ -2,12 +2,11 @@
 	
 }
 
-.read-book .main-header__info span:first-child {
-	display: block;
-	font-size: 24px;
+.read-book .main-header span:first-child {
+	font-size: 20px;
 }
 
-.read-book .main-header__info span:last-child {
+.read-book .main-header span:last-child {
 	font-size: 13px;
 	color: black;
 }

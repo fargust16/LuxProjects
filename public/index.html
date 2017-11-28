@@ -3,6 +3,7 @@
 <head>
 	<title>Online Library</title>
 	<meta content="width=device-width,maximum-scale=1.0,initial-scale=1.0,minimum-scale=1.0,user-scalable=yes" name="viewport">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="./css/reset.css">
 	<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
@@ -10,9 +11,9 @@
 <body>
 	<header class="header-nav" id="header-nav">
 		<a href="index.html" class="header-nav__logo">Online Library</a>
-		<!--<i class="fa fa-bars" aria-hidden="true"></i>-->
+		<i class="fa fa-bars" aria-hidden="true" onclick="displayMenu(true)"></i>
 		<nav id="menu" class="menu">
-			<!--<i class="fa fa-times" aria-hidden="true"></i>-->
+			<i class="fa fa-times" aria-hidden="true" onclick="displayMenu(false)"></i>
 			<div class="menu__profile"><a href="#Sign In">Sign In</a></div>
 			<ul class="menu__options">
 				<li><a href="./index.html">Home</a></li>
@@ -23,18 +24,22 @@
 			</ul>
 		</nav>
 	</header>
-	<section class="search">
-		<label for="search"><input id="search" type="text" class="search__field" name="search" placeholder="Find a solution" /></label>
-		<select class="search__options">
-			<option value="all">All</option>
-			<option value="title">Title</option>
-			<option value="author">Author</option>
-			<option value="ISBN">ISBN</option>
-		</select>
-	</section>
+	<article class="search">
+		<section>
+			<label for="search" class="search__field-ico"><input id="search" type="text" class="search__field" name="search" placeholder="Find a solution" /></label>
+			<label for="search-options" class="search__options-ico">
+				<select id="search-options" class="search__options">
+					<option value="all">All</option>
+					<option value="title">Title</option>
+					<option value="author">Author</option>
+					<option value="ISBN">ISBN</option>
+				</select>
+			</label>
+		</section>
+	</article>
 	<main class="main">
 		<section class="main__category">
-			<h1 class="category__name">Recommended books</h1>
+			<h1 class="category__name"><span>Recommended books</span></h1>
 			<div class="books-main">
 				<div class="books-main__switcher">
 					<div class="book">
@@ -98,7 +103,6 @@
 	</main>
 
 	<script type="text/javascript">
-		
 		function displayMenu(show){
 			if(show) menu.style.display = "block";
 			else menu.style.display = "none";

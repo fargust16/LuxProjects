@@ -3,15 +3,18 @@
 <head>
 	<title>Online Library</title>
 	<meta content="width=device-width,maximum-scale=1.0,initial-scale=1.0,minimum-scale=1.0,user-scalable=yes" name="viewport">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="./css/reset.css">
 	<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 	<link rel="stylesheet" type="text/css" href="./css/read-book.css">
 </head>
 <body>
-	<header class="header-nav">
+	<header class="header-nav" id="header-nav">
 		<a href="index.html" class="header-nav__logo">Online Library</a>
+		<i class="fa fa-bars" aria-hidden="true" onclick="displayMenu(true)"></i>
 		<nav id="menu" class="menu">
+			<i class="fa fa-times" aria-hidden="true" onclick="displayMenu(false)"></i>
 			<div class="menu__profile"><a href="#Sign In">Sign In</a></div>
 			<ul class="menu__options">
 				<li><a href="./index.html">Home</a></li>
@@ -24,13 +27,10 @@
 	</header>
 
 	<main class="main-block read-book">
-		<header class="main-header">
-			<p class="main-header__info">
-				<span>The Alchemist</span>
-				<span>by Paulo Coelho</span>
-			</p>
-			<span class="history-back" onclick="window.history.back()">back</span>
-		</header>
+		<h1 class="main-header">
+			<span>The Alchemist</span><br>
+			<span>by Paulo Coelho</span>
+		</h1>
 		<section class="read-book__content">
 			<p>The boy's name was Santiago. Dusk was falling as the boy arrived with his herd at an
 
@@ -100,5 +100,11 @@ his presence, so that he would not be cheated. A friend had told the boy about t
 shop, and he had taken his sheep there.</p>
 		</section>
 	</main>
+	<script type="text/javascript">
+		function displayMenu(show){
+			if(show) menu.style.display = "block";
+			else menu.style.display = "none";
+		}
+	</script>
 </body>
 </html>

@@ -6,11 +6,14 @@
 	<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 	<link rel="stylesheet" type="text/css" href="./css/settings.css">
+	<link rel="stylesheet" type="text/css" href="./css/modal-block.css">
 </head>
 <body>
-	<header class="header-nav">
+	<header class="header-nav" id="header-nav">
 		<a href="index.html" class="header-nav__logo">Online Library</a>
+		<i class="fa fa-bars" aria-hidden="true" onclick="displayMenu(true)"></i>
 		<nav id="menu" class="menu">
+			<i class="fa fa-times" aria-hidden="true" onclick="displayMenu(false)"></i>
 			<div class="menu__profile"><a href="#Sign In">Sign In</a></div>
 			<ul class="menu__options">
 				<li><a href="./index.html">Home</a></li>
@@ -22,27 +25,47 @@
 		</nav>
 	</header>
 	<main class="main-block settings">
-		<header class="main-header">
-			<p class="main-header__info">user@gmail.com</p>
-			<span class="history-back" onclick="window.history.back()">back</span>
-		</header>
+		<h1 class="main-header"><span>Settings</span></h1>
 		<form id="settings" action="" method="POST" class="settings__content">
 			<section class="settings__option">
-				<h2 class="option__name">main oprions</h2>
-				<input type="text" name="email" class="option__email" placeholder="new email">
-				<input type="password" name="old-pass" class="option__old-pass" placeholder="old password" required>
-				<input type="password" name="new-pass" class="option__new-pass" placeholder="new password">
-				<input type="password" name="confirm-pass" class="option__confirm-pass" placeholder="confirm new password">
+				<span class="settings__option-info">Email address</span>
+				<h1 class="settings__option-email">user@gmail.com</h1>
+				<h2 onclick="showExternalOptions(this)" class="option__name close-header">Change email</h2>
+				<div class="settings__option-content">
+					<input type="email" name="email" class="option__email" placeholder="new email address" required>
+					<input type="password" name="password" class="option__pass" placeholder="current password">
+				</div>
 			</section>
 
 			<section class="settings__option">
-				<h2 class="option__name">external oprions</h2>
-				<input type="text" name="user-image" class="option__user-image" placeholder="change user image">
+				<h2 onclick="showExternalOptions(this)" class="option__name close-header">Change password</h2>
+				<div class="settings__option-content">
+					<input type="password" name="old-pass" class="option__old-pass" placeholder="current password" required>
+					<input type="password" name="new-pass" class="option__new-pass" placeholder="new password">
+					<input type="password" name="confirm-pass" class="option__confirm-pass" placeholder="confirm new password">
+				</div>
 			</section>
 
 			<button class="option__button btn-clear" for="settings" type="reset">Cancel</button>
 			<button class="option__button btn-submit" for="settings" type="submit">Save changes</button>
 		</form>
 	</main>
+
+	<script type="text/javascript">
+		function showExternalOptions(e){
+			if(getComputedStyle(e.nextElementSibling).display == 'none') {
+				e.nextElementSibling.style.display = 'block';
+				e.className = 'open-header';
+			} else {
+				e.nextElementSibling.style.display = 'none';
+				e.className = 'close-header';
+			}
+		}
+
+		function displayMenu(show){
+			if(show) menu.style.display = "block";
+			else menu.style.display = "none";
+		}
+	</script>
 </body>
 </html>

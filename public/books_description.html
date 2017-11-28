@@ -9,9 +9,11 @@
 	<link rel="stylesheet" type="text/css" href="./css/books-description.css">
 </head>
 <body>
-	<header class="header-nav">
+	<header class="header-nav" id="header-nav">
 		<a href="index.html" class="header-nav__logo">Online Library</a>
+		<i class="fa fa-bars" aria-hidden="true" onclick="displayMenu(true)"></i>
 		<nav id="menu" class="menu">
+			<i class="fa fa-times" aria-hidden="true" onclick="displayMenu(false)"></i>
 			<div class="menu__profile"><a href="#Sign In">Sign In</a></div>
 			<ul class="menu__options">
 				<li><a href="./index.html">Home</a></li>
@@ -26,7 +28,6 @@
 		<img class="books-description__book-cover" src="./images/books-cover.png" alt="book`s name">
 		<p class="books-description__title">The alchemist</p>
 		<p class="books-description__author">Paulo Coelho</p>
-		<span class="history-back" onclick="window.history.back()">back</span>
 
 		<fieldset class="books-description__rating">
 		    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
@@ -50,7 +51,7 @@
 			<div class="add-comment">
 				<img class="comment__user-image" src="" >
 				<div class="comment__desc">
-				<textarea class="add-comment__text" placeholder="leave a comment" onfocus="showCommentButtons(true)" onblur="showCommentButtons(false)"></textarea>
+				<textarea class="add-comment__text" placeholder="leave a comment"></textarea>
 				<footer class="add-comment__buttons">
 					<span class="add-comment__button btn-clear">Cancel</span>
 					<span class="add-comment__button btn-send">Send comment</span>
@@ -93,12 +94,9 @@
 	</main>
 
 	<script type="text/javascript">
-		function showCommentButtons(isShow){
-			if(isShow) {
-				event.target.nextElementSibling.style.display = 'block';
-			} else {
-				event.target.nextElementSibling.style.display = 'none';
-			}
+		function displayMenu(show){
+			if(show) menu.style.display = "block";
+			else menu.style.display = "none";
 		}
 	</script>
 </body>

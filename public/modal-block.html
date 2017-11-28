@@ -1,0 +1,22 @@
+<article class="modal-block">
+		<main class="modal-block__main">
+			<i class="fa fa-times modal-block__cancel" aria-hidden="true"></i>
+			<ul class="modal-block__menu">
+				<li class="modal-block__menu-option modal-block__active-option sign-in">Sign In</li>
+				<li class="modal-block__menu-option sign-up">Sign Up</li>
+			</ul>
+			<form id="sign-in" class="modal-block__content modal-block__active-content" action="" method="POST">
+				<input class="modal-block__content-email" type="email" name="email" placeholder="email" required>
+				<input class="modal-block__content-password" type="password" name="password" placeholder="password" required>
+				<a class="modal-block__content-help" href="#">Forgotten your password?</a>
+				<button class="modal-block__content-btn" for="sign-in" type="submit">Sign In</button>
+			</form>
+			<form id="sign-up" class="modal-block__content">
+				<input class="modal-block__content-email" type="email" name="email" placeholder="email" required>
+				<input class="modal-block__content-password" type="password" name="password" placeholder="password" required>
+				<input class="modal-block__content-password" type="password" name="confirm-password" placeholder="confirm-password" required>
+				<a class="modal-block__content-help" href="#">Already have an account?</a>
+				<button class="modal-block__content-btn" for="sign-in" type="submit">Sign Up</button>
+			</form>
+		</main>
+	</article>
