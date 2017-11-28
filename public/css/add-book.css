@@ -1,6 +1,5 @@
 .add-book {
-	padding: 55px 15px 0;
-	background-color: #fff;
+	
 }
 
 .add-book__content {
@@ -145,7 +144,7 @@
 	padding: 6px;
 	font-size: 20px;
 	background-color: #eee;
-	margin-top: 15px;
+	margin: 15px auto;
 	width: 100%;
 	border: 2px solid black;
 	border-radius: 5px;

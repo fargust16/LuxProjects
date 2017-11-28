@@ -217,6 +217,11 @@ body {
 	z-index: 1;
 }
 
+.main-block {
+	padding: 55px 15px 0;
+	background-color: #fff;
+}
+
 .main-header {
 	display: flex;
 	flex-flow: row;

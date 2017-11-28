@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Online Library</title><meta content="width=device-width,maximum-scale=1.0,initial-scale=1.0,minimum-scale=1.0,user-scalable=yes" name="viewport">
+	<link rel="stylesheet" type="text/css" href="./css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<link rel="stylesheet" type="text/css" href="./css/settings.css">
+</head>
+<body>
+	<header class="header-nav">
+		<a href="index.html" class="header-nav__logo">Online Library</a>
+		<nav id="menu" class="menu">
+			<div class="menu__profile"><a href="#Sign In">Sign In</a></div>
+			<ul class="menu__options">
+				<li><a href="./index.html">Home</a></li>
+				<li><a href="./add-book.html">Add a new book</a></li>
+				<li><a href="./recent.html">Recent</a></li>
+				<li><a href="./settings.html">Settings</a></li>
+				<li><a href="./support.html">Support</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main class="main-block settings">
+		<header class="main-header">
+			<p class="main-header__info">user@gmail.com</p>
+			<span class="history-back" onclick="window.history.back()">back</span>
+		</header>
+		<form id="settings" action="" method="POST" class="settings__content">
+			<section class="settings__option">
+				<h2 class="option__name">main oprions</h2>
+				<input type="text" name="email" class="option__email" placeholder="new email">
+				<input type="password" name="old-pass" class="option__old-pass" placeholder="old password" required>
+				<input type="password" name="new-pass" class="option__new-pass" placeholder="new password">
+				<input type="password" name="confirm-pass" class="option__confirm-pass" placeholder="confirm new password">
+			</section>
+
+			<section class="settings__option">
+				<h2 class="option__name">external oprions</h2>
+				<input type="text" name="user-image" class="option__user-image" placeholder="change user image">
+			</section>
+
+			<button class="option__button btn-clear" for="settings" type="reset">Cancel</button>
+			<button class="option__button btn-submit" for="settings" type="submit">Save changes</button>
+		</form>
+	</main>
+</body>
+</html>

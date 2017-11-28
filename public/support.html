@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Online Library</title><meta content="width=device-width,maximum-scale=1.0,initial-scale=1.0,minimum-scale=1.0,user-scalable=yes" name="viewport">
+	<link rel="stylesheet" type="text/css" href="./css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<link rel="stylesheet" type="text/css" href="./css/support.css">
+</head>
+<body>
+	<header class="header-nav">
+		<a href="index.html" class="header-nav__logo">Online Library</a>
+		<nav id="menu" class="menu">
+			<div class="menu__profile"><a href="#Sign In">Sign In</a></div>
+			<ul class="menu__options">
+				<li><a href="./index.html">Home</a></li>
+				<li><a href="./add-book.html">Add a new book</a></li>
+				<li><a href="./recent.html">Recent</a></li>
+				<li><a href="./settings.html">Settings</a></li>
+				<li><a href="./support.html">Support</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main class="main-block support">
+		<header class="main-header">
+			<p class="main-header__info">Support</p>
+			<span class="history-back" onclick="window.history.back()">back</span>
+		</header>
+		<form id="support-email" action="" method="POST" class="support__form">
+			<h2 class="support__form-info">Please try to include as much detail
+as possible about the situation you encountered and the platform you use.</h2>
+			<input type="text" name="email" class="support__form-subject" placeholder="subject" required>
+			<textarea class="support__form-message" placeholder="your message" rows="5" required></textarea>
+			<button class="support__form-button btn-clear" for="support-email" type="reset">Cancel</button>
+			<button class="support__form-button btn-submit" for="support-email" type="submit">Send email</button>
+		</form>
+	</main>
+</body>
+</html>
