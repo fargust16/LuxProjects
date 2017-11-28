@@ -15,7 +15,7 @@
 			<ul class="menu__options">
 				<li>Home</li>
 				<li><a href="./add-book.html">Add a new book</a></li>
-				<li>Recent</li>
+				<li><a href="./recent.html">Recent</a></li>
 				<li>Support</li>
 			</ul>
 		</nav>
@@ -25,13 +25,13 @@
 			<p class="main-header__info">Add a new book</p>
 			<span class="history-back" onclick="window.history.back()">back</span>
 		</header>
-		<article class="add-book__content">
+		<form id="book-data" action="" method="POST" class="add-book__content">
 			<section class="add-book__main-options">
 				<header><h2>main info</h2></header>
 				<div class="main-options__content">
-					<input type="text" name="title" placeholder="title" class="main-options__title">
-					<input type="text" name="author" placeholder="author" class="main-options__author">
-					<input type="text" name="source" placeholder="source" class="main-options__source">
+					<input type="text" name="title" placeholder="title" class="main-options__title" required>
+					<input type="text" name="author" placeholder="author" class="main-options__author" required>
+					<input type="text" name="source" placeholder="source" class="main-options__source" required>
 					<textarea class="main-options__description" placeholder="description" rows="4"></textarea>
 					<label for="publish-date" class="main-options__publish-date">Publishing <input type="date" name="publish-date" id="publish-date"></label>
 				</div>
@@ -47,8 +47,8 @@
 			<div class="captcha">
 				<input type="checkbox" id="isRobot" name="isRobot">
 				<label for="isRobot">I`m not a robot?</label></div>
-			<button class="add-book__upload-btn">Upload book</button>
-		</article>
+			<button type="submit" class="add-book__upload-btn" for="book-data">Upload book</button>
+		</form>
 	</main>
 	<script type="text/javascript">
 		function showExternalOptions(e){

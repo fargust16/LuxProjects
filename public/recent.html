@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Online Library</title><meta content="width=device-width,maximum-scale=1.0,initial-scale=1.0,minimum-scale=1.0,user-scalable=yes" name="viewport">
+	<link rel="stylesheet" type="text/css" href="./css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<link rel="stylesheet" type="text/css" href="./css/recent.css">
+</head>
+<body>
+	<header class="header-nav">
+		<a href="index.html" class="header-nav__logo">Online Library</a>
+		<nav id="menu" class="menu">
+			<div class="menu__profile"><a href="#Sign In">Sign In</a></div>
+			<ul class="menu__options">
+				<li>Home</li>
+				<li><a href="./add-book.html">Add a new book</a></li>
+				<li><a href="./recent.html">Recent</a></li>
+				<li>Support</li>
+			</ul>
+		</nav>
+	</header>
+	<main class="recent">
+		<header class="main-header">
+			<p class="main-header__info">Recently</p>
+			<span class="history-back" onclick="window.history.back()">back</span>
+		</header>
+		<article class="recent__content">
+			<section class="recent__category">
+				<header class="recent__category-date">today</header>
+				<div class="recent__book">
+					<div class="recent__book-info">
+						<p class="recent__book-title">The Alchemist</p>
+						<p class="recent__book-author">Paulo Coelho</p>
+						<p class="recent__book-description">book`s description</p>
+						<progress class="recent__book-progress" max="100" value="37"></progress>
+					</div>
+					<img src="./images/books-cover.png" class="recent__book-cover" />
+				</div>
+			</section>
+
+			<section class="recent__category">
+				<header class="recent__category-date">12.11.2017</header>
+				<div class="recent__book">
+					<div class="recent__book-info">
+						<p class="recent__book-title">The Alchemist</p>
+						<p class="recent__book-author">Paulo Coelho</p>
+						<p class="recent__book-description">book`s description</p>
+						<progress class="recent__book-progress" max="100" value="37"></progress>
+					</div>
+					<img src="./images/books-cover.png" class="recent__book-cover" />
+				</div>
+
+				<div class="recent__book">
+					<div class="recent__book-info">
+						<p class="recent__book-title">The Alchemist</p>
+						<p class="recent__book-author">Paulo Coelho</p>
+						<p class="recent__book-description">book`s description</p>
+						<progress class="recent__book-progress" max="100" value="37"></progress>
+					</div>
+					<img src="./images/books-cover.png" class="recent__book-cover" />
+				</div>
+
+				<div class="recent__book">
+					<div class="recent__book-info">
+						<p class="recent__book-title">The Alchemist</p>
+						<p class="recent__book-author">Paulo Coelho</p>
+						<p class="recent__book-description">book`s description</p>
+						<progress class="recent__book-progress" max="100" value="37"></progress>
+					</div>
+					<img src="./images/books-cover.png" class="recent__book-cover" />
+				</div>
+			</section>
+
+		</article>
+	</main>
+
+</body>
+</html>

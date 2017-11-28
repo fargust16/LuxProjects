@@ -1,0 +1,79 @@
+.recent {
+	padding: 55px 15px 0;
+	background-color: #fff;
+}
+
+.recent__content {
+	margin-top: 15px;
+}
+
+.recent__category {
+	margin-bottom: 25px;
+}
+
+.recent__category-date {
+	font-size: 13px;
+}
+
+.recent__book {
+	width: 100%;
+	margin: 10px auto;
+	padding: 15px 10px;
+	border-radius: 5px;
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+	box-sizing: border-box;
+	display: flex;
+	flex-flow: row;
+	background-color: #fff;
+}
+
+.recent__book:nth-child(2) {
+	margin-top: 8px;
+}
+
+.recent__book-info {
+	display: flex;
+	flex-flow: column;
+	justify-content: space-between;
+	flex-grow: 6;
+}
+
+.recent__book-title {
+	color: #990000;
+	font-size: 18px;
+	line-height: 1.25em;
+}
+
+.recent__book-author {
+	font-size: 13px;
+}
+
+.recent__book-description {
+	font-size: 12px;
+	margin-top: 5px;
+	flex-grow: 1;
+}
+
+.recent__book-progress {
+	margin: 15px 10px 10px 25px;
+	height: 12px;
+	width: auto;
+	position: relative;
+}
+
+.recent__book-progress::before {
+	content: "\f252";
+	font-size: 24px;
+	position: absolute;
+	top: -6px;
+	left: -25px;
+	font-family: FontAwesome;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.recent__book-cover {
+	max-height: 128px;
+	flex-grow: 1;
+}
