@@ -2,29 +2,30 @@
 <html>
 <head>
 	<title>Online Library</title><meta content="width=device-width,maximum-scale=1.0,initial-scale=1.0,minimum-scale=1.0,user-scalable=yes" name="viewport">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="./css/reset.css">
 	<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 	<link rel="stylesheet" type="text/css" href="./css/support.css">
 </head>
 <body>
-	<header class="header-nav" id="header-nav">
-		<a href="index.html" class="header-nav__logo">Online Library</a>
-		<i class="fa fa-bars" aria-hidden="true" onclick="displayMenu(true)"></i>
+	<header class="header-nav home-page__header-nav">
+		<a href="index.html" class="header-nav__logo"><h1>Online Library</h1></a>
+		<i class="fa fa-bars header-nav__menu-btn" aria-hidden="true" onclick="displayMenu(true)"></i>
 		<nav id="menu" class="menu">
-			<i class="fa fa-times" aria-hidden="true" onclick="displayMenu(false)"></i>
-			<div class="menu__profile"><a href="#Sign In">Sign In</a></div>
+			<i class="fa fa-times menu__close-btn" aria-hidden="true" onclick="displayMenu(false)"></i>
+			<div class="menu__profile"><a class="menu__profile-link" href="#Sign In">Sign In</a></div>
 			<ul class="menu__options">
-				<li><a href="./index.html">Home</a></li>
-				<li><a href="./add-book.html">Add a new book</a></li>
-				<li><a href="./recent.html">Recent</a></li>
-				<li><a href="./settings.html">Settings</a></li>
-				<li><a href="./support.html">Support</a></li>
+				<li class="menu__option"><a class="menu__option-link" href="./index.html">Home</a></li>
+				<li class="menu__option"><a class="menu__option-link" href="./add-book.html">Add a new book</a></li>
+				<li class="menu__option"><a class="menu__option-link" href="./recent.html">Recent</a></li>
+				<li class="menu__option"><a class="menu__option-link" href="./settings.html">Settings</a></li>
+				<li class="menu__option"><a class="menu__option-link" href="./support.html">Support</a></li>
 			</ul>
 		</nav>
 	</header>
 	<main class="main-block support">
-		<h1 class="main-header"><span>Support</span></h1>
+		<div class="main-header"><span>Support</span></div>
 		<form id="support-email" action="" method="POST" class="support__form">
 			<h2 class="support__form-info">Please try to include as much detail
 as possible about the situation you encountered and the platform you use.</h2>

@@ -10,27 +10,27 @@
 	<link rel="stylesheet" type="text/css" href="./css/read-book.css">
 </head>
 <body>
-	<header class="header-nav" id="header-nav">
-		<a href="index.html" class="header-nav__logo">Online Library</a>
-		<i class="fa fa-bars" aria-hidden="true" onclick="displayMenu(true)"></i>
+	<header class="header-nav home-page__header-nav">
+		<a href="index.html" class="header-nav__logo"><h1>Online Library</h1></a>
+		<i class="fa fa-bars header-nav__menu-btn" aria-hidden="true" onclick="displayMenu(true)"></i>
 		<nav id="menu" class="menu">
-			<i class="fa fa-times" aria-hidden="true" onclick="displayMenu(false)"></i>
-			<div class="menu__profile"><a href="#Sign In">Sign In</a></div>
+			<i class="fa fa-times menu__close-btn" aria-hidden="true" onclick="displayMenu(false)"></i>
+			<div class="menu__profile"><a class="menu__profile-link" href="#Sign In">Sign In</a></div>
 			<ul class="menu__options">
-				<li><a href="./index.html">Home</a></li>
-				<li><a href="./add-book.html">Add a new book</a></li>
-				<li><a href="./recent.html">Recent</a></li>
-				<li><a href="./settings.html">Settings</a></li>
-				<li><a href="./support.html">Support</a></li>
+				<li class="menu__option"><a class="menu__option-link" href="./index.html">Home</a></li>
+				<li class="menu__option"><a class="menu__option-link" href="./add-book.html">Add a new book</a></li>
+				<li class="menu__option"><a class="menu__option-link" href="./recent.html">Recent</a></li>
+				<li class="menu__option"><a class="menu__option-link" href="./settings.html">Settings</a></li>
+				<li class="menu__option"><a class="menu__option-link" href="./support.html">Support</a></li>
 			</ul>
 		</nav>
 	</header>
 
 	<main class="main-block read-book">
-		<h1 class="main-header">
+		<section class="main-header">
 			<span>The Alchemist</span><br>
 			<span>by Paulo Coelho</span>
-		</h1>
+		</section>
 		<section class="read-book__content">
 			<p>The boy's name was Santiago. Dusk was falling as the boy arrived with his herd at an
 

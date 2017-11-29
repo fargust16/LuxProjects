@@ -1,0 +1,60 @@
+.books-switcher {
+    display: flex;
+    overflow: visible;
+    flex-flow: row;
+    justify-content: flex-start;
+
+    width: 272px;
+    margin: 0 auto;
+
+    transform: translateX(-272px);
+
+    flex-wrap: nowrap;
+}
+
+.books-switcher__dots {
+    width: 40px;
+    margin: 0 auto 15px;
+
+    user-select: none;
+}
+
+.books-switcher__dot {
+    color: #fff;
+    border: 2px solid black;
+    border-radius: 8px;
+
+    font-size: 7px;
+}
+
+.books-switcher__dot_active {
+    color: red;
+}
+
+.books-switcher__see-more {
+    position: absolute;
+    right: 15px;
+    bottom: 13px;
+
+    cursor: pointer;
+    text-decoration: none;
+
+    color: #900;
+
+    font-size: 16px;
+}
+
+.books-switcher__see-more::after {
+    content: '  \f105 \f105';
+
+    font-family: FontAwesome;
+
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.books-switcher__book {
+    min-width: 260px;
+    margin: 10px 6px;
+}

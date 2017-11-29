@@ -1,205 +1,240 @@
 .books-description {
-	padding: 55px 15px 0;
-	width: 100%;
-	box-sizing: border-box;
-	background-color: #fff;
-	display: flex;
-	flex-flow: column;
-	align-items: flex-start;
-	justify-content: space-around;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: flex-start;
+
+    box-sizing: border-box;
+    width: 100%;
+    padding: 55px 15px 0;
+
+    background-color: #fff;
 }
 
 .books-description__book-cover {
-	min-height: 276px;
-	width: 100%;
-	max-width: 290px;
+    width: 100%;
+    max-width: 290px;
+    min-height: 276px;
 }
 
 .books-description__title {
-	margin-top: 10px;
-	font-size: 20px;
-	color: #990000;
+    margin-top: 10px;
+
+    color: #900;
+
+    font-size: 20px;
 }
 
 .books-description__author {
-	margin-top: 5px;
-	font-size: 14px;
+    margin-top: 5px;
+
+    font-size: 14px;
 }
 
-.books-description__rating { 
-	border: none;
-	margin-top: 10px;
+.books-description__rating {
+    margin-top: 10px;
+
+    border: none;
 }
 
-.books-description__rating > input { 
-	display: none; 
-} 
-
-.books-description__rating > label:before { 
-	margin: 5px;
-	font-size: 32px;
-	font-family: FontAwesome;
-	display: inline-block;
-	content: "\f005";
+.books-description__rating > input {
+    display: none;
 }
 
-.books-description__rating > .half:before { 
-	content: "\f089";
-	position: absolute;
+.books-description__rating > label:before {
+    display: inline-block;
+
+    margin: 5px;
+
+    content: '\f005';
+
+    font-family: FontAwesome;
+    font-size: 32px;
 }
 
-.books-description__rating > label { 
-	color: #ddd; 
-	float: right; 
+.books-description__rating > .half:before {
+    position: absolute;
+
+    content: '\f089';
+}
+
+.books-description__rating > label {
+    float: right;
+
+    color: #ddd;
 }
 
 .books-description__rating > input:checked ~ label,
 .books-description__rating:not(:checked) > label:hover,
-.books-description__rating:not(:checked) > label:hover ~ label { color: #FFD700;  }
+.books-description__rating:not(:checked) > label:hover ~ label {
+    color: #ffd700;
+}
 
 .books-description__rating > input:checked + label:hover,
 .books-description__rating > input:checked ~ label:hover,
 .books-description__rating > label:hover ~ input:checked ~ label,
-.books-description__rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+.books-description__rating > input:checked ~ label:hover ~ label {
+    color: #ffed85;
+}
 
 .books-description__reviews {
-	margin-top: 10px;
-	color: #990000;
-	font-size: 13px;
+    margin-top: 10px;
+
+    color: #900;
+
+    font-size: 13px;
 }
 
 .books-description__reviews span:last-child {
-	color: #000;
-	text-decoration: underline;
-	margin-left: 35px;
+    margin-left: 35px;
+
+    text-decoration: underline;
+
+    color: #000;
 }
 
 .books-description__buttons {
-	margin-top: 15px;
-	width: 100%;
-	display: flex;
-	flex-flow: row;
-	justify-content: flex-start;
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-start;
 
+    width: 100%;
+    margin-top: 15px;
 }
 
 .books-description__button {
-	display: inline-block;
-	border: 2px solid black;
-	font-size: 20px;
-	border-radius: 2px;
-	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-	padding: 5px 10px;
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border: 2px solid black;
+    border-radius: 2px;
+    box-shadow: 0 1px 6px rgba(32, 33, 36, .38);
+
+    font-size: 20px;
 }
 
 .btn-read {
-	text-decoration: none;
-	color: black;
+    text-decoration: none;
+
+    color: black;
 }
 
 .btn-download {
-	background-color: #b6d7a8;
-	margin-left: 105px;
+    margin-left: 105px;
+
+    background-color: #b6d7a8;
 }
 
 .books-description__comments {
-	margin-top: 20px;
+    margin-top: 20px;
 }
 
 .add-comment {
-	display: flex;
-	flex-flow: row;
+    display: flex;
+    flex-flow: row;
 }
 
 .add-comment__desc {
-	display: flex;
-	flex-flow: column;
-	align-items: flex-end;
-	width: 100%;
-	box-sizing: border-box;
-	margin-left: 10px;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-end;
+
+    box-sizing: border-box;
+    width: 100%;
+    margin-left: 10px;
 }
 
 .add-comment__text {
-	resize: none;
-	width: 100%;
-	box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+
+    resize: none;
 }
 
 .add-comment__text:focus + footer {
-	display: block;
+    display: block;
 }
 
 .add-comment__buttons {
-	float: right;
-	margin-top: 5px;
-	display: none;
+    float: right;
+
+    display: none;
+
+    margin-top: 5px;
 }
 
 .add-comment__buttons:after {
-	content: " ";
-	display: block;
-	border-bottom: 2px solid black;
+    display: block;
+
+    content: ' ';
+
+    border-bottom: 2px solid black;
 }
 
 .add-comment__button {
-	display: block;
-	font-size: 13px;
-	border-radius: 2px;
-	padding: 3px;
-	font-size: 16px;
-	margin: 10px 0;
-}
+    display: block;
 
-.btn-cancel {
+    margin: 10px 0;
+    padding: 3px;
 
+    border-radius: 2px;
+
+    font-size: 16px;
 }
 
 .btn-send {
-	color: #990000;
+    color: #900;
 }
 
 .comment {
-	display: flex;
-	flex-flow: row;
-	align-items: flex-start;
-	justify-content: flex-start;
-	font-size: 13px;
-	margin-top: 15px;
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    margin-top: 15px;
+
+    font-size: 13px;
 }
 
 .comment__user-image {
-	display: inline-block;
+    display: inline-block;
 }
 
 .comment__user-image:before {
-	content: "\f2be";
-	font-size: 48px;
-	transform: translate(0, 10px);
-	font-family: FontAwesome;
-	text-rendering: auto;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+    content: '\f2be';
+    transform: translate(0, 10px);
+
+    font-family: FontAwesome;
+    font-size: 48px;
+
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .comment__desc {
-	display: flex;
-	flex-flow: column;
-	width: 100%;
-	box-sizing: border-box;
-	margin-left: 10px;
+    display: flex;
+    flex-flow: column;
+
+    box-sizing: border-box;
+    width: 100%;
+    margin-left: 10px;
 }
 
 .comment__author {
-	color: #990000;
+    color: #900;
 }
 
 .comment__time {
-	color: #999;
-	margin-left: 5px;
+    margin-left: 5px;
+
+    color: #999;
 }
 
 .comment__text {
-	margin-top: 8px;
-	line-height: 1.25em;
+    margin-top: 8px;
+
+    line-height: 1.25em;
 }

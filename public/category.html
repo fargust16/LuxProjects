@@ -3,73 +3,80 @@
 <head>
 	<title>Online Library</title>
 	<meta content="width=device-width,maximum-scale=1.0,initial-scale=1.0,minimum-scale=1.0,user-scalable=yes" name="viewport">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="./css/reset.css">
 	<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<link rel="stylesheet" type="text/css" href="./css/category.css">
+	<link rel="stylesheet" type="text/css" href="./css/home-page.css">
 </head>
 <body>
-	<header class="header-nav" id="header-nav">
-		<a href="index.html" class="header-nav__logo">Online Library</a>
-		<i class="fa fa-bars" aria-hidden="true" onclick="displayMenu(true)"></i>
-		<nav id="menu" class="menu">
-			<i class="fa fa-times" aria-hidden="true" onclick="displayMenu(false)"></i>
-			<div class="menu__profile"><a href="#Sign In">Sign In</a></div>
-			<ul class="menu__options">
-				<li><a href="./index.html">Home</a></li>
-				<li><a href="./add-book.html">Add a new book</a></li>
-				<li><a href="./recent.html">Recent</a></li>
-				<li><a href="./settings.html">Settings</a></li>
-				<li><a href="./support.html">Support</a></li>
-			</ul>
-		</nav>
-	</header>
-	<article class="search">
-		<section>
-			<label for="search" class="search__field-ico"><input id="search" type="text" class="search__field" name="search" placeholder="Find a solution" /></label>
-			<label for="search-options" class="search__options-ico">
-				<select id="search-options" class="search__options">
-					<option value="all">All</option>
-					<option value="title">Title</option>
-					<option value="author">Author</option>
-					<option value="ISBN">ISBN</option>
-				</select>
-			</label>
-		</section>
-	</article>
-	<main class="main">
-		<section class="main__category">
-			<h1 class="category__name">Recommended books</h1>
-			<div class="books-main">
-				<div class="book">
-					<img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
-					<div class="book__info">
-						<a href="./books_description.html" class="book__name">Harry Potter</a>
-						<p class="book__author">Joanne Rowling</p>
-						<p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
-						<p class="book__reviews">16 reviews</p>
-					</div>
-				</div>
-				<div class="book">
-					<img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
-					<div class="book__info">
-						<a href="./books_description.html" class="book__name">Harry Potter</a>
-						<p class="book__author">Joanne Rowling</p>
-						<p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
-						<p class="book__reviews">16 reviews</p>
-					</div>
-				</div>
-				<div class="book">
-					<img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
-					<div class="book__info">
-						<a href="./books_description.html" class="book__name">Harry Potter</a>
-						<p class="book__author">Joanne Rowling</p>
-						<p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
-						<p class="book__reviews">16 reviews</p>
-					</div>
-				</div>
+	<article class="home-page">
+		<header class="header-nav home-page__header-nav">
+			<a href="index.html" class="header-nav__logo"><h1>Online Library</h1></a>
+			<i class="fa fa-bars header-nav__menu-btn" aria-hidden="true" onclick="displayMenu(true)"></i>
+			<nav id="menu" class="menu">
+				<i class="fa fa-times menu__close-btn" aria-hidden="true" onclick="displayMenu(false)"></i>
+				<div class="menu__profile"><a class="menu__profile-link" href="#Sign In">Sign In</a></div>
+				<ul class="menu__options">
+					<li class="menu__option"><a class="menu__option-link" href="./index.html">Home</a></li>
+					<li class="menu__option"><a class="menu__option-link" href="./add-book.html">Add a new book</a></li>
+					<li class="menu__option"><a class="menu__option-link" href="./recent.html">Recent</a></li>
+					<li class="menu__option"><a class="menu__option-link" href="./settings.html">Settings</a></li>
+					<li class="menu__option"><a class="menu__option-link" href="./support.html">Support</a></li>
+				</ul>
+			</nav>
+		</header>
+		<section class="search home-page__search">
+			<div class="search__box-shadow">
+				<label for="search-field" class="search__field-ico"><input id="search-field" type="text" class="search__field" name="search" placeholder="Find a solution" /></label>
+				<label for="search-options" class="search__options-ico">
+					<select id="search-options" class="search__options">
+						<option class="search__option" value="all">All</option>
+						<option class="search__option" value="title">Title</option>
+						<option class="search__option" value="author">Author</option>
+						<option class="search__option" value="ISBN">ISBN</option>
+					</select>
+				</label>
 			</div>
 		</section>
-	</main>
+		<main class="main home-page__main">
+			<section class="category main__category">
+				<div class="category__name">Recommended books</div>
+				<div class="category__books">
+					<div class="book category__book">
+						<img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
+						<div class="book__info">
+							<a href="./books_description.html" class="book__title">Harry Potter</a>
+							<p class="book__author">Joanne Rowling</p>
+							<p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
+							<p class="reviews book__reviews">16 reviews</p>
+						</div>
+					</div>
+
+					<div class="book category__book">
+						<img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
+						<div class="book__info">
+							<a href="./books_description.html" class="book__title">Harry Potter</a>
+							<p class="book__author">Joanne Rowling</p>
+							<p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
+							<p class="reviews book__reviews">16 reviews</p>
+						</div>
+					</div>
+
+					<div class="book category__book">
+						<img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
+						<div class="book__info">
+							<a href="./books_description.html" class="book__title">Harry Potter</a>
+							<p class="book__author">Joanne Rowling</p>
+							<p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
+							<p class="reviews book__reviews">16 reviews</p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+	</article>
 	<script type="text/javascript">
 		function displayMenu(show){
 			if(show) menu.style.display = "block";

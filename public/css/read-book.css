@@ -1,21 +1,20 @@
-.read-book {
-	
-}
-
 .read-book .main-header span:first-child {
-	font-size: 20px;
+    font-size: 20px;
 }
 
 .read-book .main-header span:last-child {
-	font-size: 13px;
-	color: black;
+    color: black;
+
+    font-size: 13px;
 }
 
 .read-book__content {
-	line-height: 1.25em;
-	font-size: 1em;
-	margin-top: 15px;
-	text-indent: 40px;
-	word-spacing: 1.5px;
-	text-align: justify;
+    margin-top: 15px;
+
+    text-align: justify;
+    text-indent: 40px;
+    word-spacing: 1.5px;
+
+    font-size: 1em;
+    line-height: 1.25em;
 }

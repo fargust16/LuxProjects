@@ -1,0 +1,12 @@
+.home-page__search {
+	top: 43px;
+    z-index: 3;
+}
+
+.home-page__main {
+    z-index: 1;
+
+    padding-top: 136px;
+
+    user-select: none;
+}
