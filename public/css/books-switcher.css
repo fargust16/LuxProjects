@@ -13,8 +13,9 @@
 }
 
 .books-switcher__dots {
-    width: 40px;
-    margin: 0 auto 15px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-18px);
 
     user-select: none;
 }

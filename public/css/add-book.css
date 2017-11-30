@@ -1,42 +1,23 @@
 .add-book {
-    padding: 15px 0;
+    padding-top: 15px;
 }
 
 .add-book__content {
     margin-top: 15px;
-    padding: 0 15px;
 }
 
-.add-book__content header {
-    font-size: 13px;
-}
-
-.add-book__content input {
-    box-sizing: border-box;
-    width: 100%;
-    margin: 8px auto 7px;
-    padding: 7px 5px;
-
-    border: none;
-    border-radius: 4px;
-    box-shadow: 0 1px 6px rgba(32, 33, 36, .38);
-
-    font-size: 16px;
-}
-
-.add-book__main-options::after {
-    display: block;
-
-    height: 2px;
-    margin: 10px auto;
-
-    content: '';
-
-    background-color: #000;
+.option {
+    padding: 10px 0;
+    margin-bottom: 15px;
     box-shadow: 0 1px 6px rgba(32, 33, 36, .38);
 }
 
-.main-options__description {
+.main-options .option-header {
+    margin-left: -15px;
+    margin-bottom: 5px;
+}
+
+.option__description {
     box-sizing: border-box;
     width: 100%;
     margin: 7px auto 4px;
@@ -50,7 +31,7 @@
     font-size: 16px;
 }
 
-.main-options__publish-date {
+.option__date-text {
     display: flex;
     flex-flow: row;
     align-items: center;
@@ -58,68 +39,22 @@
     font-size: 16px;
 }
 
-.main-options__publish-date input {
+.option__date-field {
     margin-left: 10px;
     padding: 4px;
 }
-
-.add-book__external-options {
-    margin-top: 15px;
+.main-options {
+    padding: 15px;
 }
 
-.add-book__external-options::after {
-    display: block;
-
-    height: 2px;
-    margin: 7px auto 4px;
-
-    content: '';
-
-    background-color: #000;
-}
-
-.external-options__content {
+.external-options {
     display: none;
-}
-
-.add-book__external-options header {
-    display: flex;
-    flex-flow: row;
-    align-items: center;
-}
-
-.add-book__external-options header > h2 {
-    transform: translate(0, -3px);
-}
-
-.close-header::before {
-    margin-right: 5px;
-
-    content: '\f196';
-
-    font-family: FontAwesome;
-    font-size: 32px;
-
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-.open-header::before {
-    margin-right: 5px;
-
-    content: '\f147';
-
-    font-family: FontAwesome;
-    font-size: 32px;
-
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    padding: 0 15px; 
 }
 
 .captcha {
-    margin-top: 15px;
+    width: max-content;
+    margin: 15px auto;
     padding: 10px;
 
     border: 1px solid black;
@@ -135,13 +70,12 @@
 }
 
 .add-book__upload-btn {
-    width: 100%;
+    box-sizing: border-box;
     margin: 15px auto;
-    padding: 6px;
 
-    border: 2px solid black;
+    color: #900;
+    border: 1px solid black;
     border-radius: 5px;
-    background-color: #eee;
     box-shadow: 0 1px 6px rgba(32, 33, 36, .38);
 
     font-size: 20px;

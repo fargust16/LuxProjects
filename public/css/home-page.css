@@ -10,3 +10,7 @@
 
     user-select: none;
 }
+
+.home-page__books {
+	padding-bottom: 30px;
+}

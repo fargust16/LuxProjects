@@ -307,6 +307,14 @@ select {
 }
 
 .header {
+    white-space: nowrap;
+    text-transform: lowercase;
+
+    font-size: 20px;
+    font-variant: small-caps;
+}
+
+.header_lines {
     box-sizing: border-box;
 
     white-space: nowrap;
@@ -316,7 +324,7 @@ select {
     font-variant: small-caps;
 }
 
-.header::after {
+.header_lines::after {
     display: inline-block;
 
     width: 100%;
@@ -329,7 +337,7 @@ select {
     background-color: #000;
 }
 
-.header::before {
+.header_lines::before {
     display: inline-block;
 
     width: 12px;
@@ -399,6 +407,9 @@ select {
 
 /* ------------------------------------- */
 
+.books {
+    position: relative;
+}
 
 .book {
     position: relative;
@@ -461,15 +472,27 @@ select {
     font-size: 16px;
 }
 
+.field {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 8px auto 7px;
+    padding: 7px 5px;
+
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 1px 6px rgba(32, 33, 36, .38);
+
+    font-size: 16px;
+}
+
 .close-header {
     position: relative;
-
+    padding: 0 15px;
     line-height: 32px;
 }
 
 .open-header {
     position: relative;
-    padding: 10px 0;
     line-height: 32px;
     white-space: nowrap;
 }

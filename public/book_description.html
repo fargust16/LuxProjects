@@ -104,7 +104,7 @@
 		function showComments(e){
 			if(getComputedStyle(e).display == 'none') {
 				e.style.display = 'block';
-				e.previousElementSibling.className = 'header open-header';
+				e.previousElementSibling.className = 'header_lines open-header';
 				window.scrollTo(0, comments_block.offsetTop - 44);  // scroll to begin of comments-block, when open comments.
 			} else {
 				e.style.display = 'none';
