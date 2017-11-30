@@ -1,3 +1,7 @@
+.read-book {
+	padding: 15px;
+}
+
 .read-book .main-header span:first-child {
     font-size: 20px;
 }

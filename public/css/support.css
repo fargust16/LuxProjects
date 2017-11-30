@@ -1,3 +1,7 @@
+.support {
+    padding: 15px;
+}
+
 .support__form {
     margin: 15px auto;
 }
@@ -38,26 +42,18 @@ input.support__form-subject {
     font-size: 16px;
 }
 
-.support__form-button {
+.support__buttons {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+
     width: 100%;
-    margin-top: 15px;
-    padding: 6px;
-
-    border: 1px solid black;
-    border-radius: 5px;
-    box-shadow: 0 1px 6px rgba(32, 33, 36, .38);
-
-    font-size: 20px;
-}
-
-.support__form-button:last-child {
-    margin-bottom: 20px;
 }
 
 .btn-clear {
-    background-color: #f9cb9c;
 }
 
 .btn-submit {
-    background-color: #b6d7a8;
+    color: #900;
 }

@@ -1,13 +1,14 @@
-.other-pages__book-description {
+.book-description {
     display: flex;
     flex-flow: column;
     justify-content: space-around;
     align-items: flex-start;
 
     box-sizing: border-box;
-}
+    padding: 15px;
 
-.book-description
+    box-shadow: 0 1px 6px rgba(32, 33, 36, .38);
+}
 
 .book-description__book-cover {
     width: 100%;
@@ -18,9 +19,12 @@
 .book-description__title {
     margin-top: 10px;
 
+    text-transform: lowercase;
+
     color: #900;
 
-    font-size: 20px;
+    font-size: 25px;
+    font-variant: small-caps;
 }
 
 .book-description__author {
@@ -42,7 +46,7 @@
 .book-description__rating > label:before {
     display: inline-block;
 
-    margin: 5px;
+    margin-right: 5px;
 
     content: '\f005';
 
@@ -76,9 +80,11 @@
 }
 
 .book-description__reviews {
+    width: 100%;
     margin-top: 10px;
+    padding-bottom: 10px;
 
-    color: #900;
+    border-bottom: 1px solid #dcdcdc;
 
     font-size: 13px;
 }
@@ -94,65 +100,63 @@
 .book-description__buttons {
     display: flex;
     flex-flow: row;
-    justify-content: flex-start;
+    justify-content: space-between;
+    align-items: center;
 
     width: 100%;
-    margin-top: 15px;
-}
-
-.button {
-    padding: 5px 10px;
-
-    border: 2px solid black;
-    border-radius: 5px;
-    box-shadow: 0 1px 6px rgba(32, 33, 36, .38);
-
-    font-size: 20px;
 }
 
 .btn-read {
-    text-decoration: none;
-
-    color: black;
+    color: #900;
 }
 
 .btn-download {
-    margin-left: 105px;
-
-    background-color: #b6d7a8;
 }
 
-.book-description__comments {
-    margin-top: 20px;
+.other-pages__comments {
+    margin-top: 15px;
 }
 
-.add-comment {
+.comments {
+    padding: 15px;
+
+    box-shadow: 0 1px 6px rgba(32, 33, 36, .38);
+}
+
+.comments__header {
+    margin-left: -15px;
+}
+
+.comments__new-comment {
+    margin-top: 35px;
+}
+
+.new-comment {
     display: flex;
     flex-flow: row;
 }
 
-.add-comment__desc {
+.new-comment__desc {
     display: flex;
     flex-flow: column;
-    align-items: flex-end;
 
     box-sizing: border-box;
     width: 100%;
     margin-left: 10px;
 }
 
-.add-comment__text {
+.new-comment__text {
     box-sizing: border-box;
     width: 100%;
 
     resize: none;
 }
 
-.add-comment__text:focus + footer {
+.new-comment__text:focus + footer {
     display: block;
 }
 
-.add-comment__buttons {
+.new-comment__buttons {
     float: right;
 
     display: none;
@@ -160,15 +164,15 @@
     margin-top: 5px;
 }
 
-.add-comment__buttons:after {
+.new-comment__buttons:after {
     display: block;
 
-    content: ' ';
+    content: '';
 
     border-bottom: 2px solid black;
 }
 
-.add-comment__button {
+.new-comment__button {
     display: block;
 
     margin: 10px 0;
