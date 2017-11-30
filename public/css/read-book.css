@@ -1,5 +1,5 @@
 .read-book {
-	padding: 15px;
+	padding: 15px 0;
 }
 
 .read-book .main-header span:first-child {
@@ -14,6 +14,7 @@
 
 .read-book__content {
     margin-top: 15px;
+    padding: 0 15px;
 
     text-align: justify;
     text-indent: 40px;

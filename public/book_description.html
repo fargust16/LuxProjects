@@ -51,54 +51,67 @@
 			</div>
 		</main>
 
-		<section class="comments other-pages__comments">
-			<div class="header comments__header">комментарии</div>
-			<div class="new-comment comments__new-comment">
-				<img class="comment__user-image" src="" >
-				<div class="new-comment__desc">
-				<textarea class="new-comment__text" placeholder="leave a comment"></textarea>
-				<footer class="new-comment__buttons">
-					<span class="new-comment__button btn-clear">Cancel</span>
-					<span class="new-comment__button btn-send">Send comment</span>
-				</footer>
+		<section id="comments_block" class="comments other-pages__comments">
+			<div class="comments__header close-header" onclick="showComments(comments_content)">Comments</div>
+			<section id="comments_content" class="comments__content">
+				<div class="new-comment comments__new-comment">
+					<img class="comment__user-image" src="" >
+					<div class="new-comment__desc">
+					<textarea class="new-comment__text" placeholder="leave a comment"></textarea>
+					<footer class="new-comment__buttons">
+						<span class="new-comment__button btn-clear">Cancel</span>
+						<span class="new-comment__button btn-send">Send comment</span>
+					</footer>
+					</div>
 				</div>
-			</div>
 
-			<div class="comment">
-				<img class="comment__user-image" src="" >
-				<div class="comment__desc">
-					<p class="comment__author">Chuck Pallaniuk <span class="comment__time">2 hours ago</span></p>
-					<p class="comment__text">The best book ever! I love this author and his talent to writing</p>
+				<div class="comment">
+					<img class="comment__user-image" src="" >
+					<div class="comment__desc">
+						<p class="comment__author">Chuck Pallaniuk <span class="comment__time">2 hours ago</span></p>
+						<p class="comment__text">The best book ever! I love this author and his talent to writing</p>
+					</div>
 				</div>
-			</div>
 
-			<div class="comment">
-				<img class="comment__user-image" src="" >
-				<div class="comment__desc">
-					<p class="comment__author">Joanne Rowling <span class="comment__time">4 hours ago</span></p>
-					<p class="comment__text">The best book ever! I love this author and his talent to writing</p>
+				<div class="comment">
+					<img class="comment__user-image" src="" >
+					<div class="comment__desc">
+						<p class="comment__author">Joanne Rowling <span class="comment__time">4 hours ago</span></p>
+						<p class="comment__text">The best book ever! I love this author and his talent to writing</p>
+					</div>
 				</div>
-			</div>
 
-			<div class="comment">
-				<img class="comment__user-image" src="" >
-				<div class="comment__desc">
-					<p class="comment__author">Lewis Carroll <span class="comment__time">6 hours ago</span></p>
-					<p class="comment__text">The best book ever! I love this author and his talent to writing. It`s so ammazing to comment this post, this book. Oh I`m so lucky men.</p>
+				<div class="comment">
+					<img class="comment__user-image" src="" >
+					<div class="comment__desc">
+						<p class="comment__author">Lewis Carroll <span class="comment__time">6 hours ago</span></p>
+						<p class="comment__text">The best book ever! I love this author and his talent to writing. It`s so ammazing to comment this post, this book. Oh I`m so lucky men.</p>
+					</div>
 				</div>
-			</div>
 
-			<div class="comment">
-				<img class="comment__user-image" src="" >
-				<div class="comment__desc">
-					<p class="comment__author">Chuck Pallaniuk <span class="comment__time">12 hours ago</span></p>
-					<p class="comment__text">The best book ever! I love this author and his talent to writing</p>
+				<div class="comment">
+					<img class="comment__user-image" src="" >
+					<div class="comment__desc">
+						<p class="comment__author">Chuck Pallaniuk <span class="comment__time">12 hours ago</span></p>
+						<p class="comment__text">The best book ever! I love this author and his talent to writing</p>
+					</div>
 				</div>
-			</div>
+			</section>
 		</section>
 	</article>
 
 	<script type="text/javascript">
+		function showComments(e){
+			if(getComputedStyle(e).display == 'none') {
+				e.style.display = 'block';
+				e.previousElementSibling.className = 'header open-header';
+				window.scrollTo(0, comments_block.offsetTop - 44);  // scroll to begin of comments-block, when open comments.
+			} else {
+				e.style.display = 'none';
+				e.previousElementSibling.className = 'comments__header close-header';
+			}
+		}
+
 		function displayMenu(show){
 			if(show) menu.style.display = "block";
 			else menu.style.display = "none";

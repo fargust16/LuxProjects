@@ -303,7 +303,7 @@ select {
 /* TODO change this style on other pages */
 
 .other-pages {
-    padding: 40px 0;
+    padding-top: 40px;
 }
 
 .header {
@@ -377,7 +377,7 @@ select {
     position: relative;
     z-index: 2;
 
-    margin-left: -5px;
+    margin-left: 15px;
     padding: 5px;
 
     background-color: #fff;
@@ -386,7 +386,7 @@ select {
 .main-header::before {
     position: absolute;
     top: 50%;
-    left: -15px;
+    left: 0;
     z-index: 1;
 
     width: 100vw;
@@ -459,4 +459,33 @@ select {
     color: #900;
 
     font-size: 16px;
+}
+
+.close-header {
+    position: relative;
+
+    line-height: 32px;
+}
+
+.open-header {
+    position: relative;
+    padding: 10px 0;
+    line-height: 32px;
+    white-space: nowrap;
+}
+
+.close-header::before {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-20px);
+    right: 15px;
+
+    content: "\f0dd";
+
+    font-family: FontAwesome;
+    font-size: 20px;
+
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }

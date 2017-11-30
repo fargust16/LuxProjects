@@ -1,9 +1,10 @@
 .recent {
-    padding: 15px;
+    padding: 15px 0;
 }
 
 .recent__content {
     margin-top: 15px;
+    padding: 0 15px;
 }
 
 .recent__category {

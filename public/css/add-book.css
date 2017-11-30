@@ -1,9 +1,10 @@
 .add-book {
-    padding: 15px;
+    padding: 15px 0;
 }
 
 .add-book__content {
     margin-top: 15px;
+    padding: 0 15px;
 }
 
 .add-book__content header {
