@@ -25,26 +25,31 @@
 			</ul>
 		</nav>
 	</header>
-	<article class="other-pages">
-		<main class="book-description">
+	<article class="other-pages book-description">
+		<main class="book-description__content">
 			<img class="book-description__book-cover" src="./images/books-cover.png" alt="book`s name">
-			<p class="book-description__title">The alchemist</p>
-			<p class="book-description__author">Paulo Coelho</p>
+			<div class="book-description__title">The alchemist</div>
+			<div class="book-description__author">Paulo Coelho</div>
 
-			<fieldset class="book-description__rating">
-			    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-			    <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-			    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-			    <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-			    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-			    <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-			    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-			    <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-			    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-			    <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-			</fieldset>
+			<div class="book-description__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt bibendum purus sed tristique. Pellentesque a lacinia augue. Mauris gravida urna eu neque interdum, et consectetur leo varius. Donec vitae posuere lorem, ac tincidunt ipsum. Maecenas auctor pretium ex, ac imperdiet dui pharetra in. Pellentesque justo est, cursus id pellentesque in, imperdiet eu velit. Ut rhoncus condimentum velit id tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean nisl turpis, dapibus aliquam tellus quis, blandit condimentum dolor. Maecenas dignissim euismod eros, et facilisis lorem pharetra et. Ut libero felis, tincidunt malesuada luctus id, aliquam in urna.
 
-			<section class="reviews book-description__reviews"><span>125 reviews</span><span>See more...</span></section>
+Nunc nibh purus, tristique vitae nibh in, bibendum pharetra quam. Nam bibendum orci sed facilisis vestibulum. Integer ac facilisis quam. Aliquam et volutpat enim. Suspendisse turpis nisi, posuere ut auctor vel, aliquet ut erat. Sed convallis elementum faucibus. Nunc vel euismod sem. Maecenas egestas semper sapien, eu bibendum metus pharetra eget. In quis nisi orci. Vivamus non luctus nunc. Sed enim turpis, varius vel mattis quis, venenatis quis odio. Vivamus luctus a neque nec lacinia. Duis tempus sem tortor, vel rutrum augue tristique eget. Nulla eget enim ornare, ultricies risus vel, molestie turpis.</div>
+			<span class="book-description__text-more">see more</span>
+			<div class="book-description__reviews">
+				<fieldset class="book-description__rating">
+				    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+				    <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+				    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+				    <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+				    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+				    <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+				    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+				    <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+				    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+				    <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+				</fieldset>
+				<span class="reviews book-description__reviews-count">125 reviews</span>
+			</div>
 			<div class="book-description__buttons">
 				<a href="./read-book.html" class="button btn-read">start reading now</a>
 				<a href="#download" class="button btn-download">download</a>
@@ -52,12 +57,12 @@
 		</main>
 
 		<section id="comments_block" class="comments other-pages__comments">
-			<div class="comments__header close-header" onclick="showComments(comments_content)">Comments</div>
+			<div class="header comments__header close-header" onclick="showComments(comments_content)"><span class="header_lines__text">Comments</span></div>
 			<section id="comments_content" class="comments__content">
 				<div class="new-comment comments__new-comment">
 					<img class="comment__user-image" src="" >
 					<div class="new-comment__desc">
-					<textarea class="new-comment__text" placeholder="leave a comment"></textarea>
+					<textarea class="field new-comment__text" placeholder="leave a comment"></textarea>
 					<footer class="new-comment__buttons">
 						<span class="new-comment__button btn-clear">Cancel</span>
 						<span class="new-comment__button btn-send">Send comment</span>
@@ -104,11 +109,11 @@
 		function showComments(e){
 			if(getComputedStyle(e).display == 'none') {
 				e.style.display = 'block';
-				e.previousElementSibling.className = 'header_lines open-header';
+				e.previousElementSibling.className = 'header_lines comments__header open-header';
 				window.scrollTo(0, comments_block.offsetTop - 44);  // scroll to begin of comments-block, when open comments.
 			} else {
 				e.style.display = 'none';
-				e.previousElementSibling.className = 'comments__header close-header';
+				e.previousElementSibling.className = 'header comments__header close-header';
 			}
 		}
 

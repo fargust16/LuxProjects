@@ -27,35 +27,38 @@
 	</header>
 	<article class="other-pages">
 		<main class="settings">
-			<div class="main-header"><span>Settings</span></div>
+			<div class="main-header"><span class="main-header__text">Settings</span></div>
 			<div class="settings__header">
 				<span class="settings__info">Email address</span>
 				<div class="settings__email">user@gmail.com</div>
 			</div>
-			<section class="option">
-				<h2 onclick="showExternalOptions(email_settings)" class="option__name close-header">Change email</h2>
-				<form id="email_settings" action="" method="POST" class="option__form">
-					<input type="email" name="email" class="option__email" placeholder="new email address" required>
-					<input type="password" name="password" class="option__pass" placeholder="current password">
-					<div class="option__buttons">
-						<button class="button btn-clear" for="email-settings" type="reset" onclick="showExternalOptions(email_settings)">Cancel</button>
-						<button class="button btn-submit" for="email-settings" type="submit">Save changes</button>
-					</div>
-				</form>
-			</section>
 
-			<section class="option">
-				<h2 onclick="showExternalOptions(password_settings)" class="option__name close-header">Change password</h2>
-				<form id="password_settings" action="" method="POST"  class="option__form">
-					<input type="password" name="old-pass" class="option__old-pass" placeholder="current password" required>
-					<input type="password" name="new-pass" class="option__new-pass" placeholder="new password">
-					<input type="password" name="confirm-pass" class="option__confirm-pass" placeholder="confirm new password">
-					<div class="option__buttons">
-						<button class="button btn-clear" for="password-settings" type="reset" onclick="showExternalOptions(password_settings)">Cancel</button>
-						<button class="button btn-submit" for="password-settings" type="submit">Save changes</button>
-					</div>
-				</form>
-			</section>
+			<article class="options settings__options">
+				<section class="option">
+					<div onclick="showExternalOptions(email_settings)" class="header option__name close-header"><span class="header_lines__text">Change email</span></div>
+					<form id="email_settings" action="" method="POST" class="option__form">
+						<input type="email" name="email" class="field option__email" placeholder="new email address" required>
+						<input type="password" name="password" class="field option__pass" placeholder="current password">
+						<div class="option__buttons">
+							<button class="button btn-clear" for="email-settings" type="reset" onclick="showExternalOptions(email_settings)">Cancel</button>
+							<button class="button btn-submit" for="email-settings" type="submit">Save changes</button>
+						</div>
+					</form>
+				</section>
+
+				<section class="option">
+					<div onclick="showExternalOptions(password_settings)" class="header option__name close-header"><span class="header_lines__text">Change password</span></div>
+					<form id="password_settings" action="" method="POST"  class="option__form">
+						<input type="password" name="old-pass" class="field option__old-pass" placeholder="current password" required>
+						<input type="password" name="new-pass" class="field option__new-pass" placeholder="new password">
+						<input type="password" name="confirm-pass" class="field option__confirm-pass" placeholder="confirm new password">
+						<div class="option__buttons">
+							<button class="button btn-clear" for="password-settings" type="reset" onclick="showExternalOptions(password_settings)">Cancel</button>
+							<button class="button btn-submit" for="password-settings" type="submit">Save changes</button>
+						</div>
+					</form>
+				</section>
+			</article>
 		</main>
 	</article>
 	<script type="text/javascript">

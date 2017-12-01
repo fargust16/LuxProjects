@@ -2,11 +2,20 @@
     display: flex;
     flex-flow: column;
     justify-content: space-around;
-    align-items: flex-start;
+    align-items: center;
 
     box-sizing: border-box;
-    padding: 15px;
+    padding-right: 8px;
+    padding-left: 8px;
+}
 
+.book-description__content {
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+
+    border-radius: 8px;
     box-shadow: 0 1px 6px rgba(32, 33, 36, .38);
 }
 
@@ -33,9 +42,46 @@
     font-size: 14px;
 }
 
-.book-description__rating {
-    margin-top: 10px;
+.book-description__text {
+    display: -webkit-box;
+    overflow: hidden;
 
+    margin-top: 10px;
+    padding-top: 2px;
+
+    text-overflow: ellipsis;
+
+    font-size: 13px;
+    line-height: 14px;
+
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.book-description__text-more {
+    display: block;
+
+    color: #900;
+
+    font-size: 13px;
+}
+
+.book-description__reviews {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    padding-bottom: 10px;
+
+    border-bottom: 1px solid #dcdcdc;
+
+    font-size: 13px;
+}
+
+.book-description__rating {
     border: none;
 }
 
@@ -79,22 +125,10 @@
     color: #ffed85;
 }
 
-.book-description__reviews {
-    width: 100%;
-    margin-top: 10px;
-    padding-bottom: 10px;
+.book-description__reviews-count {
+    margin-left: 25px;
 
-    border-bottom: 1px solid #dcdcdc;
-
-    font-size: 13px;
-}
-
-.book-description__reviews span:last-child {
-    margin-left: 35px;
-
-    text-decoration: underline;
-
-    color: #000;
+    font-size: 15px;
 }
 
 .book-description__buttons {
@@ -110,36 +144,44 @@
     color: #900;
 }
 
-.btn-download {
-}
+
 
 .other-pages__comments {
     margin-top: 15px;
 }
 
 .comments {
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 10px;
+
+    border-radius: 8px;
     box-shadow: 0 1px 6px rgba(32, 33, 36, .38);
 }
 
 .comments__header {
-    padding: 10px 15px;
-    text-transform: lowercase;
-    font-variant: small-caps;
+    overflow: hidden;
+
+    box-sizing: border-box;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
     font-size: 20px;
 }
 
 .comments__content {
     display: none;
+
     padding: 15px;
 }
 
-.comments__new-comment {
-    margin-top: 5px;
-}
+
 
 .new-comment {
     display: flex;
     flex-flow: row;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .new-comment__desc {
@@ -154,6 +196,7 @@
 .new-comment__text {
     box-sizing: border-box;
     width: 100%;
+    margin: 0 auto;
 
     resize: none;
 }

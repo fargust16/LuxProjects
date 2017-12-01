@@ -4,20 +4,13 @@
 
 .support__form {
     margin: 15px auto;
-    padding: 0 15px;
+    padding: 0 8px;
 }
 
-.support__form input {
-    box-sizing: border-box;
-    width: 100%;
-    margin: 8px auto 7px;
-    padding: 7px 5px;
-
-    border: none;
-    border-radius: 4px;
+.support__form-content {
     box-shadow: 0 1px 6px rgba(32, 33, 36, .38);
-
-    font-size: 16px;
+    border-radius: 8px;
+    padding: 10px;
 }
 
 .support__form-info {
@@ -25,7 +18,7 @@
     line-height: 1.25em;
 }
 
-input.support__form-subject {
+.support__form-subject {
     margin-top: 15px;
 }
 
@@ -33,13 +26,9 @@ input.support__form-subject {
     box-sizing: border-box;
     width: 100%;
     margin-top: 15px;
-    padding: 6px;
 
     resize: none;
-
-    border: none;
-    border-radius: 4px;
-    box-shadow: 0 1px 6px rgba(32, 33, 36, .38);
+    border-radius: 8px;
 
     font-size: 16px;
 }

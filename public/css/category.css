@@ -3,12 +3,13 @@
 
     overflow: hidden;
 
-    margin-top: 15px;
+    margin-bottom: 15px;
 
     white-space: nowrap;
 
     background-color: #fff;
     box-shadow: 0 1px 6px rgba(32, 33, 36, .38);
+    border-radius: 8px;
 }
 
 .category__name {
@@ -22,7 +23,7 @@
     justify-content: center;
     align-items: center;
 
-    padding: 0 15px;
+    padding: 0 10px;
 
     flex-wrap: wrap;
 }

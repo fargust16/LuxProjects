@@ -4,17 +4,24 @@
 
 .add-book__content {
     margin-top: 15px;
+    padding: 1px 8px;
 }
 
 .option {
-    padding: 10px 0;
     margin-bottom: 15px;
+    padding: 10px 0;
+
+    border-radius: 10px;
     box-shadow: 0 1px 6px rgba(32, 33, 36, .38);
 }
 
-.main-options .option-header {
-    margin-left: -15px;
-    margin-bottom: 5px;
+.option__header {
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.option__content {
+    padding: 0 10px;
 }
 
 .option__description {
@@ -23,10 +30,7 @@
     margin: 7px auto 4px;
 
     resize: none;
-
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0 1px 6px rgba(32, 33, 36, .38);
+    border-radius: 8px;
 
     font-size: 16px;
 }
@@ -43,21 +47,15 @@
     margin-left: 10px;
     padding: 4px;
 }
-.main-options {
-    padding: 15px;
-}
 
 .external-options {
     display: none;
-    padding: 0 15px; 
 }
 
 .captcha {
     width: max-content;
     margin: 15px auto;
     padding: 10px;
-
-    border: 1px solid black;
     border-radius: 5px;
 }
 
@@ -74,9 +72,7 @@
     margin: 15px auto;
 
     color: #900;
-    border: 1px solid black;
     border-radius: 5px;
-    box-shadow: 0 1px 6px rgba(32, 33, 36, .38);
 
     font-size: 20px;
 }

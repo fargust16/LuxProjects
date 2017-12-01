@@ -6,8 +6,8 @@
 .home-page__main {
     z-index: 1;
 
-    padding-top: 136px;
-
+    padding: 136px 8px 0;
+    box-sizing: border-box;
     user-select: none;
 }
 

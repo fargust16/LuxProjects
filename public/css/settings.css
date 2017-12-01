@@ -3,7 +3,7 @@
 }
 
 .settings__header {
-    padding: 15px;
+    padding: 10px 18px 12px;
 }
 
 .settings__info {
@@ -19,14 +19,20 @@
     font-weight: bold;
 }
 
+.options {
+    padding: 1px 8px;
+}
+
 .option {
     box-shadow: 0 1px 6px rgba(32, 33, 36, .38);
-    margin-bottom: 15px
+    margin-bottom: 15px;
+    border-radius: 8px;
 }
 
 .option__name {
     padding-top: 10px;
     padding-bottom: 10px;
+    overflow: hidden;
     font-variant: small-caps;
     text-transform: lowercase;
     font-size: 20px;
@@ -34,20 +40,7 @@
 
 .option__form {
     display: none;
-    padding: 0 15px 15px;
-}
-
-.option__form input {
-    box-sizing: border-box;
-    width: 100%;
-    margin: 7px auto 8px;
-    padding: 7px 5px;
-
-    border: none;
-    border-radius: 4px;
-    box-shadow: 0 1px 6px rgba(32, 33, 36, .38);
-
-    font-size: 16px;
+    padding: 0 10px 15px;
 }
 
 .option__buttons {

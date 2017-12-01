@@ -1,10 +1,10 @@
 .recent {
-    padding: 15px 0;
+    padding-top: 15px;
 }
 
 .recent__content {
     margin-top: 15px;
-    padding: 0 15px;
+    padding: 1px 8px;
 }
 
 .recent__category {
@@ -12,7 +12,9 @@
 }
 
 .recent__category-date {
-    font-size: 13px;
+    padding-left: 10px;
+
+    font-size: 14px;
 }
 
 .recent__book {
@@ -52,11 +54,19 @@
 }
 
 .recent__book-description {
+    display: -webkit-box;
+    overflow: hidden;
     flex-grow: 1;
 
     margin-top: 5px;
 
+    text-overflow: ellipsis;
+
     font-size: 12px;
+    line-height: 1.15em;
+
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
 }
 
 .recent__book-progress {

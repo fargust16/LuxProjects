@@ -26,16 +26,18 @@
 	</header>
 	<article class="other-pages">
 		<main class="support">
-			<div class="main-header"><span>Support</span></div>
+			<div class="main-header"><span class="main-header__text">Support</span></div>
 			<form id="support-email" action="" method="POST" class="support__form">
-				<h2 class="support__form-info">Please try to include as much detail
-	as possible about the situation you encountered and the platform you use.</h2>
-				<input type="text" name="email" class="support__form-subject" placeholder="subject" required>
-				<textarea class="support__form-message" placeholder="your message" rows="5" required></textarea>
-				<div class="support__buttons">
-					<button class="button btn-clear" for="support-email" type="reset">Cancel</button>
-					<button class="button btn-submit" for="support-email" type="submit">Send email</button>
-				</div>
+				<section class="support__form-content">
+					<h2 class="support__form-info">Please try to include as much detail
+		as possible about the situation you encountered and the platform you use.</h2>
+					<input type="text" name="email" class="field support__form-subject" placeholder="subject" required>
+					<textarea class="field support__form-message" placeholder="your message" rows="5" required></textarea>
+					<div class="support__buttons">
+						<button class="button btn-clear" for="support-email" type="reset">Cancel</button>
+						<button class="button btn-submit" for="support-email" type="submit">Send email</button>
+					</div>
+				</section>
 			</form>
 		</main>
 	</article>
