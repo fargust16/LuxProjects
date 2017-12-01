@@ -1,13 +1,45 @@
+@media only screen and (min-width: 768px) and (max-width: 1265px) {
+    .books-switcher {
+        width: 350px;
+        transform: translateX(-350px);
+    }
+
+    .books-switcher__book {
+        min-width: 338px;
+    }
+}
+
+@media only screen and (min-width: 300px) and (max-width: 767px) {
+    .books-switcher {
+        width: 272px;
+        transform: translateX(-272px);
+    }
+
+    .books-switcher__book {
+        min-width: 260px;
+    }
+}
+
+@media only screen and (max-width: 300px){
+    .books-switcher {
+        width: 272px;
+        transform: translateX(-272px);
+    }
+
+    .books-switcher__book {
+        min-width: 260px;
+    }
+}
+
 .books-switcher {
     display: flex;
     overflow: visible;
     flex-flow: row;
     justify-content: flex-start;
 
-    width: 272px;
+    min-width: 272px;
+    
     margin: 0 auto;
-
-    transform: translateX(-272px);
 
     flex-wrap: nowrap;
 }
@@ -15,9 +47,9 @@
 .books-switcher__dots {
     position: absolute;
     left: 50%;
-    transform: translateX(-18px);
 
     user-select: none;
+    transform: translateX(-18px);
 }
 
 .books-switcher__dot {
@@ -46,7 +78,9 @@
 }
 
 .books-switcher__see-more::after {
-    content: '  \f105 \f105';
+    margin-left: 5px;
+
+    content: '\f105 \f105';
 
     font-family: FontAwesome;
 
@@ -56,6 +90,6 @@
 }
 
 .books-switcher__book {
-    min-width: 260px;
+    max-width: 420px;
     margin: 10px 6px;
 }

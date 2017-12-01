@@ -29,7 +29,7 @@
 			<div class="main-header"><span class="main-header__text">Add a new book</span></div>
 			<form id="book-data" action="" method="POST" class="add-book__content">
 				<section class="option main-options">
-					<div class="header_lines option__header"><span class="header_lines__text">main data</span></div>
+					<div class="header_lines option__header"><span class="header__text">main data</span></div>
 					<div class="option__content">
 						<input type="text" name="title" placeholder="title" class="field option__title" required>
 						<input type="text" name="author" placeholder="author" class="field option__author" required>
@@ -39,7 +39,7 @@
 					</div>
 				</section>
 				<section class="option add-book__option">
-					<div onclick="showExternalOptions(this)" class="option__header header close-header"><span class="header_lines__text">external options</span></div>
+					<div onclick="showExternalOptions(this)" class="option__header header close-header"><span class="header__text">external options</span></div>
 					<div class="option__content external-options">
 						<input type="text" name="genre" placeholder="genre" class="field option__genre">
 						<input type="text" name="topics" placeholder="topics" class="field option__topics">
@@ -50,7 +50,7 @@
 					<input type="checkbox" id="isRobot" name="isRobot">
 					<label for="isRobot">I`m not a robot?</label>
 				</div>
-				<button type="submit" class="button add-book__upload-btn" for="book-data">Upload book</button>
+				<button type="submit" class="button add-book__upload-btn">Upload book</button>
 			</form>
 		</main>
 	</article>

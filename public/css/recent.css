@@ -8,11 +8,19 @@
 }
 
 .recent__category {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
+    padding: 10px;
+
+    border-radius: 8px;
+    box-shadow: 0 1px 6px rgba(32, 33, 36, .38);
 }
 
 .recent__category-date {
-    padding-left: 10px;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    margin-left: -10px;
+    margin-right: -10px;
 
     font-size: 14px;
 }
@@ -26,9 +34,9 @@
     margin: 10px auto;
     padding: 15px 10px;
 
+    border: 1px solid rgba(0,0,0,.2);
     border-radius: 5px;
     background-color: #fff;
-    box-shadow: 0 1px 6px rgba(32, 33, 36, .38);
 }
 
 .recent__book:nth-child(2) {
@@ -63,7 +71,7 @@
     text-overflow: ellipsis;
 
     font-size: 12px;
-    line-height: 1.15em;
+    line-height: 1.2em;
 
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
@@ -73,13 +81,13 @@
     position: relative;
 
     width: auto;
-    height: 12px;
+    height: 8px;
     margin: 15px 10px 10px 25px;
 }
 
 .recent__book-progress::before {
     position: absolute;
-    top: -6px;
+    top: -8px;
     left: -25px;
 
     content: '\f252';

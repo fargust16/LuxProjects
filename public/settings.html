@@ -35,26 +35,26 @@
 
 			<article class="options settings__options">
 				<section class="option">
-					<div onclick="showExternalOptions(email_settings)" class="header option__name close-header"><span class="header_lines__text">Change email</span></div>
+					<div onclick="showExternalOptions(email_settings)" class="header option__name close-header"><span class="header__text">Change email</span></div>
 					<form id="email_settings" action="" method="POST" class="option__form">
 						<input type="email" name="email" class="field option__email" placeholder="new email address" required>
 						<input type="password" name="password" class="field option__pass" placeholder="current password">
 						<div class="option__buttons">
-							<button class="button btn-clear" for="email-settings" type="reset" onclick="showExternalOptions(email_settings)">Cancel</button>
-							<button class="button btn-submit" for="email-settings" type="submit">Save changes</button>
+							<button class="button btn-clear" type="reset" onclick="showExternalOptions(email_settings)">Cancel</button>
+							<button class="button btn-submit" type="submit">Save changes</button>
 						</div>
 					</form>
 				</section>
 
 				<section class="option">
-					<div onclick="showExternalOptions(password_settings)" class="header option__name close-header"><span class="header_lines__text">Change password</span></div>
+					<div onclick="showExternalOptions(password_settings)" class="header option__name close-header"><span class="header__text">Change password</span></div>
 					<form id="password_settings" action="" method="POST"  class="option__form">
 						<input type="password" name="old-pass" class="field option__old-pass" placeholder="current password" required>
 						<input type="password" name="new-pass" class="field option__new-pass" placeholder="new password">
 						<input type="password" name="confirm-pass" class="field option__confirm-pass" placeholder="confirm new password">
 						<div class="option__buttons">
-							<button class="button btn-clear" for="password-settings" type="reset" onclick="showExternalOptions(password_settings)">Cancel</button>
-							<button class="button btn-submit" for="password-settings" type="submit">Save changes</button>
+							<button class="button btn-clear" type="reset" onclick="showExternalOptions(password_settings)">Cancel</button>
+							<button class="button btn-submit" type="submit">Save changes</button>
 						</div>
 					</form>
 				</section>

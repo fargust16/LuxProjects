@@ -1,3 +1,28 @@
+@media only screen and (min-width: 1281px) {
+    .category__book {
+        width: 24%;
+    }
+}
+
+@media only screen and (min-width: 921px) and (max-width: 1280px) {
+    .category__book {
+        width: 32%;
+    }
+}
+
+@media only screen and (min-width: 621px) and (max-width: 920px) {
+    .category__book {
+        width: 48%;
+    }
+}
+
+@media only screen and (min-width: 300px) and (max-width: 620px) {
+    .category__book {
+        width: 100%;
+    }
+}
+
+
 .main__category {
     position: relative;
 
@@ -7,9 +32,9 @@
 
     white-space: nowrap;
 
+    border-radius: 8px;
     background-color: #fff;
     box-shadow: 0 1px 6px rgba(32, 33, 36, .38);
-    border-radius: 8px;
 }
 
 .category__name {
@@ -33,6 +58,8 @@
     flex-flow: row;
     justify-content: flex-start;
 
-    width: 100%;
+    box-sizing: border-box;
+    min-width: 265px;
+    max-width: 450px;
     margin: 10px auto;
 }

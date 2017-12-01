@@ -16,8 +16,9 @@
 }
 
 .option__header {
-    box-sizing: border-box;
     overflow: hidden;
+
+    box-sizing: border-box;
 }
 
 .option__content {
@@ -30,6 +31,7 @@
     margin: 7px auto 4px;
 
     resize: none;
+
     border-radius: 8px;
 
     font-size: 16px;
@@ -56,6 +58,7 @@
     width: max-content;
     margin: 15px auto;
     padding: 10px;
+
     border-radius: 5px;
 }
 

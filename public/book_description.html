@@ -27,14 +27,27 @@
 	</header>
 	<article class="other-pages book-description">
 		<main class="book-description__content">
-			<img class="book-description__book-cover" src="./images/books-cover.png" alt="book`s name">
-			<div class="book-description__title">The alchemist</div>
-			<div class="book-description__author">Paulo Coelho</div>
+			<section class="book-description__info">
+				<img class="book-description__book-cover" src="./images/books-cover.png" alt="book`s name">
+				<div class="book-description__main-info">
+					<div class="book-description__title">The alchemist</div>
+					<div class="book-description__author">Paulo Coelho</div>
+					<section class="book-description__control-info">
+						<div class="book-description__ISBN"><span>ISBN: </span><span>978-5-65273-876-8</span></div>
+						<div class="book-description__pablish-date"><span>Pablishing date: </span><span>05.03.2001</span></div>
+					</section>
+					<div class="book-description__text" id="fill_text">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt bibendum purus sed tristique. Pellentesque a lacinia augue. Mauris gravida urna eu neque interdum, et consectetur leo varius. Donec vitae posuere lorem, ac tincidunt ipsum. Maecenas auctor pretium ex, ac imperdiet dui pharetra in. Pellentesque justo est, cursus id pellentesque in, imperdiet eu velit. Ut rhoncus condimentum velit id tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean nisl turpis, dapibus aliquam tellus quis, blandit condimentum dolor. Maecenas dignissim euismod eros, et facilisis lorem pharetra et. Ut libero felis, tincidunt malesuada luctus id, aliquam in urna.
+						
+						Nunc nibh purus, tristique vitae nibh in, bibendum pharetra quam. Nam bibendum orci sed facilisis vestibulum. Integer ac facilisis quam. Aliquam et volutpat enim. Suspendisse turpis nisi, posuere ut auctor vel, aliquet ut erat. Sed convallis elementum faucibus. Nunc vel euismod sem. Maecenas egestas semper sapien, eu bibendum metus pharetra eget. In quis nisi orci. Vivamus non luctus nunc. Sed enim turpis, varius vel mattis quis, venenatis quis odio. Vivamus luctus a neque nec lacinia. Duis tempus sem tortor, vel rutrum augue tristique eget. Nulla eget enim ornare, ultricies risus vel, molestie turpis.
 
-			<div class="book-description__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt bibendum purus sed tristique. Pellentesque a lacinia augue. Mauris gravida urna eu neque interdum, et consectetur leo varius. Donec vitae posuere lorem, ac tincidunt ipsum. Maecenas auctor pretium ex, ac imperdiet dui pharetra in. Pellentesque justo est, cursus id pellentesque in, imperdiet eu velit. Ut rhoncus condimentum velit id tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean nisl turpis, dapibus aliquam tellus quis, blandit condimentum dolor. Maecenas dignissim euismod eros, et facilisis lorem pharetra et. Ut libero felis, tincidunt malesuada luctus id, aliquam in urna.
-
-Nunc nibh purus, tristique vitae nibh in, bibendum pharetra quam. Nam bibendum orci sed facilisis vestibulum. Integer ac facilisis quam. Aliquam et volutpat enim. Suspendisse turpis nisi, posuere ut auctor vel, aliquet ut erat. Sed convallis elementum faucibus. Nunc vel euismod sem. Maecenas egestas semper sapien, eu bibendum metus pharetra eget. In quis nisi orci. Vivamus non luctus nunc. Sed enim turpis, varius vel mattis quis, venenatis quis odio. Vivamus luctus a neque nec lacinia. Duis tempus sem tortor, vel rutrum augue tristique eget. Nulla eget enim ornare, ultricies risus vel, molestie turpis.</div>
-			<span class="book-description__text-more">see more</span>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt bibendum purus sed tristique. Pellentesque a lacinia augue. Mauris gravida urna eu neque interdum, et consectetur leo varius. Donec vitae posuere lorem, ac tincidunt ipsum. Maecenas auctor pretium ex, ac imperdiet dui pharetra in. Pellentesque justo est, cursus id pellentesque in, imperdiet eu velit. Ut rhoncus condimentum velit id tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean nisl turpis, dapibus aliquam tellus quis, blandit condimentum dolor. Maecenas dignissim euismod eros, et facilisis lorem pharetra et. Ut libero felis, tincidunt malesuada luctus id, aliquam in urna.
+						
+						Nunc nibh purus, tristique vitae nibh in, bibendum pharetra quam. Nam bibendum orci sed facilisis vestibulum. Integer ac facilisis quam. Aliquam et volutpat enim. Suspendisse turpis nisi, posuere ut auctor vel, aliquet ut erat. Sed convallis elementum faucibus. Nunc vel euismod sem. Maecenas egestas semper sapien, eu bibendum metus pharetra eget. In quis nisi orci. Vivamus non luctus nunc. Sed enim turpis, varius vel mattis quis, venenatis quis odio. Vivamus luctus a neque nec lacinia. Duis tempus sem tortor, vel rutrum augue tristique eget. Nulla eget enim ornare, ultricies risus vel, molestie turpis.
+					</div>
+					<span class="book-description__text-more">see more</span>
+				</div>				
+			</section>
 			<div class="book-description__reviews">
 				<fieldset class="book-description__rating">
 				    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
@@ -51,13 +64,13 @@ Nunc nibh purus, tristique vitae nibh in, bibendum pharetra quam. Nam bibendum o
 				<span class="reviews book-description__reviews-count">125 reviews</span>
 			</div>
 			<div class="book-description__buttons">
-				<a href="./read-book.html" class="button btn-read">start reading now</a>
-				<a href="#download" class="button btn-download">download</a>
+				<a href="./read-book.html" class="book-description__button button btn-read">start reading now</a>
+				<a href="#download" class="book-description__button button btn-download">download</a>
 			</div>
 		</main>
 
 		<section id="comments_block" class="comments other-pages__comments">
-			<div class="header comments__header close-header" onclick="showComments(comments_content)"><span class="header_lines__text">Comments</span></div>
+			<div class="header comments__header close-header" onclick="showComments(comments_content)"><span class="header__text">Comments</span></div>
 			<section id="comments_content" class="comments__content">
 				<div class="new-comment comments__new-comment">
 					<img class="comment__user-image" src="" >
@@ -74,7 +87,7 @@ Nunc nibh purus, tristique vitae nibh in, bibendum pharetra quam. Nam bibendum o
 					<img class="comment__user-image" src="" >
 					<div class="comment__desc">
 						<p class="comment__author">Chuck Pallaniuk <span class="comment__time">2 hours ago</span></p>
-						<p class="comment__text">The best book ever! I love this author and his talent to writing</p>
+						<p class="comment__text">The best book ever! I love this author and his talent to write</p>
 					</div>
 				</div>
 
@@ -82,7 +95,7 @@ Nunc nibh purus, tristique vitae nibh in, bibendum pharetra quam. Nam bibendum o
 					<img class="comment__user-image" src="" >
 					<div class="comment__desc">
 						<p class="comment__author">Joanne Rowling <span class="comment__time">4 hours ago</span></p>
-						<p class="comment__text">The best book ever! I love this author and his talent to writing</p>
+						<p class="comment__text">The best book ever! I love this author and his talent to write</p>
 					</div>
 				</div>
 
@@ -90,7 +103,7 @@ Nunc nibh purus, tristique vitae nibh in, bibendum pharetra quam. Nam bibendum o
 					<img class="comment__user-image" src="" >
 					<div class="comment__desc">
 						<p class="comment__author">Lewis Carroll <span class="comment__time">6 hours ago</span></p>
-						<p class="comment__text">The best book ever! I love this author and his talent to writing. It`s so ammazing to comment this post, this book. Oh I`m so lucky men.</p>
+						<p class="comment__text">The best book ever! I love this author and his talent to write. It`s so ammazing to comment this post, this book. Oh I`m so lucky men.</p>
 					</div>
 				</div>
 
@@ -98,7 +111,7 @@ Nunc nibh purus, tristique vitae nibh in, bibendum pharetra quam. Nam bibendum o
 					<img class="comment__user-image" src="" >
 					<div class="comment__desc">
 						<p class="comment__author">Chuck Pallaniuk <span class="comment__time">12 hours ago</span></p>
-						<p class="comment__text">The best book ever! I love this author and his talent to writing</p>
+						<p class="comment__text">The best book ever! I love this author and his talent to write</p>
 					</div>
 				</div>
 			</section>
@@ -106,7 +119,8 @@ Nunc nibh purus, tristique vitae nibh in, bibendum pharetra quam. Nam bibendum o
 	</article>
 
 	<script type="text/javascript">
-		function showComments(e){
+		var showComments = (e) => {
+			if(window.innerWidth >= 621) return;
 			if(getComputedStyle(e).display == 'none') {
 				e.style.display = 'block';
 				e.previousElementSibling.className = 'header_lines comments__header open-header';
@@ -117,7 +131,17 @@ Nunc nibh purus, tristique vitae nibh in, bibendum pharetra quam. Nam bibendum o
 			}
 		}
 
-		function displayMenu(show){
+		window.onresize = () => {
+			var compHeader = document.getElementsByClassName('comments__header')[0] || '';
+			if(window.innerWidth >= 621) {
+				compHeader.className = 'header_lines comments__header open-header';
+			}
+			else {
+				compHeader.className = 'header comments__header close-header';
+			}
+		}
+
+		var displayMenu = (show) => {
 			if(show) menu.style.display = "block";
 			else menu.style.display = "none";
 		}
