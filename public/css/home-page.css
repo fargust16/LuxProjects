@@ -5,11 +5,12 @@
 .home-page__main {
     z-index: 1;
 
-    padding: 136px 8px 0;
     box-sizing: border-box;
+    padding: 136px 8px 0;
+
     user-select: none;
 }
 
 .home-page__books {
-	padding-bottom: 30px;
+    padding-bottom: 30px;
 }

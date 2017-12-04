@@ -1,5 +1,5 @@
 .add-book {
-    padding-top: 15px;
+    
 }
 
 .add-book__content {
@@ -11,8 +11,8 @@
     margin-bottom: 15px;
     padding: 10px 0;
 
+    border: 1px solid rgba(0,0,0,.2);
     border-radius: 10px;
-    box-shadow: 0 1px 6px rgba(32, 33, 36, .38);
 }
 
 .option__header {
@@ -55,11 +55,11 @@
 }
 
 .captcha {
-    width: max-content;
-    margin: 15px auto;
-    padding: 10px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 10px;
 
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .captcha input {

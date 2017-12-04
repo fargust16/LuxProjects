@@ -1,15 +1,8 @@
 .read-book {
-	padding: 15px 0;
 }
 
-.read-book .main-header span:first-child {
-    font-size: 20px;
-}
-
-.read-book .main-header span:last-child {
+.book__author {
     color: black;
-
-    font-size: 13px;
 }
 
 .read-book__content {

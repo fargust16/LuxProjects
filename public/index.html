@@ -12,36 +12,34 @@
 	<link rel="stylesheet" type="text/css" href="./css/books-switcher.css">
 </head>
 <body>
-	<div class="fixed-elements" id="fixed_elements">
-		<header class="header-nav home-page__header-nav">
-			<a href="index.html" class="header-nav__logo"><h1>Online Library</h1></a>
-			<i class="fa fa-bars header-nav__menu-btn" aria-hidden="true" onclick="displayMenu(true)"></i>
-			<nav id="menu" class="menu">
-				<i class="fa fa-times menu__close-btn" aria-hidden="true" onclick="displayMenu(false)"></i>
-				<div class="menu__profile"><a class="menu__profile-link" href="#Sign In">Sign In</a></div>
-				<ul class="menu__options">
-					<li class="menu__option"><a class="menu__option-link" href="./index.html">Home</a></li>
-					<li class="menu__option"><a class="menu__option-link" href="./add-book.html">Add a new book</a></li>
-					<li class="menu__option"><a class="menu__option-link" href="./recent.html">Recent</a></li>
-					<li class="menu__option"><a class="menu__option-link" href="./settings.html">Settings</a></li>
-					<li class="menu__option"><a class="menu__option-link" href="./support.html">Support</a></li>
-				</ul>
-			</nav>
-		</header>
-		<section class="search home-page__search">
-			<div class="search__box-shadow">
-				<label for="search-field" class="search__field-ico"><input id="search-field" type="text" class="search__field" name="search" placeholder="Find a solution" /></label>
-				<label for="search-options" class="search__options-ico">
-					<select id="search-options" class="search__options">
-						<option class="search__option" value="all">All</option>
-						<option class="search__option" value="title">Title</option>
-						<option class="search__option" value="author">Author</option>
-						<option class="search__option" value="ISBN">ISBN</option>
-					</select>
-				</label>
-			</div>
-		</section>
-	</div>
+	<header class="header-nav home-page__header-nav">
+		<a href="index.html" class="header-nav__logo"><h1>Online Library</h1></a>
+		<i class="fa fa-bars header-nav__menu-btn" aria-hidden="true" onclick="displayMenu(true)"></i>
+		<nav id="menu" class="menu">
+			<i class="fa fa-times menu__close-btn" aria-hidden="true" onclick="displayMenu(false)"></i>
+			<div class="menu__profile"><a class="menu__profile-link" href="#Sign In">Sign In</a></div>
+			<ul class="menu__options">
+				<li class="menu__option"><a class="menu__option-link" href="./index.html">Home</a></li>
+				<li class="menu__option"><a class="menu__option-link" href="./add-book.html">Add a new book</a></li>
+				<li class="menu__option"><a class="menu__option-link" href="./recent.html">Recent</a></li>
+				<li class="menu__option"><a class="menu__option-link" href="./settings.html">Settings</a></li>
+				<li class="menu__option"><a class="menu__option-link" href="./support.html">Support</a></li>
+			</ul>
+		</nav>
+	</header>
+	<section class="search home-page__search">
+		<div class="search__box-shadow">
+			<label for="search-field" class="search__field-ico"><input id="search-field" type="text" class="search__field" name="search" placeholder="Find a solution" /></label>
+			<label for="search-options" class="search__options-ico">
+				<select id="search-options" class="search__options">
+					<option class="search__option" value="all">All</option>
+					<option class="search__option" value="title">Title</option>
+					<option class="search__option" value="author">Author</option>
+					<option class="search__option" value="ISBN">ISBN</option>
+				</select>
+			</label>
+		</div>
+	</section>
 	<article class="home-page">
 		<main class="main home-page__main">
 			<section class="category main__category">
@@ -263,8 +261,8 @@
 	</article>
 	
 	<script type="text/javascript">
+
 		var displayMenu = (show) => {
-			'use strict';
 			if(show) menu.style.display = "block";
 			else menu.style.display = "none";
 		}

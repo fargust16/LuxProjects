@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="./css/book-description.css">
 </head>
 <body>
+	
 	<header class="header-nav">
 		<a href="index.html" class="header-nav__logo"><h1>Online Library</h1></a>
 		<i class="fa fa-bars header-nav__menu-btn" aria-hidden="true" onclick="displayMenu(true)"></i>
@@ -25,8 +26,8 @@
 			</ul>
 		</nav>
 	</header>
-	<article class="other-pages book-description">
-		<main class="book-description__content">
+	<article class="other-pages">
+		<main class="book-description other-pages__block">
 			<section class="book-description__info">
 				<img class="book-description__book-cover" src="./images/books-cover.png" alt="book`s name">
 				<div class="book-description__main-info">
@@ -131,7 +132,7 @@
 			}
 		}
 
-		window.onresize = () => {
+		var checkWindSize = () => {
 			var compHeader = document.getElementsByClassName('comments__header')[0] || '';
 			if(window.innerWidth >= 621) {
 				compHeader.className = 'header_lines comments__header open-header';
@@ -140,6 +141,8 @@
 				compHeader.className = 'header comments__header close-header';
 			}
 		}
+
+		window.onload = window.onresize = checkWindSize;
 
 		var displayMenu = (show) => {
 			if(show) menu.style.display = "block";

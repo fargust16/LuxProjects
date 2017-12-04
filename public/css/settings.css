@@ -1,5 +1,4 @@
 .settings {
-    padding-top: 15px;
 }
 
 .settings__header {
@@ -24,22 +23,27 @@
 }
 
 .option {
-    box-shadow: 0 1px 6px rgba(32, 33, 36, .38);
     margin-bottom: 15px;
+
+    border: 1px solid rgba(0,0,0,.2);
     border-radius: 8px;
 }
 
 .option__name {
+    overflow: hidden;
+
     padding-top: 10px;
     padding-bottom: 10px;
-    overflow: hidden;
-    font-variant: small-caps;
+
     text-transform: lowercase;
+
     font-size: 20px;
+    font-variant: small-caps;
 }
 
 .option__form {
     display: none;
+
     padding: 0 10px 15px;
 }
 
@@ -48,6 +52,7 @@
     flex-flow: row;
     justify-content: space-between;
     align-items: center;
+
     width: 100%;
 }
 
