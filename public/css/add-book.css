@@ -23,10 +23,42 @@
     padding: 0 10px;
 }
 
+input[type="file"].option__source {
+    visibility: hidden;
+}
+
+.option__source-title {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-8px);
+    background-color: #fff;
+}
+
+.option__source {
+    margin: 0;
+}
+
+.option__field::before {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-12px);
+    right: 10px;
+    content: '\f093';
+
+    font-family: FontAwesome;
+    font-size: 24px;
+
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 @media only screen and (min-width: 767px) {
     .option__field {
+        display: block;
         width: 50%;
         margin: 10px 0;
+        position: relative;
     }
 
     .option__description {

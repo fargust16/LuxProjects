@@ -33,7 +33,10 @@
 					<div class="option__content">
 						<input type="text" name="title" placeholder="title" class="field option__field option__title" required>
 						<input type="text" name="author" placeholder="author" class="field option__field option__author" required>
-						<input type="text" name="source" placeholder="source" class="field option__field option__source" required>
+						<label for="book_source" class="field option__field">
+							<mark class="option__source-title" id="source_title">Файл не выбран</mark>
+							<input type="file" id="book_source" name="source" class="option__source" required onchange="chooseBookSource()">
+						</label>
 						<textarea class="field option__description" placeholder="description" rows="4"></textarea>
 						<label for="publish-date" class="option__date-text">Publishing <input type="date" name="publish-date" class="field option__date-field" id="publish-date"></label>
 					</div>
@@ -55,7 +58,7 @@
 		</main>
 	</article>
 	<script type="text/javascript">
-		function showExternalOptions(e){
+		var showExternalOptions = (e) => {
 			if(getComputedStyle(e.nextElementSibling).display == 'none') {
 				e.nextElementSibling.style.display = 'block';
 				e.className = 'option__header header_lines open-header';
@@ -64,8 +67,30 @@
 				e.className = 'option__header header close-header';
 			}
 		}
+
+		var chooseBookSource = () => {
+			var file_api = ( window.File && window.FileReader && window.FileList && window.Blob ) ? true : false;
+			var inp = book_source;
+			var lbl = source_title;
+			var file_name;
+
+	        if( file_api && inp.files[0] ) {
+	            file_name = inp.files[0].name;
+	        }
+	        else {
+	            file_name = inp.value.replace("C:\\fakepath\\", '');
+	        }
+
+	        if( !file_name.length ) {
+	        	lbl.innerText = 'Файл не выбран';
+	            return;
+	        }
+	        else {
+	        	lbl.innerText = file_name;
+	        }
+		}
 		
-		function displayMenu(show){
+		var displayMenu = (show) => {
 			if(show) menu.style.display = "block";
 			else menu.style.display = "none";
 		}
