@@ -98,6 +98,8 @@ select {
     position: relative;
 
     width: 100%;
+    max-width: 1600px;
+    margin: auto;
 }
 
 @media only screen and (min-width: 1000px) {
@@ -284,7 +286,7 @@ select {
     position: fixed;
 
     box-sizing: border-box;
-    padding: 53px 8px 0;
+    padding: 55px 8px 1px;
 
     background-color: #fff;
 
@@ -390,8 +392,6 @@ select {
 .main {
     width: 100%;
 
-    background-color: #fff;
-
     font-family: 'Roboto', 'Open Sans', sans-serif;
 }
 
@@ -399,7 +399,7 @@ select {
 /* TODO change this style on other pages */
 
 .other-pages {
-    max-width: 1084px;
+    max-width: 1600px;
     margin: auto;
     padding-top: 40px;
 }
@@ -570,7 +570,7 @@ select {
     font-size: 12px;
     line-height: 1.15em;
 
-    -webkit-line-clamp: 7;
+    -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
 }
 
