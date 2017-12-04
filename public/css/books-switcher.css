@@ -1,6 +1,7 @@
 @media only screen and (min-width: 768px) and (max-width: 1265px) {
     .books-switcher {
         width: 350px;
+
         transform: translateX(-350px);
     }
 
@@ -12,6 +13,7 @@
 @media only screen and (min-width: 300px) and (max-width: 767px) {
     .books-switcher {
         width: 272px;
+
         transform: translateX(-272px);
     }
 
@@ -20,9 +22,10 @@
     }
 }
 
-@media only screen and (max-width: 300px){
+@media only screen and (max-width: 300px) {
     .books-switcher {
         width: 272px;
+
         transform: translateX(-272px);
     }
 
@@ -38,7 +41,6 @@
     justify-content: flex-start;
 
     min-width: 272px;
-    
     margin: 0 auto;
 
     flex-wrap: nowrap;

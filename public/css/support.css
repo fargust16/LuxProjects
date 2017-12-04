@@ -1,15 +1,13 @@
-.support {
-}
-
 .support__form {
     margin: 15px auto;
     padding: 0 8px;
 }
 
 .support__form-content {
-    border: 1px solid rgba(0,0,0,0.2);
-    border-radius: 8px;
     padding: 10px;
+
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 8px;
 }
 
 .support__form-info {
@@ -27,6 +25,7 @@
     margin-top: 15px;
 
     resize: none;
+
     border-radius: 8px;
 
     font-size: 16px;
@@ -39,9 +38,6 @@
     align-items: center;
 
     width: 100%;
-}
-
-.btn-clear {
 }
 
 .btn-submit {

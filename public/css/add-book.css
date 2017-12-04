@@ -1,7 +1,3 @@
-.add-book {
-    
-}
-
 .add-book__content {
     margin-top: 15px;
     padding: 1px 8px;
@@ -22,13 +18,41 @@
 }
 
 .option__content {
+    position: relative;
+
     padding: 0 10px;
+}
+
+@media only screen and (min-width: 767px) {
+    .option__field {
+        width: 50%;
+        margin: 10px 0;
+    }
+
+    .option__description {
+        position: absolute;
+        top: 0;
+        right: 10px;
+
+        width: calc(50% - 20px);
+        height: calc(100% - 15px);
+    }
+
+    .option__date-text {
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: 300px) and (max-width: 766px) {
+    .option__description {
+        position: relative;
+
+        width: 100%;
+    }
 }
 
 .option__description {
     box-sizing: border-box;
-    width: 100%;
-    margin: 7px auto 4px;
 
     resize: none;
 
@@ -41,6 +65,8 @@
     display: flex;
     flex-flow: row;
     align-items: center;
+
+    box-sizing: border-box;
 
     font-size: 16px;
 }
