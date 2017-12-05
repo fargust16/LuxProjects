@@ -12,7 +12,7 @@
 	<header class="header-nav home-page__header-nav">
 		<a href="index.html" class="header-nav__logo"><h1>Online Library</h1></a>
 		<i class="fa fa-bars header-nav__menu-btn" aria-hidden="true" onclick="displayMenu(true)"></i>
-		<nav id="menu" class="menu">
+		<nav id="menu" class="menu menu-close">
 			<i class="fa fa-times menu__close-btn" aria-hidden="true" onclick="displayMenu(false)"></i>
 			<div class="menu__profile"><a class="menu__profile-link" href="#Sign In">Sign In</a></div>
 			<ul class="menu__options">
@@ -33,9 +33,9 @@
 					<div class="option__content">
 						<input type="text" name="title" placeholder="title" class="field option__field option__title" required>
 						<input type="text" name="author" placeholder="author" class="field option__field option__author" required>
-						<label for="book_source" class="field option__field">
+						<label for="book_source" class="field option__field option__source">
 							<mark class="option__source-title" id="source_title">Файл не выбран</mark>
-							<input type="file" id="book_source" name="source" class="option__source" required onchange="chooseBookSource()">
+							<input type="file" id="book_source" name="source" class="option__source-field" onchange="chooseBookSource()">
 						</label>
 						<textarea class="field option__description" placeholder="description" rows="4"></textarea>
 						<label for="publish-date" class="option__date-text">Publishing <input type="date" name="publish-date" class="field option__date-field" id="publish-date"></label>
@@ -91,8 +91,8 @@
 		}
 		
 		var displayMenu = (show) => {
-			if(show) menu.style.display = "block";
-			else menu.style.display = "none";
+			if(show) menu.className = "menu menu-open";
+			else menu.className = "menu menu-close";
 		}
 	</script>
 </body>

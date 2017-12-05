@@ -23,27 +23,19 @@
     padding: 0 10px;
 }
 
-input[type="file"].option__source {
-    visibility: hidden;
-}
-
-.option__source-title {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-8px);
-    background-color: #fff;
-}
-
 .option__source {
-    margin: 0;
+    position: relative;
+
+    display: block;
 }
 
-.option__field::before {
+.option__source::before {
     position: absolute;
     top: 50%;
-    transform: translateY(-12px);
     right: 10px;
+
     content: '\f093';
+    transform: translateY(-12px);
 
     font-family: FontAwesome;
     font-size: 24px;
@@ -53,12 +45,31 @@ input[type="file"].option__source {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.option__source-field {
+    visibility: hidden;
+}
+
+.option__source-title {
+    position: absolute;
+    top: 50%;
+
+    transform: translateY(-8px);
+
+    background-color: #fff;
+}
+
+.option__source-field {
+    margin: 0;
+}
+
 @media only screen and (min-width: 767px) {
     .option__field {
+        position: relative;
+
         display: block;
+
         width: 50%;
         margin: 10px 0;
-        position: relative;
     }
 
     .option__description {
@@ -67,7 +78,8 @@ input[type="file"].option__source {
         right: 10px;
 
         width: calc(50% - 20px);
-        height: calc(100% - 15px);
+        height: calc(100% - 7px);
+        margin: 0;
     }
 
     .option__date-text {
@@ -78,8 +90,6 @@ input[type="file"].option__source {
 @media only screen and (min-width: 300px) and (max-width: 766px) {
     .option__description {
         position: relative;
-
-        width: 100%;
     }
 }
 

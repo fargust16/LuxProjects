@@ -26,7 +26,8 @@
     .books-switcher {
         width: 272px;
 
-        transform: translateX(-272px);
+        transition-duration: 0ms;
+        transform: translate(-272px, 0) translateZ(0px);
     }
 
     .books-switcher__book {
@@ -43,6 +44,8 @@
     min-width: 272px;
     margin: 0 auto;
 
+    transition: transform 0s ease-out;
+
     flex-wrap: nowrap;
 }
 
@@ -55,6 +58,8 @@
 }
 
 .books-switcher__dot {
+    margin: 0 2px;
+
     color: #fff;
     border: 2px solid black;
     border-radius: 8px;

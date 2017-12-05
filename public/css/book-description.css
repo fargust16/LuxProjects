@@ -58,10 +58,6 @@
 }
 
 @media only screen and (max-width: 300px) {
-    .book-description__content {
-        min-width: 272px;
-    }
-
     .book-description__text {
         flex: 2 0;
         -webkit-line-clamp: 3;

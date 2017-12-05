@@ -14,7 +14,7 @@
 	<header class="header-nav home-page__header-nav">
 		<a href="index.html" class="header-nav__logo"><h1>Online Library</h1></a>
 		<i class="fa fa-bars header-nav__menu-btn" aria-hidden="true" onclick="displayMenu(true)"></i>
-		<nav id="menu" class="menu">
+		<nav id="menu" class="menu menu-close">
 			<i class="fa fa-times menu__close-btn" aria-hidden="true" onclick="displayMenu(false)"></i>
 			<div class="menu__profile"><a class="menu__profile-link" href="#Sign In">Sign In</a></div>
 			<ul class="menu__options">
@@ -88,9 +88,9 @@
 		</main>
 	</article>
 	<script type="text/javascript">
-		function displayMenu(show){
-			if(show) menu.style.display = "block";
-			else menu.style.display = "none";
+		var displayMenu = (show) => {
+			if(show) menu.className = "menu menu-open";
+			else menu.className = "menu menu-close";
 		}
 	</script>
 </body>

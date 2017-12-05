@@ -10,12 +10,13 @@
 	<link rel="stylesheet" type="text/css" href="./css/category.css">
 	<link rel="stylesheet" type="text/css" href="./css/home-page.css">
 	<link rel="stylesheet" type="text/css" href="./css/books-switcher.css">
+	<script type="text/javascript" src="./modernizr-custom.js"></script>
 </head>
 <body>
 	<header class="header-nav home-page__header-nav">
 		<a href="index.html" class="header-nav__logo"><h1>Online Library</h1></a>
 		<i class="fa fa-bars header-nav__menu-btn" aria-hidden="true" onclick="displayMenu(true)"></i>
-		<nav id="menu" class="menu">
+		<nav id="menu" class="menu menu-close">
 			<i class="fa fa-times menu__close-btn" aria-hidden="true" onclick="displayMenu(false)"></i>
 			<div class="menu__profile"><a class="menu__profile-link" href="#Sign In">Sign In</a></div>
 			<ul class="menu__options">
@@ -45,7 +46,7 @@
 			<section class="category main__category">
 				<div class="header_lines category__name"><span class="header__text">Recommended books</span></div>
 				<div class="books home-page__books">
-					<div class="books-switcher find-switcher">
+					<div id="carousel" class="books-switcher find-switcher">
 						<div class="book books-switcher__book">
 							<img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
 							<div class="book__info">
@@ -76,11 +77,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="books-switcher__dots">
-						<i class="fa fa-circle books-switcher__dot" aria-hidden="true"></i>
-						<i class="fa fa-circle books-switcher__dot books-switcher__dot_active" aria-hidden="true"></i>
-						<i class="fa fa-circle books-switcher__dot" aria-hidden="true"></i>	
-					</div>
+					<div class="books-switcher__dots"></div>
 					<a class="books-switcher__see-more" href="./category.html">see more</a>
 				</div>
 			</section>
@@ -88,7 +85,7 @@
 			<section class="category main__category">
 				<div class="header_lines category__name"><span class="header__text">Recommended books</span></div>
 				<div class="books home-page__books">
-					<div class="books-switcher find-switcher">
+					<div id="carousel" class="books-switcher find-switcher">
 						<div class="book books-switcher__book">
 							<img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
 							<div class="book__info">
@@ -119,11 +116,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="books-switcher__dots">
-						<i class="fa fa-circle books-switcher__dot" aria-hidden="true"></i>
-						<i class="fa fa-circle books-switcher__dot books-switcher__dot_active" aria-hidden="true"></i>
-						<i class="fa fa-circle books-switcher__dot" aria-hidden="true"></i>	
-					</div>
+					<div class="books-switcher__dots"></div>
 					<a class="books-switcher__see-more" href="./category.html">see more</a>
 				</div>
 			</section>
@@ -131,7 +124,7 @@
 			<section class="category main__category">
 				<div class="header_lines category__name"><span class="header__text">Recommended books</span></div>
 				<div class="books home-page__books">
-					<div class="books-switcher find-switcher">
+					<div id="carousel" class="books-switcher find-switcher">
 						<div class="book books-switcher__book">
 							<img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
 							<div class="book__info">
@@ -162,11 +155,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="books-switcher__dots">
-						<i class="fa fa-circle books-switcher__dot" aria-hidden="true"></i>
-						<i class="fa fa-circle books-switcher__dot books-switcher__dot_active" aria-hidden="true"></i>
-						<i class="fa fa-circle books-switcher__dot" aria-hidden="true"></i>	
-					</div>
+					<div class="books-switcher__dots"></div>
 					<a class="books-switcher__see-more" href="./category.html">see more</a>
 				</div>
 			</section>
@@ -174,7 +163,7 @@
 			<section class="category main__category">
 				<div class="header_lines category__name"><span class="header__text">Recommended books</span></div>
 				<div class="books home-page__books">
-					<div class="books-switcher find-switcher">
+					<div id="carousel" class="books-switcher find-switcher">
 						<div class="book books-switcher__book">
 							<img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
 							<div class="book__info">
@@ -205,11 +194,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="books-switcher__dots">
-						<i class="fa fa-circle books-switcher__dot" aria-hidden="true"></i>
-						<i class="fa fa-circle books-switcher__dot books-switcher__dot_active" aria-hidden="true"></i>
-						<i class="fa fa-circle books-switcher__dot" aria-hidden="true"></i>	
-					</div>
+					<div class="books-switcher__dots"></div>
 					<a class="books-switcher__see-more" href="./category.html">see more</a>
 				</div>
 			</section>
@@ -217,7 +202,7 @@
 			<section class="category main__category">
 				<div class="header_lines category__name"><span class="header__text">Recommended books</span></div>
 				<div class="books home-page__books">
-					<div class="books-switcher find-switcher">
+					<div id="carousel" class="books-switcher find-switcher">
 						<div class="book books-switcher__book">
 							<img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
 							<div class="book__info">
@@ -248,11 +233,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="books-switcher__dots">
-						<i class="fa fa-circle books-switcher__dot" aria-hidden="true"></i>
-						<i class="fa fa-circle books-switcher__dot books-switcher__dot_active" aria-hidden="true"></i>
-						<i class="fa fa-circle books-switcher__dot" aria-hidden="true"></i>	
-					</div>
+					<div class="books-switcher__dots"></div>
 					<a class="books-switcher__see-more" href="./category.html">see more</a>
 				</div>
 			</section>
@@ -261,10 +242,112 @@
 	</article>
 	
 	<script type="text/javascript">
+		var touchStartPoint = 0,
+			currentTransform = 0,
+			switcherStartTransform = [];
+
+		window.onload = () => {
+			let switchersArr = document.getElementsByClassName('find-switcher') || [], // every block which contain books
+				booksArr = [],
+				dotsBlock = document.getElementsByClassName('books-switcher__dots') || [];
+
+			for (let i = switchersArr.length - 1; i >= 0; i--) {
+				booksArr[i] = switchersArr[i].getElementsByClassName('book') || '';
+			}
+
+			if(switchersArr.length == 0 || booksArr.length == 0) return;
+
+			for (let i = dotsBlock.length - 1; i >= 0; i--) {
+				switcherStartTransform[i] = -parseInt(getComputedStyle(switchersArr[i]).width);
+				switchersArr[i].setAttribute("data-startTransform", switcherStartTransform[i]);
+				for (let j = 0; j <= booksArr[i].length - 1; j++) {
+					let dotElem = document.createElement('i');
+
+					dotElem.className = j == 1 ? "fa fa-circle books-switcher__dot books-switcher__dot_active" : "fa fa-circle books-switcher__dot";
+					dotElem.setAttribute("aria-hidden", "true");
+					//dotElem.addEventListener("click", switchBooks.bind(switchBooks, switchersArr[i], j), false);
+
+					dotsBlock[i].appendChild(dotElem);
+				}
+			}
+
+			switchersArr = Array.from(switchersArr);
+			switchersArr.map(elem => {
+				elem.addEventListener('touchmove', function(event) {
+					event.stopPropagation();
+					let directMove = event.changedTouches[0].clientX - touchStartPoint; // local switch coordinates, while touch is move
+
+					let transformProp = Modernizr.prefixed('transform'), // prefix for transform at the different browser
+						startTransform = parseInt(elem.getAttribute("data-startTransform")), // position with which the switch is start
+						theta = 0;
+
+			        theta = startTransform + directMove;
+
+			        elem.style[ transformProp ] = 'translate(' + theta + 'px, 0) translateZ(0)';
+			        elem.style.transition = 'transform 0s ease-out';
+				}, false);
+
+				elem.addEventListener('touchstart', function(event) {
+					event.stopPropagation();
+					touchStartPoint = event.changedTouches[0].clientX;
+				}, false);
+
+				elem.addEventListener('touchend', function(event) {
+					event.stopPropagation();
+					let transformProp = Modernizr.prefixed('transform'),
+						stepSize = parseInt(getComputedStyle(elem).width), // step size of switch, when touch is end
+						startTransform = parseInt(elem.getAttribute("data-startTransform")), // position with which the switch is start
+						activeDot = elem.nextElementSibling.childNodes, // for dot mark active book
+						touchEndPoint = event.changedTouches[0].clientX,
+						theta = 0;
+
+						for (let i = activeDot.length - 1; i >= 0; i--) {
+							if(activeDot[i].className.search('books-switcher__dot_active') != -1) {
+								activeDot[i].className = 'fa fa-circle books-switcher__dot';
+							}
+						}
+
+						let directionTr = (touchStartPoint - touchEndPoint) > 0 ? -1 : 1; // calc the direction based on start and end touch position
+
+						theta += startTransform + stepSize * directionTr; // summary calc of switch size based on current transform, step size and direction
+
+						// if we reach the end or the start of switch position.
+						// TODO change this mechanism on carusel.
+						if(theta <= stepSize * elem.children.length * -1) { 
+							theta = 0;
+						}
+						else if (theta > 0) {
+							theta = stepSize * (elem.children.length - 1) * -1;
+						}
+
+						let dotC = (theta - stepSize) / -stepSize; // offset begin with -272 or -350 in different client width;
+
+						activeDot[dotC-1].className += ' books-switcher__dot_active';
+
+						elem.setAttribute("data-startTransform", theta);
+
+					elem.style[ transformProp ] = 'translate(' + theta + 'px, 0) translateZ(0)';
+					elem.style.transition = 'transform .4s ease-out';
+
+				}, false);
+
+			});
+		}
+
+		/*var switchBooks = (switcher, bookNum) => {
+			let transformProp = Modernizr.prefixed('transform'),
+				stepSize = parseInt(getComputedStyle(switcher).width),
+				activeDot = switcher.nextElementSibling.childNodes,
+				theta = 0;
+
+	        theta += stepSize * bookNum * -1;
+	        switcher.style[ transformProp ] = 'translate(' + theta + 'px, 0) translateZ(0)';
+	        activeDot[bookNum].className = "fa fa-circle books-switcher__dot active-dot";
+		}  */
 
 		var displayMenu = (show) => {
-			if(show) menu.style.display = "block";
-			else menu.style.display = "none";
+			if(show) menu.className = "menu menu-open";
+			else menu.className = "menu menu-close";
 		}
 	</script>
 </body>
