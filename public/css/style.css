@@ -194,7 +194,7 @@ select {
         display: block;
         overflow: hidden;
         width: 0px;
-        transition: all .1s ease-in;
+        transition: all .0s ease-in;
     }
 
     .menu-open {
