@@ -7,6 +7,8 @@
 *.o
 *.so
 
+.idea/
+.git*
 node_modules/
 
 # Packages #
