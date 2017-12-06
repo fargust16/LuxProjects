@@ -1,9 +1,14 @@
 var touchStartPoint = 0,
 	currentTransform = 0,
+	switchHideWidth = 999,
 	switcherStartTransform = [];
 
+var initialSwitchState = (hideWidth) => {
+	switchHideWidth = hideWidth;
+}
+
 var localSwitchBooks = (switchElem) => {
-	if(window.innerWidth >= 1000) return;
+	if(window.innerWidth > switchHideWidth) return;
 	event.stopPropagation();
 	let directMove = event.changedTouches[0].clientX - touchStartPoint; // local switch coordinates, while touch is move
 
@@ -18,13 +23,13 @@ var localSwitchBooks = (switchElem) => {
 }
 
 var getStartSwitchPos = (event) => {
-	if(window.innerWidth >= 1000) return;
+	if(window.innerWidth > switchHideWidth) return;
 	event.stopPropagation();
 	touchStartPoint = event.changedTouches[0].clientX;
 }
 
 var finishSwitchBooks = (switchElem) => {
-	if(window.innerWidth >= 1000) return;
+	if(window.innerWidth > switchHideWidth) return;
 	event.stopPropagation();
 	let transformProp = Modernizr.prefixed('transform'),
 		stepSize = parseInt(getComputedStyle(switchElem).width), // step size of switch, when touch is end
@@ -63,7 +68,7 @@ var finishSwitchBooks = (switchElem) => {
 
 }
 
-var createDots = (switchElems) => {
+var createDots = (switchElems, hideWidth) => {
 	if(switchElems.length == 0) return;
 
 	for (let i = switchElems.length - 1; i >= 0; i--) {
@@ -82,19 +87,19 @@ var createDots = (switchElems) => {
 
 			dotsBlock.appendChild(dotElem);
 		}
-		dotsBlock.style.display = window.innerWidth >= 1000 ? "none" : 'block';
+		dotsBlock.style.display = window.innerWidth >= switchHideWidth ? "none" : 'block';
 	}
 }
 
-var hideSwitchOnWidth = (switchElems, hideWidth) => {
+var hideSwitchOnWidth = (switchElems) => {
 	if(switchElems.length == 0) return;
 
 	for (let i = switchElems.length - 1; i >= 0; i--) {
 		let dotsBlock = switchElems[i].nextElementSibling;
 		let startTransform = parseInt(switchElems[i].getAttribute("data-startTransform"));
 
-		dotsBlock.style.display = window.innerWidth >= hideWidth ? "none" : 'block';
-		switchElems[i].style = window.innerWidth >= hideWidth ? '' : 'transform: translate(' + startTransform +'px, 0) translateZ(0)';
+		dotsBlock.style.display = window.innerWidth > switchHideWidth ? "none" : 'block';
+		switchElems[i].style = window.innerWidth > switchHideWidth ? 'transform: translate(0); overflow-x: auto; width: 100%' : 'transform: translate(' + startTransform +'px, 0) translateZ(0)';
 		switchElems[i].setAttribute('data-startTransform', window.innerWidth > 767 ? '-350' : '-272');
 	}
 }

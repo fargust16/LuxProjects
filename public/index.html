@@ -246,7 +246,9 @@
 		window.onload = () => {
 			let switchersArr = document.getElementsByClassName('find-switcher') || []; // every block which contain books
 
+			initialSwitchState(767); // from switch-book.js chose hideWidth;
 			createDots(switchersArr); // from switch-book.js create dots equile count of books in category;
+			hideSwitchOnWidth(switchersArr); // from switch-book.js create dots equile count of books in category;
 
 			switchersArr = Array.from(switchersArr); // htmlCollection into array;
 			switchersArr.map(elem => {
@@ -259,7 +261,7 @@
 		window.onresize = () => {
 			let	switchersArr = document.getElementsByClassName('find-switcher') || [];
 				
-			hideSwitchOnWidth(switchersArr, 1000); // from switch-book.js hide dots and reset switch block on chosen width
+			hideSwitchOnWidth(switchersArr);
 		}
 
 		var displayMenu = (show) => {
