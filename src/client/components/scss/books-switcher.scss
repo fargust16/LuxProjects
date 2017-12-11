@@ -1,0 +1,58 @@
+.books-switcher {
+    display: flex;
+    overflow: visible;
+    flex-flow: row;
+    justify-content: flex-start;
+    width: 272px;
+    margin: 0 auto;
+    transition: transform 0s ease-out;
+    flex-wrap: nowrap;
+    transform: translate(-272px, 0) translateZ(0px);
+
+    @media only screen and (min-width: 768px) {
+        width: 350px;
+        transform: translateX(-350px);
+    }
+
+    &__dots {
+        position: absolute;
+        left: 50%;
+        user-select: none;
+        transform: translateX(-18px);
+    }
+
+    &__dot {
+        margin: 0 2px;
+        color: #fff;
+        border: 2px solid black;
+        border-radius: 8px;
+        font-size: 7px;
+
+        &_active {
+            color: red;
+        }
+    }
+
+    &__see-more {
+        position: absolute;
+        right: 20px;
+        bottom: 13px;
+        cursor: pointer;
+        text-decoration: none;
+        color: $primary-color;
+
+        &::after {
+            margin-left: 5px;
+            @include awesome-icon(inherit, '\f105 \f105', 16px);
+        }
+    }
+
+    &__book {
+        min-width: 260px;
+        margin: 10px 6px;
+
+        @media only screen and (min-width: 768px) {
+            min-width: 338px;
+        }
+    }
+}

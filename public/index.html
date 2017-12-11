@@ -9,272 +9,273 @@
 	<script type="text/javascript" src="./js/switch-book.js"></script>
 </head>
 <body>
+	<div id="root"></div>
 	<header class="header-nav home-page__header-nav">
-		<a href="index.html" class="header-nav__logo"><h1>Online Library</h1></a>
-		<i class="fa fa-bars header-nav__menu-btn" aria-hidden="true" onclick="displayMenu(true)"></i>
-		<nav id="menu" class="menu menu_close">
-			<i class="fa fa-times menu__close-btn" aria-hidden="true" onclick="displayMenu(false)"></i>
-			<div class="menu__profile"><a class="menu__profile-link" href="#Sign In">Sign In</a></div>
-			<ul class="menu__options">
-				<li class="menu__option"><a class="menu__option-link" href="./index.html">Home</a></li>
-				<li class="menu__option"><a class="menu__option-link" href="./add-book.html">Add a new book</a></li>
-				<li class="menu__option"><a class="menu__option-link" href="./recent.html">Recent</a></li>
-				<li class="menu__option"><a class="menu__option-link" href="./settings.html">Settings</a></li>
-				<li class="menu__option"><a class="menu__option-link" href="./support.html">Support</a></li>
-			</ul>
-		</nav>
+	  <a href="index.html" class="header-nav__logo"><h1>Online Library</h1></a>
+	  <i class="fa fa-bars header-nav__menu-btn" aria-hidden="true" onClick="displayMenu(true)"></i>
+	  <nav id="menu" class="menu menu_close">
+	    <i class="fa fa-times menu__close-btn" aria-hidden="true" onClick="displayMenu(false)"></i>
+	    <div class="menu__profile"><a class="menu__profile-link" href="#Sign In">Sign In</a></div>
+	    <ul class="menu__options">
+	      <li class="menu__option"><a class="menu__option-link" href="./index.html">Home</a></li>
+	      <li class="menu__option"><a class="menu__option-link" href="./add-book.html">Add a new book</a></li>
+	      <li class="menu__option"><a class="menu__option-link" href="./recent.html">Recent</a></li>
+	      <li class="menu__option"><a class="menu__option-link" href="./settings.html">Settings</a></li>
+	      <li class="menu__option"><a class="menu__option-link" href="./support.html">Support</a></li>
+	    </ul>
+	  </nav>
 	</header>
 	<section class="search home-page__search">
-		<div class="search__box-shadow">
-			<label for="search-field" class="search__field-ico"><input id="search-field" type="text" class="search__field" name="search" placeholder="Find a solution" /></label>
-			<label for="search-options" class="search__options-ico">
-				<select id="search-options" class="search__options">
-					<option class="search__option" value="all">All</option>
-					<option class="search__option" value="title">Title</option>
-					<option class="search__option" value="author">Author</option>
-					<option class="search__option" value="ISBN">ISBN</option>
-				</select>
-			</label>
-		</div>
+	  <div class="search__box-shadow">
+	    <label htmlFor="search-field" class="search__field-ico"><input id="search-field" type="text" class="search__field" name="search" placeholder="Find a solution" /></label>
+	    <label htmlFor="search-options" class="search__options-ico">
+	      <select id="search-options" class="search__options">
+	        <option class="search__option" value="all">All</option>
+	        <option class="search__option" value="title">Title</option>
+	        <option class="search__option" value="author">Author</option>
+	        <option class="search__option" value="ISBN">ISBN</option>
+	      </select>
+	    </label>
+	  </div>
 	</section>
 	<article class="home-page">
-		<main class="main home-page__main">
-			<section class="category main__category">
-				<div class="header_lines category__name"><span class="header__text">Recommended books</span></div>
-				<div class="books home-page__books">
-					<div class="books-switcher find-switcher">
-						<div class="book books-switcher__book">
-							<img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
-							<div class="book__info">
-								<a href="./book_description.html" class="book__title">The Alchemist</a>
-								<p class="book__author">Paulo Coelho</p>
-								<p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
-								<p class="reviews book__reviews">16 reviews</p>
-							</div>
-						</div>
+	  <main class="main home-page__main">
+	    <section class="category main__category">
+	      <div class="header_lines category__name"><span class="header__text">Recommended books</span></div>
+	      <div class="books home-page__books">
+	        <div class="books-switcher find-switcher">
+	          <div class="book books-switcher__book">
+	            <img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
+	            <div class="book__info">
+	              <a href="./book_description.html" class="book__title">The Alchemist</a>
+	              <p class="book__author">Paulo Coelho</p>
+	              <p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
+	              <p class="reviews book__reviews">16 reviews</p>
+	            </div>
+	          </div>
 
-						<div class="book books-switcher__book">
-							<img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
-							<div class="book__info">
-								<a href="./book_description.html" class="book__title">The Alchemist</a>
-								<p class="book__author">Paulo Coelho</p>
-								<p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
-								<p class="reviews book__reviews">16 reviews</p>
-							</div>
-						</div>
+	          <div class="book books-switcher__book">
+	            <img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
+	            <div class="book__info">
+	              <a href="./book_description.html" class="book__title">The Alchemist</a>
+	              <p class="book__author">Paulo Coelho</p>
+	              <p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
+	              <p class="reviews book__reviews">16 reviews</p>
+	            </div>
+	          </div>
 
-						<div class="book books-switcher__book">
-							<img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
-							<div class="book__info">
-								<a href="./book_description.html" class="book__title">The Alchemist</a>
-								<p class="book__author">Paulo Coelho</p>
-								<p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
-								<p class="reviews book__reviews">16 reviews</p>
-							</div>
-						</div>
-					</div>
-					<div class="books-switcher__dots"></div>
-					<a class="books-switcher__see-more" href="./category.html">see more</a>
-				</div>
-			</section>
+	          <div class="book books-switcher__book">
+	            <img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
+	            <div class="book__info">
+	              <a href="./book_description.html" class="book__title">The Alchemist</a>
+	              <p class="book__author">Paulo Coelho</p>
+	              <p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
+	              <p class="reviews book__reviews">16 reviews</p>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="books-switcher__dots"></div>
+	        <a class="books-switcher__see-more" href="./category.html">see more</a>
+	      </div>
+	    </section>
 
-			<section class="category main__category">
-				<div class="header_lines category__name"><span class="header__text">Recommended books</span></div>
-				<div class="books home-page__books">
-					<div class="books-switcher find-switcher">
-						<div class="book books-switcher__book">
-							<img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
-							<div class="book__info">
-								<a href="./book_description.html" class="book__title">The Alchemist</a>
-								<p class="book__author">Paulo Coelho</p>
-								<p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
-								<p class="reviews book__reviews">16 reviews</p>
-							</div>
-						</div>
+	    <section class="category main__category">
+	      <div class="header_lines category__name"><span class="header__text">Recommended books</span></div>
+	      <div class="books home-page__books">
+	        <div class="books-switcher find-switcher">
+	          <div class="book books-switcher__book">
+	            <img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
+	            <div class="book__info">
+	              <a href="./book_description.html" class="book__title">The Alchemist</a>
+	              <p class="book__author">Paulo Coelho</p>
+	              <p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
+	              <p class="reviews book__reviews">16 reviews</p>
+	            </div>
+	          </div>
 
-						<div class="book books-switcher__book">
-							<img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
-							<div class="book__info">
-								<a href="./book_description.html" class="book__title">The Alchemist</a>
-								<p class="book__author">Paulo Coelho</p>
-								<p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
-								<p class="reviews book__reviews">16 reviews</p>
-							</div>
-						</div>
+	          <div class="book books-switcher__book">
+	            <img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
+	            <div class="book__info">
+	              <a href="./book_description.html" class="book__title">The Alchemist</a>
+	              <p class="book__author">Paulo Coelho</p>
+	              <p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
+	              <p class="reviews book__reviews">16 reviews</p>
+	            </div>
+	          </div>
 
-						<div class="book books-switcher__book">
-							<img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
-							<div class="book__info">
-								<a href="./book_description.html" class="book__title">The Alchemist</a>
-								<p class="book__author">Paulo Coelho</p>
-								<p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
-								<p class="reviews book__reviews">16 reviews</p>
-							</div>
-						</div>
-					</div>
-					<div class="books-switcher__dots"></div>
-					<a class="books-switcher__see-more" href="./category.html">see more</a>
-				</div>
-			</section>
+	          <div class="book books-switcher__book">
+	            <img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
+	            <div class="book__info">
+	              <a href="./book_description.html" class="book__title">The Alchemist</a>
+	              <p class="book__author">Paulo Coelho</p>
+	              <p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
+	              <p class="reviews book__reviews">16 reviews</p>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="books-switcher__dots"></div>
+	        <a class="books-switcher__see-more" href="./category.html">see more</a>
+	      </div>
+	    </section>
 
-			<section class="category main__category">
-				<div class="header_lines category__name"><span class="header__text">Recommended books</span></div>
-				<div class="books home-page__books">
-					<div class="books-switcher find-switcher">
-						<div class="book books-switcher__book">
-							<img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
-							<div class="book__info">
-								<a href="./book_description.html" class="book__title">The Alchemist</a>
-								<p class="book__author">Paulo Coelho</p>
-								<p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
-								<p class="reviews book__reviews">16 reviews</p>
-							</div>
-						</div>
+	    <section class="category main__category">
+	      <div class="header_lines category__name"><span class="header__text">Recommended books</span></div>
+	      <div class="books home-page__books">
+	        <div class="books-switcher find-switcher">
+	          <div class="book books-switcher__book">
+	            <img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
+	            <div class="book__info">
+	              <a href="./book_description.html" class="book__title">The Alchemist</a>
+	              <p class="book__author">Paulo Coelho</p>
+	              <p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
+	              <p class="reviews book__reviews">16 reviews</p>
+	            </div>
+	          </div>
 
-						<div class="book books-switcher__book">
-							<img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
-							<div class="book__info">
-								<a href="./book_description.html" class="book__title">The Alchemist</a>
-								<p class="book__author">Paulo Coelho</p>
-								<p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
-								<p class="reviews book__reviews">16 reviews</p>
-							</div>
-						</div>
+	          <div class="book books-switcher__book">
+	            <img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
+	            <div class="book__info">
+	              <a href="./book_description.html" class="book__title">The Alchemist</a>
+	              <p class="book__author">Paulo Coelho</p>
+	              <p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
+	              <p class="reviews book__reviews">16 reviews</p>
+	            </div>
+	          </div>
 
-						<div class="book books-switcher__book">
-							<img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
-							<div class="book__info">
-								<a href="./book_description.html" class="book__title">The Alchemist</a>
-								<p class="book__author">Paulo Coelho</p>
-								<p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
-								<p class="reviews book__reviews">16 reviews</p>
-							</div>
-						</div>
-					</div>
-					<div class="books-switcher__dots"></div>
-					<a class="books-switcher__see-more" href="./category.html">see more</a>
-				</div>
-			</section>
+	          <div class="book books-switcher__book">
+	            <img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
+	            <div class="book__info">
+	              <a href="./book_description.html" class="book__title">The Alchemist</a>
+	              <p class="book__author">Paulo Coelho</p>
+	              <p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
+	              <p class="reviews book__reviews">16 reviews</p>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="books-switcher__dots"></div>
+	        <a class="books-switcher__see-more" href="./category.html">see more</a>
+	      </div>
+	    </section>
 
-			<section class="category main__category">
-				<div class="header_lines category__name"><span class="header__text">Recommended books</span></div>
-				<div class="books home-page__books">
-					<div class="books-switcher find-switcher">
-						<div class="book books-switcher__book">
-							<img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
-							<div class="book__info">
-								<a href="./book_description.html" class="book__title">The Alchemist</a>
-								<p class="book__author">Paulo Coelho</p>
-								<p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
-								<p class="reviews book__reviews">16 reviews</p>
-							</div>
-						</div>
+	    <section class="category main__category">
+	      <div class="header_lines category__name"><span class="header__text">Recommended books</span></div>
+	      <div class="books home-page__books">
+	        <div class="books-switcher find-switcher">
+	          <div class="book books-switcher__book">
+	            <img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
+	            <div class="book__info">
+	              <a href="./book_description.html" class="book__title">The Alchemist</a>
+	              <p class="book__author">Paulo Coelho</p>
+	              <p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
+	              <p class="reviews book__reviews">16 reviews</p>
+	            </div>
+	          </div>
 
-						<div class="book books-switcher__book">
-							<img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
-							<div class="book__info">
-								<a href="./book_description.html" class="book__title">The Alchemist</a>
-								<p class="book__author">Paulo Coelho</p>
-								<p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
-								<p class="reviews book__reviews">16 reviews</p>
-							</div>
-						</div>
+	          <div class="book books-switcher__book">
+	            <img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
+	            <div class="book__info">
+	              <a href="./book_description.html" class="book__title">The Alchemist</a>
+	              <p class="book__author">Paulo Coelho</p>
+	              <p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
+	              <p class="reviews book__reviews">16 reviews</p>
+	            </div>
+	          </div>
 
-						<div class="book books-switcher__book">
-							<img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
-							<div class="book__info">
-								<a href="./book_description.html" class="book__title">The Alchemist</a>
-								<p class="book__author">Paulo Coelho</p>
-								<p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
-								<p class="reviews book__reviews">16 reviews</p>
-							</div>
-						</div>
-					</div>
-					<div class="books-switcher__dots"></div>
-					<a class="books-switcher__see-more" href="./category.html">see more</a>
-				</div>
-			</section>
+	          <div class="book books-switcher__book">
+	            <img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
+	            <div class="book__info">
+	              <a href="./book_description.html" class="book__title">The Alchemist</a>
+	              <p class="book__author">Paulo Coelho</p>
+	              <p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
+	              <p class="reviews book__reviews">16 reviews</p>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="books-switcher__dots"></div>
+	        <a class="books-switcher__see-more" href="./category.html">see more</a>
+	      </div>
+	    </section>
 
-			<section class="category main__category">
-				<div class="header_lines category__name"><span class="header__text">Recommended books</span></div>
-				<div class="books home-page__books">
-					<div class="books-switcher find-switcher">
-						<div class="book books-switcher__book">
-							<img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
-							<div class="book__info">
-								<a href="./book_description.html" class="book__title">The Alchemist</a>
-								<p class="book__author">Paulo Coelho</p>
-								<p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
-								<p class="reviews book__reviews">16 reviews</p>
-							</div>
-						</div>
+	    <section class="category main__category">
+	      <div class="header_lines category__name"><span class="header__text">Recommended books</span></div>
+	      <div class="books home-page__books">
+	        <div class="books-switcher find-switcher">
+	          <div class="book books-switcher__book">
+	            <img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
+	            <div class="book__info">
+	              <a href="./book_description.html" class="book__title">The Alchemist</a>
+	              <p class="book__author">Paulo Coelho</p>
+	              <p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
+	              <p class="reviews book__reviews">16 reviews</p>
+	            </div>
+	          </div>
 
-						<div class="book books-switcher__book">
-							<img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
-							<div class="book__info">
-								<a href="./book_description.html" class="book__title">The Alchemist</a>
-								<p class="book__author">Paulo Coelho</p>
-								<p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
-								<p class="reviews book__reviews">16 reviews</p>
-							</div>
-						</div>
+	          <div class="book books-switcher__book">
+	            <img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
+	            <div class="book__info">
+	              <a href="./book_description.html" class="book__title">The Alchemist</a>
+	              <p class="book__author">Paulo Coelho</p>
+	              <p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
+	              <p class="reviews book__reviews">16 reviews</p>
+	            </div>
+	          </div>
 
-						<div class="book books-switcher__book">
-							<img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
-							<div class="book__info">
-								<a href="./book_description.html" class="book__title">The Alchemist</a>
-								<p class="book__author">Paulo Coelho</p>
-								<p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
-								<p class="reviews book__reviews">16 reviews</p>
-							</div>
-						</div>
-					</div>
-					<div class="books-switcher__dots" visibility="false"></div>
-					<a class="books-switcher__see-more" href="./category.html">see more</a>
-				</div>
-			</section>
+	          <div class="book books-switcher__book">
+	            <img src="./images/books-cover.png" class="book__cover" alt="Book name"/>
+	            <div class="book__info">
+	              <a href="./book_description.html" class="book__title">The Alchemist</a>
+	              <p class="book__author">Paulo Coelho</p>
+	              <p class="book__desc">You are protected, in short, by your ability to love! The only protection that can possibly work against the lure of power like Voldemort's! In spite of all the temptation you have endured, all the suffering, you remain pure of heart, just as pure as you were at the age of eleven, when you stared into a mirror that reflected your heart's desire, and it showed you only the way to thwart Lord Voldemort, and not immortality or riches.</p>
+	              <p class="reviews book__reviews">16 reviews</p>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="books-switcher__dots" visibility="false"></div>
+	        <a class="books-switcher__see-more" href="./category.html">see more</a>
+	      </div>
+	    </section>
 
-		</main>
+	  </main>
 	</article>
-	
+
 	<script type="text/javascript">
 		window.onload = () => {
-			let switchersArr = document.getElementsByClassName('find-switcher') || []; // every block which contain books
+	    let switchersArr = document.getElementsByClassName('find-switcher') || []; // every block which contain books
 
-			initialSwitchState(1000); // from switch-book.js chose hideWidth;
-			createDots(switchersArr); // from switch-book.js create dots equile count of books in category;
-			hideSwitchOnWidth(switchersArr); // from switch-book.js create dots equile count of books in category;
+	    initialSwitchState(1000); // from switch-book.js chose hideWidth;
+	    createDots(switchersArr); // from switch-book.js create dots equile count of books in category;
+	    hideSwitchOnWidth(switchersArr); // from switch-book.js create dots equile count of books in category;
 
-			switchersArr = Array.from(switchersArr); // htmlCollection into array;
-			switchersArr.map(elem => {
-				elem.addEventListener('touchmove', localSwitchBooks.bind(localSwitchBooks, elem) , false);
-				elem.addEventListener('touchstart', getStartSwitchPos.bind(getStartSwitchPos) , false);
-				elem.addEventListener('touchend', finishSwitchBooks.bind(finishSwitchBooks, elem) , false);
-			});
+	    switchersArr = Array.from(switchersArr); // htmlCollection into array;
+	    switchersArr.map(elem => {
+	      elem.addEventListener('touchmove', localSwitchBooks.bind(localSwitchBooks, elem) , false);
+	      elem.addEventListener('touchstart', getStartSwitchPos.bind(getStartSwitchPos) , false);
+	      elem.addEventListener('touchend', finishSwitchBooks.bind(finishSwitchBooks, elem) , false);
+	    });
 
-			bookDescResize();
-		}
+	    bookDescResize();
+	  }
 
-		window.onresize = () => {
-			let	switchersArr = document.getElementsByClassName('find-switcher') || [];
-				
-			hideSwitchOnWidth(switchersArr);
-			bookDescResize();
-		}
+	  window.onresize = () => {
+	    let switchersArr = document.getElementsByClassName('find-switcher') || [];
+	      
+	    hideSwitchOnWidth(switchersArr);
+	    bookDescResize();
+	  }
 
-		var bookDescResize = () => {
-			let bookDesc = document.getElementsByClassName('book__desc') || [];
-			
-			for (let i = bookDesc.length - 1; i >= 0; i--) {
-				let columnHeight = Math.ceil((bookDesc[i].clientWidth - bookDesc[i].offsetTop + 49) / 18);
-				bookDesc[i].style = '-webkit-line-clamp: ' + columnHeight;
-			}
-		}
+	  var bookDescResize = () => {
+	    let bookDesc = document.getElementsByClassName('book__desc') || [];
+	    
+	    for (let i = bookDesc.length - 1; i >= 0; i--) {
+	      let columnHeight = Math.ceil((bookDesc[i].clientWidth - bookDesc[i].offsetTop + 49) / 18);
+	      bookDesc[i].style = '-webkit-line-clamp: ' + columnHeight;
+	    }
+	  }
 
-		var displayMenu = (show) => {
-			if(show) menu.className = "menu menu_open";
-			else menu.className = "menu menu_close";
-		}
+	  var displayMenu = (show) => {
+	    if(show) menu.class = "menu menu_open";
+	    else menu.class = "menu menu_close";
+	  }
 	</script>
 </body>
 </html>
