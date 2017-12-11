@@ -1,0 +1,49 @@
+@import "menu.scss";
+
+.header-nav {
+    width: 100%;
+    position: fixed;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    height: 43px;
+    padding: 0 18px;
+    background-color: $primary-color;
+    font-weight: 300;
+
+    @media only screen and (min-width: 1000px) {
+        width: calc(100% - 166px);
+
+        background-color: #fff;
+        box-shadow: $box-shadow;
+    }
+
+    &__menu-btn {
+        position: absolute;
+        right: 18px;
+        font-size: 20px;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        @media only screen and (min-width: 1000px) {
+            display: none;
+        }
+    }
+
+    &__logo {
+        text-decoration: none;
+        font-size: 20px;
+        color: #fff;
+
+        @media only screen and (min-width: 1000px) {
+            color: #000;
+            font-weight: 400;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

@@ -44,7 +44,7 @@ var finishSwitchBooks = (switchElem) => {
 			}
 		}
 
-		let directionTr = (touchStartPoint - touchEndPoint) > 0 ? -1 : 1; // calc the direction based on start and end touch position
+		let directionTr = (touchStartPoint - touchEndPoint) == 0 ? 0 : (touchStartPoint - touchEndPoint) > 0 ? -1 : 1; // calc the direction based on start and end touch position
 
 		theta += startTransform + stepSize * directionTr; // summary calc of switch size based on current transform, step size and direction
 

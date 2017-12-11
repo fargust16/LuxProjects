@@ -1,0 +1,19 @@
+.history-back {
+    position: relative;
+    z-index: 5;
+    display: block;
+    text-align: right;
+    text-decoration: none;
+    color: #085394;
+    font-size: 20px;
+
+    &::before {
+        @include awesome-icon(absolute, '\f060', 18px);
+        top: -5px;
+        right: 50px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

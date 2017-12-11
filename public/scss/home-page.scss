@@ -1,0 +1,23 @@
+.home-page {
+    position: relative;
+    width: 100%;
+    max-width: 1600px;
+    margin: auto;
+
+    &__search {
+	    z-index: 3;
+	}
+
+	&__main {
+	    z-index: 1;
+
+	    box-sizing: border-box;
+	    padding: 136px 8px 0;
+
+	    user-select: none;
+	}
+	
+	&__books {
+	    padding-bottom: 30px;
+	}
+}

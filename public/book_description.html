@@ -4,17 +4,14 @@
 	<title>Online Library</title>
 	<meta content="width=device-width,maximum-scale=1.0,initial-scale=1.0,minimum-scale=1.0,user-scalable=yes" name="viewport">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="./css/reset.css">
-	<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
-	<link rel="stylesheet" type="text/css" href="./css/book-description.css">
 </head>
 <body>
 	
 	<header class="header-nav">
 		<a href="index.html" class="header-nav__logo"><h1>Online Library</h1></a>
 		<i class="fa fa-bars header-nav__menu-btn" aria-hidden="true" onclick="displayMenu(true)"></i>
-		<nav id="menu" class="menu menu-close">
+		<nav id="menu" class="menu menu_close">
 			<i class="fa fa-times menu__close-btn" aria-hidden="true" onclick="displayMenu(false)"></i>
 			<div class="menu__profile"><a class="menu__profile-link" href="#Sign In">Sign In</a></div>
 			<ul class="menu__options">
@@ -145,8 +142,8 @@
 		window.onload = window.onresize = checkWindSize;
 
 		var displayMenu = (show) => {
-			if(show) menu.className = "menu menu-open";
-			else menu.className = "menu menu-close";
+			if(show) menu.className = "menu menu_open";
+			else menu.className = "menu menu_close";
 		}
 	</script>
 </body>

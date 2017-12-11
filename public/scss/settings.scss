@@ -1,0 +1,28 @@
+.settings__header {
+    padding: 10px 18px 12px;
+}
+
+.settings__info {
+    color: #999;
+
+    font-size: 13px;
+}
+
+.settings__email {
+    margin-top: 5px;
+
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.settings__form {
+    display: none;
+}
+
+.btn-clear {
+    color: #000;
+}
+
+.btn-submit {
+    color: $primary-color;
+}

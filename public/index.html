@@ -4,12 +4,7 @@
 	<title>Online Library</title>
 	<meta content="width=device-width,maximum-scale=1.0,initial-scale=1.0,minimum-scale=1.0,user-scalable=yes" name="viewport">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="./css/reset.css">
-	<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
-	<link rel="stylesheet" type="text/css" href="./css/category.css">
-	<link rel="stylesheet" type="text/css" href="./css/home-page.css">
-	<link rel="stylesheet" type="text/css" href="./css/books-switcher.css">
 	<script type="text/javascript" src="./js/modernizr-custom.js"></script>
 	<script type="text/javascript" src="./js/switch-book.js"></script>
 </head>
@@ -17,7 +12,7 @@
 	<header class="header-nav home-page__header-nav">
 		<a href="index.html" class="header-nav__logo"><h1>Online Library</h1></a>
 		<i class="fa fa-bars header-nav__menu-btn" aria-hidden="true" onclick="displayMenu(true)"></i>
-		<nav id="menu" class="menu menu-close">
+		<nav id="menu" class="menu menu_close">
 			<i class="fa fa-times menu__close-btn" aria-hidden="true" onclick="displayMenu(false)"></i>
 			<div class="menu__profile"><a class="menu__profile-link" href="#Sign In">Sign In</a></div>
 			<ul class="menu__options">
@@ -246,7 +241,7 @@
 		window.onload = () => {
 			let switchersArr = document.getElementsByClassName('find-switcher') || []; // every block which contain books
 
-			initialSwitchState(767); // from switch-book.js chose hideWidth;
+			initialSwitchState(1000); // from switch-book.js chose hideWidth;
 			createDots(switchersArr); // from switch-book.js create dots equile count of books in category;
 			hideSwitchOnWidth(switchersArr); // from switch-book.js create dots equile count of books in category;
 
@@ -256,17 +251,29 @@
 				elem.addEventListener('touchstart', getStartSwitchPos.bind(getStartSwitchPos) , false);
 				elem.addEventListener('touchend', finishSwitchBooks.bind(finishSwitchBooks, elem) , false);
 			});
+
+			bookDescResize();
 		}
 
 		window.onresize = () => {
 			let	switchersArr = document.getElementsByClassName('find-switcher') || [];
 				
 			hideSwitchOnWidth(switchersArr);
+			bookDescResize();
+		}
+
+		var bookDescResize = () => {
+			let bookDesc = document.getElementsByClassName('book__desc') || [];
+			
+			for (let i = bookDesc.length - 1; i >= 0; i--) {
+				let columnHeight = Math.ceil((bookDesc[i].clientWidth - bookDesc[i].offsetTop + 49) / 18);
+				bookDesc[i].style = '-webkit-line-clamp: ' + columnHeight;
+			}
 		}
 
 		var displayMenu = (show) => {
-			if(show) menu.className = "menu menu-open";
-			else menu.className = "menu menu-close";
+			if(show) menu.className = "menu menu_open";
+			else menu.className = "menu menu_close";
 		}
 	</script>
 </body>

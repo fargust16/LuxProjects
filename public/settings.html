@@ -3,17 +3,13 @@
 <head>
 	<title>Online Library</title><meta content="width=device-width,maximum-scale=1.0,initial-scale=1.0,minimum-scale=1.0,user-scalable=yes" name="viewport">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="./css/reset.css">
-	<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
-	<link rel="stylesheet" type="text/css" href="./css/settings.css">
-	<link rel="stylesheet" type="text/css" href="./css/modal-block.css">
 </head>
 <body>
 	<header class="header-nav home-page__header-nav">
 		<a href="index.html" class="header-nav__logo"><h1>Online Library</h1></a>
 		<i class="fa fa-bars header-nav__menu-btn" aria-hidden="true" onclick="displayMenu(true)"></i>
-		<nav id="menu" class="menu menu-close">
+		<nav id="menu" class="menu menu_close">
 			<i class="fa fa-times menu__close-btn" aria-hidden="true" onclick="displayMenu(false)"></i>
 			<div class="menu__profile"><a class="menu__profile-link" href="#Sign In">Sign In</a></div>
 			<ul class="menu__options">
@@ -35,10 +31,10 @@
 
 			<article class="options settings__options">
 				<section class="option">
-					<div onclick="showExternalOptions(email_settings)" class="header option__name close-header"><span class="header__text">Change email</span></div>
-					<form id="email_settings" action="" method="POST" class="option__form">
-						<input type="email" name="email" class="field option__email" placeholder="new email address" required>
-						<input type="password" name="password" class="field option__pass" placeholder="current password">
+					<div onclick="showExternalOptions(email_settings)" class="header option__header close-header"><span class="header__text">Change email</span></div>
+					<form id="email_settings" action="" method="POST" class="option__content settings__form">
+						<input type="email" name="email" class="field option__field" placeholder="new email address" required>
+						<input type="password" name="password" class="field option__field" placeholder="current password">
 						<div class="option__buttons">
 							<button class="button btn-clear" type="reset" onclick="showExternalOptions(email_settings)">Cancel</button>
 							<button class="button btn-submit" type="submit">Save changes</button>
@@ -47,11 +43,11 @@
 				</section>
 
 				<section class="option">
-					<div onclick="showExternalOptions(password_settings)" class="header option__name close-header"><span class="header__text">Change password</span></div>
-					<form id="password_settings" action="" method="POST"  class="option__form">
-						<input type="password" name="old-pass" class="field option__old-pass" placeholder="current password" required>
-						<input type="password" name="new-pass" class="field option__new-pass" placeholder="new password">
-						<input type="password" name="confirm-pass" class="field option__confirm-pass" placeholder="confirm new password">
+					<div onclick="showExternalOptions(password_settings)" class="header option__header close-header"><span class="header__text">Change password</span></div>
+					<form id="password_settings" action="" method="POST"  class="option__content settings__form">
+						<input type="password" name="old-pass" class="field option__field" placeholder="current password" required>
+						<input type="password" name="new-pass" class="field option__field" placeholder="new password">
+						<input type="password" name="confirm-pass" class="field option__field" placeholder="confirm new password">
 						<div class="option__buttons">
 							<button class="button btn-clear" type="reset" onclick="showExternalOptions(password_settings)">Cancel</button>
 							<button class="button btn-submit" type="submit">Save changes</button>
@@ -65,16 +61,16 @@
 		function showExternalOptions(e){
 			if(getComputedStyle(e).display == 'none') {
 				e.style.display = 'block';
-				e.previousElementSibling.className = 'option__name header_lines open-header';
+				e.previousElementSibling.className = 'header option__header header_lines open-header';
 			} else {
 				e.style.display = 'none';
-				e.previousElementSibling.className = 'option__name close-header';
+				e.previousElementSibling.className = 'header option__header close-header';
 			}
 		}
 
 		var displayMenu = (show) => {
-			if(show) menu.className = "menu menu-open";
-			else menu.className = "menu menu-close";
+			if(show) menu.className = "menu menu_open";
+			else menu.className = "menu menu_close";
 		}
 	</script>
 </body>
