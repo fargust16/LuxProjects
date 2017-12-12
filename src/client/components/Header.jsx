@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Menu from './Menu';
 
-import './Header.css';
+import './Header.scss';
 
 class Header extends Component {
 

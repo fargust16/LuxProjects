@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Search from './Search.jsx';
 
-import './Home.css';
+import './Home.scss';
 
 class Home extends Component {
 
