@@ -1,48 +1,41 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>Online Library</title>
-	<meta content="width=device-width,maximum-scale=1.0,initial-scale=1.0,minimum-scale=1.0,user-scalable=yes" name="viewport">
-	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="./css/index.css">
-	<script type="text/javascript" src="./js/modernizr-custom.js"></script>
-	<script type="text/javascript" src="./js/switch-book.js"></script>
-</head>
-<body>
-	<div id="root"></div>
-	<script type="text/javascript">
-		window.onload = () => {
-	    let switchersArr = document.getElementsByClassName('find-switcher') || []; // every block which contain books
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, maximum-scale=1, initial-scale=1, minimum-scale=1.0, user-scalable=yes, shrink-to-fit=no" name="viewport">
+  
+    <meta name="theme-color" content="#000000">
+    <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
 
-	    initialSwitchState(1000); // from switch-book.js chose hideWidth;
-	    createDots(switchersArr); // from switch-book.js create dots equile count of books in category;
-	    hideSwitchOnWidth(switchersArr); // from switch-book.js create dots equile count of books in category;
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Online Library</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
 
-	    switchersArr = Array.from(switchersArr); // htmlCollection into array;
-	    switchersArr.map(elem => {
-	      elem.addEventListener('touchmove', localSwitchBooks.bind(localSwitchBooks, elem) , false);
-	      elem.addEventListener('touchstart', getStartSwitchPos.bind(getStartSwitchPos) , false);
-	      elem.addEventListener('touchend', finishSwitchBooks.bind(finishSwitchBooks, elem) , false);
-	    });
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
 
-	    bookDescResize();
-	  }
-
-	  window.onresize = () => {
-	    let switchersArr = document.getElementsByClassName('find-switcher') || [];
-	      
-	    hideSwitchOnWidth(switchersArr);
-	    bookDescResize();
-	  }
-
-	  var bookDescResize = () => {
-	    let bookDesc = document.getElementsByClassName('book__desc') || [];
-	    
-	    for (let i = bookDesc.length - 1; i >= 0; i--) {
-	      let columnHeight = Math.ceil((bookDesc[i].clientWidth - bookDesc[i].offsetTop + 49) / 18);
-	      bookDesc[i].style = '-webkit-line-clamp: ' + columnHeight;
-	    }
-	  }
-	</script>
-</body>
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
 </html>

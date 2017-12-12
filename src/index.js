@@ -5,27 +5,23 @@ import {
   Route
 } from 'react-router-dom';
 
-import Header from './client/components/Header.jsx';
+import './style.scss';
 
-import Home from './client/components/Home.jsx';
-import AddBook from './client/components/AddBook.jsx';
-import Recent from './client/components/Recent.jsx';
-import Settings from './client/components/Settings.jsx';
-import Support from './client/components/Support.jsx';
+import Header from './components/Header.jsx';
+import Home from './components/Home.jsx';
+import BookDescription from './components/BookDescription.jsx';
 
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
-	<Router>
-		<div>
-			<Header />
-			<Route exact path="/" component={Home}/>
-    	<Route path="/add-book" component={AddBook}/>
-    	<Route path="/recent" component={Recent}/>
-    	<Route path="/settings" component={Settings}/>
-    	<Route path="/support" component={Support}/>
-    </div>
-	</Router>, 
-	document.getElementById('root')
+  <Router>
+    <div>
+      <Header />
+      <Route exact path="/" component={Home}/>
+        <Route path="/book-description" component={BookDescription}/>
+        <Route path="/add-book" component={Home}/>
+      </div>
+  </Router>, 
+  document.getElementById('root')
 );
 registerServiceWorker();

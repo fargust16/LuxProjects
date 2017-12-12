@@ -1,0 +1,120 @@
+@import '../constants.scss';
+
+.menu {
+    position: fixed;
+    height: 100vh;
+    font-weight: 400;
+    font-size: 20px;
+
+    @media only screen and (max-width: 999px) {
+        top: 0;
+        right: 0;
+        background: #fff;
+    }
+
+    @media only screen and (min-width: 1000px) {
+        top: 0;
+        left: 0;
+        width: 166px;
+        border-right: 1px solid black;
+        background: $primary-color;
+    }
+
+    &_open {
+        transition: all .2s ease-out;
+        border-left: 1px solid black;
+
+        @media only screen and (max-width: 999px) {   
+            width: 50vw; 
+        }
+    }
+
+    &_close {
+        display: block;
+        overflow: hidden;
+        transition: all .0s ease-out;
+
+        @media only screen and (max-width: 999px) {   
+            width: 0px; 
+        }
+    }
+
+    &__close-btn {
+        position: absolute;
+        top: 12px;
+        right: 18px;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        @media only screen and (min-width: 1000px) {
+            display: none;
+        }
+    }
+
+    &__profile {
+        padding-left: 55px;
+        line-height: 100px;
+        @media only screen and (max-width: 999px) {
+            border-bottom: 1px solid black;
+            background-color: #eee;
+        }
+
+        @media only screen and (min-width: 1000px) {
+            border-bottom: 1px solid #fff;
+            background-color: $primary-color;
+        }
+
+        &::before {
+            @include awesome-icon(absolute, '\f2be', 48px);
+            left: 18px;
+            color: #000;
+
+            @media only screen and (min-width: 1000px) {
+                color: #fff;
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__profile-link {
+        margin-left: 20px;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: 600;
+        color: $primary-color;
+
+        @media only screen and (min-width: 1000px) {
+            color: #fff;
+        }
+    }
+
+    &__option {
+        font-size: 16px;
+        border-bottom: 1px solid black;
+
+        @media only screen and (min-width: 1000px) {
+            border-bottom: 1px solid #fff;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__option-link {
+        display: block;
+        width: 100%;
+        padding-left: 18px;
+        text-decoration: none;
+        line-height: 60px;
+
+        @media only screen and (min-width: 1000px) {
+            color: #fff;
+        }
+    }
+}

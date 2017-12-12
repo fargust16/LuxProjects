@@ -1,0 +1,76 @@
+@import './constants.scss';
+
+@import './components/Button.scss';
+@import './components/Field.scss';
+
+body {
+    position: relative;
+    background-color: #eee;
+
+    font-family: $font-stack;
+    font-weight: 400;
+
+    @media only screen and (min-width: 1000px) {
+        margin-left: 166px;
+    }
+}
+
+input,
+textarea,
+button,
+select {
+    font-family: $font-stack;
+    font-weight: 400;
+}
+
+::-webkit-input-placeholder {
+    color: #999;
+}
+::-moz-placeholder {
+    color: #999;
+}
+:-ms-input-placeholder {
+    color: #999;
+}
+:-moz-placeholder {
+    color: #999;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset $box-shadow;
+    background-color: #F5F5F5;
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    border-radius: 2px;
+}
+
+.other-pages {
+    max-width: 1600px;
+    margin: auto;
+    padding-top: 40px;
+
+    &__block {
+        overflow-x: hidden;
+        margin: 10px 8px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: $box-shadow;
+    }
+}
+
+.reviews {
+    white-space: nowrap;
+    color: $primary-color;
+    font-size: 16px;
+}

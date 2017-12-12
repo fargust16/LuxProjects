@@ -1,0 +1,139 @@
+@import "../constants.scss";
+
+.book-description {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin: 10px 8px;
+    padding: 10px;
+    font-size: 14px;
+
+    &__info {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: flex-start;
+    }
+
+    &__book-cover {
+        max-width: 290px;
+        min-height: 276px;
+
+        flex: 1 0;
+    }
+
+    &__main-info {
+        display: flex;
+        flex-flow: column wrap;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(0,0,0,.2);
+
+        @media only screen and (min-width: 621px) {
+            margin-left: 15px;
+            flex: 2 0;
+        }
+    }
+
+    &__title {
+        @extend %small-caps;
+        color: $primary-color;
+        font-size: 25px;   
+    }
+
+    &__author, &__pablish-date {
+        margin-top: 5px;
+    }
+
+    &__control-info {
+        margin-top: 10px;
+    }
+
+    &__text {
+        @include multi-textblock(13px, 1.25em, 3);
+        flex: 2 0;
+        margin-top: 10px;
+        padding-top: 2px;
+
+        @media only screen and (min-width: 621px) {
+            -webkit-line-clamp: 16;
+        }
+    }
+
+    &__text-more {
+        display: block;
+        color: $primary-color;
+        font-size: 13px;
+    }
+
+    &__reviews {
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        width: 100%;
+        height: auto;
+        padding: 15px 0;
+        border-bottom: 1px solid #dcdcdc;
+        font-size: 13px;
+    }
+
+    &__rating {
+        position: relative;
+        border: none;
+        min-width: 174px;
+
+        & > input {
+            display: none;
+        }
+
+        & > label:before {
+            display: inline-block;
+            margin-right: 5px;
+            @include awesome-icon(inherit, '\f005', 32px);
+        }
+
+        & > .half:before {
+            position: absolute;
+            content: '\f089';
+        }
+
+        & > label {
+            float: right;
+            color: #ddd;
+        }
+    }
+
+    &__reviews-count {
+        margin-left: 20px;
+        font-size: 15px;
+    }
+
+    &__buttons {
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    &__button {
+        margin: 0 5px;
+        white-space: nowrap;
+    }
+}
+
+/*-- TODO fix this stars style-names --*/
+
+.book-description__rating > input:checked ~ label,
+.book-description__rating:not(:checked) > label:hover,
+.book-description__rating:not(:checked) > label:hover ~ label {
+    color: #ffd700;
+}
+
+.book-description__rating > input:checked + label:hover,
+.book-description__rating > input:checked ~ label:hover,
+.book-description__rating > label:hover ~ input:checked ~ label,
+.book-description__rating > input:checked ~ label:hover ~ label {
+    color: #ffed85;
+}
+
+.btn-read {
+    color: $primary-color;
+}

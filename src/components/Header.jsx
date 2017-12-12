@@ -1,0 +1,35 @@
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
+import Menu from './Menu';
+
+import './Header.scss';
+
+class Header extends Component {
+
+	constructor(props){
+		super(props);
+
+		this.state = {
+			isShowMenu: false
+	  }
+
+    this.handleDisplayMenu = this.handleDisplayMenu.bind(this);
+	}
+
+	handleDisplayMenu(isShow) {
+		this.setState({isShowMenu: isShow});
+	}
+
+  render() {
+    return (
+      <header className="header-nav home-page__header-nav">
+		  <Link to="/" className="header-nav__logo"><h1>Online Library</h1></Link>
+		  <i className="fa fa-bars header-nav__menu-btn" aria-hidden="true" onClick={this.handleDisplayMenu.bind(this.handleDisplayMenu, true)}></i>
+		  <Menu isShow={this.state.isShowMenu} handleDisplayMenu={this.handleDisplayMenu}/>
+      </header>
+    );
+  }
+}
+
+export default Header;
