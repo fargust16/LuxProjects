@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import './Menu.css';
 
 class Menu extends Component {
@@ -9,11 +11,11 @@ class Menu extends Component {
 	    <i className="fa fa-times menu__close-btn" aria-hidden="true" onClick={this.props.handleDisplayMenu.bind(this.props.handleDisplayMenu, false)}></i>
 	    <div className="menu__profile"><a className="menu__profile-link" href="#Sign In">Sign In</a></div>
 	    <ul className="menu__options">
-	      <li className="menu__option"><a className="menu__option-link" href="./index.html">Home</a></li>
-	      <li className="menu__option"><a className="menu__option-link" href="./add-book.html">Add a new book</a></li>
-	      <li className="menu__option"><a className="menu__option-link" href="./recent.html">Recent</a></li>
-	      <li className="menu__option"><a className="menu__option-link" href="./settings.html">Settings</a></li>
-	      <li className="menu__option"><a className="menu__option-link" href="./support.html">Support</a></li>
+	    	<li className="menu__option" onClick={this.props.handleDisplayMenu.bind(this.props.handleDisplayMenu, false)}><Link className="menu__option-link" to="/">Home</Link></li>
+	    	<li className="menu__option" onClick={this.props.handleDisplayMenu.bind(this.props.handleDisplayMenu, false)}><Link className="menu__option-link" to="/add-book">Add a new book</Link></li>
+	    	<li className="menu__option" onClick={this.props.handleDisplayMenu.bind(this.props.handleDisplayMenu, false)}><Link className="menu__option-link" to="/recent">Recent</Link></li>
+	    	<li className="menu__option" onClick={this.props.handleDisplayMenu.bind(this.props.handleDisplayMenu, false)}><Link className="menu__option-link" to="/settings">Settings</Link></li>
+	    	<li className="menu__option" onClick={this.props.handleDisplayMenu.bind(this.props.handleDisplayMenu, false)}><Link className="menu__option-link" to="/support">Support</Link></li>
 	    </ul>
 	  </nav>
     );

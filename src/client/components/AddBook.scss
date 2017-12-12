@@ -67,6 +67,10 @@
     }
 
     &__external-options {
-        display: none;
+        display: block;
+
+        &_hide {
+            display: none;
+        }
     }
 }

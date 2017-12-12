@@ -1,0 +1,111 @@
+$font-stack: 'Open Sans', 'Roboto', Arial, sans-serif;
+$primary-color: #900;
+$box-shadow: 0 1px 6px rgba(32, 33, 36, .38);
+
+%small-caps {
+    text-transform: lowercase;
+    font-variant: small-caps;
+}
+
+%multi-text {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+}
+
+@mixin multi-textblock($fSize, $lHeight, $colCount) {
+    @extend %multi-text;
+    font-size: $fSize;
+    line-height: $lHeight;
+    -webkit-line-clamp: $colCount; 
+}
+
+@mixin awesome-icon($position, $content , $size) {
+    position: $position;
+    content: $content;
+    font: {
+        size: $size;
+        family: FontAwesome, $font-stack;
+    }
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.add-book {
+
+    @media only screen and (min-width: 767px) {
+        .option__field {
+            width: 50%;
+            margin: 10px 0;
+        }
+    }
+
+    &__options {
+        margin-top: 15px;
+    }
+
+    &__source::before {
+        @include awesome-icon(absolute, '\f093', 24px);
+        top: 50%;
+        right: 10px;
+        transform: translateY(-12px);
+    }
+
+    &__source-field {
+        visibility: hidden;
+        margin: 0;
+    }
+
+    &__source-title {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-8px);
+        background-color: #fff;
+    }
+
+    &__description {
+        resize: none;
+        border-radius: 8px;
+
+        @media only screen and (min-width: 767px) {
+            position: absolute;
+            top: 0;
+            right: 10px;
+            width: calc(50% - 20px);
+            height: calc(100% - 7px);
+            margin: 0;
+        }
+    }
+
+    &__date-header {
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        font-size: 16px;
+
+        @media only screen and(min-width: 767px) {
+            width: 50%;
+        }
+    }
+
+    &__date-field {
+        margin-left: 10px;
+        padding: 4px;
+    }
+
+    &__upload-btn {
+        margin: 15px auto;
+        color: $primary-color;
+        font-size: 20px;
+    }
+
+    &__external-options {
+        display: block;
+
+        &_hide {
+            display: none;
+        }
+    }
+}

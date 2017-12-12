@@ -13,15 +13,16 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: { importLoaders: 1 }
-          },
-          'postcss-loader'
-        ]
+        test: /\.(css|scss)$/,
+        use: [{
+          loader: "style-loader"
+        }, {
+          loader: "css-loader"
+        }, {
+          loader: "sass-loader"
+        }, {
+          loader: 'postcss-loader'
+        }]
       },
       { 
         test: /\.(js|jsx)$/,

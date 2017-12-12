@@ -1,7 +1,7 @@
 module.exports = {
   map: false,
-  from: './src.css',
-  to: './public/css/dest.css',
+  from: '.css',
+  to: '.css',
   plugins: {
     'postcss-import': {},
     'postcss-nested': {},

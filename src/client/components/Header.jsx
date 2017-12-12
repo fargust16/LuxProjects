@@ -16,7 +16,7 @@ class Header extends Component {
     this.handleDisplayMenu = this.handleDisplayMenu.bind(this);
 	}
 
-	handleDisplayMenu = (isShow) => {
+	handleDisplayMenu(isShow) {
 		this.setState({isShowMenu: isShow});
 	}
 
