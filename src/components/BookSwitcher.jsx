@@ -1,8 +1,60 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import Book from './Book.jsx';
 
 import './BookSwitcher.scss';
+
+var ViewBooksInHome = (props) => {
+	return (
+		<div className="books home-page__books">
+			<div className="books-switcher find-switcher" refs="switcher">
+				{	props.books }
+			</div>
+			<div className="books-switcher__dots"></div>
+			<Link className="books-switcher__see-more" to={{pathname: '/category-' + props.categoryName}}>see more</Link>
+		</div>
+  );
+}
+
+var ViewBooksInCategory = (props) => {
+	return (
+		<div className="books category__books">
+			{	props.books }
+		</div>
+  );
+}
+
+var Results = (props) => {
+	let content = null;
+	let books = [];
+	let text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt bibendum purus sed tristique. Pellentesque a lacinia augue. Mauris gravida urna eu neque interdum, et consectetur leo varius. Donec vitae posuere lorem, ac tincidunt ipsum. Maecenas auctor pretium ex, ac imperdiet dui pharetra in. Pellentesque justo est, cursus id pellentesque in, imperdiet eu velit. Ut rhoncus condimentum velit id tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean nisl turpis, dapibus aliquam tellus quis, blandit condimentum dolor. Maecenas dignissim euismod eros, et facilisis lorem pharetra et. Ut libero felis, tincidunt malesuada luctus id, aliquam in urna.";
+
+	for (let i = props.books - 1; i >= 0; i--) {
+		books[i] = <Book 
+			subClass={props.categoryView ? 'category__book' : 'books-switcher__book'} 
+			author='Paulo Coelho' 
+			title='The Alchemist' 
+			reviews={10 + i + ' reviews'}
+			description={text}
+			cover='books-cover.png'
+			key={i}
+		/>;
+	}
+
+	if(props.categoryView) {
+		content = <ViewBooksInCategory books={books} categoryName={props.categoryName} />
+	} else {
+		content = <ViewBooksInHome books={books} categoryName={props.categoryName} />
+	}
+	
+
+	return <div className="Results books">
+		{content}
+	</div>
+	
+}
+
 
 class BookSwitcher extends Component {
 
@@ -15,7 +67,7 @@ class BookSwitcher extends Component {
 	  }
 
 
-	  this.localSwitchBooks = this.localSwitchBooks.bind(this);
+		this.localSwitchBooks = this.localSwitchBooks.bind(this);
     this.getStartSwitchPos = this.getStartSwitchPos.bind(this);
     this.finishSwitchBooks = this.finishSwitchBooks.bind(this);
 
@@ -151,29 +203,13 @@ class BookSwitcher extends Component {
   }
 
   render() {
-  	let text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt bibendum purus sed tristique. Pellentesque a lacinia augue. Mauris gravida urna eu neque interdum, et consectetur leo varius. Donec vitae posuere lorem, ac tincidunt ipsum. Maecenas auctor pretium ex, ac imperdiet dui pharetra in. Pellentesque justo est, cursus id pellentesque in, imperdiet eu velit. Ut rhoncus condimentum velit id tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean nisl turpis, dapibus aliquam tellus quis, blandit condimentum dolor. Maecenas dignissim euismod eros, et facilisis lorem pharetra et. Ut libero felis, tincidunt malesuada luctus id, aliquam in urna.";
-  	let books = [];
-  	for (let i = 6; i >= 0; i--) {
-			books[i] = <Book 
-									subClass='books-switcher__book' 
-									author='Paulo Coelho' 
-									title='The Alchemist' 
-									reviews={10 + i + ' reviews'}
-									description={text}
-									cover='books-cover.png'
-									key={i}
-								/>;
-		}
-
-    return (
-			<div className="books home-page__books">
-				<div className="books-switcher find-switcher" refs="switcher">
-					{	books }
-				</div>
-				<div className="books-switcher__dots"></div>
-				<a className="books-switcher__see-more" href="./category.html">see more</a>
-			</div>
-    );
+		return (
+			<Results 
+				categoryView = {this.props.categoryView}
+				categoryName = {this.props.categoryName}
+				books = '6'
+			/>
+		);
   }
 }
 

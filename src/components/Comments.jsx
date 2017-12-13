@@ -16,6 +16,7 @@ class Comments extends Component {
 		}
 
 		this.showComments = this.showComments.bind(this);
+		this.resizeWindow = this.resizeWindow.bind(this);
 	}
 
 	showComments() {
@@ -39,10 +40,16 @@ class Comments extends Component {
 		
 	}
 
+	resizeWindow() {
+		this.setState({showComments: window.innerWidth >= 621 ? true : false});
+	}
+
 	componentWillMount() {
-		window && window.addEventListener('resize', event => {
-			this.setState({showComments: window.innerWidth >= 621 ? true : false});
-		}, false);
+		window && window.addEventListener('resize', this.resizeWindow, false);
+	}
+
+	componentWillUnmount() {
+		window && window.removeEventListener('resize', this.resizeWindow, false);
 	}
 
 	render() {

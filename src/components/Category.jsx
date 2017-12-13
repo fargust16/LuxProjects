@@ -11,7 +11,7 @@ class Category extends Component {
     return (
     	<section className="category main__category">
 	      <BlockHeader blockName="Recommended books" />
-	      <BookSwitcher />
+	      <BookSwitcher categoryName="Recommended books" categoryView={this.props.categoryView} />
 	    </section>
     );
   }

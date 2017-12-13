@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import Comments from './Comments.jsx';
 
@@ -52,8 +53,8 @@ class BookDescription extends Component {
 						<span className="reviews book-description__reviews-count">125 reviews</span>
 					</div>
 					<div className="book-description__buttons">
-						<a href="./read-book.html" className="book-description__button button btn-read">start reading now</a>
-						<a href="#download" className="book-description__button button btn-download">download</a>
+						<Link to="/read-book" className="book-description__button button btn-read">start reading now</Link>
+						<Link to="#download" className="book-description__button button btn-download">download</Link>
 					</div>
 				</main>
 

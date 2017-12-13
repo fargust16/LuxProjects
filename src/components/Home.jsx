@@ -7,13 +7,22 @@ import './Home.scss';
 
 class Home extends Component {
 
+	constructor(props) {
+		super(props);
+
+		this.state = {
+
+		}
+	}
+
+
   render() {
     return (
     	<div className="home">
     	<Search />
 	      <article className="home-page">
 				  <main className="main home-page__main">
-				    <Category />
+				    <Category categoryView={this.props.match.params.categoryName} />
 				  </main>
 				</article>
 			</div>

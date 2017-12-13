@@ -1,0 +1,36 @@
+@import '../constants';
+
+.settings {
+	&__header {
+	    padding: 10px 18px 12px;
+	}
+
+	&__info {
+	    color: #999;
+
+	    font-size: 13px;
+	}
+
+	&__email {
+	    margin-top: 5px;
+
+	    font-size: 16px;
+	    font-weight: 700;
+	}
+
+	&__form {
+	    display: block;
+
+	    &_hide {
+	    	display: none;
+	    }
+	}
+}
+
+.btn-clear {
+    color: #000;
+}
+
+.btn-submit {
+    color: $primary-color;
+}
