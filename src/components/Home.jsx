@@ -17,12 +17,14 @@ class Home extends Component {
 
 
   render() {
+  	const { categoryName } = this.props.match.params;
+
     return (
     	<div className="home">
     	<Search />
 	      <article className="home-page">
 				  <main className="main home-page__main">
-				    <Category categoryView={this.props.match.params.categoryName} />
+				    <Category categoryView={categoryName} />
 				  </main>
 				</article>
 			</div>

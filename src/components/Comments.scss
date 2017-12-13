@@ -55,19 +55,19 @@
         resize: none;
     }
 
-    &__text:focus + footer {
-        display: block;
-    }
-
     &__buttons {
         float: right;
-        display: none;
+        display: block;
         margin-top: 5px;
 
         &:after {
             display: block;
             content: '';
             border-bottom: 2px solid black;
+        }
+
+        &_hide {
+            display: none;
         }
     }
 
@@ -117,8 +117,9 @@
     }
 
     &__time {
-        margin-left: 5px;
-        color: #999;
+        margin-left: 10px;
+        font-size: 11px;
+        color: #7b7b7b;
     }
 
     &__text {

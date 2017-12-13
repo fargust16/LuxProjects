@@ -56,6 +56,9 @@ class AddBook extends Component {
 	}
 
   render() {
+  	const { showExOptions } = this.state;
+  	const { showExternalOptions, chooseBookSource } = this;
+
     return (
 	    <article className="other-pages">
 				<main className="add-book other-pages__block">
@@ -68,15 +71,15 @@ class AddBook extends Component {
 								<input type="text" name="author" placeholder="author" className="field option__field" required />
 								<label htmlFor="book_source" className="field option__field add-book__source">
 									<mark className="add-book__source-title" ref="source_title">Файл не выбран</mark>
-									<input type="file" ref="book_source" name="source" className="add-book__source-field" onChange={this.chooseBookSource} />
+									<input type="file" ref="book_source" name="source" className="add-book__source-field" onChange={chooseBookSource} />
 								</label>
 								<textarea className="field add-book__description" placeholder="description" rows="4"></textarea>
 								<label htmlFor="publish-date" className="add-book__date-header">Publishing <input type="date" name="publish-date" className="field add-book__date-field" id="publish-date" /></label>
 							</div>
 						</section>
 						<section className="option add-book__option">
-							<div onClick={this.showExternalOptions} className={this.state.showExOptions ? "option__header header open-header" : "option__header header close-header"}><span className="header__text">external options</span></div>
-							<div className={this.state.showExOptions ? "option__content add-book__external-options" : "option__content add-book__external-options_hide"}>
+							<div onClick={showExternalOptions} className={showExOptions ? "option__header header open-header" : "option__header header close-header"}><span className="header__text">external options</span></div>
+							<div className={showExOptions ? "option__content add-book__external-options" : "option__content add-book__external-options_hide"}>
 								<input type="text" name="genre" placeholder="genre" className="field option__genre" />
 								<input type="text" name="topics" placeholder="topics" className="field option__topics" />
 								<input type="text" name="cover-image" placeholder="cover-image" className="field option__cover-image" />

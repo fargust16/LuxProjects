@@ -22,11 +22,13 @@ class Header extends Component {
 	}
 
   render() {
+  	const { isShowMenu } = this.state;
+  	const { handleDisplayMenu } = this;
     return (
       <header className="header-nav home-page__header-nav">
-		  <Link to="/" className="header-nav__logo"><h1>Online Library</h1></Link>
-		  <i className="fa fa-bars header-nav__menu-btn" aria-hidden="true" onClick={this.handleDisplayMenu.bind(this.handleDisplayMenu, true)}></i>
-		  <Menu isShow={this.state.isShowMenu} handleDisplayMenu={this.handleDisplayMenu}/>
+		  <Link to="/" className="header-nav__logo" onClick={(isShow) => handleDisplayMenu(false)}><h1>Online Library</h1></Link>
+		  <i className="fa fa-bars header-nav__menu-btn" aria-hidden="true" onClick={(isShow) => handleDisplayMenu(true)}></i>
+		  <Menu isShow={isShowMenu} handleDisplayMenu={handleDisplayMenu}/>
       </header>
     );
   }

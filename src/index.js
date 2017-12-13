@@ -33,7 +33,7 @@ ReactDOM.render(
       <Route path="/settings" component={Settings}/>
 
       <Route path="/book-description" component={BookDescription}/>
-      <Route path="/read-book" component={ReadBook}/>
+      <Route path="/read-book-:bookName" component={ReadBook}/>
       </div>
   </Router>, 
   document.getElementById('root')
