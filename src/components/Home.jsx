@@ -7,27 +7,27 @@ import './Home.scss';
 
 class Home extends Component {
 
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
-		this.state = {
+    this.state = {
 
-		}
-	}
+    }
+  }
 
 
   render() {
-  	const { categoryName } = this.props.match.params;
+    const { categoryName } = this.props.match.params;
 
     return (
-    	<div className="home">
-    	<Search />
-	      <article className="home-page">
-				  <main className="main home-page__main">
-				    <Category categoryView={categoryName} />
-				  </main>
-				</article>
-			</div>
+      <div className="home">
+      
+        <article className="home-page">
+          <main className="main home-page__main">
+            <Category categoryView={categoryName} />
+          </main>
+        </article>
+      </div>
     );
   }
 }

@@ -2,7 +2,7 @@
 
 .add-book {
 
-    @media only screen and (min-width: 767px) {
+    @include tablet {
         .option__field {
             width: 50%;
             margin: 10px 0;
@@ -36,7 +36,7 @@
         resize: none;
         border-radius: 8px;
 
-        @media only screen and (min-width: 767px) {
+        @include tablet {
             position: absolute;
             top: 0;
             right: 10px;
@@ -52,7 +52,7 @@
         align-items: center;
         font-size: 16px;
 
-        @media only screen and(min-width: 767px) {
+        @include tablet {
             width: 50%;
         }
     }

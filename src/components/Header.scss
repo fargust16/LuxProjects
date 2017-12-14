@@ -1,45 +1,81 @@
 @import '../constants.scss';
 
-.header-nav {
-    width: 100%;
+.header-wrap {
     position: fixed;
+    width: 100%; 
+    height: 63px;
     z-index: 10;
-    display: flex;
-    align-items: center;
-    height: 43px;
-    padding: 0 18px;
-    background-color: $primary-color;
-    font-weight: 300;
+    overflow: hidden;
+    background-color: $header-color;
 
-    @media only screen and (min-width: 1000px) {
-        width: calc(100% - 166px);
-
-        background-color: #fff;
-        box-shadow: $box-shadow;
+    &_active-menu {
+        height: 100%;
+        z-index: 20;
+        transition: all .2s ease-out;
     }
 
-    &__menu-btn {
+    @include desktop {
+        width: 166px;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background-color: $primary-color;
+    }
+}
+
+.header-nav {
+    position: relative;
+    height: 63px;
+    padding: 0 18px;
+    font-weight: 300;
+    background-color: #900;
+    z-index: 12;
+
+    &__open-btn {
         position: absolute;
-        right: 18px;
+        top: 22px;
+        right: 20px;
         font-size: 20px;
+        color: #fff;
 
         &:hover {
             cursor: pointer;
         }
 
-        @media only screen and (min-width: 1000px) {
+        @include desktop {
+            display: none;
+        }
+    }
+
+    &__close-btn {
+        position: absolute;
+        top: 22px;
+        right: 20px;
+        font-size: 20px;
+        color: #fff;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        @include desktop {
             display: none;
         }
     }
 
     &__logo {
+        position: absolute;
+        top: 22px;
+        left: 18px;
         text-decoration: none;
         font-size: 20px;
         color: #fff;
 
-        @media only screen and (min-width: 1000px) {
-            color: $black;
-            font-weight: 400;
+        @include desktop {
+            position: absolute;
+            line-height: 53px;
+            top: 20px;
+            left: 18px;
         }
 
         &:hover {

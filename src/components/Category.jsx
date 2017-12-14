@@ -8,12 +8,12 @@ import './Category.scss';
 class Category extends Component {
 
   render() {
-  	const { categoryView } = this.props;
+    const { categoryView } = this.props;
     return (
-    	<section className="category main__category">
-	      <BlockHeader blockName="Recommended books" />
-	      <BookSwitcher categoryName="Recommended books" categoryView={categoryView} />
-	    </section>
+      <section className="category main__category">
+        <BlockHeader blockName="Recommended books" />
+        <BookSwitcher categoryName="Recommended books" categoryView={categoryView} />
+      </section>
     );
   }
 }

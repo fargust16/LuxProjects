@@ -11,7 +11,7 @@
     flex-wrap: nowrap;
     transform: translate(-272px, 0) translateZ(0px);
 
-    @media only screen and (min-width: 768px) {
+    @include tablet {
         width: 350px;
         transform: translateX(-350px);
     }
@@ -57,7 +57,7 @@
         min-width: 260px;
         margin: 10px 6px;
 
-        @media only screen and (min-width: 768px) {
+        @include tablet {
             min-width: 338px;
         }
     }

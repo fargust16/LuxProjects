@@ -8,6 +8,7 @@ import {
 import './style.scss';
 
 import Header from './components/Header.jsx';
+import Search from './components/Search.jsx';
 
 import Home from './components/Home.jsx';
 import AddBook from './components/AddBook.jsx';
@@ -25,6 +26,7 @@ ReactDOM.render(
 	<Router>
 		<div>
 			<Header />
+			<Search />
 			<Route exact path="/" component={Home}/>
 			<Route path="/category-:categoryName" component={Home}/>
 			<Route path="/add-book" component={AddBook}/>

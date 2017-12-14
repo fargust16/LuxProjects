@@ -1,7 +1,39 @@
+$small-width: 600px;
+$tablet-width: 768px;
+$desktop-width: 1024px;
+$large-width: 1440px;
+
+@mixin small {
+  @media only screen and (min-width: #{$small-width}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media only screen and (min-width: #{$tablet-width}){
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+@mixin large {
+  @media only screen and (min-width: #{$large-width}) {
+    @content;
+  }
+}
+
 $font-stack: 'Open Sans', 'Roboto', Arial, sans-serif;
-$primary-color: #900;
+$primary-color: rgba(153, 0, 0, 1);
+$header-color: rgba(61, 59, 73, 0.95);
 $black: #000;
 $box-shadow: 0 1px 6px rgba(32, 33, 36, .38);
+$main-padding: 18px;
+$border: 1px solid rgba(0,0,0,.2);
 
 %small-caps {
     text-transform: lowercase;

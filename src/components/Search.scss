@@ -2,28 +2,49 @@
 
 .search {
     width: 100%;
+    height: 110px;
+    overflow: hidden;
     position: fixed;
-    padding: 55px 8px 1px;
+    top: 63px;
+    padding: 10px $main-padding;
     background-color: #fff;
     font-size: 18px;
     font-weight: 300;
+    box-shadow: $box-shadow;
 
-    @media only screen and (min-width: 1000px) {
+    @include small {
+        height: 80px;
+    }
+
+    @include desktop {
         width: calc(100% - 166px);
+        top: 0;
+        padding: 20px $main-padding;
+        height: 100px;
     }
 
     &__box-shadow {
         display: flex;
         flex-flow: column;
-        justify-content: space-around;
+        justify-content: stretch;
         align-items: stretch;
         border-radius: 6px;
-        background-color: #fff;
-        box-shadow: $box-shadow;
+
+        @include small {
+            flex-flow: row;
+            height: 55px;
+        }
     }
 
     &__field-ico {
         position: relative;
+        border: $border;
+        height: 40px;
+
+        @include small {
+            width: calc(80% - 120px);
+            height: auto;
+        }
 
         &::before {
             @include awesome-icon(absolute, '\f002', 18px);
@@ -37,12 +58,13 @@
 
     &__field {
         position: relative;
+        display: block;
         z-index: 1;
         width: 100%;
+        height: 100%;
         padding-left: 39px;
         font-size: 18px;
         border: none;
-        border-bottom: 1px solid #ddd;
         border-radius: 5px 5px 0 0;
         line-height: 28px;
 
@@ -53,6 +75,16 @@
 
     &__options-ico {
         position: relative;
+        border: $border;
+        margin-top: 10px;
+        height: 40px;
+
+        @include small {
+            width: 20%;
+            height: auto;
+            border-left: none;
+            margin-top: 0;
+        }
 
         &::before {
             @include awesome-icon(absolute, '\f0b0', 18px);
@@ -66,8 +98,9 @@
 
     &__options {
         position: relative;
+        display: block;
         width: 100%;
-        height: 32px;
+        height: 100%;
         padding: 1px 0;
         padding-left: 35px;
         color: $black;
@@ -78,6 +111,24 @@
 
         &:focus {
             outline: none;
+        }
+    }
+
+    &__button {
+        text-align: center;
+        background-color: $primary-color;
+        color: #fff;
+        font-size: 22px;
+        font-weight: 600;
+        border: none;
+        border-radius: 0;
+        margin-top: 21px;
+
+        @include small {
+            width: 100px;
+            height: auto;
+            margin-left: 20px;
+            margin-top: 0;
         }
     }
 }

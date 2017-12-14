@@ -10,7 +10,11 @@ body {
     font-family: $font-stack;
     font-weight: 400;
 
-    @media only screen and (min-width: 1000px) {
+    @include desktop {
+        margin-left: 166px;
+    }
+
+    @include large {
         margin-left: 166px;
     }
 }
@@ -56,11 +60,11 @@ select {
 .other-pages {
     max-width: 1600px;
     margin: auto;
-    padding-top: 40px;
+    padding-top: 100px;
 
     &__block {
         overflow-x: hidden;
-        margin: 10px 8px;
+        margin: 10px $main-padding;
         padding-top: 15px;
         padding-bottom: 15px;
         border-radius: 8px;

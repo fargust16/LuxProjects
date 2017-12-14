@@ -1,18 +1,32 @@
+@import '../constants';
+
+.home {
+	padding-top: 173px;
+
+	@include small {
+		padding-top: 143px;
+	}
+
+	@include desktop {
+		padding-top: 100px;
+	}
+}
+
 .home-page {
     position: relative;
     width: 100%;
     max-width: 1600px;
     margin: auto;
+    z-index: 2;
 
     &__search {
 	    z-index: 3;
 	}
 
 	&__main {
-	    z-index: 1;
 
 	    box-sizing: border-box;
-	    padding: 126px 8px 0;
+	    padding: 10px $main-padding;
 
 	    user-select: none;
 	}

@@ -8,11 +8,11 @@ import './Books.scss';
 class Books extends Component {
 
   render() {
-  	const { categoryId, categoryView } = this.props;
+    const { categoryId, categoryView } = this.props;
     return (
-    	<div className="books home-page__books">
-	      <BookSwitcher categoryId={ categoryId || 0 } categoryView={ categoryView } />
-	    </div>
+      <div className="books home-page__books">
+        <BookSwitcher categoryId={ categoryId || 0 } categoryView={ categoryView } />
+      </div>
     );
   }
 }
