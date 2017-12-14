@@ -22,25 +22,26 @@ class AddBook extends Component {
 	}
 
 	chooseBookSource() {
+		console.log('enter');
 		var file_api = ( window.File && window.FileReader && window.FileList && window.Blob ) ? true : false;
 		var inp = this.refs.book_source;
 		var lbl = this.refs.source_title;
 		var file_name;
 
-    if( file_api && inp.files[0] ) {
-        file_name = inp.files[0].name;
-    }
-    else {
-        file_name = inp.value.replace("C:\\fakepath\\", '');
-    }
+		if( file_api && inp.files[0] ) {
+				file_name = inp.files[0].name;
+		}
+		else {
+				file_name = inp.value.replace("C:\\fakepath\\", '');
+		}
 
-    if( !file_name.length ) {
-    	lbl.innerText = 'Файл не выбран';
-        return;
-    }
-    else {
-    	lbl.innerText = file_name;
-    }
+		if( !file_name.length ) {
+			lbl.innerText = 'Файл не выбран';
+				return;
+		}
+		else {
+			lbl.innerText = file_name;
+		}
 	}
 
 	resizeWindow() {
@@ -55,12 +56,12 @@ class AddBook extends Component {
 		window && window.removeEventListener('resize', this.resizeWindow, false);
 	}
 
-  render() {
-  	const { showExOptions } = this.state;
-  	const { showExternalOptions, chooseBookSource } = this;
+	render() {
+		const { showExOptions } = this.state;
+		const { showExternalOptions, chooseBookSource } = this;
 
-    return (
-	    <article className="other-pages">
+		return (
+			<article className="other-pages">
 				<main className="add-book other-pages__block">
 					<div className="main-header"><span className="main-header__text">Add a new book</span></div>
 					<form id="book-data" action="" method="POST" className="options add-book__options">
@@ -71,7 +72,7 @@ class AddBook extends Component {
 								<input type="text" name="author" placeholder="author" className="field option__field" required />
 								<label htmlFor="book_source" className="field option__field add-book__source">
 									<mark className="add-book__source-title" ref="source_title">Файл не выбран</mark>
-									<input type="file" ref="book_source" name="source" className="add-book__source-field" onChange={chooseBookSource} />
+									<input type="file" ref="book_source" id="book_source" name="source" className="add-book__source-field" onChange={chooseBookSource} />
 								</label>
 								<textarea className="field add-book__description" placeholder="description" rows="4"></textarea>
 								<label htmlFor="publish-date" className="add-book__date-header">Publishing <input type="date" name="publish-date" className="field add-book__date-field" id="publish-date" /></label>
@@ -93,8 +94,8 @@ class AddBook extends Component {
 					</form>
 				</main>
 			</article>
-    );
-  }
+		);
+	}
 }
 
 export default AddBook;

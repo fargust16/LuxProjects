@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {
-  BrowserRouter as Router,
-  Route
+	BrowserRouter as Router,
+	Route
 } from 'react-router-dom';
 
 import './style.scss';
@@ -22,20 +22,20 @@ import ReadBook from './components/ReadBook.jsx';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
-  <Router>
-    <div>
-      <Header />
-      <Route exact path="/" component={Home}/>
-      <Route path="/category-:categoryName" component={Home}/>
-      <Route path="/add-book" component={AddBook}/>
-      <Route path="/recent" component={Recent}/>
-      <Route path="/support" component={Support}/>
-      <Route path="/settings" component={Settings}/>
+	<Router>
+		<div>
+			<Header />
+			<Route exact path="/" component={Home}/>
+			<Route path="/category-:categoryName" component={Home}/>
+			<Route path="/add-book" component={AddBook}/>
+			<Route path="/recent" component={Recent}/>
+			<Route path="/support" component={Support}/>
+			<Route path="/settings" component={Settings}/>
 
-      <Route path="/book-description" component={BookDescription}/>
-      <Route path="/read-book-:bookName" component={ReadBook}/>
-      </div>
-  </Router>, 
-  document.getElementById('root')
+			<Route path="/book-description" component={BookDescription}/>
+			<Route path="/read-book-:bookName" component={ReadBook}/>
+			</div>
+	</Router>, 
+	document.getElementById('root')
 );
 registerServiceWorker();

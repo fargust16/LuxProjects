@@ -36,15 +36,15 @@ class Book extends Component {
 		const { subClass, author, cover, title, description, reviews } = this.props;
 		const { bookDescLines } = this.state;
 		return (
-			<div className={subClass ? "book " + subClass : "book"}>
+			<article className={subClass ? "book " + subClass : "book"}>
 				<img src={"./images/" + cover} className="book__cover" alt={title}/>
-				<div className="book__info">
+				<section className="book__info">
 					<Link to="/book-description" className="book__title">{title}</Link>
-					<p className="book__author">{author}</p>
-					<p className="book__desc" ref="desc" style={{WebkitLineClamp: bookDescLines}}>{description}</p>
-					<p className="reviews book__reviews">{reviews}</p>
-				</div>
-			</div>
+					<div className="book__author">{author}</div>
+					<div className="book__desc" ref="desc" style={{WebkitLineClamp: bookDescLines}}>{description}</div>
+					<div className="reviews book__reviews">{reviews}</div>
+				</section>
+			</article>
 		);
 	}
 }

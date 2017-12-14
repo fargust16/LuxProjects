@@ -7,7 +7,6 @@
 
 .comments {
     box-sizing: border-box;
-
     border-radius: 8px;
     background-color: #fff;
     box-shadow: $box-shadow;
@@ -21,11 +20,10 @@
     }
 
     &__content {
-        display: block;
         padding: 15px;
 
         @media only screen and (min-width: 621px) {
-            display: block !important;
+
         }
 
         &_hide {
@@ -37,8 +35,6 @@
 .new-comment {
     display: flex;
     flex-flow: row;
-    justify-content: flex-start;
-    align-items: flex-start;
 
     &__desc {
         display: flex;
@@ -57,14 +53,8 @@
 
     &__buttons {
         float: right;
-        display: block;
         margin-top: 5px;
-
-        &:after {
-            display: block;
-            content: '';
-            border-bottom: 2px solid black;
-        }
+        border-bottom: 2px solid $black;
 
         &_hide {
             display: none;
@@ -89,9 +79,7 @@
     flex-flow: row;
     justify-content: flex-start;
     align-items: flex-start;
-
     margin-top: 15px;
-
     font-size: 13px;
 
     &__user-image {

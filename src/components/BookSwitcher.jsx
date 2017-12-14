@@ -7,78 +7,80 @@ import './BookSwitcher.scss';
 
 class BookSwitcher extends Component {
 
+	render() {
+    const { categoryView, categoryName } = this.props;
+		return (
+			<Results 
+				categoryView = {categoryView}
+				categoryName = {categoryName}
+				books = '6'
+			/>
+		);
+	}
+}
+
+class ViewBooksInHome extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
+      switcher: '', 
 			touchStartPoint: 0,
-			switchHideWidth: 999
-	  }
+			switchHideWidth: 1000
+		}
 
 
 		this.localSwitchBooks = this.localSwitchBooks.bind(this);
-    this.getStartSwitchPos = this.getStartSwitchPos.bind(this);
-    this.finishSwitchBooks = this.finishSwitchBooks.bind(this);
+		this.getStartSwitchPos = this.getStartSwitchPos.bind(this);
+		this.finishSwitchBooks = this.finishSwitchBooks.bind(this);
 
-    this._initialSwitchState = this._initialSwitchState.bind(this);
-    this._createDots = this._createDots.bind(this);
-    this._hideSwitchOnWidth = this._hideSwitchOnWidth.bind(this);
+		this.createDots = this.createDots.bind(this);
+		this.hideSwitchOnWidth = this.hideSwitchOnWidth.bind(this);
 	}
 
-	_initialSwitchState(widthScale) {
-		this.setState({switchHideWidth: widthScale});
-	}
+	createDots(switcherBlock, dotsBlock) {
+    if(!switcherBlock || !dotsBlock) return;
 
-	_createDots(switcherBlocks) {
-		if(switcherBlocks.length === 0) return;
-		let switcherStartTransform = [];
+		let switcherStartTransform;
+		switcherStartTransform = -parseInt(getComputedStyle(switcherBlock).width, 10);
+		switcherBlock.setAttribute("data-startTransform", switcherStartTransform);
 
-		for (let i = switcherBlocks.length - 1; i >= 0; i--) {
-			switcherStartTransform[i] = -parseInt(getComputedStyle(switcherBlocks[i]).width, 10);
+		let books = switcherBlock.getElementsByClassName('book') || [];
 
-			switcherBlocks[i].setAttribute("data-startTransform", switcherStartTransform[i]);
-
-			let dotsBlock = switcherBlocks[i].nextElementSibling || '';
-			let books = switcherBlocks[i].getElementsByClassName('book') || '';
-
-			for (let j = 0; j <= books.length - 1; j++) {
-				let dotElem = document.createElement('i');
-
-				dotElem.className = j === 1 ? "fa fa-circle books-switcher__dot books-switcher__dot_active" : "fa fa-circle books-switcher__dot";
-				dotElem.setAttribute("aria-hidden", "true");
-
-				dotsBlock.appendChild(dotElem);
-			}
-			dotsBlock.style.display = window.innerWidth >= this.state.switchHideWidth ? "none" : 'block';
+		for (let j = 0; j <= books.length - 1; j++) {
+			let dotElem = document.createElement('i');
+			dotElem.className = j === 1 ? "fa fa-circle books-switcher__dot books-switcher__dot_active" : "fa fa-circle books-switcher__dot";
+			dotElem.setAttribute("aria-hidden", "true");
+			dotsBlock.appendChild(dotElem);
 		}
+		dotsBlock.className = window.innerWidth > this.state.switchHideWidth ? "books-switcher__dots books-switcher__dots_hide" : 'books-switcher__dots';
 	}
 
-	_hideSwitchOnWidth(switcherBlocks) {
-		if(switcherBlocks.length === 0) return;
+	hideSwitchOnWidth() {
+    let switcherBlock = this.refs.switcher,
+        dotsBlock = this.refs.dots;
+    if(!switcherBlock || !dotsBlock) return;
 
-		for (let i = switcherBlocks.length - 1; i >= 0; i--) {
-			let dotsBlock = switcherBlocks[i].nextElementSibling;
-			let startTransform = parseInt(switcherBlocks[i].getAttribute("data-startTransform"), 10);
+		let startTransform = parseInt(switcherBlock.getAttribute("data-startTransform"), 10);
 
-			dotsBlock.style.display = window.innerWidth > this.state.switchHideWidth ? "none" : 'block';
-			switcherBlocks[i].style = window.innerWidth > this.state.switchHideWidth ? 'transform: translate(0); overflow-x: auto; width: 100%' : 'transform: translate(' + startTransform +'px, 0) translateZ(0)';
-			switcherBlocks[i].setAttribute('data-startTransform', window.innerWidth > 767 ? '-350' : '-272');
-		}
+		dotsBlock.className = window.innerWidth > this.state.switchHideWidth ? "books-switcher__dots books-switcher__dots_hide" : 'books-switcher__dots';
+		switcherBlock.style = window.innerWidth > this.state.switchHideWidth ? 'transform: translate(0); overflow-x: auto; width: 100%' : 'transform: translate(' + startTransform +'px, 0) translateZ(0)';
+		switcherBlock.setAttribute('data-startTransform', window.innerWidth > 767 ? '-350' : '-272');
 	}
 
-	localSwitchBooks(switchElem, event) {
+	localSwitchBooks(event, switcherBlock) {
 		if(window.innerWidth > this.state.switchHideWidth) return;
 
 		let directMove = event.changedTouches[0].clientX - this.state.touchStartPoint; // local switch coordinates, while touch is move
 
 		let transformProp = 'transform', // prefix for transform at the different browser
-			startTransform = parseInt(switchElem.getAttribute("data-startTransform"), 10), // position with which the switch is start
+			startTransform = parseInt(switcherBlock.getAttribute("data-startTransform"), 10), // position with which the switch is start
 			theta = 0;
 
-	    theta = startTransform + directMove;
+			theta = startTransform + directMove;
 
-	    switchElem.style[ transformProp ] = 'translate(' + theta + 'px, 0) translateZ(0)';
-	    switchElem.style.transition = 'transform 0s ease-out';
+			switcherBlock.style[ transformProp ] = 'translate(' + theta + 'px, 0) translateZ(0)';
+			switcherBlock.style.transition = 'transform 0s ease-out';
 	}
 
 	getStartSwitchPos(event) {
@@ -87,12 +89,12 @@ class BookSwitcher extends Component {
 		this.setState({touchStartPoint: event.changedTouches[0].clientX});
 	}
 
-	finishSwitchBooks(switchElem, event){
+	finishSwitchBooks(event, switcherBlock, dotsBlock){
 		if(window.innerWidth > this.state.switchHideWidth) return;
 		let transformProp = 'transform',
-			stepSize = parseInt(getComputedStyle(switchElem).width, 10), // step size of switch, when touch is end
-			startTransform = parseInt(switchElem.getAttribute("data-startTransform"), 10), // position with which the switch is start
-			activeDot = switchElem.nextElementSibling.childNodes, // for dot mark active book
+			stepSize = parseInt(getComputedStyle(switcherBlock).width, 10), // step size of switch, when touch is end
+			startTransform = parseInt(switcherBlock.getAttribute("data-startTransform"), 10), // position with which the switch is start
+			activeDot = dotsBlock.childNodes, // for dot mark active book
 			touchEndPoint = event.changedTouches[0].clientX,
 			theta = 0;
 
@@ -108,79 +110,62 @@ class BookSwitcher extends Component {
 
 			// if we reach the end or the start of switch position.
 			// TODO change this mechanism on carusel.
-			if(theta <= stepSize * switchElem.children.length * -1) { 
+			if(theta <= stepSize * switcherBlock.children.length * -1) { 
 				theta = 0;
 			}
 			else if (theta > 0) {
-				theta = stepSize * (switchElem.children.length - 1) * -1;
+				theta = stepSize * (switcherBlock.children.length - 1) * -1;
 			}
 
 			let dotC = (theta - stepSize) / -stepSize; // offset begin with -272 or -350 in different client width;
 
 			activeDot[dotC-1].className += ' books-switcher__dot_active';
 
-			switchElem.setAttribute("data-startTransform", theta);
+			switcherBlock.setAttribute("data-startTransform", theta);
 
-		switchElem.style[ transformProp ] = 'translate(' + theta + 'px, 0) translateZ(0)';
-		switchElem.style.transition = 'transform .4s ease-out';
+		switcherBlock.style[ transformProp ] = 'translate(' + theta + 'px, 0) translateZ(0)';
+		switcherBlock.style.transition = 'transform .4s ease-out';
 	}
 
-	componentDidMount() {
-		let switchersArr = document.getElementsByClassName('find-switcher') || []; // every block which contain books
+  componentDidMount(){
+    const { createDots, hideSwitchOnWidth, localSwitchBooks, getStartSwitchPos, finishSwitchBooks } = this;
+    const { switcher, dots } = this.refs;
 
-    this._initialSwitchState(1000); // from switch-book.js chose hideWidth;
-    this._createDots(switchersArr); // from switch-book.js create dots equile count of books in category;
-    this._hideSwitchOnWidth(switchersArr); // from switch-book.js create dots equile count of books in category;
+    createDots(switcher, dots); // from switch-book.js create dots equile count of books in category
+    hideSwitchOnWidth(); // from switch-book.js create dots equile count of books in category
 
-    switchersArr = Array.from(switchersArr); // htmlCollection into array;
-    switchersArr.map(elem => {
-      elem.addEventListener('touchmove', this.localSwitchBooks.bind(this.localSwitchBooks, elem) , false);
-      elem.addEventListener('touchstart', this.getStartSwitchPos.bind(this.getStartSwitchPos) , false);
-      elem.addEventListener('touchend', this.finishSwitchBooks.bind(this.finishSwitchBooks, elem) , false);
-      return 0;
-    });    
-	}
+    switcher.addEventListener('touchmove', (event, switcherBlock) => localSwitchBooks(event, switcher) , false);
+    switcher.addEventListener('touchstart', (event) => getStartSwitchPos(event) , false);
+    switcher.addEventListener('touchend', (event, switcherBlock, dotsBlock) => finishSwitchBooks(event, switcher, dots) , false);
+  }
 
-	componentWillMount() {
-		let switchersArr = this.refs.switcher || []; // every block which contain books
-
-    window.addEventListener("resize", this._hideSwitchOnWidth.bind(this._hideSwitchOnWidth, switchersArr));
-	}
+  componentWillMount() {
+    window && window.addEventListener("resize", this.hideSwitchOnWidth, false);
+  }
 
 	componentWillUnmount() {
-    window.removeEventListener("resize", this._hideSwitchOnWidth);
-  }
+		window && window.removeEventListener("resize", this.hideSwitchOnWidth, false);
+	}
 
-  render() {
-  	const { categoryView, categoryName } = this.props;
+	render() {
 		return (
-			<Results 
-				categoryView = {categoryView}
-				categoryName = {categoryName}
-				books = '6'
-			/>
-		);
-  }
-}
-
-var ViewBooksInHome = (props) => {
-	return (
-		<div className="books home-page__books">
-			<div className="books-switcher find-switcher" refs="switcher">
-				{	props.books }
+			<div className="books home-page__books">
+				<div className="books-switcher find-switcher" ref="switcher">
+					{ this.props.books }
+				</div>
+				<div className="books-switcher__dots" ref="dots"></div>
+				<Link className="books-switcher__see-more" to={{pathname: '/category-' + this.props.categoryName}}>see more</Link>
 			</div>
-			<div className="books-switcher__dots"></div>
-			<Link className="books-switcher__see-more" to={{pathname: '/category-' + props.categoryName}}>see more</Link>
-		</div>
-  );
+		);
+	}
 }
 
 var ViewBooksInCategory = (props) => {
 	return (
 		<div className="books category__books">
-			{	props.books }
+			{ props.books }
 		</div>
-  );
+	);
 }
 
 var Results = (props) => {

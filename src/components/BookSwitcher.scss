@@ -21,12 +21,16 @@
         left: 50%;
         user-select: none;
         transform: translateX(-18px);
+
+        &_hide {
+            display: none;
+        }
     }
 
     &__dot {
         margin: 0 2px;
         color: #fff;
-        border: 2px solid black;
+        border: 2px solid $black;
         border-radius: 8px;
         font-size: 7px;
 

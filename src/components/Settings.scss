@@ -19,8 +19,6 @@
 	}
 
 	&__form {
-	    display: block;
-
 	    &_hide {
 	    	display: none;
 	    }
@@ -28,7 +26,7 @@
 }
 
 .btn-clear {
-    color: #000;
+    color: $black;
 }
 
 .btn-submit {
