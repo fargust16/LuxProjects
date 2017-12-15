@@ -4,6 +4,7 @@ import {
 	BrowserRouter as Router,
 	Route
 } from 'react-router-dom';
+import 'react-fontawesome';
 
 import './style.scss';
 
