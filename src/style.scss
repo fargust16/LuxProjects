@@ -2,6 +2,7 @@
 
 @import './components/Button.scss';
 @import './components/Field.scss';
+@import './components/OtherPages.scss';
 
 body {
     position: relative;
@@ -55,22 +56,6 @@ select {
 ::-webkit-scrollbar-thumb {
     background-color: #aaa;
     border-radius: 2px;
-}
-
-.other-pages {
-    max-width: 1600px;
-    margin: auto;
-    padding-top: 100px;
-
-    &__block {
-        overflow-x: hidden;
-        margin: 10px $main-padding;
-        padding-top: 15px;
-        padding-bottom: 15px;
-        border-radius: 8px;
-        background-color: #fff;
-        box-shadow: $box-shadow;
-    }
 }
 
 .reviews {

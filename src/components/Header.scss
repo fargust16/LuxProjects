@@ -26,7 +26,7 @@
 .header-nav {
     position: relative;
     height: 63px;
-    padding: 0 18px;
+    padding: 0 $main-padding;
     font-weight: 300;
     background-color: #900;
     z-index: 12;
@@ -34,7 +34,7 @@
     &__open-btn {
         position: absolute;
         top: 22px;
-        right: 20px;
+        right: $main-padding + 2;
         font-size: 20px;
         color: #fff;
 
@@ -50,7 +50,7 @@
     &__close-btn {
         position: absolute;
         top: 22px;
-        right: 20px;
+        right: $main-padding + 2;
         font-size: 20px;
         color: #fff;
 
@@ -66,7 +66,7 @@
     &__logo {
         position: absolute;
         top: 22px;
-        left: 18px;
+        left: $main-padding;
         text-decoration: none;
         font-size: 20px;
         color: #fff;

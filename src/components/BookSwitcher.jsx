@@ -26,6 +26,9 @@ class ViewBooksInHome extends Component {
     this.state = {
       switcher: '', 
       touchStartPoint: 0,
+      currentBook: 0,
+      stepSize: 0,
+      visibleBook: 0,
       switchHideWidth: 1023
     }
 
@@ -38,93 +41,111 @@ class ViewBooksInHome extends Component {
     this.hideSwitchOnWidth = this.hideSwitchOnWidth.bind(this);
   }
 
-  createDots(switcherBlock, dotsBlock) {
-    if(!switcherBlock || !dotsBlock) return;
+  createDots(switcher) {
+    if(!switcher) return;
+    const { switchHideWidth, currentBook } = this.state;
 
-    let switcherStartTransform;
-    switcherStartTransform = -parseInt(getComputedStyle(switcherBlock).width, 10);
-    switcherBlock.setAttribute("data-startTransform", switcherStartTransform);
-
-    let books = switcherBlock.getElementsByClassName('book') || [];
-
-    for (let j = 0; j <= books.length - 1; j++) {
-      let dotElem = document.createElement('i');
-      dotElem.className = j === 1 ? "fa fa-circle books-switcher__dot books-switcher__dot_active" : "fa fa-circle books-switcher__dot";
-      dotElem.setAttribute("aria-hidden", "true");
-      dotsBlock.appendChild(dotElem);
+    if(this.refs.dots) {
+      switcher.parentNode.removeChild(this.refs.dots);
+      this.setState({currentBook: 0});
     }
-    dotsBlock.className = window.innerWidth > this.state.switchHideWidth ? "books-switcher__dots books-switcher__dots_hide" : 'books-switcher__dots';
+
+    let dots = document.createElement('div');
+    dots.className = 'books-switcher__dots';
+
+    let books = switcher.getElementsByClassName('book') || [];
+
+    let visibleBookCount = Math.floor(switcher.offsetWidth / (books[0].offsetWidth + 12)),
+        dotCount = Math.ceil(books.length / visibleBookCount);
+
+    this.setState({visibleBook: visibleBookCount});
+
+    for (let j = 0; j <= dotCount - 1; j++) {
+      let dotElem = document.createElement('i');
+      dotElem.className = j === 0 ? "fa fa-circle books-switcher__dot books-switcher__dot_active" : "fa fa-circle books-switcher__dot";
+      dotElem.setAttribute("aria-hidden", "true");
+      dots.appendChild(dotElem);
+    }
+
+    dots.className = window.innerWidth > switchHideWidth ? "books-switcher__dots books-switcher__dots_hide" : 'books-switcher__dots';
+    switcher.parentNode.appendChild(dots);
+
+    this.refs.dots = dots;
   }
 
   hideSwitchOnWidth() {
-    let switcherBlock = this.refs.switcher,
-        dotsBlock = this.refs.dots;
-    if(!switcherBlock || !dotsBlock) return;
+    const { switcher, dots } = this.refs;
 
-    let startTransform = parseInt(switcherBlock.getAttribute("data-startTransform"), 10);
+    if(!switcher || !dots) return;
 
-    dotsBlock.className = window.innerWidth > this.state.switchHideWidth ? "books-switcher__dots books-switcher__dots_hide" : 'books-switcher__dots';
-    switcherBlock.style = window.innerWidth > this.state.switchHideWidth ? 'transform: translate(0); overflow-x: auto; width: 100%' : 'transform: translate(' + startTransform +'px, 0) translateZ(0)';
-    switcherBlock.setAttribute('data-startTransform', window.innerWidth > 768 ? '-350' : '-272');
+    const { switchHideWidth, stepSize, currentBook, visibleBook } = this.state;
+
+    let book = switcher.getElementsByClassName('book')[0] || '';
+
+    let visibleBookCount = Math.floor(switcher.offsetWidth / (book.offsetWidth + 12));
+
+    this.setState({stepSize: ((book.offsetWidth + 12) * visibleBookCount)});
+    let switcherStartTransform = -(stepSize * currentBook);
+
+    if(visibleBook !== visibleBookCount) {
+      this.createDots(switcher);
+    }
+
+    dots.className = window.innerWidth > switchHideWidth ? "books-switcher__dots books-switcher__dots_hide" : 'books-switcher__dots';
+    switcher.style = window.innerWidth > switchHideWidth ? 'transform: translate(0)' : 'transform: translate('+ switcherStartTransform +'px, 0) translateZ(0)';
   }
 
-  localSwitchBooks(event, switcherBlock) {
-    if(window.innerWidth > this.state.switchHideWidth) return;
+  localSwitchBooks(event) {
+    const { switcher } = this.refs;
+    const { switchHideWidth, touchStartPoint, stepSize, currentBook } = this.state;
+    if(window.innerWidth > switchHideWidth) return;
 
-    let directMove = event.changedTouches[0].clientX - this.state.touchStartPoint; // local switch coordinates, while touch is move
+    let directMove = event.changedTouches[0].clientX - touchStartPoint, // local switch coordinates, while touch is move
+        switcherStartTransform = -(stepSize * currentBook), // position with which the switch is start
+        theta = switcherStartTransform + directMove;
 
-    let transformProp = 'transform', // prefix for transform at the different browser
-      startTransform = parseInt(switcherBlock.getAttribute("data-startTransform"), 10), // position with which the switch is start
-      theta = 0;
-
-      theta = startTransform + directMove;
-
-      switcherBlock.style[ transformProp ] = 'translate(' + theta + 'px, 0) translateZ(0)';
-      switcherBlock.style.transition = 'transform 0s ease-out';
+    switcher.style.transform = 'translate(' + theta + 'px, 0) translateZ(0)';
+    switcher.style.transition = 'transform 0s ease-out';
   }
 
   getStartSwitchPos(event) {
-    if(window.innerWidth > this.state.switchHideWidth) return;
+    const { switchHideWidth } = this.state;
+    if(window.innerWidth > switchHideWidth) return;
 
     this.setState({touchStartPoint: event.changedTouches[0].clientX});
   }
 
-  finishSwitchBooks(event, switcherBlock, dotsBlock){
-    if(window.innerWidth > this.state.switchHideWidth) return;
-    let transformProp = 'transform',
-      stepSize = parseInt(getComputedStyle(switcherBlock).width, 10), // step size of switch, when touch is end
-      startTransform = parseInt(switcherBlock.getAttribute("data-startTransform"), 10), // position with which the switch is start
-      activeDot = dotsBlock.childNodes, // for dot mark active book
+  finishSwitchBooks(event){
+    const { switcher, dots } = this.refs;
+    const { switchHideWidth, touchStartPoint, currentBook, stepSize, visibleBook } = this.state;
+    if(window.innerWidth > switchHideWidth) return;
+    let switcherStartTransform = -(stepSize * currentBook), // position with which the switch is start
+      activeDot = dots.childNodes, // for dot mark active book
       touchEndPoint = event.changedTouches[0].clientX,
       theta = 0;
 
-      for (let i = activeDot.length - 1; i >= 0; i--) {
-        if(activeDot[i].className.search('books-switcher__dot_active') !== -1) {
-          activeDot[i].className = 'fa fa-circle books-switcher__dot';
-        }
-      }
+    let directionTr = (touchStartPoint - touchEndPoint) === 0 ? 0 : (touchStartPoint - touchEndPoint) > 0 ? -1 : 1; // calc the direction based on start and end touch position
 
-      let directionTr = (this.state.touchStartPoint - touchEndPoint) === 0 ? 0 : (this.state.touchStartPoint - touchEndPoint) > 0 ? -1 : 1; // calc the direction based on start and end touch position
+    theta += switcherStartTransform + stepSize * directionTr; // summary calc of switch size based on current transform, step size and direction
+    // if we reach the end or the start of switch position.
+    // TODO change this mechanism on carusel.
+    if(theta <= stepSize * Math.ceil(switcher.children.length / visibleBook) * -1) { 
+      theta = 0;
+    }
+    else if (theta > 0) {
+      theta = stepSize * (Math.ceil(switcher.children.length / visibleBook) - 1) * -1;
+    }
 
-      theta += startTransform + stepSize * directionTr; // summary calc of switch size based on current transform, step size and direction
+    let dotC = Math.round(theta / -stepSize); // offset begin with -272 or -350 in different client width
 
-      // if we reach the end or the start of switch position.
-      // TODO change this mechanism on carusel.
-      if(theta <= stepSize * switcherBlock.children.length * -1) { 
-        theta = 0;
-      }
-      else if (theta > 0) {
-        theta = stepSize * (switcherBlock.children.length - 1) * -1;
-      }
+    activeDot[currentBook].className = 'fa fa-circle books-switcher__dot';
+    activeDot[dotC].className += ' books-switcher__dot_active';
+    this.setState({currentBook: dotC});
 
-      let dotC = (theta - stepSize) / -stepSize; // offset begin with -272 or -350 in different client width;
+    switcher.setAttribute("data-startTransform", theta);
 
-      activeDot[dotC-1].className += ' books-switcher__dot_active';
-
-      switcherBlock.setAttribute("data-startTransform", theta);
-
-    switcherBlock.style[ transformProp ] = 'translate(' + theta + 'px, 0) translateZ(0)';
-    switcherBlock.style.transition = 'transform .4s ease-out';
+    switcher.style.transform = 'translate(' + theta + 'px, 0) translateZ(0)';
+    switcher.style.transition = 'transform .4s ease-out';
   }
 
   componentDidMount(){
@@ -134,9 +155,9 @@ class ViewBooksInHome extends Component {
     createDots(switcher, dots); // from switch-book.js create dots equile count of books in category
     hideSwitchOnWidth(); // from switch-book.js create dots equile count of books in category
 
-    switcher.addEventListener('touchmove', (event, switcherBlock) => localSwitchBooks(event, switcher) , false);
+    switcher.addEventListener('touchmove', (event) => localSwitchBooks(event) , false);
     switcher.addEventListener('touchstart', (event) => getStartSwitchPos(event) , false);
-    switcher.addEventListener('touchend', (event, switcherBlock, dotsBlock) => finishSwitchBooks(event, switcher, dots) , false);
+    switcher.addEventListener('touchend', (event) => finishSwitchBooks(event) , false);
   }
 
   componentWillMount() {
@@ -153,8 +174,7 @@ class ViewBooksInHome extends Component {
         <div className="books-switcher find-switcher" ref="switcher">
           { this.props.books }
         </div>
-        <div className="books-switcher__dots" ref="dots"></div>
-        <Link className="books-switcher__see-more" to={{pathname: '/category-' + this.props.categoryName}}>see more</Link>
+        <Link className="books-switcher__see-more" to={{pathname: '/category-' + this.props.categoryName}}>more</Link>
       </div>
     );
   }

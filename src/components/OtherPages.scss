@@ -1,0 +1,25 @@
+@import '../constants';
+
+.other-pages {
+    max-width: 1600px;
+    margin: auto;
+    padding-top: $other-padding;
+
+    @include small {
+        padding-top: $other-padding - 30;
+    }
+
+    @include desktop {
+        padding-top: $other-padding - 73;
+    }
+
+    &__block {
+        overflow-x: hidden;
+        margin: 10px $main-padding;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: $box-shadow;
+    }
+}
