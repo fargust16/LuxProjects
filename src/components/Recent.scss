@@ -20,14 +20,23 @@
         font-size: 14px;
     }
 
-    &__book {
-        display: flex;
+    &__books {
         width: 100%;
-        margin: 10px auto;
-        padding: 15px 10px;
-        border: 1px solid rgba(0,0,0,.2);
-        border-radius: 5px;
-        background-color: #fff;
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    &__book {
+        width: 260px;
+        display: flex;
+        flex-flow: row;
+        box-sizing: border-box;
+        flex: 2 0 auto;
+        margin: 10px;
+
+        @include tablet {
+            width: 338px;
+        }
 
         &:nth-child(2) {
             margin-top: 8px;
@@ -42,7 +51,6 @@
     }
 
     &__book-title {
-        color: $primary-color;
         font-size: 18px;
         line-height: 1.25em;
     }

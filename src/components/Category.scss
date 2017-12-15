@@ -26,36 +26,26 @@
 
     &__books {
         display: flex;
-        flex-flow: row;
+        flex-flow: row wrap;
         justify-content: center;
 
-        padding: 0 10px 10px;
-
-        flex-wrap: wrap;
+        padding: 10px;
     }
 
     &__book {
-        width: 100%;
+        width: 260px;
         display: flex;
         flex-flow: row;
-        justify-content: flex-start;
-        margin: 5px;
         box-sizing: border-box;
-
-        @include small {
-            width: 46%;
-        }
+        flex: 2 0 auto;
+        margin: 10px;
 
         @include tablet {
-            width: 46%;
-        }
-
-        @include desktop {
-            width: 30%;
+            width: 338px;
         }
 
         @include large {
-            width: 23%;
+            max-width: 366px;
         }
     }
 }
