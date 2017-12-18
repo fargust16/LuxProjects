@@ -29,10 +29,12 @@ class Comments extends Component {
       showComBtns: false,
       commentsOffset: 0,
       comments: comTemp || [],
-      commentText: ''
+      commentText: '',
+      maxComments: 5
     }
 
     this.handleCommentTextChange = this.handleCommentTextChange.bind(this);
+    this.handleMoreComments = this.handleMoreComments.bind(this);
 
     this.showComments = this.showComments.bind(this);
     this.resizeWindow = this.resizeWindow.bind(this);
@@ -42,6 +44,13 @@ class Comments extends Component {
 
   handleCommentTextChange(e) {
     this.setState({commentText: e.target.value});
+  }
+
+  handleMoreComments() {
+    const { comments, maxComments } = this.state;
+    if(maxComments >= comments.length) return;
+
+    this.setState({maxComments: maxComments+5})
   }
 
   showComments() {
@@ -96,8 +105,8 @@ class Comments extends Component {
   }
 
   render() {
-    const { comments, showCom, showComBtns, commentText } = this.state;
-    const { showCommentsButtons, postNewComment, handleCommentTextChange, showComments } = this;
+    const { comments, showCom, showComBtns, commentText, maxComments } = this.state;
+    const { showCommentsButtons, postNewComment, handleCommentTextChange, showComments, handleMoreComments } = this;
     return (
       <section ref="comments_block" className="comments other-pages__comments">
         <div className={showCom ? "header_lines comments__header open-header" : "header comments__header close-header"} onClick={showComments}><span className="header__text">Comments</span></div>
@@ -113,8 +122,14 @@ class Comments extends Component {
             </div>
           </div>
 
-          { comments.map( (comment, i) => <InputComments author={comment.author} comment={comment.text} postDate={comment.postDate} n={i} key={i} /> ) }
+          { 
+            comments.map( (comment, i) => {
+              if(i >= maxComments) return '';
 
+              return <InputComments author={comment.author} comment={comment.text} postDate={comment.postDate} n={i} key={i} />
+            })
+          }
+          <div className={maxComments >= comments.length ? "button comments__showMore-btn comments__showMore-btn_hide" : "button comments__showMore-btn" } onClick={handleMoreComments}>show more</div>
         </section>
       </section>
     );
