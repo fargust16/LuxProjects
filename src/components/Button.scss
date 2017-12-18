@@ -11,10 +11,11 @@
     @extend %small-caps;
 
     &:hover {
-        transition: all .1s ease-in;
+        transition: all .0s ease-in;
         border: 1px solid rgba(0,0,0,.6);
         box-shadow: $box-shadow;
         font-weight: 600;
+        cursor: pointer;
     }
 
     &:active {

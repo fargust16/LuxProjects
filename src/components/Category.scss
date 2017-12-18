@@ -18,12 +18,6 @@
         font-size: 20px;
     }
 
-    &__results-books {
-        @include desktop {
-            overflow-x: auto;
-        }
-    }
-
     &__books {
         display: flex;
         flex-flow: row wrap;

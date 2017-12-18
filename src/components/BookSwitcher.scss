@@ -9,17 +9,69 @@
     transition: transform 0s ease-out;
     flex-wrap: nowrap;
 
-    @include desktop {
-        transform: translate(0);
-        overflow-x: auto;
-        width: inherit;
+    &__prev-button {
+        position: absolute;
+        top: 30%;
+        left: 8px;
+        display: flex;
+        align-items: center;
+        width: 25px;
+        height: 60px;
+        box-shadow: $box-shadow;
+        background-color: rgba(255,255,255,0.8);
+        border-radius: 4px;
+        text-align: center;
+
+        &_hide {
+            display: none;
+        }
+
+        &::after {
+            @include awesome-icon(relative, '\f053', 24px);
+            color: $black;
+            padding-left: 3px;
+        }
+
+        &:hover {
+            cursor: pointer;
+            background-color: rgba(255,255,255,1);
+        }
+    }
+
+    &__next-button {
+        position: absolute;
+        top: 30%;
+        right: 8px;
+        display: flex;
+        align-items: center;
+        width: 25px;
+        height: 60px;
+        box-shadow: $box-shadow;
+        background-color: rgba(255,255,255,0.8);
+        border-radius: 4px;
+        text-align: center;
+
+        &_hide {
+            display: none;
+        }
+
+        &::after {
+            @include awesome-icon(relative, '\f054', 24px);
+            color: $black;
+            padding-left: 5px;
+        }
+
+        &:hover {
+            cursor: pointer;
+            background-color: rgba(255,255,255,1);
+        }
     }
 
     &__dots {
         position: absolute;
         left: 50%;
         user-select: none;
-        transform: translateX(-18px);
+        transform: translateX(-50%);
 
         &_hide {
             display: none;

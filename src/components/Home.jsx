@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Search from './Search.jsx';
+//import Search from './Search.jsx';
 import Category from './Category.jsx';
 
 import './Home.scss';

@@ -92,7 +92,10 @@
             left: 10px;
             z-index: 3;
             transform: translateY(-9px);
-            
+        }
+
+        &:hover {
+            cursor: pointer;
         }
     }
 
@@ -112,6 +115,10 @@
         &:focus {
             outline: none;
         }
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 
     &__button {
@@ -129,6 +136,10 @@
             height: auto;
             margin-left: 20px;
             margin-top: 0;
+        }
+
+        &:hover {
+            border: none;
         }
     }
 }
