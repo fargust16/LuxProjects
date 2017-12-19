@@ -5,16 +5,14 @@ import BookSwitcher from './BookSwitcher.jsx';
 
 import './Books.scss';
 
-class Books extends Component {
+export default class Books extends Component {
 
   render() {
-    const { categoryId, categoryView } = this.props;
+    const {categoryId, categoryView} = this.props;
     return (
       <div className="books home-page__books">
         <BookSwitcher categoryId={ categoryId || 0 } categoryView={ categoryView } />
       </div>
-    );
+      );
   }
 }
-
-export default Books;

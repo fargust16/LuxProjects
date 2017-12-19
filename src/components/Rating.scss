@@ -1,0 +1,46 @@
+@import '../constants.scss';
+
+.rating {
+    position: relative;
+    border: none;
+    min-width: 174px;
+
+    & > input {
+        display: none;
+    }
+
+    & > label:before {
+        display: inline-block;
+        margin-right: 5px;
+        @include awesome-icon(inherit, '\f005', 32px);
+    }
+
+    & > .half:before {
+        position: absolute;
+        content: '\f089';
+    }
+
+    & > label {
+        float: right;
+        color: #ddd;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+/*-- TODO fix this stars style-names --*/
+
+.book-description__rating > input:checked ~ label,
+.book-description__rating:not(:checked) > label:hover,
+.book-description__rating:not(:checked) > label:hover ~ label {
+    color: #ffd700;
+}
+
+.book-description__rating > input:checked + label:hover,
+.book-description__rating > input:checked ~ label:hover,
+.book-description__rating > label:hover ~ input:checked ~ label,
+.book-description__rating > input:checked ~ label:hover ~ label {
+    color: #ffed85;
+}

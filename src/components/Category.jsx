@@ -5,17 +5,15 @@ import BookSwitcher from './BookSwitcher.jsx';
 
 import './Category.scss';
 
-class Category extends Component {
+export default class Category extends Component {
 
   render() {
-    const { categoryView } = this.props;
+    const {categoryView} = this.props;
     return (
       <section className="category main__category">
         <BlockHeader blockName="Recommended books" />
-        <BookSwitcher categoryName="Recommended books" categoryView={categoryView} />
+        <BookSwitcher categoryName="Recommended books" categoryView={ categoryView } />
       </section>
-    );
+      );
   }
 }
-
-export default Category;

@@ -1,35 +1,23 @@
 import React, { Component } from 'react';
 
 //import Search from './Search.jsx';
-import Category from './Category.jsx';
+import Category from '../components/Category.jsx';
 
 import './Home.scss';
 
-class Home extends Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-
-    }
-  }
-
+export default class Home extends Component {
 
   render() {
-    const { categoryName } = this.props.match.params;
+    const {categoryName} = this.props.match.params;
 
     return (
       <div className="home">
-      
         <article className="home-page">
           <main className="main home-page__main">
-            <Category categoryView={categoryName} />
+            <Category categoryView={ categoryName } />
           </main>
         </article>
       </div>
-    );
+      );
   }
 }
-
-export default Home;
