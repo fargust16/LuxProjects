@@ -21,12 +21,12 @@ export default class Menu extends Component {
             </Link>
           </li>
           <li className="menu__option" onClick={ (isShow) => handleDisplayMenu(false) }>
-            <Link className="menu__option-link" to="/add-book">
+            <Link className="menu__option-link" to="/books/add-book">
               Add a new book
             </Link>
           </li>
           <li className="menu__option" onClick={ (isShow) => handleDisplayMenu(false) }>
-            <Link className="menu__option-link" to="/recent">
+            <Link className="menu__option-link" to="/books/recent">
               Recent
             </Link>
           </li>

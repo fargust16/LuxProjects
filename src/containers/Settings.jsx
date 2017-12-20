@@ -11,6 +11,8 @@ export default class Settings extends Component {
       showEmailOptions: window.innerWidth >= 768 ? true : false,
       showPasswordOptions: window.innerWidth >= 768 ? true : false
     }
+
+    this.resizeWindow = this.resizeWindow.bind(this);
   }
 
   handleShowExternalOptions(elem) {
@@ -27,7 +29,7 @@ export default class Settings extends Component {
     }
   }
 
-  resizeWidth() {
+  resizeWindow() {
     const {showEmailOptions, showPasswordOptions} = this.state;
 
     this.setState({
@@ -37,11 +39,11 @@ export default class Settings extends Component {
   }
 
   componentWillMount() {
-    window && window.addEventListener('resize', () => this.resizeWidth(), false);
+    window && window.addEventListener('resize', this.resizeWindow, false);
   }
 
   componentWillUnmount() {
-    window && window.removeEventListener('resize', () => this.resizeWidth(), false);
+    window && window.removeEventListener('resize', this.resizeWindow, false);
   }
 
   render() {
@@ -60,7 +62,7 @@ export default class Settings extends Component {
         </div>
         <article className="options settings__options">
           <section className="option">
-            <div onClick={ (elem) => this.handleShowExternalOptions('email-settings') } className={ showEmailOptions ? "header_lines option__header open-header" : "header option__header close-header" }>
+            <div onClick={ (elem) => this.handleShowExternalOptions('email-settings') } className={ showEmailOptions ? "header header_open" : "header header_close" }>
               <span className="header__text">Change email</span>
             </div>
             <form ref="email_settings"
@@ -88,7 +90,7 @@ export default class Settings extends Component {
             </form>
           </section>
           <section className="option">
-            <div onClick={ (elem) => this.handleShowExternalOptions('password-settings') } className={ showPasswordOptions ? "header_lines option__header open-header" : "header option__header close-header" }>
+            <div onClick={ (elem) => this.handleShowExternalOptions('password-settings') } className={ showPasswordOptions ? "header header_open" : "header header_close" }>
               <span className="header__text">Change password</span>
             </div>
             <form ref="password_settings"

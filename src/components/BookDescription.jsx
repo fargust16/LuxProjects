@@ -9,11 +9,12 @@ import './BookDescription.scss';
 export default class BookDescription extends Component {
 
   render() {
+    let id = 0;
     return (
       <article>
         <main className="book-description other-pages__block">
           <section className="book-description__info">
-            <img className="book-description__book-cover" src="./images/books-cover.png" alt="book`s name" />
+            <img className="book-description__book-cover" src="/images/books-cover.png" alt="book`s name" />
             <div className="book-description__main-info">
               <div className="book-description__title">
                 The alchemist
@@ -56,7 +57,7 @@ export default class BookDescription extends Component {
             <span className="reviews book-description__reviews-count">125 reviews</span>
           </div>
           <div className="book-description__buttons">
-            <Link to={ { pathname: '/read-book-The alchemist' } } className="book-description__button button btn-read">
+            <Link to={ { pathname: '/books/read/' + id } } className="book-description__button button btn-read">
               start reading now
             </Link>
             <Link to="#download" className="book-description__button button btn-download">

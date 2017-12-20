@@ -10,6 +10,7 @@
     border-radius: 8px;
     background-color: #fff;
     box-shadow: $box-shadow;
+    padding: 10px 0;
 
     &__header {
         overflow: hidden;
@@ -20,7 +21,7 @@
     }
 
     &__content {
-        padding: 15px;
+        padding: 15px 15px 0;
 
         &_hide {
             display: none;

@@ -5,7 +5,7 @@ export default class Search extends Component {
 
   render() {
     return (
-      <section className="search home-page__search">
+      <div className="search home-page__search">
         <div className="search__box-shadow">
           <label htmlFor="search-field" className="search__field-ico">
             <input ref="search-field"
@@ -34,7 +34,7 @@ export default class Search extends Component {
             Search
           </div>
         </div>
-      </section>
+      </div>
       );
   }
 }

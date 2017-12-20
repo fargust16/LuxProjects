@@ -7,14 +7,38 @@ import './Home.scss';
 
 export default class Home extends Component {
 
+  constructor() {
+    super();
+    this.state = {
+      books: []
+    };
+  }
+
+  componentDidMount() {
+    return fetch('/books')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({
+          isLoading: false,
+          books: responseJson
+        }, function() {
+          console.log(this.state.books);
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   render() {
-    const {categoryName} = this.props.match.params;
+    const { categoryId } = this.props.match.params;
+    const { books } = this.state;
 
     return (
       <div className="home">
         <article className="home-page">
           <main className="main home-page__main">
-            <Category categoryView={ categoryName } />
+            <Category categoryId={ categoryId } books={ books } />
           </main>
         </article>
       </div>

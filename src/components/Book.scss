@@ -4,6 +4,7 @@
     position: relative;
     min-width: 282px;
     margin: 0 auto;
+    padding: 0 4px 5px;
 
     @include desktop {
         width: fit-content;

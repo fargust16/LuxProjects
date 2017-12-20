@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import * as Scroll from 'react-scroll';
+import classNames from 'classnames';
 
 import './Comments.scss';
 
@@ -36,6 +37,8 @@ export default class Comments extends Component {
       commentText: '',
       maxComments: 5
     }
+
+    this.resizeWindow = this.resizeWindow.bind(this);
   }
 
   handleCommentTextChange(e) {
@@ -109,22 +112,35 @@ export default class Comments extends Component {
   }
 
   componentWillMount() {
-    window && window.addEventListener('resize', () => this.resizeWindow(), false);
+    window && window.addEventListener('resize', this.resizeWindow, false);
   }
 
   componentWillUnmount() {
-    window && window.removeEventListener('resize', () => this.resizeWindow(), false);
+    window && window.removeEventListener('resize', this.resizeWindow, false);
   }
 
   render() {
     const {comments, showCom, showComBtns, commentText, maxComments} = this.state;
 
+    let contentClass = classNames('comments__content', {
+      'comments__content_hide': !showCom
+    }, this.props.className);
+
+    let headerClass = classNames('header', {
+      'header_open': showCom,
+      'header_close': !showCom
+    }, this.props.className);
+
+    let buttonsClass = classNames('new-comment__buttons', {
+      'new-comment__buttons_hide': !showComBtns
+    }, this.props.className);
+
     return (
       <section ref="comments_block" className="comments other-pages__comments">
-        <div className={ showCom ? "header_lines comments__header open-header" : "header comments__header close-header" } onClick={ () => this.showComments() }>
+        <div className={ headerClass } onClick={ () => this.showComments() }>
           <span className="header__text">Comments</span>
         </div>
-        <section ref="comments_content" className={ showCom ? "comments__content" : "comments__content comments__content_hide" }>
+        <section ref="comments_content" className={ contentClass }>
           <div className="new-comment comments__new-comment">
             <img className="comment__user-image" src="" alt="" />
             <div className="new-comment__desc">
@@ -134,7 +150,7 @@ export default class Comments extends Component {
                 onFocus={ (isShow) => this.showCommentsButtons(true) }
                 onChange={ (e) => this.handleCommentTextChange(e) }
                 value={ commentText }></textarea>
-              <footer className={ showComBtns ? "new-comment__buttons" : "new-comment__buttons new-comment__buttons_hide" }>
+              <footer className={ buttonsClass }>
                 <span className="new-comment__button btn-clear" onClick={ (isShow) => this.showCommentsButtons(false) }>Cancel</span>
                 <span className="new-comment__button btn-send" onClick={ () => this.postNewComment() }>Send comment</span>
               </footer>

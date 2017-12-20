@@ -1,8 +1,14 @@
 @import './constants.scss';
+@import '../node_modules/reset-css/_reset.scss';
+@import '../node_modules/font-awesome/css/font-awesome.css';
 
 @import './components/Button.scss';
 @import './components/Field.scss';
 @import './components/Option.scss';
+
+* {
+    box-sizing: border-box;
+}
 
 body {
     position: relative;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
 
 import './AddBook.scss';
 
@@ -10,6 +11,8 @@ export default class AddBook extends Component {
     this.state = {
       optionShow: window.innerWidth >= 768 ? true : false
     }
+
+    this.resizeWindow = this.resizeWindow.bind(this);
   }
 
   handleShowExternalOptions() {
@@ -41,7 +44,7 @@ export default class AddBook extends Component {
     }
   }
 
-  resizeWindow() {
+  resizeWindow(e) {
     const {optionShow} = this.state;
 
     this.setState({
@@ -50,15 +53,24 @@ export default class AddBook extends Component {
   }
 
   componentWillMount() {
-    window && window.addEventListener('resize', () => this.resizeWindow(), false);
+    window.addEventListener('resize', this.resizeWindow, false);
   }
 
   componentWillUnmount() {
-    window && window.removeEventListener('resize', () => this.resizeWindow(), false);
+    window.removeEventListener('resize', this.resizeWindow, false);
   }
 
   render() {
     const {optionShow} = this.state;
+    let headerClass = classNames('header', {
+      'header_open': optionShow,
+      'header_close': !optionShow
+    }, this.props.className);
+
+    let optionClass = classNames('option__content', {
+      'add-book__external-options': optionShow,
+      'add-book__external-options_hide': !optionShow
+    }, this.props.className);
 
     return (
       <main className="add-book other-pages__block">
@@ -70,7 +82,7 @@ export default class AddBook extends Component {
           method="POST"
           className="options add-book__options">
           <section className="option">
-            <div className="header_lines option__header open-header">
+            <div className="header header_open">
               <span className="header__text">main data</span>
             </div>
             <div className="option__content">
@@ -105,10 +117,10 @@ export default class AddBook extends Component {
             </div>
           </section>
           <section className="option add-book__option">
-            <div onClick={ () => this.handleShowExternalOptions() } className={ optionShow ? "option__header header open-header" : "option__header header close-header" }>
+            <div onClick={ () => this.handleShowExternalOptions() } className={headerClass}>
               <span className="header__text">external options</span>
             </div>
-            <div className={ optionShow ? "option__content add-book__external-options" : "option__content add-book__external-options_hide" }>
+            <div className={optionClass}>
               <input type="text"
                 name="genre"
                 placeholder="genre"

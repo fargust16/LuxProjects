@@ -13,13 +13,13 @@ export default class Recent extends Component {
         </div>
         <article className="recent__content">
           <section className="recent__category">
-            <header className="header_lines recent__category-date open-header">
+            <header className="header header_open recent__category-date">
               <span className="header__text">01.12.2017</span>
             </header>
             <div className="books recent__books">
               <div className="recent__book book">
                 <div className="recent__book-info book-info">
-                  <Link to="/book-description" className="book__title recent__book-title">
+                  <Link to="/books/view/4" className="book__title recent__book-title">
                     The Alchemist
                   </Link>
                   <p className="recent__book-author">
@@ -34,18 +34,18 @@ export default class Recent extends Component {
                   </p>
                   <progress className="recent__book-progress" max="100" value="37"></progress>
                 </div>
-                <img src="./images/books-cover.png" className="recent__book-cover book-cover" alt="" />
+                <img src="/images/books-cover.png" className="recent__book-cover book-cover" alt="" />
               </div>
             </div>
           </section>
           <section className="recent__category">
-            <header className="header_lines recent__category-date open-header">
+            <header className="header header_open recent__category-date">
               <span className="header__text">12.11.2017</span>
             </header>
             <div className="books recent__books">
               <div className="recent__book book">
                 <div className="recent__book-info book-info">
-                  <Link to="/book-description" className="book__title recent__book-title">
+                  <Link to="/books/view/1" className="book__title recent__book-title">
                     The Alchemist
                   </Link>
                   <p className="recent__book-author">
@@ -60,11 +60,11 @@ export default class Recent extends Component {
                   </p>
                   <progress className="recent__book-progress" max="100" value="37"></progress>
                 </div>
-                <img src="./images/books-cover.png" className="recent__book-cover book-cover" alt="" />
+                <img src="/images/books-cover.png" className="recent__book-cover book-cover" alt="" />
               </div>
               <div className="recent__book book">
                 <div className="recent__book-info book-info">
-                  <Link to="/book-description" className="book__title recent__book-title">
+                  <Link to="/books/view/2" className="book__title recent__book-title">
                     The Alchemist
                   </Link>
                   <p className="recent__book-author">
@@ -79,11 +79,11 @@ export default class Recent extends Component {
                   </p>
                   <progress className="recent__book-progress" max="100" value="37"></progress>
                 </div>
-                <img src="./images/books-cover.png" className="recent__book-cover book-cover" alt="" />
+                <img src="/images/books-cover.png" className="recent__book-cover book-cover" alt="" />
               </div>
               <div className="recent__book book">
                 <div className="recent__book-info book-info">
-                  <Link to="/book-description" className="book__title recent__book-title">
+                  <Link to="/books/view/3" className="book__title recent__book-title">
                     The Alchemist
                   </Link>
                   <p className="recent__book-author">
@@ -98,7 +98,7 @@ export default class Recent extends Component {
                   </p>
                   <progress className="recent__book-progress" max="100" value="37"></progress>
                 </div>
-                <img src="./images/books-cover.png" className="recent__book-cover book-cover" alt="" />
+                <img src="/images/books-cover.png" className="recent__book-cover book-cover" alt="" />
               </div>
             </div>
           </section>

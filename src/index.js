@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import WebFont from 'webfontloader';
 
 import './style.scss';
 
@@ -19,19 +20,25 @@ import ReadBook from './components/ReadBook.jsx';
 
 import registerServiceWorker from './registerServiceWorker';
 
+WebFont.load({
+  google: {
+    families: ['Roboto:300,400,700', 'sans-serif']
+  }
+});
+
 ReactDOM.render(
   <Router>
     <App>
       <Switch>
         <Route exact path="/" component={ Home } />
-        <Route path="/category-:categoryName" component={ Home } />
+        <Route path="/books/categories/:categoryId" component={ Home } />
         <OtherPages>
-          <Route path="/add-book" component={ AddBook } />
-          <Route path="/recent" component={ Recent } />
+          <Route path="/books/add-book" component={ AddBook } />
+          <Route path="/books/recent" component={ Recent } />
           <Route path="/support" component={ Support } />
           <Route path="/settings" component={ Settings } />
-          <Route path="/book-description" component={ BookDescription } />
-          <Route path="/read-book-:bookName" component={ ReadBook } />
+          <Route path="/books/view/:bookId" component={ BookDescription } />
+          <Route path="/books/read/:bookId" component={ ReadBook } />
         </OtherPages>
       </Switch>
     </App>

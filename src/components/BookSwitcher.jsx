@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 
 import Book from './Book.jsx';
 
@@ -8,10 +9,17 @@ import './BookSwitcher.scss';
 class BookSwitcher extends Component {
 
   render() {
-    const {categoryView, categoryName} = this.props;
-    return (
-      <Results categoryView={ categoryView } categoryName={ categoryName } books='5' />
-      );
+    const {categoryId, categoryName, books} = this.props;
+
+    if (this.props.books.length === 0) {
+      return (<div>
+                Please Wait!
+              </div>);
+    } else {
+      return (
+        <Results categoryId={ categoryId } categoryName={ categoryName } books={ books } />
+        );
+    }
   }
 }
 
@@ -20,10 +28,11 @@ class ViewBooksInHome extends Component {
     super(props);
 
     this.state = {
+      books: this.props.books,
       switcher: '',
       touchStartPoint: 0,
       touchEndPoint: 0,
-      currentBook: 0,
+      currentStep: 0,
       stepSize: 0,
       visibleBook: 0,
       switchHideWidth: 1023
@@ -53,39 +62,39 @@ class ViewBooksInHome extends Component {
     this.setState({
       visibleBook: visibleBookCount
     });
-    this.refs.dots = dots;
+
+    this._dotsBlock = dots;
   }
 
   resetExistDots(switcher) {
-    if (this.refs.dots) { // if dots already exist, remove from refs
-      switcher.parentNode.removeChild(this.refs.dots);
+    if (this._dotsBlock) { // if dots already exist, remove from refs
+
+      switcher.parentNode.removeChild(this._dotsBlock);
       this.setState({
-        currentBook: 0
+        currentStep: 0
       });
     }
   }
 
   onResizeSwitchVars() {
-    const {switcher, dots} = this.refs;
+    if (!this._switcher || !this._dotsBlock) return;
 
-    if (!switcher || !dots) return;
+    const {switchHideWidth, currentStep, visibleBook} = this.state;
 
-    const {switchHideWidth, currentBook, visibleBook} = this.state;
-
-    let book = switcher.getElementsByClassName('book')[0] || '',
-      visibleBookCount = Math.floor(switcher.offsetWidth / (book.offsetWidth + 12)), // 12 - margin around the book block (6-left, 6-right)
+    let book = this._switcher.getElementsByClassName('book')[0] || '',
+      visibleBookCount = Math.floor(this._switcher.offsetWidth / (book.offsetWidth + 12)), // 12 - margin around the book block (6-left, 6-right)
       stepSizeTemp = (book.offsetWidth + 12) * visibleBookCount,
-      switcherStartTransform = -(stepSizeTemp * currentBook);
+      switcherStartTransform = -(stepSizeTemp * currentStep);
 
     this.setState({
       stepSize: stepSizeTemp
     });
 
     if (visibleBook !== visibleBookCount) { // reCreate dots, when the window can holds more books
-      this.initialSwitchVars(switcher);
+      this.initialSwitchVars(this._switcher);
     }
 
-    switcher.style = window.innerWidth > switchHideWidth ? 'transform: translate(0)' : 'transform: translate(' + switcherStartTransform + 'px, 0) translateZ(0)';
+    this._switcher.style = window.innerWidth > switchHideWidth ? 'transform: translate(0)' : 'transform: translate(' + switcherStartTransform + 'px, 0) translateZ(0)';
   }
 
   getSwitchPos(event) {
@@ -108,19 +117,19 @@ class ViewBooksInHome extends Component {
     const {switchHideWidth} = this.state;
     if (window.innerWidth > switchHideWidth) return;
 
-    const {touchStartPoint, currentBook, stepSize} = this.state;
+    const {touchStartPoint, currentStep, stepSize} = this.state;
 
     let directMove = event.changedTouches[0].clientX - touchStartPoint, // local switch coordinates, while touch is move
-      switcherStartTransform = -(stepSize * currentBook), // position with which the switch is start
+      switcherStartTransform = -(stepSize * currentStep), // position with which the switch is start
       theta = switcherStartTransform + directMove;
 
     this._confirmSwitchTransform(0, theta);
   }
 
   endSwitchTransform(directTransform) {
-    const {currentBook, stepSize} = this.state;
+    const {currentStep, stepSize} = this.state;
 
-    let switcherStartTransform = -(stepSize * currentBook), // position with which the switch is start
+    let switcherStartTransform = -(stepSize * currentStep), // position with which the switch is start
       theta = switcherStartTransform + stepSize * directTransform; // summary calc of switch size based on current transform, step size and direction
 
     this._confirmSwitchTransform(4, theta, true);
@@ -133,16 +142,15 @@ class ViewBooksInHome extends Component {
   }
 
   _checkTheta(theta) {
-    const {switcher} = this.refs;
     const {stepSize, visibleBook} = this.state;
 
     let thetaT = theta,
-      maxBooksOffset = stepSize * (Math.ceil(switcher.children.length / visibleBook) - 1) * -1;
+      maxBooksOffset = stepSize * (Math.ceil(this._switcher.children.length / visibleBook) - 1) * -1;
 
     // if we reach the end or the start of switch position.
     // TODO change this mechanism on carusel
     if (theta <= (maxBooksOffset - stepSize)) {
-      thetaT = stepSize * (Math.ceil(switcher.children.length / visibleBook) - 1) * -1;
+      thetaT = stepSize * (Math.ceil(this._switcher.children.length / visibleBook) - 1) * -1;
     } else if (theta >= stepSize) {
       thetaT = 0;
     }
@@ -151,10 +159,9 @@ class ViewBooksInHome extends Component {
   }
 
   _confirmSwitchTransform(delay, theta, isMark) {
-    const {switcher} = this.refs;
     const {stepSize} = this.state;
 
-    if (!switcher) {
+    if (!this._switcher) {
       console.log('switcher is not defined');
       return
     }
@@ -163,32 +170,31 @@ class ViewBooksInHome extends Component {
 
     if (isMark) this._markDots(thetaR / -stepSize); // calc next position of active dot
 
-    switcher.style.transform = 'translate(' + thetaR + 'px, 0) translateZ(0)';
-    switcher.style.transition = 'transform .' + delay + 's ease-out';
+    this._switcher.style.transform = 'translate(' + thetaR + 'px, 0) translateZ(0)';
+    this._switcher.style.transition = 'transform .' + delay + 's ease-out';
   }
 
   _markDots(nextDot) {
-    const {dots} = this.refs;
-    const {currentBook} = this.state;
+    const {currentStep} = this.state;
 
-    let activeDot = dots.childNodes; // for dot mark active book
+    let activeDot = this._dotsBlock.childNodes; // for dot mark active book
 
-    activeDot[currentBook].className = 'fa fa-circle books-switcher__dot'; // make current dot inActive
+    activeDot[currentStep].className = 'fa fa-circle books-switcher__dot'; // make current dot inActive
     activeDot[nextDot].className += ' books-switcher__dot_active'; // make next dot Active
     this.setState({
-      currentBook: nextDot
+      currentStep: nextDot
     }); // current = next;
   }
 
   componentDidMount() {
-    const {switcher, books_block} = this.refs;
+    if (!this._switcher) return
 
-    this.initialSwitchVars(switcher); // from switch-book.js create dots equile count of books in category
+    this.initialSwitchVars(this._switcher); // from switch-book.js create dots equile count of books in category
     this.onResizeSwitchVars(); // from switch-book.js create dots equile count of books in category
 
-    books_block.addEventListener('touchmove', (event) => this.localSwitchTransform(event), false);
-    books_block.addEventListener('touchstart', (event) => this.getSwitchPos(event), false);
-    books_block.addEventListener('touchend', (event) => this.getSwitchPos(event), false);
+    this._bookBlock.addEventListener('touchmove', (event) => this.localSwitchTransform(event), false);
+    this._bookBlock.addEventListener('touchstart', (event) => this.getSwitchPos(event), false);
+    this._bookBlock.addEventListener('touchend', (event) => this.getSwitchPos(event), false);
   }
 
   componentWillMount() {
@@ -200,16 +206,16 @@ class ViewBooksInHome extends Component {
   }
 
   render() {
-    const {currentBook, visibleBook} = this.state,
-      {books, categoryName} = this.props;
+    const {currentStep, visibleBook} = this.state,
+      {books, categoryId} = this.props;
 
     let btnPrevView,
       btnNextView = true;
 
-    if (currentBook === Math.floor(books.length / visibleBook)) {
+    if (currentStep === Math.floor((books.length-1) / visibleBook)) {
       btnPrevView = true;
       btnNextView = false;
-    } else if (currentBook === 0) {
+    } else if (currentStep === 0) {
       btnPrevView = false;
       btnNextView = true;
     } else {
@@ -218,15 +224,21 @@ class ViewBooksInHome extends Component {
     }
 
     return (
-      <div className="books home-page__books" ref="books_block">
-        <div className="books-switcher find-switcher" ref="switcher">
+      <div className="books home-page__books" ref={ (div) => {
+                                                this._bookBlock = div;
+                                              } }>
+        <div className="books-switcher find-switcher" ref={ (div) => {
+                                                              this._switcher = div;
+                                                            } }>
           { books }
         </div>
-        <div className={ btnPrevView ? "books-switcher__prev-button" : "books-switcher__prev-button books-switcher__prev-button_hide" } 
-          onClick={ (directTransform) => this.endSwitchTransform(1) }></div>
-        <div className={ btnNextView ? "books-switcher__next-button" : "books-switcher__next-button books-switcher__next-button_hide" } 
-          onClick={ (directTransform) => this.endSwitchTransform(-1) }></div>
-        <Link className="books-switcher__see-more" to={ { pathname: '/category-' + categoryName } }>
+        <div className={ classNames('books-switcher__prev-button', {
+                           'books-switcher__prev-button_hide': !btnPrevView
+                         }, this.props.className) } onClick={ (directTransform) => this.endSwitchTransform(1) }></div>
+        <div className={ classNames('books-switcher__next-button', {
+                           'books-switcher__next-button_hide': !btnNextView
+                         }, this.props.className) } onClick={ (directTransform) => this.endSwitchTransform(-1) }></div>
+        <Link className="books-switcher__see-more" to={ { pathname: '/books/categories/' + categoryId } }>
           more
         </Link>
       </div>
@@ -243,24 +255,25 @@ var ViewBooksInCategory = (props) => {
 }
 
 var Results = (props) => {
-  let content = null;
-  let books = [];
-  let text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt bibendum purus sed tristique. Pellentesque a lacinia augue. Mauris gravida urna eu neque interdum, et consectetur leo varius. Donec vitae posuere lorem, ac tincidunt ipsum. Maecenas auctor pretium ex, ac imperdiet dui pharetra in. Pellentesque justo est, cursus id pellentesque in, imperdiet eu velit. Ut rhoncus condimentum velit id tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean nisl turpis, dapibus aliquam tellus quis, blandit condimentum dolor. Maecenas dignissim euismod eros, et facilisis lorem pharetra et. Ut libero felis, tincidunt malesuada luctus id, aliquam in urna.";
+  let content = null,
+    booksCont = [],
+    booksArr = props.books;
 
-  for (let i = props.books - 1; i >= 0; i--) {
-    books[i] = <Book subClass={ props.categoryView ? 'category__book' : 'books-switcher__book' }
-                 author='Paulo Coelho'
-                 title='The Alchemist'
-                 reviews={ 10 + i + ' reviews' }
-                 description={ text }
-                 cover='books-cover.png'
-                 key={ i } />;
+  for (let i = booksArr.length - 1; i >= 0; i--) {
+    booksCont[i] = <Book subClass={ props.categoryId ? 'category__book' : 'books-switcher__book' }
+                     author={ booksArr[i].Author }
+                     title={ booksArr[i].Title }
+                     reviews={ booksArr[i].Reviews.length + " Reviews" }
+                     description={ booksArr[i].Text }
+                     cover={ booksArr[i].Cover }
+                     key={ i }
+                     id={ booksArr[i].Id } />;
   }
 
-  if (props.categoryView) {
-    content = <ViewBooksInCategory books={ books } categoryName={ props.categoryName } />
+  if (props.categoryId) {
+    content = <ViewBooksInCategory books={ booksCont } categoryName={ props.categoryName } />
   } else {
-    content = <ViewBooksInHome books={ books } categoryName={ props.categoryName } />
+    content = <ViewBooksInHome books={ booksCont } categoryId={ props.categoryId } categoryName={ props.categoryName } />
   }
 
 

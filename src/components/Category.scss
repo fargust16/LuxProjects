@@ -22,8 +22,6 @@
         display: flex;
         flex-flow: row wrap;
         justify-content: center;
-
-        padding: 10px;
     }
 
     &__book {
@@ -32,7 +30,7 @@
         flex-flow: row;
         box-sizing: border-box;
         flex: 2 0 auto;
-        margin: 5px;
+        margin: 0 6px 10px;
 
         @include tablet {
             width: 338px;

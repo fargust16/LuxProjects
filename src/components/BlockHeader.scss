@@ -1,13 +1,19 @@
 @import '../constants.scss';
 
 .header {
+    position: relative;
     white-space: nowrap;
+    overflow: hidden;
+    font-size: 20px;
+    line-height: 32px;
     @extend %small-caps;
 
-    &_lines {
-        position: relative;
-        white-space: nowrap;
-        @extend %small-caps;
+    &_open {
+        transition: all .1s ease-in;
+
+        &:hover {
+            cursor: pointer;
+        }
 
         &::before {
             position: absolute;
@@ -18,6 +24,21 @@
             height: 1px;
             content: '';
             background-color: $black;
+        }
+    }
+
+    &_close {
+        transition: all .1s ease-in;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &::before {
+            @include awesome-icon(absolute, '\f0dd', 20px);
+            top: 50%;
+            right: 10px;
+            transform: translateY(-20px);
         }
     }
 
@@ -45,27 +66,4 @@
         padding: 5px;
         background-color: #fff;
     }
-}
-
-.close-header {
-    position: relative;
-    transition: all .1s ease-in;
-    line-height: 32px;
-
-    &:hover {
-        cursor: pointer;
-    }
-
-    &::before {
-        @include awesome-icon(absolute, '\f0dd', 20px);
-        top: 50%;
-        right: 10px;
-        transform: translateY(-20px);
-    }
-}
-
-.open-header {
-    position: relative;
-    white-space: nowrap;
-    line-height: 32px;
 }

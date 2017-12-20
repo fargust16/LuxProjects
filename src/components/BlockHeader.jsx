@@ -7,7 +7,7 @@ export default class BlockHeader extends Component {
   render() {
     const {blockName} = this.props;
     return (
-      <div className="header_lines category__name">
+      <div className="header header_open category__name">
         <span className="header__text">{ blockName || 'Unnamed block' }</span>
       </div>
       );

@@ -106,7 +106,7 @@
 
     &__book {
         min-width: 260px;
-        margin: 10px 6px;
+        margin: 0 6px 10px;
 
         @include tablet {
             min-width: 338px;

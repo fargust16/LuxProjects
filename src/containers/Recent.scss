@@ -2,21 +2,16 @@
 
 .recent {
     &__content {
-        margin-top: 15px;
         padding: 1px 8px;
     }
 
     &__category {
-        margin-bottom: 15px;
-        padding: 10px;
+        margin-top: 15px;
         border: 1px solid rgba(0,0,0,.2);
         border-radius: 8px;
     }
 
     &__category-date {
-        overflow: hidden;
-        margin-right: -10px;
-        margin-left: -10px;
         font-size: 14px;
     }
 
@@ -32,14 +27,14 @@
         flex-flow: row;
         box-sizing: border-box;
         flex: 2 0 auto;
-        margin: 10px;
+        margin: 5px;
 
         @include tablet {
             width: 338px;
         }
 
         &:nth-child(2) {
-            margin-top: 8px;
+            margin-top: 5px;
         }
     }
 
