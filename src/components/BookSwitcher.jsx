@@ -19,9 +19,9 @@ class BookSwitcher extends Component {
         );
     } else {
       return (
-        <div className="books home-page__books" ref={ (div) => {
-                                                this._bookBlock = div;
-                                              } }>
+        <div ref={ (div) => {
+             this._bookBlock = div;
+           } } className="books home-page__books">
           <Results categoryId={ categoryId } categoryName={ categoryName } books={ books } />
           <Link className="switcher__see-more" to={ { pathname: '/books/categories/' + categoryName } }>
             more
@@ -64,13 +64,11 @@ const Results = (props) => {
     content = <Slider blocks={ booksCont } hideWidth={ 1023 } />
   }
 
-
   return (
     <div className="category__results-books">
       { content }
     </div>
     );
-
 }
 
 export default BookSwitcher;

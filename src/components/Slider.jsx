@@ -122,7 +122,7 @@ export default class Slider extends Component {
   _calcBlockOffset(block) {
     let margins = parseInt(getComputedStyle(block).marginRight, 10) + parseInt(getComputedStyle(block).marginLeft, 10),
       bOffset = block.offsetWidth + margins;
-      
+
     return bOffset;
   }
 
@@ -197,12 +197,12 @@ export default class Slider extends Component {
     let endOfSwitch = Math.floor((blocks.length - 1) / visibleBlockCount);
 
     return (
-      <div className="Slider" ref={ (div) => {
-                                this._sliderBlock = div;
-                              } }>
-        <div className="switcher" ref={ (div) => {
-                                          this._switcher = div;
-                                        } }>
+      <div ref={ (div) => {
+             this._sliderBlock = div;
+           } } className="Slider">
+        <div ref={ (div) => {
+                     this._switcher = div;
+                   } } className="switcher">
           { blocks }
         </div>
         <ControlBtnView transformFunc={ this.endSwitchTransform }
