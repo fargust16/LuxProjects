@@ -10,6 +10,7 @@ export default class BookDescription extends Component {
 
   render() {
     let id = 0;
+    
     return (
       <article>
         <main className="book-description other-pages__block">

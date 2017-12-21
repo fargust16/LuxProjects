@@ -11,17 +11,16 @@
     border-radius: 8px;
     background-color: #fff;
     box-shadow: $box-shadow;
-
-    &__name {
-        box-sizing: border-box;
-        margin: 15px auto 5px;
-        font-size: 20px;
-    }
+    padding: 10px 0;
 
     &__books {
         display: flex;
         flex-flow: row wrap;
         justify-content: center;
+    }
+
+    &__results-books {
+        margin-top: 10px;
     }
 
     &__book {

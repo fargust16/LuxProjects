@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 
+import FileInput from '../components/FileInput.jsx';
+import BlockHeader from '../components/BlockHeader.jsx';
 import './AddBook.scss';
 
 export default class AddBook extends Component {
@@ -23,27 +25,6 @@ export default class AddBook extends Component {
     })
   }
 
-  handleChooseBookSource() {
-    console.log('enter');
-    let file_api = (window.File && window.FileReader && window.FileList && window.Blob) ? true : false,
-      inp = this.refs.book_source,
-      lbl = this.refs.source_title,
-      file_name;
-
-    if (file_api && inp.files[0]) {
-      file_name = inp.files[0].name;
-    } else {
-      file_name = inp.value.replace("C:\\fakepath\\", '');
-    }
-
-    if (!file_name.length) {
-      lbl.innerText = 'File doesn`t choosed';
-      return;
-    } else {
-      lbl.innerText = file_name;
-    }
-  }
-
   resizeWindow(e) {
     const {optionShow} = this.state;
 
@@ -62,10 +43,6 @@ export default class AddBook extends Component {
 
   render() {
     const {optionShow} = this.state;
-    let headerClass = classNames('header', {
-      'header_open': optionShow,
-      'header_close': !optionShow
-    }, this.props.className);
 
     let optionClass = classNames('option__content', {
       'add-book__external-options': optionShow,
@@ -82,9 +59,7 @@ export default class AddBook extends Component {
           method="POST"
           className="options add-book__options">
           <section className="option">
-            <div className="header header_open">
-              <span className="header__text">main data</span>
-            </div>
+            <BlockHeader blockName="main data" closeVar={ true } />
             <div className="option__content">
               <input type="text"
                 name="title"
@@ -96,16 +71,7 @@ export default class AddBook extends Component {
                 placeholder="author"
                 className="field option__field"
                 required />
-              <label htmlFor="book_source" className="field option__field add-book__source">
-                <mark className="add-book__source-title" ref="source_title">
-                  Файл не выбран
-                </mark>
-                <input type="file"
-                  ref="book_source"
-                  name="source"
-                  className="add-book__source-field"
-                  onChange={ () => this.handleChooseBookSource() } />
-              </label>
+              <FileInput />
               <textarea className="field add-book__description" placeholder="description" rows="4"></textarea>
               <label htmlFor="publish-date" className="add-book__date-header">
                 Publishing
@@ -117,10 +83,8 @@ export default class AddBook extends Component {
             </div>
           </section>
           <section className="option add-book__option">
-            <div onClick={ () => this.handleShowExternalOptions() } className={headerClass}>
-              <span className="header__text">external options</span>
-            </div>
-            <div className={optionClass}>
+            <BlockHeader blockName="external options" closeVar={ optionShow } handleChangeVar={ () => this.handleShowExternalOptions() } />
+            <div className={ optionClass }>
               <input type="text"
                 name="genre"
                 placeholder="genre"

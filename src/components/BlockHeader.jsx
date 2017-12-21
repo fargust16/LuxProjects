@@ -1,15 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import './BlockHeader.scss';
 
-export default class BlockHeader extends Component {
+const BlockHeader = ({closeVar, blockName, handleChangeVar, className}) => {
 
-  render() {
-    const {blockName} = this.props;
-    return (
-      <div className="header header_open category__name">
-        <span className="header__text">{ blockName || 'Unnamed block' }</span>
-      </div>
-      );
-  }
-}
+  let headerClass = classNames('header category__name', {
+    'header_open': closeVar,
+    'header_close': !closeVar
+  }, className || '');
+
+  return (
+    <div className={ headerClass } onClick={ handleChangeVar }>
+      <span className="header__text">{ blockName || 'Unnamed block' }</span>
+    </div>
+    );
+};
+
+BlockHeader.propTypes = {
+  closeVar: PropTypes.bool.isRequired
+};
+
+export default BlockHeader;

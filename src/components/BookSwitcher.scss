@@ -1,6 +1,6 @@
 @import '../constants.scss';
 
-.books-switcher {
+.switcher {
     display: flex;
     overflow: visible;
     flex-flow: row;
@@ -9,10 +9,10 @@
     transition: transform 0s ease-out;
     flex-wrap: nowrap;
 
-    &__prev-button {
+    &__button {
         position: absolute;
-        top: 30%;
-        left: 8px;
+        top: 50%;
+        transform: translateY(-50%);
         display: flex;
         align-items: center;
         width: 25px;
@@ -24,41 +24,6 @@
 
         &_hide {
             display: none;
-        }
-
-        &::after {
-            @include awesome-icon(relative, '\f053', 24px);
-            color: $black;
-            padding-left: 3px;
-        }
-
-        &:hover {
-            cursor: pointer;
-            background-color: rgba(255,255,255,1);
-        }
-    }
-
-    &__next-button {
-        position: absolute;
-        top: 30%;
-        right: 8px;
-        display: flex;
-        align-items: center;
-        width: 25px;
-        height: 60px;
-        box-shadow: $box-shadow;
-        background-color: rgba(255,255,255,0.8);
-        border-radius: 4px;
-        text-align: center;
-
-        &_hide {
-            display: none;
-        }
-
-        &::after {
-            @include awesome-icon(relative, '\f054', 24px);
-            color: $black;
-            padding-left: 5px;
         }
 
         &:hover {
@@ -111,5 +76,25 @@
         @include tablet {
             min-width: 338px;
         }
+    }
+}
+
+.btn-prev {
+    left: 8px;
+
+    &::after {
+        @include awesome-icon(relative, '\f053', 24px);
+        color: $black;
+        padding-left: 5px;
+    }
+}
+
+.btn-next {
+    right: 8px;
+
+    &::after {
+        @include awesome-icon(relative, '\f054', 24px);
+        color: $black;
+        padding-left: 5px;
     }
 }

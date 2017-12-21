@@ -3,6 +3,7 @@ import moment from 'moment';
 import * as Scroll from 'react-scroll';
 import classNames from 'classnames';
 
+import BlockHeader from './BlockHeader.jsx';
 import './Comments.scss';
 
 var scroll = Scroll.animateScroll;
@@ -126,20 +127,13 @@ export default class Comments extends Component {
       'comments__content_hide': !showCom
     }, this.props.className);
 
-    let headerClass = classNames('header', {
-      'header_open': showCom,
-      'header_close': !showCom
-    }, this.props.className);
-
     let buttonsClass = classNames('new-comment__buttons', {
       'new-comment__buttons_hide': !showComBtns
     }, this.props.className);
 
     return (
       <section ref="comments_block" className="comments other-pages__comments">
-        <div className={ headerClass } onClick={ () => this.showComments() }>
-          <span className="header__text">Comments</span>
-        </div>
+        <BlockHeader blockName="Comments" closeVar={ showCom } handleChangeVar={ () => this.showComments() } />
         <section ref="comments_content" className={ contentClass }>
           <div className="new-comment comments__new-comment">
             <img className="comment__user-image" src="" alt="" />

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import BlockHeader from '../components/BlockHeader.jsx';
 import './Settings.scss';
 
 export default class Settings extends Component {
@@ -62,9 +63,7 @@ export default class Settings extends Component {
         </div>
         <article className="options settings__options">
           <section className="option">
-            <div onClick={ (elem) => this.handleShowExternalOptions('email-settings') } className={ showEmailOptions ? "header header_open" : "header header_close" }>
-              <span className="header__text">Change email</span>
-            </div>
+            <BlockHeader blockName="Change email" closeVar={ showEmailOptions } handleChangeVar={ (elem) => this.handleShowExternalOptions('email-settings') } />
             <form ref="email_settings"
               name="email-settings"
               action=""
@@ -90,9 +89,7 @@ export default class Settings extends Component {
             </form>
           </section>
           <section className="option">
-            <div onClick={ (elem) => this.handleShowExternalOptions('password-settings') } className={ showPasswordOptions ? "header header_open" : "header header_close" }>
-              <span className="header__text">Change password</span>
-            </div>
+            <BlockHeader blockName="Change password" closeVar={ showPasswordOptions } handleChangeVar={ (elem) => this.handleShowExternalOptions('password-settings') } />
             <form ref="password_settings"
               name="password-settings"
               action=""

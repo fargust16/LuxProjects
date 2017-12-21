@@ -11,7 +11,7 @@ export default class Category extends Component {
     const {categoryId, books} = this.props;
     return (
       <section className="category main__category">
-        <BlockHeader blockName="Recommended books" />
+        <BlockHeader blockName="Recommended books" closeVar={true} />
         <BookSwitcher categoryName="Recommended books" books={ books } categoryId={ categoryId } />
       </section>
       );

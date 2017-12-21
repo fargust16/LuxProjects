@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import BlockHeader from '../components/BlockHeader.jsx';
 import './Recent.scss';
 
 export default class Recent extends Component {
@@ -13,9 +14,7 @@ export default class Recent extends Component {
         </div>
         <article className="recent__content">
           <section className="recent__category">
-            <header className="header header_open recent__category-date">
-              <span className="header__text">01.12.2017</span>
-            </header>
+            <BlockHeader blockName="01.12.2017" closeVar={ true } className="recent__category-date" />
             <div className="books recent__books">
               <div className="recent__book book">
                 <div className="recent__book-info book-info">
@@ -39,9 +38,7 @@ export default class Recent extends Component {
             </div>
           </section>
           <section className="recent__category">
-            <header className="header header_open recent__category-date">
-              <span className="header__text">12.11.2017</span>
-            </header>
+            <BlockHeader blockName="12.11.2017" closeVar={ true } className="recent__category-date" />
             <div className="books recent__books">
               <div className="recent__book book">
                 <div className="recent__book-info book-info">
