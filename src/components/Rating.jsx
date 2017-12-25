@@ -1,65 +1,83 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import './Rating.scss';
 
+const StructRatingControls = ({maxMark, onChange, currMark}) => {
+  let contentTemp = [];
+  for (let i = 0; i < (maxMark * 2); i++) {
+    let j = maxMark * 2 - i;
+    contentTemp[i] = {
+      "input": <input key={ j + maxMark * 2 }
+                 type="radio"
+                 id={ 'star' + (j / 2) }
+                 name="rating"
+                 value={ j / 2 }
+                 checked={ currMark === j / 2 }
+                 onChange={ onChange } />,
+      "label": <label key={ j }
+                 className={ j % 2 === 0 ? 'full' : 'half' }
+                 htmlFor={ 'star' + (j / 2) }
+                 title={ (j / 2) + ' stars' }></label>
+    }
+  }
+
+  let content = [];
+  let j = (contentTemp.length * 2) - 1;
+  for (let i = contentTemp.length - 1; i >= 0; i--) {
+    content[j] = contentTemp[i].label;
+    j--;
+    content[j] = contentTemp[i].input;
+    j--;
+  }
+  return content;
+}
+
 export default class Rating extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      mark: 0
+    }
+  }
+  
+  componentWillReceiveProps(nextProps) {
+    let sumMark = calcRating(nextProps.rating),
+      parseMark = (Math.round((sumMark * 10) / 5) * 5) / 10;
+
+    this.setState({
+       mark: parseMark
+    })
+  }
+
+  handleChangeRating(e) {
+    this.setState({
+      mark: parseFloat(e.target.value, 10)
+    })
+  }
+
   render() {
+    const {mark} = this.state;
+
     return (
       <fieldset className="rating book-description__rating">
-        <input type="radio"
-          id="star5"
-          name="rating"
-          value="5" />
-        <label className="full" htmlFor="star5" title="Awesome - 5 stars"></label>
-        <input type="radio"
-          id="star4half"
-          name="rating"
-          value="4 and a half" />
-        <label className="half" htmlFor="star4half" title="Pretty good - 4.5 stars"></label>
-        <input type="radio"
-          id="star4"
-          name="rating"
-          value="4" />
-        <label className="full" htmlFor="star4" title="Pretty good - 4 stars"></label>
-        <input type="radio"
-          id="star3half"
-          name="rating"
-          value="3 and a half" />
-        <label className="half" htmlFor="star3half" title="Meh - 3.5 stars"></label>
-        <input type="radio"
-          id="star3"
-          name="rating"
-          value="3" />
-        <label className="full" htmlFor="star3" title="Meh - 3 stars"></label>
-        <input type="radio"
-          id="star2half"
-          name="rating"
-          value="2 and a half" />
-        <label className="half" htmlFor="star2half" title="Kinda bad - 2.5 stars"></label>
-        <input type="radio"
-          id="star2"
-          name="rating"
-          value="2" />
-        <label className="full" htmlFor="star2" title="Kinda bad - 2 stars"></label>
-        <input type="radio"
-          id="star1half"
-          name="rating"
-          value="1 and a half" />
-        <label className="half" htmlFor="star1half" title="Meh - 1.5 stars"></label>
-        <input type="radio"
-          id="star1"
-          name="rating"
-          value="1" />
-        <label className="full" htmlFor="star1" title="Sucks big time - 1 star"></label>
-        <input type="radio"
-          id="starhalf"
-          name="rating"
-          value="half" />
-        <label className="half" htmlFor="starhalf" title="Sucks big time - 0.5 stars"></label>
+        <StructRatingControls maxMark="5" currMark={ mark } onChange={ (e) => this.handleChangeRating(e) } />
       </fieldset>
       );
   }
 }
 
+Rating.propTypes = {
+  rating: PropTypes.array
+}
 
+const calcRating = (reviewArr) => {
+  if (!reviewArr) return 0
+  let mark = 0;
+  reviewArr.map(elem => {
+    return mark += parseInt(elem.Rating, 10);
+  })
+  return mark / reviewArr.length;
+}

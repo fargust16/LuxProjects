@@ -59,9 +59,16 @@
     }
 
     &__buttons {
-        float: right;
+        display: flex;
+        flex-flow: column wrap;
+        align-items: flex-end;
         margin-top: 5px;
         border-bottom: 2px solid $black;
+
+        @include tablet {
+            flex-flow: row wrap;
+            justify-content: flex-end;
+        }
 
         &_hide {
             display: none;
@@ -69,20 +76,30 @@
     }
 
     &__button {
-        display: block;
+        background: none;
+        border: none;
         margin: 10px 0;
         padding: 3px;
         border-radius: 2px;
         font-size: 16px;
 
-        &:hover {
-            cursor: pointer;
+        @include tablet {
+            border: $border-btn;
+            font-size: 20px;
+            margin-left: 10px;
+            padding: 5px 10px;
         }
     }
 }
 
 .btn-send {
-    color: $primary-color;
+    color: gray;
+    border: 1px solid lightgray;
+
+    &:not([disabled]) {
+        color: $primary-color;
+        border: $border-btn;
+    }
 }
 
 .comment {

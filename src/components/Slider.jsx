@@ -7,10 +7,11 @@ export default class Slider extends Component {
   constructor(props) {
     super(props);
 
-    const {blocks, hideWidth} = this.props;
+    const {hideWidth} = this.props;
 
     this.state = {
-      blocks: blocks,
+      isLoadBlocks: false,
+      blocks: [],
       switchHideWidth: hideWidth,
       touchStartPoint: 0,
       touchEndPoint: 0,
@@ -24,13 +25,14 @@ export default class Slider extends Component {
     this.endSwitchTransform = this.endSwitchTransform.bind(this);
   }
 
-  initialSwitchVars(switcher, visibleBlockCount) {
+  initialSwitchVars(switcher, visibleBlockCount, blocksCount) {
     this.resetExistDots(switcher);
 
     const {blocks} = this.state;
+    console.log(visibleBlockCount)
 
     let dots = document.createElement('div'),
-      dotCount = Math.ceil(blocks.length / visibleBlockCount);
+      dotCount = Math.ceil((blocks.length || blocksCount) / visibleBlockCount);
 
     for (let j = 0; j <= dotCount - 1; j++) {
       let dotElem = document.createElement('i');
@@ -56,12 +58,24 @@ export default class Slider extends Component {
     return;
   }
 
-  resetVarsOnResize() {
-    const {switchHideWidth, currentStep, visibleBlockCount} = this.state;
 
-    let blockSizeTemp = this._calcBlockOffset(this._switcher.childNodes[0]),
+/*
+
+TODO Get block from props and send it to enother functions
+
+*/
+
+
+
+
+
+  resetVarsOnResize(blocks) {
+    const {switchHideWidth, currentStep, visibleBlockCount} = this.state;
+    console.log(blocks[1].offsetWidth);
+
+    let blockSizeTemp = this._calcBlockOffset(this._switcher.childNodes[0]), // calc book offset include margins from left and right
       switcherSize = this._switcher.offsetWidth,
-      visibleBlockCountTemp = Math.floor(switcherSize / blockSizeTemp), // 12 - margin around the book block (6-left, 6-right)
+      visibleBlockCountTemp = Math.floor(switcherSize / blockSizeTemp),
       stepSizeTemp = blockSizeTemp * visibleBlockCountTemp,
       switcherStartTransform = -(stepSizeTemp * currentStep);
 
@@ -72,7 +86,7 @@ export default class Slider extends Component {
     });
 
     if (visibleBlockCount !== visibleBlockCountTemp && visibleBlockCountTemp !== 0) { // reCreate dots, when the window can holds more books
-      this.initialSwitchVars(this._switcher, visibleBlockCountTemp);
+      this.initialSwitchVars(this._switcher, visibleBlockCountTemp, blocks.length);
     }
 
     this._switcher.style = window.innerWidth > switchHideWidth ? 'transform: translate(0)' : 'transform: translate(' + switcherStartTransform + 'px, 0) translateZ(0)';
@@ -106,7 +120,7 @@ export default class Slider extends Component {
 
     let directMove = pointAtEvent - touchStartPoint, // local switch coordinates, while touch is move
       switcherStartTransform = -(stepSize * currentStep), // position with which the switch is start
-      theta = switcherStartTransform + directMove;
+      theta = switcherStartTransform + directMove; // summary calc of switch size based on current transform and direction
 
     this._confirmSwitchTransform(0, theta);
   }
@@ -161,9 +175,12 @@ export default class Slider extends Component {
   }
 
   _markDots(nextDot) {
+    if (!this._dotsBlock) return
     const {currentStep} = this.state;
 
     let activeDot = this._dotsBlock.childNodes; // for dot mark active book
+
+    console.log(this._dotsBlock);
 
     activeDot[currentStep].className = 'fa fa-circle switcher__dot'; // make current dot inActive
     activeDot[nextDot].className += ' switcher__dot_active'; // make next dot Active
@@ -173,9 +190,17 @@ export default class Slider extends Component {
   }
 
   componentDidMount() {
+    
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      blocks: nextProps.blocks
+    })
+
     if (!this._switcher) return
 
-    this.resetVarsOnResize(); // from switch-book.js create dots equile count of books in category
+    this.resetVarsOnResize(nextProps.blocks); // create dots equile of books count in category
 
     this._sliderBlock.addEventListener('touchmove', (event) => this.getSwitchPos(event), false);
     this._sliderBlock.addEventListener('touchstart', (event) => this.getSwitchPos(event), false);

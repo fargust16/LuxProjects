@@ -1,3 +1,5 @@
+@import '../constants.scss';
+
 .button {
     display: block;
     padding: 10px;
@@ -10,9 +12,9 @@
     line-height: initial;
     @extend %small-caps;
 
-    &:hover {
+    &:not([disabled]):hover {
         transition: all .0s ease-in;
-        border: 1px solid rgba(0,0,0,.6);
+        border: $border-btn;
         box-shadow: $box-shadow;
         font-weight: 600;
         cursor: pointer;

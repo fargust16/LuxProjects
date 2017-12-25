@@ -5,7 +5,7 @@
     "Author": "Paulo Coelho",
     "Genre": "Phantasy",
     "ISBN": "978-5-65273-876-1",
-    "PublishingDate": "05.03.2001",
+    "ReleaseDate": "05/03/2001",
     "Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt bibendum purus sed tristique. Pellentesque a lacinia augue. Mauris gravida urna eu neque interdum, et consectetur leo varius. Donec vitae posuere lorem, ac tincidunt ipsum. Maecenas auctor pretium ex, ac imperdiet dui pharetra in. Pellentesque justo est, cursus id pellentesque in, imperdiet eu velit. Ut rhoncus condimentum velit id tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean nisl turpis, dapibus aliquam tellus quis, blandit condimentum dolor. Maecenas dignissim euismod eros, et facilisis lorem pharetra et. Ut libero felis, tincidunt malesuada luctus id, aliquam in urna.",
     "Cover": "books-cover.png",
     "Topics": [
@@ -42,7 +42,7 @@
     "Comments": [
       {
         "Id": "1",
-        "Date": "20.12.2017",
+        "PostDate": "12/20/2017",
         "Author": "journey22@gmail.com",
         "Text": "comments text"
       }
@@ -54,7 +54,7 @@
     "Author": "Lewis Carroll",
     "Genre": "Phantasy",
     "ISBN": "978-5-65273-876-2",
-    "PublishingDate": "05.03.2003",
+    "ReleaseDate": "05/03/2003",
     "Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt bibendum purus sed tristique. Pellentesque a lacinia augue. Mauris gravida urna eu neque interdum, et consectetur leo varius. Donec vitae posuere lorem, ac tincidunt ipsum. Maecenas auctor pretium ex, ac imperdiet dui pharetra in. Pellentesque justo est, cursus id pellentesque in, imperdiet eu velit. Ut rhoncus condimentum velit id tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean nisl turpis, dapibus aliquam tellus quis, blandit condimentum dolor. Maecenas dignissim euismod eros, et facilisis lorem pharetra et. Ut libero felis, tincidunt malesuada luctus id, aliquam in urna.",
     "Cover": "books-cover.png",
     "Topics": [
@@ -91,7 +91,7 @@
     "Comments": [
       {
         "Id": "1",
-        "Date": "20.12.2017",
+        "PostDate": "12/20/2017",
         "Author": "journey22@gmail.com",
         "Text": "comments text"
       }
@@ -103,7 +103,7 @@
     "Author": "Joanne Rowling",
     "Genre": "Phantasy",
     "ISBN": "978-5-65273-876-3",
-    "PublishingDate": "05.03.1999",
+    "ReleaseDate": "05/03/1999",
     "Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt bibendum purus sed tristique. Pellentesque a lacinia augue. Mauris gravida urna eu neque interdum, et consectetur leo varius. Donec vitae posuere lorem, ac tincidunt ipsum. Maecenas auctor pretium ex, ac imperdiet dui pharetra in. Pellentesque justo est, cursus id pellentesque in, imperdiet eu velit. Ut rhoncus condimentum velit id tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean nisl turpis, dapibus aliquam tellus quis, blandit condimentum dolor. Maecenas dignissim euismod eros, et facilisis lorem pharetra et. Ut libero felis, tincidunt malesuada luctus id, aliquam in urna.",
     "Cover": "books-cover.png",
     "Topics": [
@@ -140,13 +140,13 @@
     "Comments": [
       {
         "Id": "1",
-        "Date": "20.12.2017",
+        "PostDate": "12/20/2017",
         "Author": "journey22@gmail.com",
         "Text": "comments text"
       },
       {
         "Id": "2",
-        "Date": "17.12.2017",
+        "PostDate": "12/20/2017",
         "Author": "fargust22@gmail.com",
         "Text": "comments text"
       }
@@ -158,7 +158,7 @@
     "Author": "Jack London",
     "Genre": "Adventure",
     "ISBN": "978-5-65273-876-4",
-    "PublishingDate": "05.03.2001",
+    "ReleaseDate": "05/03/2001",
     "Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt bibendum purus sed tristique. Pellentesque a lacinia augue. Mauris gravida urna eu neque interdum, et consectetur leo varius. Donec vitae posuere lorem, ac tincidunt ipsum. Maecenas auctor pretium ex, ac imperdiet dui pharetra in. Pellentesque justo est, cursus id pellentesque in, imperdiet eu velit. Ut rhoncus condimentum velit id tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean nisl turpis, dapibus aliquam tellus quis, blandit condimentum dolor. Maecenas dignissim euismod eros, et facilisis lorem pharetra et. Ut libero felis, tincidunt malesuada luctus id, aliquam in urna.",
     "Cover": "books-cover.png",
     "Topics": [
@@ -195,7 +195,7 @@
     "Comments": [
       {
         "Id": "1",
-        "Date": "20.12.2017",
+        "PostDate": "12/20/2017",
         "Author": "journey22@gmail.com",
         "Text": "comments text"
       }
@@ -207,7 +207,7 @@
     "Author": "Mushroom Eater",
     "Genre": "Comedy",
     "ISBN": "978-5-65273-876-5",
-    "PublishingDate": "05.03.2001",
+    "ReleaseDate": "05/03/2001",
     "Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt bibendum purus sed tristique. Pellentesque a lacinia augue. Mauris gravida urna eu neque interdum, et consectetur leo varius. Donec vitae posuere lorem, ac tincidunt ipsum. Maecenas auctor pretium ex, ac imperdiet dui pharetra in. Pellentesque justo est, cursus id pellentesque in, imperdiet eu velit. Ut rhoncus condimentum velit id tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean nisl turpis, dapibus aliquam tellus quis, blandit condimentum dolor. Maecenas dignissim euismod eros, et facilisis lorem pharetra et. Ut libero felis, tincidunt malesuada luctus id, aliquam in urna.",
     "Cover": "books-cover.png",
     "Topics": [
@@ -244,7 +244,7 @@
     "Comments": [
       {
         "Id": "1",
-        "Date": "20.12.2017",
+        "PostDate": "12/20/2017",
         "Author": "journey22@gmail.com",
         "Text": "comments text"
       }
@@ -256,7 +256,7 @@
     "Author": "Bitter Max",
     "Genre": "Story",
     "ISBN": "978-5-65273-876-6",
-    "PublishingDate": "05.03.2001",
+    "ReleaseDate": "05/03/2001",
     "Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt bibendum purus sed tristique. Pellentesque a lacinia augue. Mauris gravida urna eu neque interdum, et consectetur leo varius. Donec vitae posuere lorem, ac tincidunt ipsum. Maecenas auctor pretium ex, ac imperdiet dui pharetra in. Pellentesque justo est, cursus id pellentesque in, imperdiet eu velit. Ut rhoncus condimentum velit id tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean nisl turpis, dapibus aliquam tellus quis, blandit condimentum dolor. Maecenas dignissim euismod eros, et facilisis lorem pharetra et. Ut libero felis, tincidunt malesuada luctus id, aliquam in urna.",
     "Cover": "books-cover.png",
     "Topics": [
@@ -293,7 +293,7 @@
     "Comments": [
       {
         "Id": "1",
-        "Date": "20.12.2017",
+        "PostDate": "12/20/2017",
         "Author": "journey22@gmail.com",
         "Text": "comments text"
       }

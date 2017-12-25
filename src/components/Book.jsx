@@ -4,27 +4,33 @@ import classNames from 'classnames';
 
 import './Book.scss';
 
-const Book = ({subClass, author, cover, title, description, reviews, id}) => {
-
-  return (
-    <article className={ classNames('book', subClass) }>
-      <img src={ "/images/" + cover } className="book__cover" alt={ title } />
-      <section className="book__info">
-        <Link to={ { pathname: '/books/view/' + id } } className="book__title">
-          { title }
-        </Link>
-        <div className="book__author">
-          { author }
-        </div>
-        <div className="book__desc">
-          { description }
-        </div>
-        <div className="reviews book__reviews">
-          { reviews }
-        </div>
-      </section>
-    </article>
-    );
+const Book = ({categoryId, Author, Cover, Title, Text, Reviews, Id}) => {
+  if (!Id) {
+    return <article className="book"></article>
+  } else {
+    return (
+      <article className={ classNames('book', {
+                       'category__book': categoryId,
+                       'switcher__book': !categoryId
+                     }) }>
+        <img src={ "/images/" + (Cover ? Cover : '') } className="book__cover" alt={ Title } />
+        <section className="book__info">
+          <Link to={ { pathname: '/books/view/' + Id } } className="book__title">
+            { Title }
+          </Link>
+          <div className="book__author">
+            { Author }
+          </div>
+          <div className="book__desc">
+            { Text }
+          </div>
+          <div className="reviews book__reviews">
+            { Reviews.length } reviews
+          </div>
+        </section>
+      </article>
+      );
+  }
 }
 
 export default Book;

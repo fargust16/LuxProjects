@@ -1,0 +1,8 @@
+.transition-item {
+  opacity: 0;
+  transition: opacity .5s ease-in;
+}
+
+.transition-item_show {
+  opacity: 1;
+}

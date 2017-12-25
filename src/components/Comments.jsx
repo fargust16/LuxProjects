@@ -8,27 +8,11 @@ import './Comments.scss';
 
 var scroll = Scroll.animateScroll;
 
-var fillComments = (count) => {
-  let commentsBase = [];
-  let authors = ['Lewis Carroll', 'Paulo Coelho', 'Joanne Rowling', 'Chack Pallaniuk'],
-    commentText = 'Some text for comment base. To see, how they view on the screen. This is so disastar. And I doesn`t know, what I write, so please don`t be shine.';
-
-  for (let i = count; i >= 0; i--) {
-    commentsBase = [...commentsBase, {
-      text: commentText,
-      author: authors[Math.floor(Math.random() * authors.length)],
-      postDate: new Date(2017, 11, 13, i + 1)
-    }];
-  }
-
-  return commentsBase;
-}
-
 export default class Comments extends Component {
 
   constructor(props) {
     super(props);
-    let comTemp = fillComments(10);
+    let comTemp = this.props.comments;
 
     this.state = {
       showCom: window.innerWidth >= 768 ? true : false,
@@ -50,16 +34,16 @@ export default class Comments extends Component {
 
   handleMoreComments() {
     const {comments, maxComments} = this.state;
-    if (maxComments >= comments.length) return;
 
     this.setState({
-      maxComments: maxComments + 5
+      maxComments: maxComments >= comments.length ? maxComments : maxComments + 5
     })
   }
 
   showComments() {
     if (window.innerWidth >= 768) return;
     const {showCom} = this.state;
+
     this.setState({
       showCom: !showCom
     });
@@ -68,7 +52,7 @@ export default class Comments extends Component {
       this.setState({
         commentsOffset: window.pageYOffset
       });
-      scroll.scrollTo(this.refs.comments_block.offsetTop - 45, {
+      scroll.scrollTo(this.refs.comments_block.offsetTop - 150, {
         duration: 500,
         delay: 50,
         smooth: true
@@ -91,9 +75,9 @@ export default class Comments extends Component {
 
     this.setState({
       comments: [{
-        text: commentText,
-        author: authorTemp,
-        postDate: postDate
+        Text: commentText,
+        Author: authorTemp,
+        PostDate: postDate
       }, ...comments],
       commentText: '',
       showComBtns: false
@@ -108,8 +92,15 @@ export default class Comments extends Component {
 
   showCommentsButtons(isShow) {
     this.setState({
-      showComBtns: isShow
+      showComBtns: isShow,
+      commentText: !isShow ? '' : this.state.commentText
     });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      comments: nextProps.comments
+    })
   }
 
   componentWillMount() {
@@ -145,8 +136,12 @@ export default class Comments extends Component {
                 onChange={ (e) => this.handleCommentTextChange(e) }
                 value={ commentText }></textarea>
               <footer className={ buttonsClass }>
-                <span className="new-comment__button btn-clear" onClick={ (isShow) => this.showCommentsButtons(false) }>Cancel</span>
-                <span className="new-comment__button btn-send" onClick={ () => this.postNewComment() }>Send comment</span>
+                <button className={ classNames('new-comment__button btn-clear', {
+                                    'button': window.innerWidth >= 768
+                                  }) } onClick={ (isShow) => this.showCommentsButtons(false) }>Cancel</button>
+                <button className={ classNames('new-comment__button btn-send', {
+                                    'button': window.innerWidth >= 768
+                                  }) } onClick={ () => this.postNewComment() } disabled={this.state.commentText === ''}>Send comment</button>
               </footer>
             </div>
           </div>
@@ -154,14 +149,12 @@ export default class Comments extends Component {
               if (i >= maxComments) return '';
             
               return (
-                <InputComments author={ comment.author }
-                  comment={ comment.text }
-                  postDate={ comment.postDate }
-                  n={ i }
-                  key={ i } />
+                <InputComments {...comment} n={ i } key={ i } />
               )
             }) }
-          <div className={ maxComments >= comments.length ? "button comments__showMore-btn comments__showMore-btn_hide" : "button comments__showMore-btn" } onClick={ () => this.handleMoreComments() }>
+          <div className={ classNames('button comments__showMore-btn', {
+                             'comments__showMore-btn_hide': maxComments >= comments.length
+                           }) } onClick={ () => this.handleMoreComments() }>
             show more
           </div>
         </section>
@@ -170,21 +163,36 @@ export default class Comments extends Component {
   }
 }
 
-class InputComments extends React.Component {
-  render() {
-    const {author, comment, postDate, n} = this.props;
-    return (
-      <div className="comment" key={ n }>
-        <img className="comment__user-image" src="" alt="" />
-        <div className="comment__desc">
-          <p className="comment__author">
-            { author }<span className="comment__time">{ moment(postDate, "YYYYMMDD").fromNow() }</span>
-          </p>
-          <p className="comment__text">
-            { comment }
-          </p>
-        </div>
+const InputComments = ({Author, Text, PostDate, n}) => {
+  let postDateTemp = new Date(PostDate);
+
+  return (
+    <div className="comment" key={ n }>
+      <img className="comment__user-image" src="" alt="" />
+      <div className="comment__desc">
+        <p className="comment__author">
+          { Author }<span className="comment__time">{ moment(postDateTemp, "YYYYMMDD").fromNow() }</span>
+        </p>
+        <p className="comment__text">
+          { Text }
+        </p>
       </div>
-      );
-  }
+    </div>
+    );
 }
+
+/*var fillComments = (count) => {
+  let commentsBase = [];
+  let authors = ['Lewis Carroll', 'Paulo Coelho', 'Joanne Rowling', 'Chack Pallaniuk'],
+    commentText = 'Some text for comment base. To see, how they view on the screen. This is so disastar. And I doesn`t know, what I write, so please don`t be shine.';
+
+  for (let i = count; i >= 0; i--) {
+    commentsBase = [...commentsBase, {
+      text: commentText,
+      author: authors[Math.floor(Math.random() * authors.length)],
+      postDate: new Date(2017, 11, 13, i + 1)
+    }];
+  }
+
+  return commentsBase;
+}*/

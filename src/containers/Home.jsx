@@ -1,47 +1,40 @@
 import React, { Component } from 'react';
 
-//import Search from './Search.jsx';
+import { getAllBooks } from '../services/getBook.jsx';
 import Category from '../components/Category.jsx';
 
 import './Home.scss';
 
 export default class Home extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
     this.state = {
-      books: []
-    };
+      
+    }
   }
 
   componentDidMount() {
-    return fetch('/books')
-      .then((response) => response.json())
-      .then((responseJson) => {
-        this.setState({
-          isLoading: false,
-          books: responseJson
-        }, function() {
-          console.log(this.state.books);
-        });
+    getAllBooks().then(
+      books => this.setState({
+        books: books
       })
-      .catch((error) => {
-        console.error(error);
-      });
+    );
   }
 
   render() {
-    const { categoryId } = this.props.match.params;
-    const { books } = this.state;
+    const {categoryId} = this.props.match.params;
+    const {books} = this.state;
 
     return (
-      <div className="home">
-        <article className="home-page">
+      <article ref={(div) => {this._homeBlock = div}} className="home">
+        <section className="home-page">
           <main className="main home-page__main">
             <Category categoryId={ categoryId } books={ books } />
           </main>
-        </article>
-      </div>
+        </section>
+      </article>
       );
   }
 }
