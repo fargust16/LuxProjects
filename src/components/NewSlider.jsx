@@ -25,7 +25,7 @@ export default class Slider extends Component {
   }
 
   resetVarsOnResize() {
-    const {switchHideWidth, currentStep} = this.state;
+    const {switchHideWidth, currentStep, visibleBlockCount} = this.state;
 
     let blockSizeTemp = this._calcBlockOffset(this._switcher.childNodes[0]), // calc book offset include margins from left and right
       switcherSize = this._switcher.offsetWidth,

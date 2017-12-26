@@ -78,7 +78,7 @@ export default class AddBook extends Component {
                 <input type="date"
                   name="publish-date"
                   className="field add-book__date-field"
-                  ref="publish-date" />
+                  id="publish-date" />
               </label>
             </div>
           </section>
@@ -101,7 +101,7 @@ export default class AddBook extends Component {
           </section>
           <div className="field captcha add-book__captcha">
             <input type="checkbox"
-              ref="isRobot"
+              id="isRobot"
               name="isRobot"
               className="captcha__quest" />
             <label htmlFor="isRobot" className="captcha__text">

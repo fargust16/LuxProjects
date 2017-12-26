@@ -27,9 +27,10 @@ const ViewBooksInCategory = ({books}) => {
 }
 
 const ViewBooksInHome = ({books, categoryName}) => {
+  let blocks = [...books];
   return (
     <div className="books home-page__books">
-      <Slider blocks={ books } hideWidth={ 1023 } />
+      { blocks.length === 0 ? blocks : <Slider blocks={ blocks } hideWidth={ 1023 } /> }
       <Link className="switcher__see-more" to={ { pathname: '/books/categories/' + categoryName } }>
         more
       </Link>
@@ -41,13 +42,19 @@ const Results = ({books, categoryId, categoryName}) => {
   let content,
     booksCont;
 
-  booksCont = books ? books.map(book => {
-    return (
-      <Book {...book} key={ book.Id } categoryId={categoryId}/>
-      );
-  }) : <Book />;
+  booksCont = books ?
+    books.map(book => {
+      return (
+        <Book {...book} key={ book.Id } categoryId={ categoryId } />
+        );
+    })
+    :
+    <Book key={ 1 } />;
 
-  content = categoryId ? <ViewBooksInCategory books={ booksCont } /> : <ViewBooksInHome books={ booksCont } categoryName={ categoryName } />
+  content = categoryId ?
+    <ViewBooksInCategory books={ booksCont } />
+    :
+    <ViewBooksInHome books={ booksCont } categoryName={ categoryName } />
 
   return (
     <div className="category__results-books">
