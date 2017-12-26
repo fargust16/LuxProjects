@@ -26,4 +26,8 @@ app.get('/books/view/:id', function(req, res, next) {
   res.send(books[req.params.id]);
 });
 
+app.get('/books/read/:id', function(req, res, next) {
+  res.send(books[req.params.id]);
+});
+
 module.exports = app;

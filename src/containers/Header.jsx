@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import Menu from '../components/Menu';
+import classNames from 'classnames';
 
 import './Header.scss';
 
@@ -23,18 +24,19 @@ export default class Header extends Component {
 
   render() {
     const {isShowMenu} = this.state;
-    
+
+    console.log(isShowMenu)
+
     return (
       <article className={ isShowMenu ? "header-wrap_active-menu header-wrap" : "header-wrap" }>
         <header className="header-nav home-page__header-nav">
           <Link to="/" className="header-nav__logo" onClick={ (isShow) => this.handleDisplayMenu(false) }>
             <h1>Online Library</h1>
           </Link>
-          { isShowMenu
-            ?
-            <i className="fa fa-times header-nav__close-btn" aria-hidden="true" onClick={ (isShow) => this.handleDisplayMenu(false) }></i>
-            :
-            <i className="fa fa-bars header-nav__open-btn" aria-hidden="true" onClick={ (isShow) => this.handleDisplayMenu(true) }></i> }
+          <i className={ classNames({
+                           'header-nav__close-btn': isShowMenu,
+                           'header-nav__open-btn': !isShowMenu
+                         }) } onClick={ (isShow) => this.handleDisplayMenu(!isShowMenu) }></i>
           <Menu isShow={ isShowMenu } handleDisplayMenu={ () => this.handleDisplayMenu() } />
         </header>
       </article>

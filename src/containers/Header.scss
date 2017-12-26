@@ -38,6 +38,10 @@
         font-size: 20px;
         color: #fff;
 
+        &:before {
+            @include awesome-icon(relative, '\f0c9' , inherit)
+        }
+
         &:hover {
             cursor: pointer;
         }
@@ -53,6 +57,10 @@
         right: $main-padding + 2;
         font-size: 20px;
         color: #fff;
+
+        &:before {
+            @include awesome-icon(relative, '\f00d' , inherit)
+        }
 
         &:hover {
             cursor: pointer;

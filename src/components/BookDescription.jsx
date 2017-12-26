@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import { getBookById } from '../services/getBook.jsx';
+import { getBookInfo } from '../services/getBook.jsx';
 
 import Rating from './Rating.jsx';
 import Comments from './Comments.jsx';
@@ -20,7 +20,7 @@ export default class BookDescription extends Component {
 
   componentDidMount() {
     const {bookId} = this.props.match.params
-    getBookById(parseInt(bookId, 10)).then(
+    getBookInfo(parseInt(bookId, 10)).then(
       book => {
         this.setState({
           book

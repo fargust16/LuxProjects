@@ -22,11 +22,6 @@ class FadeIn extends Component {
     window.setTimeout(() => {
       this._otherPage.className = "transition-item transition-item_show";
     }, 1000 / 60);
-
-  /*window.requestAnimationFrame(function() {
-    //elem.style.transition = that.props.transition || "opacity 5000ms";
-    //elem.style.opacity = 1;
-  });*/
   }
 
   render() {
