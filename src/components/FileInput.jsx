@@ -23,9 +23,9 @@ export default class FileInput extends Component {
   render() {
     return (
       <label htmlFor="book_source" className="field option__field add-book__source">
-        <mark className="add-book__source-title" ref={ (mark) => {
-                                                         this._sourceTitle = mark
-                                                       } }>
+        <mark ref={ (mark) => {
+                      this._sourceTitle = mark
+                    } } className="add-book__source-title">
           Файл не выбран
         </mark>
         <input type="file"

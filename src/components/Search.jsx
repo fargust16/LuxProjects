@@ -8,14 +8,14 @@ export default class Search extends Component {
       <div className="search home-page__search">
         <div className="search__box-shadow">
           <label htmlFor="search-field" className="search__field-ico">
-            <input ref="search-field"
+            <input id="search-field"
               type="text"
               className="search__field"
               name="search"
               placeholder="Find a solution" />
           </label>
           <label htmlFor="search-options" className="search__options-ico">
-            <select ref="search-options" className="search__options">
+            <select id="search-options" className="search__options">
               <option className="search__option" value="all">
                 All
               </option>

@@ -1,60 +1,60 @@
 @import '../constants.scss';
 
 .menu {
-    position: absolute;
-    top: 63px;
-    right: 0;
-    width: 100%;
-    font-weight: 400;
+  position: absolute;
+  top: 63px;
+  right: 0;
+  width: 100%;
+  font-weight: $regular;
+  font-size: 20px;
+
+  @include desktop {
+    top: 100px;
+    left: 0;
+    right: auto;
+    width: 166px;
+    border-top: $border;
+  }
+
+  &__profile {
+    padding-left: 55px;
+    line-height: 100px;
+    border-bottom: 1px solid #fff;
+
+    &::before {
+      @include awesome-icon(absolute, '\f2be', 48px);
+      left: 18px;
+      color: #fff;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__profile-link {
+    margin-left: 20px;
+    text-decoration: none;
     font-size: 20px;
+    font-weight: $bold;
+    color: #fff;
+  }
 
-    @include desktop {
-        top: 100px;
-        left: 0;
-        right: auto;
-        width: 166px;
-        border-top: $border;
+  &__option {
+    font-size: 16px;
+    border-bottom: 1px solid #fff;
+
+    &:hover {
+      cursor: pointer;
     }
+  }
 
-    &__profile {
-        padding-left: 55px;
-        line-height: 100px;
-        border-bottom: 1px solid #fff;
-
-        &::before {
-            @include awesome-icon(absolute, '\f2be', 48px);
-            left: 18px;
-            color: #fff;
-
-            &:hover {
-                cursor: pointer;
-            }
-        }
-    }
-
-    &__profile-link {
-        margin-left: 20px;
-        text-decoration: none;
-        font-size: 20px;
-        font-weight: 600;
-        color: #fff;
-    }
-
-    &__option {
-        font-size: 16px;
-        border-bottom: 1px solid #fff;
-
-        &:hover {
-            cursor: pointer;
-        }
-    }
-
-    &__option-link {
-        display: block;
-        width: 100%;
-        padding-left: 18px;
-        text-decoration: none;
-        line-height: 60px;
-        color: #fff;
-    }
+  &__option-link {
+    display: block;
+    width: 100%;
+    padding-left: 18px;
+    text-decoration: none;
+    line-height: 60px;
+    color: #fff;
+  }
 }

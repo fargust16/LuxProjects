@@ -1,15 +1,17 @@
+@import '../constants.scss';
+
 .captcha {
-    width: 100%;
-    margin: 0 auto;
-    padding: 20px 10px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 10px;
 
-    border-radius: 10px;
+  border-radius: 10px;
 
-    &__quest {
-	    display: inline-block;
-    }
+  &__quest {
+    display: inline-block;
+  }
 
-    &__text {
-    	font-weight: 400;
-    }
+  &__text {
+    font-weight: $regular;
+  }
 }

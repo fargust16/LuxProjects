@@ -1,107 +1,107 @@
 @import "../constants.scss";
 
 .book-description {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin: 10px 8px;
+  padding: 10px;
+  font-size: 14px;
+
+  &__info {
     display: flex;
-    flex-flow: column;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  &__book-cover {
+    max-width: 290px;
+    min-height: 276px;
+
+    flex: 1 0;
+  }
+
+  &__main-info {
+    display: flex;
+    flex-flow: column wrap;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0,0,0,.2);
+
+    @include tablet {
+      margin-left: 15px;
+      flex: 2 0;
+    }
+
+    @include desktop {
+      margin-left: 15px;
+      flex: 2 0;
+    }
+  }
+
+  &__title {
+    @extend %small-caps;
+    color: $primary-color;
+    font-size: 25px;   
+  }
+
+  &__author, &__pablish-date {
+    margin-top: 5px;
+  }
+
+  &__control-info {
+    margin-top: 10px;
+  }
+
+  &__text {
+    @include multi-textblock(13px, 1.25em, 3);
+    flex: 2 0;
+    margin-top: 10px;
+    padding-top: 2px;
+
+    @include tablet {
+      -webkit-line-clamp: 16;
+    }
+
+    @include desktop {
+      -webkit-line-clamp: 16;
+    }
+  }
+
+  &__text-more {
+    color: $primary-color;
+    font-size: 13px;
+  }
+
+  &__reviews {
+    display: flex;
+    flex-flow: row;
     align-items: center;
-    margin: 10px 8px;
-    padding: 10px;
-    font-size: 14px;
+    width: 100%;
+    height: auto;
+    padding: 15px 0;
+    border-bottom: 1px solid #dcdcdc;
+    font-size: 13px;
+  }
 
-    &__info {
-        display: flex;
-        flex-flow: row wrap;
-        align-items: flex-start;
-        width: 100%;
-    }
+  &__reviews-count {
+    margin-left: 20px;
+    font-size: 15px;
+  }
 
-    &__book-cover {
-        max-width: 290px;
-        min-height: 276px;
+  &__buttons {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    margin-top: 10px;
+  }
 
-        flex: 1 0;
-    }
-
-    &__main-info {
-        display: flex;
-        flex-flow: column wrap;
-        padding-bottom: 10px;
-        border-bottom: 1px solid rgba(0,0,0,.2);
-
-        @include tablet {
-            margin-left: 15px;
-            flex: 2 0;
-        }
-
-        @include desktop {
-            margin-left: 15px;
-            flex: 2 0;
-        }
-    }
-
-    &__title {
-        @extend %small-caps;
-        color: $primary-color;
-        font-size: 25px;   
-    }
-
-    &__author, &__pablish-date {
-        margin-top: 5px;
-    }
-
-    &__control-info {
-        margin-top: 10px;
-    }
-
-    &__text {
-        @include multi-textblock(13px, 1.25em, 3);
-        flex: 2 0;
-        margin-top: 10px;
-        padding-top: 2px;
-
-        @include tablet {
-            -webkit-line-clamp: 16;
-        }
-
-        @include desktop {
-            -webkit-line-clamp: 16;
-        }
-    }
-
-    &__text-more {
-        color: $primary-color;
-        font-size: 13px;
-    }
-
-    &__reviews {
-        display: flex;
-        flex-flow: row;
-        align-items: center;
-        width: 100%;
-        height: auto;
-        padding: 15px 0;
-        border-bottom: 1px solid #dcdcdc;
-        font-size: 13px;
-    }
-
-    &__reviews-count {
-        margin-left: 20px;
-        font-size: 15px;
-    }
-
-    &__buttons {
-        display: flex;
-        flex-flow: row;
-        justify-content: center;
-        margin-top: 10px;
-    }
-
-    &__button {
-        margin: 0 5px;
-        white-space: nowrap;
-    }
+  &__button {
+    margin: 0 5px;
+    white-space: nowrap;
+  }
 }
 
 .btn-read {
-    color: $primary-color;
+  color: $primary-color;
 }

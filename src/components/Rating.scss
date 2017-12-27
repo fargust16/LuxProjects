@@ -1,33 +1,33 @@
 @import '../constants.scss';
 
 .rating {
-    position: relative;
-    border: none;
-    min-width: 174px;
+  position: relative;
+  border: none;
+  min-width: 174px;
 
-    & > input {
-        display: none;
+  & > input {
+    display: none;
+  }
+
+  & > label:before {
+    display: inline-block;
+    margin-right: 5px;
+    @include awesome-icon(inherit, '\f005', 32px);
+  }
+
+  & > .half:before {
+    position: absolute;
+    content: '\f089';
+  }
+
+  & > label {
+    float: right;
+    color: #ddd;
+
+    &:hover {
+      cursor: pointer;
     }
-
-    & > label:before {
-        display: inline-block;
-        margin-right: 5px;
-        @include awesome-icon(inherit, '\f005', 32px);
-    }
-
-    & > .half:before {
-        position: absolute;
-        content: '\f089';
-    }
-
-    & > label {
-        float: right;
-        color: #ddd;
-
-        &:hover {
-            cursor: pointer;
-        }
-    }
+  }
 }
 
 /*-- TODO fix this stars style-names --*/

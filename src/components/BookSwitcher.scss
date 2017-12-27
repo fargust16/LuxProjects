@@ -1,100 +1,100 @@
 @import '../constants.scss';
 
 .switcher {
+  display: flex;
+  overflow: visible;
+  flex-flow: row;
+  justify-content: flex-start;
+  width: 100%;
+  transition: transform 0s ease-out;
+  flex-wrap: nowrap;
+
+  &__button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
-    overflow: visible;
-    flex-flow: row;
-    justify-content: flex-start;
-    width: 100%;
-    transition: transform 0s ease-out;
-    flex-wrap: nowrap;
+    align-items: center;
+    width: 25px;
+    height: 60px;
+    box-shadow: $box-shadow;
+    background-color: rgba(255,255,255,0.8);
+    border-radius: 4px;
+    text-align: center;
 
-    &__button {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        display: flex;
-        align-items: center;
-        width: 25px;
-        height: 60px;
-        box-shadow: $box-shadow;
-        background-color: rgba(255,255,255,0.8);
-        border-radius: 4px;
-        text-align: center;
-
-        &_hide {
-            display: none;
-        }
-
-        &:hover {
-            cursor: pointer;
-            background-color: rgba(255,255,255,1);
-        }
+    &_hide {
+      display: none;
     }
 
-    &__dots {
-        position: absolute;
-        left: 50%;
-        user-select: none;
-        transform: translateX(-50%);
-
-        &_hide {
-            display: none;
-        }
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(255,255,255,1);
     }
+  }
 
-    &__dot {
-        margin: 0 2px;
-        color: #fff;
-        border: 2px solid $black;
-        border-radius: 8px;
-        font-size: 7px;
+  &__dots {
+    position: absolute;
+    left: 50%;
+    user-select: none;
+    transform: translateX(-50%);
 
-        &_active {
-            color: red;
-        }
+    &_hide {
+      display: none;
     }
+  }
 
-    &__see-more {
-        position: absolute;
-        right: 20px;
-        bottom: 13px;
-        cursor: pointer;
-        text-decoration: none;
-        color: $primary-color;
+  &__dot {
+    margin: 0 2px;
+    color: #fff;
+    border: 2px solid $black;
+    border-radius: 8px;
+    font-size: 7px;
 
-        &::after {
-            margin-left: 5px;
-            @include awesome-icon(inherit, '\f105 \f105', 16px);
-        }
+    &_active {
+      color: red;
     }
+  }
 
-    &__book {
-        min-width: 260px;
-        margin: 0 6px 10px;
+  &__see-more {
+    position: absolute;
+    right: 20px;
+    bottom: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    color: $primary-color;
 
-        @include tablet {
-            min-width: 338px;
-        }
+    &::after {
+      margin-left: 5px;
+      @include awesome-icon(inherit, '\f105 \f105', 16px);
     }
+  }
+
+  &__book {
+    min-width: 260px;
+    margin: 0 6px 10px;
+
+    @include tablet {
+      min-width: 338px;
+    }
+  }
 }
 
 .btn-prev {
-    left: 8px;
+  left: 8px;
 
-    &::after {
-        @include awesome-icon(relative, '\f053', 24px);
-        color: $black;
-        padding-left: 5px;
-    }
+  &::after {
+    @include awesome-icon(relative, '\f053', 24px);
+    color: $black;
+    padding-left: 5px;
+  }
 }
 
 .btn-next {
-    right: 8px;
+  right: 8px;
 
-    &::after {
-        @include awesome-icon(relative, '\f054', 24px);
-        color: $black;
-        padding-left: 5px;
-    }
+  &::after {
+    @include awesome-icon(relative, '\f054', 24px);
+    color: $black;
+    padding-left: 5px;
+  }
 }

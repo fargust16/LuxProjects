@@ -1,42 +1,42 @@
 @import '../constants.scss';
 
 .main__category {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .category {
-    position: relative;
-    overflow: hidden;
-    white-space: nowrap;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: $box-shadow;
-    padding: 10px 0;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: $box-shadow;
+  padding: 10px 0;
 
-    &__books {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
+  &__books {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+  }
+
+  &__results-books {
+    margin-top: 10px;
+  }
+
+  &__book {
+    width: 260px;
+    display: flex;
+    flex-flow: row;
+    box-sizing: border-box;
+    flex: 2 0 auto;
+    margin: 0 6px 10px;
+
+    @include tablet {
+      width: 338px;
     }
 
-    &__results-books {
-        margin-top: 10px;
+    @include large {
+      max-width: 366px;
     }
-
-    &__book {
-        width: 260px;
-        display: flex;
-        flex-flow: row;
-        box-sizing: border-box;
-        flex: 2 0 auto;
-        margin: 0 6px 10px;
-
-        @include tablet {
-            width: 338px;
-        }
-
-        @include large {
-            max-width: 366px;
-        }
-    }
+  }
 }

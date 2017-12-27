@@ -17,7 +17,8 @@ export default class Option extends Component {
     this.resizeWindow = this.resizeWindow.bind(this);
   }
 
-  handleShowExternalOptions() {
+  handleShowExternalOptions(isOpen) {
+    if (isOpen) return;
     const {showOption} = this.state;
 
     this.setState({
@@ -43,29 +44,30 @@ export default class Option extends Component {
 
   render() {
     const {showOption} = this.state;
-    const {optionType, children} = this.props;
+    const {children, optionName, subClass, closeVar, needButtons} = this.props;
+
+    let alwaysOpen = closeVar || false;
 
     return (
       <section className="option">
-        <BlockHeader blockName={'Change ' + optionType} closeVar={ showOption } handleChangeVar={ () => this.handleShowExternalOptions() } />
-        <form ref={ optionType }
-          name={ optionType }
-          action=""
-          method="POST"
-          className={ classNames('option__content', {
-                        'settings__form': showOption,
-                        'settings__form_hide': !showOption
-                      }) }>
+        <BlockHeader blockName={ optionName } closeVar={ showOption } handleChangeVar={ (isOpen) => this.handleShowExternalOptions(alwaysOpen) } />
+        <div className={ classNames(subClass || '', {
+                           'option__content': showOption,
+                           'option__content_hide': !showOption
+                         }) }>
           { children }
-          <div className="option__buttons">
-            <button className="option__button button btn-clear" type="reset" onClick={ () => this.handleShowExternalOptions() }>
-              Cancel
-            </button>
-            <button className="option__button button btn-submit" type="submit">
-              Save changes
-            </button>
-          </div>
-        </form>
+          { needButtons ?
+            <div className="option__buttons">
+              <button className="option__button button btn-clear" type="reset" onClick={ (isOpen) => this.handleShowExternalOptions(alwaysOpen) }>
+                Cancel
+              </button>
+              <button className="option__button button btn-submit" type="submit">
+                Save changes
+              </button>
+            </div>
+            :
+            '' }
+        </div>
       </section>
       );
   }

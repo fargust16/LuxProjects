@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-//import Book from './Book.jsx';
 import BookSwitcher from './BookSwitcher.jsx';
 
 import './Books.scss';

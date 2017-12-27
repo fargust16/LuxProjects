@@ -52,7 +52,7 @@ export default class Comments extends Component {
       this.setState({
         commentsOffset: window.pageYOffset
       });
-      scroll.scrollTo(this.refs.comments_block.offsetTop - 150, {
+      scroll.scrollTo(this.refs._comments_block.offsetTop - 150, {
         duration: 500,
         delay: 50,
         smooth: true
@@ -123,25 +123,30 @@ export default class Comments extends Component {
     }, this.props.className);
 
     return (
-      <section ref="comments_block" className="comments other-pages__comments">
+      <section ref={ (div) => {
+                 this._comments_block = div
+               } } className="comments other-pages__comments">
         <BlockHeader blockName="Comments" closeVar={ showCom } handleChangeVar={ () => this.showComments() } />
-        <section ref="comments_content" className={ contentClass }>
+        <section className={ contentClass }>
           <div className="new-comment comments__new-comment">
             <img className="comment__user-image" src="" alt="" />
             <div className="new-comment__desc">
               <textarea className="field new-comment__text"
                 placeholder="leave a comment"
-                ref="comment_text"
                 onFocus={ (isShow) => this.showCommentsButtons(true) }
                 onChange={ (e) => this.handleCommentTextChange(e) }
                 value={ commentText }></textarea>
               <footer className={ buttonsClass }>
                 <button className={ classNames('new-comment__button btn-clear', {
-                                    'button': window.innerWidth >= 768
-                                  }) } onClick={ (isShow) => this.showCommentsButtons(false) }>Cancel</button>
+                                      'button': window.innerWidth >= 768
+                                    }) } onClick={ (isShow) => this.showCommentsButtons(false) }>
+                  Cancel
+                </button>
                 <button className={ classNames('new-comment__button btn-send', {
-                                    'button': window.innerWidth >= 768
-                                  }) } onClick={ () => this.postNewComment() } disabled={this.state.commentText === ''}>Send comment</button>
+                                      'button': window.innerWidth >= 768
+                                    }) } onClick={ () => this.postNewComment() } disabled={ this.state.commentText === '' }>
+                  Send comment
+                </button>
               </footer>
             </div>
           </div>

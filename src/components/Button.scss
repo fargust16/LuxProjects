@@ -1,27 +1,27 @@
 @import '../constants.scss';
 
 .button {
-    display: block;
-    padding: 10px;
-    transition: all .1s ease-in;
-    text-decoration: none;
-    border: 1px solid rgba(0,0,0,.2);
-    border-radius: 5px;
-    background-color: #fff;
-    font-size: 20px;
-    line-height: initial;
-    @extend %small-caps;
+  display: block;
+  padding: 10px;
+  transition: all .1s ease-in;
+  text-decoration: none;
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: 5px;
+  background-color: #fff;
+  font-size: 20px;
+  line-height: initial;
+  @extend %small-caps;
 
-    &:not([disabled]):hover {
-        transition: all .0s ease-in;
-        border: $border-btn;
-        box-shadow: $box-shadow;
-        font-weight: 600;
-        cursor: pointer;
-    }
+  &:not([disabled]):hover {
+    transition: all .0s ease-in;
+    border: $border-btn;
+    box-shadow: $box-shadow;
+    font-weight: $bold;
+    cursor: pointer;
+  }
 
-    &:active {
-        transform: scale(.95);
-        outline: none;
-    }
+  &:active {
+    transform: scale(.95);
+    outline: none;
+  }
 }

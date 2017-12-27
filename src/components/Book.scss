@@ -1,62 +1,62 @@
 @import '../constants.scss';
 
 .books {
-    position: relative;
-    min-width: 282px;
-    margin: 0 auto;
-    padding: 0 4px 5px;
+  position: relative;
+  min-width: 282px;
+  margin: 0 auto;
+  padding: 0 4px 5px;
 
-    @include desktop {
-        width: fit-content;
-    }
+  @include desktop {
+    width: fit-content;
+  }
 }
 
 .book {
-    width: 100%;
-    min-width: 254px;
-    min-height: 150px;
-    position: relative;
-    display: flex;
-    flex-flow: row;
-    align-items: flex-start;
-    padding: 15px 10px;
-    border: 1px solid rgba(0,0,0,.2);
-    border-radius: 5px;
+  width: 100%;
+  min-width: 254px;
+  min-height: 150px;
+  position: relative;
+  display: flex;
+  flex-flow: row;
+  align-items: flex-start;
+  padding: 15px 10px;
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: 5px;
 
-    &__cover {
-        width: 100px;
+  &__cover {
+    width: 100px;
 
-        @include tablet {
-            width: 120px;
-        }
+    @include tablet {
+      width: 120px;
     }
+  }
 
-    &__info {
-        margin-left: 10px;
-        white-space: normal;
+  &__info {
+    margin-left: 10px;
+    white-space: normal;
+  }
+
+  &__title {
+    text-decoration: none;
+    color: $primary-color;
+  }
+
+  &__author {
+    font-size: 13px;
+    color: $black;
+  }
+
+  &__desc {
+    @include multi-textblock(12px, 1.15em, 6);
+    margin-top: 5px;
+
+    @include tablet {
+     -webkit-line-clamp: 8;
     }
+  }
 
-    &__title {
-        text-decoration: none;
-        color: $primary-color;
-    }
-
-    &__author {
-        font-size: 13px;
-        color: $black;
-    }
-
-    &__desc {
-        @include multi-textblock(12px, 1.15em, 6);
-        margin-top: 5px;
-
-        @include tablet {
-            -webkit-line-clamp: 8;
-        }
-    }
-
-    &__reviews {
-        position: absolute;
-        bottom: 14px;
-    }
+  &__reviews {
+    position: absolute;
+    bottom: 14px;
+  }
 }

@@ -24,9 +24,6 @@ export default class Header extends Component {
 
   render() {
     const {isShowMenu} = this.state;
-
-    console.log(isShowMenu)
-
     return (
       <article className={ isShowMenu ? "header-wrap_active-menu header-wrap" : "header-wrap" }>
         <header className="header-nav home-page__header-nav">

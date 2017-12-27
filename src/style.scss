@@ -14,7 +14,7 @@ body {
     background-color: #eee;
 
     font-family: $font-stack;
-    font-weight: 400;
+    font-weight: $regular;
 
     @include desktop {
         margin-left: 166px;
@@ -30,7 +30,7 @@ textarea,
 button,
 select {
     font-family: $font-stack;
-    font-weight: 400;
+    font-weight: $regular;
 }
 
 ::-webkit-input-placeholder {

@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 const books = require('./books.json');
+const recentBooks = require('./recentBooks.json');
 
 const app = express();
 
@@ -24,6 +25,10 @@ app.get('/books', function(req, res, next) {
 
 app.get('/books/view/:id', function(req, res, next) {
   res.send(books[req.params.id]);
+});
+
+app.get('/books/recent/', function(req, res, next) {
+  res.send(recentBooks);
 });
 
 app.get('/books/read/:id', function(req, res, next) {

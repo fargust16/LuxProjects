@@ -1,69 +1,69 @@
 @import '../constants.scss';
 
 .header {
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 20px;
+  line-height: 32px;
+  @extend %small-caps;
+
+  &_open {
+    transition: all .1s ease-in;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &::before {
+      position: absolute;
+      top: 53%;
+      left: 0;
+      z-index: 1;
+      width: 100vw;
+      height: 1px;
+      content: '';
+      background-color: $black;
+    }
+  }
+
+  &_close {
+    transition: all .1s ease-in;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &::before {
+      @include awesome-icon(absolute, '\f0dd', 20px);
+      top: 50%;
+      right: 10px;
+      transform: translateY(-20px);
+    }
+  }
+
+  &__text {
     position: relative;
-    white-space: nowrap;
-    overflow: hidden;
-    font-size: 20px;
-    line-height: 32px;
-    @extend %small-caps;
-
-    &_open {
-        transition: all .1s ease-in;
-
-        &:hover {
-            cursor: pointer;
-        }
-
-        &::before {
-            position: absolute;
-            top: 53%;
-            left: 0;
-            z-index: 1;
-            width: 100vw;
-            height: 1px;
-            content: '';
-            background-color: $black;
-        }
-    }
-
-    &_close {
-        transition: all .1s ease-in;
-
-        &:hover {
-            cursor: pointer;
-        }
-
-        &::before {
-            @include awesome-icon(absolute, '\f0dd', 20px);
-            top: 50%;
-            right: 10px;
-            transform: translateY(-20px);
-        }
-    }
-
-    &__text {
-        position: relative;
-        z-index: 2;
-        margin-left: 5px;
-        padding: 5px;
-        background-color: #fff;
-    }
+    z-index: 2;
+    margin-left: 5px;
+    padding: 5px;
+    background-color: #fff;
+  }
 }
 
 .main-header {
-    position: relative;
-    width: auto;
-    white-space: nowrap;
-    color: $primary-color;
-    font-size: 20px;
-    line-height: 20px;
+  position: relative;
+  width: auto;
+  white-space: nowrap;
+  color: $primary-color;
+  font-size: 20px;
+  line-height: 20px;
 
-    &__text {
-        position: relative;
-        z-index: 2;
-        margin-left: 5px;
-        padding: 5px;
-        background-color: #fff;
-    }
+  &__text {
+    position: relative;
+    z-index: 2;
+    margin-left: 5px;
+    padding: 5px;
+    background-color: #fff;
+  }
 }
