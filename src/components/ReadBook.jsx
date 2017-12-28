@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getBookText } from '../services/getBook.jsx';
+import { getBookText } from '../services/api';
 
 import './ReadBook.scss';
 

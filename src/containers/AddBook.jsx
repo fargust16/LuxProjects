@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Option from '../components/Option.jsx';
 import FileInput from '../components/FileInput.jsx';
+
 import './AddBook.scss';
 
 export default class AddBook extends Component {

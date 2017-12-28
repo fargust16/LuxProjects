@@ -3,6 +3,10 @@ import moment from 'moment';
 import * as Scroll from 'react-scroll';
 import classNames from 'classnames';
 
+import AuthForm from './AuthForm.jsx';
+
+import { login, isLoggedIn } from '../services/AuthService';
+
 import BlockHeader from './BlockHeader.jsx';
 import './Comments.scss';
 
@@ -20,7 +24,8 @@ export default class Comments extends Component {
       commentsOffset: 0,
       comments: comTemp || [],
       commentText: '',
-      maxComments: 5
+      maxComments: 5,
+      isAuth: false
     }
 
     this.resizeWindow = this.resizeWindow.bind(this);
@@ -90,11 +95,22 @@ export default class Comments extends Component {
     });
   }
 
-  showCommentsButtons(isShow) {
+  showCommentsButtons(e, isShow) {
+    if(!isLoggedIn()) {
+      e.target.blur();
+      return
+    }
+
     this.setState({
       showComBtns: isShow,
       commentText: !isShow ? '' : this.state.commentText
     });
+  }
+
+  handleShowAuthForm(isShowForm) {
+    this.setState({
+      isAuth: isShowForm
+    })
   }
 
   componentWillReceiveProps(nextProps) {
@@ -112,7 +128,7 @@ export default class Comments extends Component {
   }
 
   render() {
-    const {comments, showCom, showComBtns, commentText, maxComments} = this.state;
+    const {comments, showCom, showComBtns, commentText, maxComments, isAuth} = this.state;
 
     let contentClass = classNames('comments__content', {
       'comments__content_hide': !showCom
@@ -133,7 +149,8 @@ export default class Comments extends Component {
             <div className="new-comment__desc">
               <textarea className="field new-comment__text"
                 placeholder="leave a comment"
-                onFocus={ (isShow) => this.showCommentsButtons(true) }
+                onFocus={ (e, isShow) => this.showCommentsButtons(e, true) }
+                onClick={ (isShowForm) => this.handleShowAuthForm(!isLoggedIn()) }
                 onChange={ (e) => this.handleCommentTextChange(e) }
                 value={ commentText }></textarea>
               <footer className={ buttonsClass }>
@@ -163,6 +180,7 @@ export default class Comments extends Component {
             show more
           </div>
         </section>
+        { isAuth ? <AuthForm onSubmit={ login } onClose={ (isShowForm) => this.handleShowAuthForm(false) } /> : '' }
       </section>
       );
   }

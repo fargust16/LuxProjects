@@ -4,7 +4,7 @@ import { withCookies, Cookies } from 'react-cookie';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
-import { getRecentBooks } from '../services/getBook.jsx';
+import { getRecentBooks } from '../services/api';
 
 import BlockHeader from '../components/BlockHeader.jsx';
 import './Recent.scss';

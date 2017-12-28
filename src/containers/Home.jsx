@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { getAllBooks } from '../services/getBook.jsx';
+import { getAllBooks } from '../services/api';
 import Category from '../components/Category.jsx';
 
 import './Home.scss';

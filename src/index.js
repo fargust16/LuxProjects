@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { CookiesProvider } from 'react-cookie'
-import { BrowserRouter as Router } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import WebFont from 'webfontloader';
 
 import './style.scss';
 
-import App from './App.js';
+import App from './App';
+import history from './history';
 
 import registerServiceWorker from './registerServiceWorker';
 
@@ -18,7 +19,7 @@ WebFont.load({
 
 ReactDOM.render(
   <CookiesProvider>
-    <Router>
+    <Router history={history}>
       <App />
     </Router>
   </CookiesProvider>,

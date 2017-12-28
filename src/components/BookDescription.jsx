@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { withCookies, Cookies } from 'react-cookie';
 import moment from 'moment';
 
-import { getBookInfo } from '../services/getBook.jsx';
+import { getBookInfo } from '../services/api';
 
 import Rating from './Rating.jsx';
 import Comments from './Comments.jsx';

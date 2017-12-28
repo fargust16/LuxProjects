@@ -1,0 +1,92 @@
+@import '../constants.scss';
+
+.modal-block {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background-color: rgba(3,3,3,.85);
+
+  &__main {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: #fff;
+    border: $border;
+    border-radius: 8px;
+    padding: $main-padding;
+  }
+
+  &__cancel {
+    position: absolute;
+    top: 8px;
+    right: $main-padding + 2;
+    font-size: 20px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:before {
+      @include awesome-icon(relative, '\f00d' , inherit)
+    }
+  }
+
+  &__menu {
+    margin-top: 20px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+  }
+
+
+  &__menu-option {
+    padding: 10px;
+    font-size: 24px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__active-option {
+    color: $primary-color;
+  }
+
+  &__content {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+  }
+
+  &__tips {
+    padding: 2px 0 10px;
+    font-size: 14px;
+    color: $primary-color;
+
+    &_hide {
+      display: none;
+    }
+  }
+
+  &__content-help {
+    font-size: 16px;
+    color: lightblue;
+    text-decoration: underline;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__content-btn {
+    margin-top: 10px;
+    width: 100px;
+    line-height: 20px;
+  }
+}
+

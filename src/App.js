@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 import Header from './containers/Header.jsx';
 import Search from './components/Search.jsx';
@@ -13,6 +13,8 @@ import Settings from './containers/Settings.jsx';
 
 import BookDescription from './components/BookDescription.jsx';
 import ReadBook from './components/ReadBook.jsx';
+
+import { isLoggedIn } from './services/AuthService';
 
 import './App.scss';
 
@@ -43,6 +45,18 @@ const MatchWithFade = ({component: Component, transition, ...rest}) => (
                 ) } {...rest} />
 )
 
+const PrivateMatchWithFade = ({component: Component, transition, ...rest}) => (
+  <Route render={ matchProps => (
+                isLoggedIn() ? (
+                  <FadeIn transition={ transition }>
+                    <Component {...matchProps} />
+                  </FadeIn>
+                  ) : (
+                  <Redirect to={ { pathname: '/', state: { from: matchProps.location } } } />
+                  )
+                ) } {...rest} />
+)
+
 export default class App extends Component {
 
   render() {
@@ -54,10 +68,10 @@ export default class App extends Component {
           <MatchWithFade exact path="/" component={ Home } />
           <MatchWithFade path="/books/categories/:categoryId" component={ Home } />
           <OtherPages>
-            <MatchWithFade path="/books/add-book" component={ AddBook } />
+            <PrivateMatchWithFade path="/books/add-book" component={ AddBook } />
             <MatchWithFade path="/books/recent" component={ Recent } />
             <MatchWithFade path="/support" component={ Support } />
-            <MatchWithFade path="/settings" component={ Settings } />
+            <PrivateMatchWithFade path="/settings" component={ Settings } />
             <MatchWithFade path="/books/view/:bookId" component={ BookDescription } />
             <MatchWithFade path="/books/read/:bookId" component={ ReadBook } />
           </OtherPages>
