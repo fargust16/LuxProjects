@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 
+import {ControlButtons} from './ControlButtons.jsx';
 import './Slider.scss';
 
 export default class Slider extends Component {
@@ -160,12 +161,14 @@ export default class Slider extends Component {
           { blocks }
         </div>
         <Dots dotCount={ endOfSwitch + 1 } currentStep={ currentStep } />
-        <ControlBtnView transformFunc={ (directTransform) => this.endSwitchTransform(1) }
+        <ControlButtons transformFunc={ (directTransform) => this.endSwitchTransform(1) }
           btnDirect={ 1 }
+          btnSubClass="switcher__button"
           currentSwitchPos={ currentStep }
           endSwitchPos={ endOfSwitch } />
-        <ControlBtnView transformFunc={ (directTransform) => this.endSwitchTransform(-1) }
+        <ControlButtons transformFunc={ (directTransform) => this.endSwitchTransform(-1) }
           btnDirect={ -1 }
+          btnSubClass="switcher__button"
           currentSwitchPos={ currentStep }
           endSwitchPos={ endOfSwitch } />
       </div>
@@ -189,26 +192,5 @@ const Dots = ({dotCount, currentStep}) => {
     <div className="switcher__dots">
       { content }
     </div>
-    );
-}
-
-const ControlBtnView = ({transformFunc, btnDirect, currentSwitchPos, endSwitchPos}) => {
-  let btnView;
-
-  if ((currentSwitchPos === endSwitchPos && btnDirect === -1) || (currentSwitchPos === 0 && btnDirect === 1)) {
-    btnView = false
-  } else {
-    btnView = true
-  }
-
-  let btnClass = classNames('switcher__button', {
-    'switcher__button_hide': !btnView
-  }, {
-    'btn-prev': btnDirect === 1,
-    'btn-next': btnDirect === -1
-  });
-
-  return (
-    <div className={ btnClass } onClick={ transformFunc }></div>
     );
 }

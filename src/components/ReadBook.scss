@@ -1,13 +1,58 @@
 @import '../constants';
 
-.read-book__content {
-  margin-top: 15px;
-  padding: 0 15px;
+.read-book {
+  height: calc(100vh - 193px);
 
-  text-align: justify;
-  text-indent: 40px;
-  word-spacing: 1.5px;
+  @include small {
+    height: calc(100vh - 163px);
+  }
 
-  font-size: 1em;
-  line-height: 1.25em;
+  @include desktop {
+    height: calc(100vh - 120px);
+  }
+
+  &__content {
+    position: relative;
+    margin-top: 12px;
+    padding: 0 15px;
+
+    height: calc(100% - 60px);
+    overflow: hidden;
+
+    text-align: justify;
+    text-indent: 40px;
+
+    font-size: 1em;
+    line-height: 1.25em;
+    word-spacing: 1px;
+
+    &_full-text {
+      height: 100%;
+      margin-top: 0;
+    }
+  }
+
+  &__button {
+    text-indent: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    width: 25px;
+    height: 60px;
+    box-shadow: $box-shadow;
+    background-color: rgba(255,255,255,0.8);
+    border-radius: 4px;
+    text-align: center;
+
+    &_hide {
+      display: none;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(255,255,255,1);
+    }
+  }
 }

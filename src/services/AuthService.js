@@ -1,18 +1,14 @@
 import { auth } from '../services/api';
 import history from '../history';
+import jwt from 'jwt-simple';
 
 const ID_TOKEN_KEY = 'id_token';
-//const REDIRECT = '/callback';
-
-/*var auth = new auth0.WebAuth({
-  clientID: CLIENT_ID,
-  domain: CLIENT_DOMAIN
-});*/
+const SECRET = 'secretPhrase';
 
 export const login = (authParams) => {
   return auth(authParams).then(user => {
-    if(user) {
-      setIdToken(user)
+    if (user) {
+      setIdToken(user);
       history.push(window.location.pathname);
     }
     return user;
@@ -33,22 +29,18 @@ export const requireAuth = (nextState, replace) => {
 }
 
 export const getIdToken = () => {
-  return localStorage.getItem(ID_TOKEN_KEY);
+  let token = localStorage.getItem(ID_TOKEN_KEY);
+  return token && jwt.decode(token, SECRET);
 }
 
 const clearIdToken = () => {
   localStorage.removeItem(ID_TOKEN_KEY);
 }
 
-/*// Helper function that will allow us to extract the access_token and id_token
-function getParameterByName(name) {
-  let match = RegExp('[#&]' + name + '=([^&]*)').exec(window.location.hash);
-  return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
-}*/
-
 // Get and store id_token in local storage
 export const setIdToken = (authParams) => {
-  localStorage.setItem(ID_TOKEN_KEY, authParams);
+  let tokenValue = jwt.encode(authParams, SECRET);
+  localStorage.setItem(ID_TOKEN_KEY, tokenValue);
 }
 
 export const isLoggedIn = () => {
@@ -56,19 +48,9 @@ export const isLoggedIn = () => {
   return !!idToken;
 }
 
-/*const getTokenExpirationDate = (encodedToken) => {
-  const token = md5(encodedToken);
-  if (!token.exp) {
-    return null;
-  }
+export const userData = () => {
+  if (!isLoggedIn()) return;
 
-  const date = new Date(0);
-  date.setUTCSeconds(token.exp);
-
-  return date;
-}*/
-
-/*function isTokenExpired(token) {
-  const expirationDate = getTokenExpirationDate(token);
-  return expirationDate < new Date();
-}*/
+  const idToken = getIdToken();
+  return idToken;
+}
