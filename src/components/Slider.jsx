@@ -193,4 +193,4 @@ const Dots = ({dotCount, currentStep}) => {
       { content }
     </div>
     );
-}
+};

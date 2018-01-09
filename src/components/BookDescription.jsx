@@ -42,39 +42,39 @@ class BookDescription extends Component {
     const {book} = this.state;
     return (
       <article>
-        <main className="book-description other-pages__block">
-          <section className="book-description__info">
-            <img className="book-description__book-cover" src={ "/images/" + (book.Cover ? book.Cover : '') } alt="book`s name" />
-            <div className="book-description__main-info">
-              <div className="book-description__title">
+        <main className="Book-description other-pages__block">
+          <section className="Book-description__info">
+            <img className="Book-description__book-cover" src={ "/images/" + (book.Cover ? book.Cover : '') } alt="book`s name" />
+            <div className="Book-description__main-info">
+              <div className="Book-description__title">
                 { book.Title }
               </div>
-              <div className="book-description__author">
+              <div className="Book-description__author">
                 { book.Author }
               </div>
-              <section className="book-description__control-info">
-                <div className="book-description__ISBN">
-                  <span>ISBN:</span><span>{ book.ISBN }</span>
+              <section className="Book-description__control-info">
+                <div className="Book-description__ISBN">
+                  <span>ISBN:</span>&nbsp;<span>{ book.ISBN }</span>
                 </div>
-                <div className="book-description__pablish-date">
-                  <span>Pablishing date:</span><span>{ moment(new Date(book.ReleaseDate)).format('DD.MM.YYYY') }</span>
+                <div className="Book-description__publish-date">
+                  <span>Pablishing date:</span>&nbsp;<span>{ moment(new Date(book.ReleaseDate)).format('DD.MM.YYYY') }</span>
                 </div>
               </section>
-              <div className="book-description__text" id="fill_text">
+              <div className="Book-description__text" id="fill_text">
                 { book.Text }
               </div>
-              <span className="book-description__text-more">see more</span>
+              <span className="Book-description__text-more">see more</span>
             </div>
           </section>
-          <div className="book-description__reviews">
+          <div className="Book-description__reviews">
             <Rating rating={ book.Reviews } />
-            <span className="reviews book-description__reviews-count">{ book.Reviews ? book.Reviews.length : 'count' } reviews</span>
+            <span className="reviews Book-description__reviews-count">{ book.Reviews ? book.Reviews.length : 'count' } reviews</span>
           </div>
-          <div className="book-description__buttons">
-            <Link to={ { pathname: '/books/read/' + book.Id } } className="book-description__button button btn-read">
+          <div className="Book-description__buttons">
+            <Link to={ `/books/read/${book.Id}` } className="Book-description__button button btn-read">
               start reading now
             </Link>
-            <Link to="#download" className="book-description__button button btn-download">
+            <Link to="#download" className="Book-description__button button btn-download">
               download
             </Link>
           </div>
@@ -86,33 +86,3 @@ class BookDescription extends Component {
 }
 
 export default withCookies(BookDescription);
-
-
-  /*
-  componentWillUnmount() {
-    const {book} = this.state;
-    const {cookies} = this.props;
-
-    let booksView = cookies.get('recentBooks') || [];
-
-    booksView = booksView.concat({
-      bookId: book.Id,
-      viewDate: moment(new Date()).format('DD.MM.YYYY')
-    });
-
-    cookies.set('recentBooks', booksView, {
-      path: '/'
-    });
-
-    console.log(cookies);
-  }
-
-  zeroCookie() {
-    const {cookies} = this.props;
-
-    cookies.remove('recentBooks', {
-      path: '/'
-    });
-
-    console.log(cookies);
-  }*/

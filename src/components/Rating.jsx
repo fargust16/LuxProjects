@@ -12,13 +12,12 @@ export default class Rating extends Component {
       mark: 0
     }
   }
-  
+
   componentWillReceiveProps(nextProps) {
-    let sumMark = calcRating(nextProps.rating),
-      parseMark = (Math.round((sumMark * 10) / 5) * 5) / 10;
+    let parseMark = calcRating(nextProps.rating);
 
     this.setState({
-       mark: parseMark
+      mark: parseMark
     })
   }
 
@@ -32,7 +31,7 @@ export default class Rating extends Component {
     const {mark} = this.state;
 
     return (
-      <fieldset className="rating book-description__rating">
+      <fieldset className="Rating book-description__rating">
         <StructRatingControls maxMark="5" currMark={ mark } onChange={ (e) => this.handleChangeRating(e) } />
       </fieldset>
       );
@@ -44,40 +43,49 @@ Rating.propTypes = {
 }
 
 const StructRatingControls = ({maxMark, onChange, currMark}) => {
-  let contentTemp = [];
-  for (let i = 0; i < (maxMark * 2); i++) {
-    let j = maxMark * 2 - i;
+  let contentTemp = [],
+    marksCount = maxMark * 2, // full and half marks to maxMark value
+    keyForStars = marksCount * 2; // key for stars. X2 because every star has input & label
+
+  for (let i = 0; i < marksCount; i++) {
+    let j = (marksCount - i) / 2; // star`s value: half - float, full - int
+
     contentTemp[i] = {
-      "input": <input key={ j + maxMark * 2 }
+      "input": <input key={ --keyForStars }
                  type="radio"
-                 id={ 'star' + (j / 2) }
+                 id={ 'star' + j }
                  name="rating"
-                 value={ j / 2 }
-                 checked={ currMark === j / 2 }
+                 value={ j }
+                 checked={ currMark === j }
                  onChange={ onChange } />,
-      "label": <label key={ j }
-                 className={ j % 2 === 0 ? 'full' : 'half' }
-                 htmlFor={ 'star' + (j / 2) }
-                 title={ (j / 2) + ' stars' }></label>
+      "label": <label key={ --keyForStars }
+                 className={ j % 1 === 0 ? 'full' : 'half' }
+                 htmlFor={ 'star' + j }
+                 title={ j + ' stars' }></label>
     }
   }
 
   let content = [];
-  let j = (contentTemp.length * 2) - 1;
-  for (let i = contentTemp.length - 1; i >= 0; i--) {
-    content[j] = contentTemp[i].label;
-    j--;
-    content[j] = contentTemp[i].input;
-    j--;
-  }
+
+  contentTemp.forEach(star => {
+    content.push(star.input);
+    content.push(star.label);
+  })
+
   return content;
-}
+};
 
 const calcRating = (reviewArr) => {
-  if (!reviewArr) return 0
+  if (!reviewArr) return 0;
+
   let mark = 0;
   reviewArr.map(elem => {
     return mark += parseInt(elem.Rating, 10);
   })
-  return mark / reviewArr.length;
-}
+
+  let sumMark = mark / reviewArr.length,
+    parseToHalf = Math.round(sumMark * 2) / 2; // calc avg of users mark to .5 or full
+
+  //console.log('sum of Marks: ' + mark + '\ncount of Marks: ' + reviewArr.length + '\navg Mark: ' + sumMark + '\nround Mark: ' + parseToHalf);
+  return parseToHalf;
+};

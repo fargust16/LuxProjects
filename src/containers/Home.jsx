@@ -11,7 +11,7 @@ export default class Home extends Component {
     super(props);
 
     this.state = {
-      
+      books: []
     }
   }
 
@@ -26,9 +26,9 @@ export default class Home extends Component {
   render() {
     const {categoryId} = this.props.match.params;
     const {books} = this.state;
-
+    
     return (
-      <article ref={(div) => {this._homeBlock = div}} className="home">
+      <article ref={(div) => {this._homeBlock = div}} className="Home">
         <section className="home-page">
           <main className="main home-page__main">
             <Category categoryId={ categoryId } books={ books } />

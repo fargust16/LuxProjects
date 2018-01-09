@@ -78,23 +78,3 @@
     }
   }
 }
-
-.btn-prev {
-  left: 8px;
-
-  &::after {
-    @include awesome-icon(relative, '\f053', 24px);
-    color: $black;
-    padding-left: 5px;
-  }
-}
-
-.btn-next {
-  right: 8px;
-
-  &::after {
-    @include awesome-icon(relative, '\f054', 24px);
-    color: $black;
-    padding-left: 5px;
-  }
-}

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import './OtherPages.scss';
+import './InnerContainer.scss';
 
-export default class OtherPages extends Component {
+export default class InnerContainer extends Component {
 
   render() {
     return (

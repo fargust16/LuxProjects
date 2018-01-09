@@ -1,6 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 
+import './ControlButtons.scss';
+
 export const ControlButtons = ({transformFunc, btnDirect, currentSwitchPos, endSwitchPos, btnSubClass}) => {
   let btnView;
 
@@ -20,4 +22,4 @@ export const ControlButtons = ({transformFunc, btnDirect, currentSwitchPos, endS
   return (
     <div className={ btnClass } onClick={ transformFunc }></div>
     );
-}
+};

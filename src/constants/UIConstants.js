@@ -1,0 +1,1 @@
+export const ON_HIDE_WIDTH = 768;

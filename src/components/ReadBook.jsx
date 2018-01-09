@@ -35,19 +35,19 @@ class ReadBook extends Component {
     const {cookies} = this.props;
 
     let curPage = cookies.get('currentPage', {
-      path: 'books/read/' + bookId
-    }) || 0
+        path: 'books/read/' + bookId
+      }) || 0
 
-    console.log(curPage);
+    //console.log(curPage);
 
     this.setState({
-      currentPage: parseInt(curPage)
+      currentPage: parseInt(curPage, 10)
     })
   }
 
   componentDidMount() {
     const {bookId} = this.props.match.params;
-    const {cookies} = this.props;
+    //const {cookies} = this.props;
 
     getBookText(parseInt(bookId, 10)).then(
       book => {
@@ -61,7 +61,7 @@ class ReadBook extends Component {
   }
 
   switchTextPage(direct) {
-    const {bookId} = this.props.match.params;
+    //const {bookId} = this.props.match.params;
     const {currentPage} = this.state;
 
     let curPageTemp = currentPage + direct;
@@ -83,7 +83,7 @@ class ReadBook extends Component {
   }
 
   calcCountOfTextCols() {
-    const {text, textSize} = this.state;
+    const {text} = this.state;
 
     let textBlockWidth = parseInt(getComputedStyle(this._bookText).width, 10),
       countOfStrEl = Math.floor((textBlockWidth - 30) / 7.9);
@@ -126,19 +126,19 @@ class ReadBook extends Component {
 
     let endOfSwitch = Math.floor(text.length / textSize);
 
-    let pageClass = classNames('read-book__content', {
-      'read-book__content_full-text': currentPage !== 0
+    let pageClass = classNames('ReadBook__content', {
+      'ReadBook__content_full-text': currentPage !== 0
     })
 
     let textOnPage = text.substr(currentPage * textSize, textSize);
 
     return (
-      <main className="read-book other-pages__block">
+      <main className="ReadBook other-pages__block">
         { currentPage === 0 ?
           <section className="main-header">
-            <span className="main-header__text book__title">{ book.Title }</span>
+            <span className="main-header__text Book__title">{ book.Title }</span>
             <br />
-            <span className="main-header__text book__author">{ book.Author }</span>
+            <span className="main-header__text Book__author">{ book.Author }</span>
           </section>
           : '' }
         <section ref={ (div) => {
@@ -147,12 +147,12 @@ class ReadBook extends Component {
           <TextPage text={ textOnPage } />
           <ControlButtons transformFunc={ (direct) => this.switchTextPage(1) }
             btnDirect={ -1 }
-            btnSubClass="read-book__button"
+            btnSubClass="ReadBook__button"
             currentSwitchPos={ currentPage }
             endSwitchPos={ endOfSwitch } />
           <ControlButtons transformFunc={ (direct) => this.switchTextPage(-1) }
             btnDirect={ 1 }
-            btnSubClass="read-book__button"
+            btnSubClass="ReadBook__button"
             currentSwitchPos={ currentPage }
             endSwitchPos={ endOfSwitch } />
         </section>

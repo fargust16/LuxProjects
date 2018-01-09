@@ -1,0 +1,22 @@
+@import '../constants';
+
+.source {
+  &::before {
+    @include awesome-icon(absolute, '\f093', 24px);
+    top: 50%;
+    right: 10px;
+    transform: translateY(-12px);
+  }
+
+  &__field {
+    visibility: hidden;
+    margin: 0;
+  }
+
+  &__title {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-8px);
+    background-color: #fff;
+  }
+}

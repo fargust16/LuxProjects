@@ -7,6 +7,8 @@ import AuthForm from './AuthForm.jsx';
 
 import { login, isLoggedIn } from '../services/AuthService';
 
+import { ON_HIDE_WIDTH } from '../constants/UIConstants.js';
+
 import BlockHeader from './BlockHeader.jsx';
 import './Comments.scss';
 
@@ -19,7 +21,7 @@ export default class Comments extends Component {
     let comTemp = this.props.comments;
 
     this.state = {
-      showCom: window.innerWidth >= 768 ? true : false,
+      showCom: window.innerWidth >= ON_HIDE_WIDTH ? true : false,
       showComBtns: false,
       commentsOffset: 0,
       comments: comTemp || [],
@@ -46,7 +48,7 @@ export default class Comments extends Component {
   }
 
   showComments() {
-    if (window.innerWidth >= 768) return;
+    if (window.innerWidth >= ON_HIDE_WIDTH) return;
     const {showCom} = this.state;
 
     this.setState({
@@ -91,12 +93,12 @@ export default class Comments extends Component {
 
   resizeWindow() {
     this.setState({
-      showCom: window.innerWidth >= 768 ? true : false
+      showCom: window.innerWidth >= ON_HIDE_WIDTH ? true : false
     });
   }
 
   showCommentsButtons(e, isShow) {
-    if(!isLoggedIn()) {
+    if (!isLoggedIn()) {
       e.target.blur();
       return
     }
@@ -141,10 +143,10 @@ export default class Comments extends Component {
     return (
       <section ref={ (div) => {
                  this._comments_block = div
-               } } className="comments other-pages__comments">
-        <BlockHeader blockName="Comments" closeVar={ showCom } handleChangeVar={ () => this.showComments() } />
+               } } className="Comments other-pages__comments">
+        <BlockHeader optionName="Comments" isShowOption={ showCom } handleChangeView={ () => this.showComments() } />
         <section className={ contentClass }>
-          <div className="new-comment comments__new-comment">
+          <div className="new-comment Comments__new-comment">
             <img className="comment__user-image" src="" alt="" />
             <div className="new-comment__desc">
               <textarea className="field new-comment__text"
@@ -155,12 +157,12 @@ export default class Comments extends Component {
                 value={ commentText }></textarea>
               <footer className={ buttonsClass }>
                 <button className={ classNames('new-comment__button btn-clear', {
-                                      'button': window.innerWidth >= 768
+                                      'button': window.innerWidth >= ON_HIDE_WIDTH
                                     }) } onClick={ (isShow) => this.showCommentsButtons(false) }>
                   Cancel
                 </button>
                 <button className={ classNames('new-comment__button btn-send', {
-                                      'button': window.innerWidth >= 768
+                                      'button': window.innerWidth >= ON_HIDE_WIDTH
                                     }) } onClick={ () => this.postNewComment() } disabled={ this.state.commentText === '' }>
                   Send comment
                 </button>
@@ -174,8 +176,8 @@ export default class Comments extends Component {
                 <InputComments {...comment} n={ i } key={ i } />
               )
             }) }
-          <div className={ classNames('button comments__showMore-btn', {
-                             'comments__showMore-btn_hide': maxComments >= comments.length
+          <div className={ classNames('button Comments__showMore-btn', {
+                             'Comments__showMore-btn_hide': maxComments >= comments.length
                            }) } onClick={ () => this.handleMoreComments() }>
             show more
           </div>
@@ -202,20 +204,4 @@ const InputComments = ({Author, Text, PostDate, n}) => {
       </div>
     </div>
     );
-}
-
-/*var fillComments = (count) => {
-  let commentsBase = [];
-  let authors = ['Lewis Carroll', 'Paulo Coelho', 'Joanne Rowling', 'Chack Pallaniuk'],
-    commentText = 'Some text for comment base. To see, how they view on the screen. This is so disastar. And I doesn`t know, what I write, so please don`t be shine.';
-
-  for (let i = count; i >= 0; i--) {
-    commentsBase = [...commentsBase, {
-      text: commentText,
-      author: authors[Math.floor(Math.random() * authors.length)],
-      postDate: new Date(2017, 11, 13, i + 1)
-    }];
-  }
-
-  return commentsBase;
-}*/
+};

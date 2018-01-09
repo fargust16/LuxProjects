@@ -4,6 +4,7 @@ import jwt from 'jwt-simple';
 
 const ID_TOKEN_KEY = 'id_token';
 const SECRET = 'secretPhrase';
+const myStorage = window.localStorage;
 
 export const login = (authParams) => {
   return auth(authParams).then(user => {
@@ -29,18 +30,18 @@ export const requireAuth = (nextState, replace) => {
 }
 
 export const getIdToken = () => {
-  let token = localStorage.getItem(ID_TOKEN_KEY);
+  let token = myStorage ? myStorage.getItem(ID_TOKEN_KEY) : '';
   return token && jwt.decode(token, SECRET);
 }
 
 const clearIdToken = () => {
-  localStorage.removeItem(ID_TOKEN_KEY);
+  myStorage.removeItem(ID_TOKEN_KEY);
 }
 
 // Get and store id_token in local storage
 export const setIdToken = (authParams) => {
   let tokenValue = jwt.encode(authParams, SECRET);
-  localStorage.setItem(ID_TOKEN_KEY, tokenValue);
+  myStorage.setItem(ID_TOKEN_KEY, tokenValue);
 }
 
 export const isLoggedIn = () => {

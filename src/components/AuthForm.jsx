@@ -11,12 +11,12 @@ class AuthForm extends Component {
     super(props);
 
     this.state = {
-      signIn: true,
+      showSignInForm : true,
       showTips: false,
       authIsCorrect: false,
       email: '',
-      password: '',
-      cPassword: ''
+      pswd: '',
+      rePswd: ''
     }
   }
 
@@ -27,22 +27,22 @@ class AuthForm extends Component {
     })
   }
 
-  handleChangePassword(e) {
+  handleChangePswd(e) {
     this.setState({
-      password: e.target.value,
+      pswd: e.target.value,
       showTips: false
     })
   }
 
-  handleChangeConfirmPassword(e) {
+  handleChangeRePswd(e) {
     this.setState({
-      cPassword: e.target.value
+      rePswd: e.target.value
     })
   }
 
   handleChangeSignType(type) {
     this.setState({
-      signIn: !type
+      showSignInForm : !type
     })
   }
 
@@ -54,11 +54,11 @@ class AuthForm extends Component {
 
   handleOnSubmit(e) {
     e.preventDefault();
-    const {email, password} = this.state;
+    const {email, pswd} = this.state;
 
     let authParams = {
       email: email,
-      password: md5(password)
+      password: md5(pswd)
     };
 
     this.props.onSubmit(authParams).then(user => {
@@ -70,7 +70,7 @@ class AuthForm extends Component {
   }
 
   render() {
-    const {signIn, email, password, cPassword, showTips} = this.state;
+    const {showSignInForm , email, pswd, rePswd, showTips} = this.state;
     const {onClose} = this.props;
 
     return (
@@ -79,17 +79,17 @@ class AuthForm extends Component {
           <i className="modal-block__cancel" onClick={ onClose }></i>
           <ul className="modal-block__menu">
             <li className={ classNames('modal-block__menu-option sign-in', {
-                              'modal-block__active-option': signIn
+                              'modal-block__active-option': showSignInForm 
                             }) } onClick={ (type) => this.handleChangeSignType(false) }>
               Sign In
             </li>
             <li className={ classNames('modal-block__menu-option sign-up', {
-                              'modal-block__active-option': !signIn
+                              'modal-block__active-option': !showSignInForm 
                             }) } onClick={ (type) => this.handleChangeSignType(true) }>
               Sign Up
             </li>
           </ul>
-          { signIn ?
+          { showSignInForm ?
             <form id="sign-in" className="modal-block__content" onSubmit={ (e) => this.handleOnSubmit(e) }>
               <input className="field modal-block__content-email"
                 type="email"
@@ -102,8 +102,8 @@ class AuthForm extends Component {
                 type="password"
                 name="password"
                 placeholder="password"
-                value={ password }
-                onChange={ (e) => this.handleChangePassword(e) }
+                value={ pswd }
+                onChange={ (e) => this.handleChangePswd(e) }
                 required />
               <span className={ classNames('modal-block__tips', {
                                   'modal-block__tips_hide': !showTips
@@ -128,15 +128,15 @@ class AuthForm extends Component {
                 type="password"
                 name="password"
                 placeholder="password"
-                value={ password }
-                onChange={ (e) => this.handleChangePassword(e) }
+                value={ pswd }
+                onChange={ (e) => this.handleChangePswd(e) }
                 required />
               <input className="field modal-block__content-password"
                 type="password"
                 name="confirm-password"
                 placeholder="confirm password"
-                value={ cPassword }
-                onChange={ (e) => this.handleChangeConfirmPassword(e) }
+                value={ rePswd }
+                onChange={ (e) => this.handleChangeRePswd(e) }
                 required />
               <div className="modal-block__content-help" onClick={ (type) => this.handleChangeSignType(false) }>
                 Already have an account?

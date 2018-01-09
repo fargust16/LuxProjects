@@ -1,40 +1,43 @@
 import React, { Component } from 'react';
 
+import './FileInput.scss';
+
 export default class FileInput extends Component {
 
   handleFileInput() {
-    let file_api = (window.File && window.FileReader && window.FileList && window.Blob) ? true : false,
-      file_name;
+    let fileApi = (window.File && window.FileReader && window.FileList && window.Blob) ? true : false,
+      fileName;
 
-    if (file_api && this._sourceField.files[0]) {
-      file_name = this._sourceField.files[0].name;
+    if (fileApi && this._sourceField.files[0]) {
+      fileName = this._sourceField.files[0].name;
     } else {
-      file_name = this._sourceField.value.replace("C:\\fakepath\\", '');
+      fileName = this._sourceField.value.replace("C:\\fakepath\\", '');
     }
 
-    if (!file_name.length) {
+    if (!fileName.length) {
       this._sourceTitle.innerText = 'File doesn`t choosed';
       return;
     } else {
-      this._sourceTitle.innerText = file_name;
+      this._sourceTitle.innerText = fileName;
     }
   }
 
   render() {
+    const {subClass} = this.props;
     return (
-      <label htmlFor="book_source" className="field option__field add-book__source">
+      <label htmlFor="source" className={ "field source " + subClass }>
         <mark ref={ (mark) => {
                       this._sourceTitle = mark
-                    } } className="add-book__source-title">
+                    } } className="source__title">
           Файл не выбран
         </mark>
         <input type="file"
-          id="book_source"
+          id="source"
           ref={ (input) => {
                   this._sourceField = input
                 } }
           name="source"
-          className="add-book__source-field"
+          className="source__field"
           onChange={ () => this.handleFileInput() } />
       </label>
       );

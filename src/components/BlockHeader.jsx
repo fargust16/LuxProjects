@@ -4,22 +4,22 @@ import classNames from 'classnames';
 
 import './BlockHeader.scss';
 
-const BlockHeader = ({closeVar, blockName, handleChangeVar, className}) => {
+const BlockHeader = ({isShowOption, optionName, handleChangeView, subClass}) => {
 
-  let headerClass = classNames('header category__name', {
-    'header_open': closeVar,
-    'header_close': !closeVar
-  }, className || '');
+  let headerClass = classNames('BlockHeader Category__name', {
+    'BlockHeader_open': isShowOption,
+    'BlockHeader_close': !isShowOption
+  }, subClass || '');
 
   return (
-    <div className={ headerClass } onClick={ handleChangeVar }>
-      <span className="header__text">{ blockName || 'Unnamed block' }</span>
+    <div className={ headerClass } onClick={ handleChangeView }>
+      <span className="BlockHeader__text">{ optionName || 'Unnamed block' }</span>
     </div>
     );
 };
 
 BlockHeader.propTypes = {
-  closeVar: PropTypes.bool.isRequired
+  isShowOption: PropTypes.bool.isRequired
 };
 
 export default BlockHeader;

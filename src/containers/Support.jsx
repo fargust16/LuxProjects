@@ -6,23 +6,23 @@ export default class Support extends Component {
 
   render() {
     return (
-      <main className="support other-pages__block">
+      <main className="Support other-pages__block">
         <div className="main-header">
           <span className="main-header__text">Support</span>
         </div>
-        <form action="" method="POST" className="support__form">
-          <section className="support__form-content">
-            <h2 className="support__form-info">Please try to include as much detail as possible about the situation you encountered and the platform you use.</h2>
+        <form action="" method="POST" className="Support__form">
+          <section className="Support__form-content">
+            <h2 className="Support__form-info">Please try to include as much detail as possible about the situation you encountered and the platform you use.</h2>
             <input type="text"
               name="email"
-              className="field support__form-subject"
+              className="field Support__form-subject"
               placeholder="subject"
               required />
-            <textarea className="field support__form-message"
+            <textarea className="field Support__form-message"
               placeholder="your message"
               rows="5"
               required></textarea>
-            <div className="support__buttons">
+            <div className="Support__buttons">
               <button className="button btn-clear" type="reset">
                 Cancel
               </button>

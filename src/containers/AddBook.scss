@@ -1,8 +1,8 @@
 @import '../constants';
 
-.add-book {
+.AddBook {
   @include tablet {
-    .option__field {
+    .Option__field {
       width: 50%;
       margin: 10px 0;
     }
@@ -10,25 +10,6 @@
 
   &__options {
     margin-top: 15px;
-  }
-
-  &__source::before {
-    @include awesome-icon(absolute, '\f093', 24px);
-    top: 50%;
-    right: 10px;
-    transform: translateY(-12px);
-  }
-
-  &__source-field {
-    visibility: hidden;
-    margin: 0;
-  }
-
-  &__source-title {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-8px);
-    background-color: #fff;
   }
 
   &__description {

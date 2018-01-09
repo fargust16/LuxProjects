@@ -16,27 +16,28 @@ export default class BookSwitcher extends Component {
 
 BookSwitcher.propTypes = {
   books: PropTypes.array
-}
+};
 
 const ViewBooksInCategory = ({books}) => {
   return (
-    <div className="books category__books">
+    <div className="books Category__books">
       { books }
     </div>
     );
-}
+};
 
 const ViewBooksInHome = ({books, categoryName}) => {
-  let blocks = [...books];
+  let blocks = books.length ? [...books] : books;
+
   return (
     <div className="books home-page__books">
-      { blocks.length === 0 ? blocks : <Slider blocks={ blocks } hideWidth={ 1023 } /> }
-      <Link className="switcher__see-more" to={ { pathname: '/books/categories/' + categoryName } }>
+      { !blocks.length ? blocks : <Slider blocks={ blocks } hideWidth={ 1023 } /> }
+      <Link className="switcher__see-more" to={`/books/categories/${categoryName}`}>
         more
       </Link>
     </div>
     );
-}
+};
 
 const Results = ({books, categoryId, categoryName}) => {
   let content,
@@ -57,8 +58,8 @@ const Results = ({books, categoryId, categoryName}) => {
     <ViewBooksInHome books={ booksCont } categoryName={ categoryName } />
 
   return (
-    <div className="category__results-books">
+    <div className="Category__results-books">
       { content }
     </div>
     );
-}
+};

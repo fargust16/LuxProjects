@@ -1,6 +1,6 @@
 @import '../constants.scss';
 
-.header-wrap {
+.Header-wrap {
   position: fixed;
   width: 100%; 
   height: 63px;
@@ -23,7 +23,7 @@
   }
 }
 
-.header-nav {
+.Header {
   position: relative;
   height: 63px;
   padding: 0 $main-padding;

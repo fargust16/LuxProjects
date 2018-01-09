@@ -1,6 +1,6 @@
 @import '../constants.scss';
 
-.menu {
+.Menu {
   position: absolute;
   top: 63px;
   right: 0;
@@ -50,6 +50,10 @@
 
     &:hover {
       cursor: pointer;
+    }
+
+    &_hide {
+      display: none;
     }
   }
 

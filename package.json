@@ -63,7 +63,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "devServer": "webpack-dev-server --hot --inline --colors --output-pathinfo --content-base public"
+    "server": "nodemon server"
   },
   "proxy": "http://localhost:9000",
   "devDependencies": {
@@ -72,6 +72,7 @@
     "esformatter-jsx": "8.0.1",
     "extract-text-webpack-plugin": "3.0.2",
     "node-sass": "4.7.2",
+    "nodemon": "^1.14.9",
     "resolve-url-loader": "2.2.1",
     "sass-loader": "6.0.6",
     "style-loader": "0.19.0"
