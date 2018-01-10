@@ -1,37 +1,48 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
 import './Book.scss';
 
-const Book = ({categoryId, Author, Cover, Title, Text, Reviews, Id}) => {
-  let content = null;
+const Book = ({categoryId, author, cover, title, text, reviews, id}) => {
 
-  content = !Id ?
-    <article className="Book"></article>
-    :
-    <article className={ classNames('Book', {
-                       'Category__book': categoryId,
+  Book.defaultProps = {
+    reviews: []
+  };
+
+  Book.propTypes = {
+    categoryId: PropTypes.string,
+    author: PropTypes.string,
+    cover: PropTypes.string,
+    title: PropTypes.string,
+    text: PropTypes.string,
+    reviews: PropTypes.array,
+    id: PropTypes.string
+  };
+
+  return (
+    <article className={ classNames('book', {
+                       'category__book': categoryId,
                        'switcher__book': !categoryId
                      }) }>
-      <img src={ "/images/" + (Cover ? Cover : '') } className="Book__cover" alt={ Title } />
-      <section className="Book__info">
-        <Link to={`/books/view/${Id}`} className="Book__title">
-          { Title }
+      <img src={ "/images/" + (cover ? cover : '') } className="book__cover" alt={ title } />
+      <section className="book__info">
+        <Link to={ `/books/view/${id}` } className="book__title">
+          { title }
         </Link>
-        <div className="Book__author">
-          { Author }
+        <div className="book__author">
+          { author }
         </div>
-        <div className="Book__desc">
-          { Text }
+        <div className="book__desc">
+          { text }
         </div>
-        <div className="reviews Book__reviews">
-          { Reviews.length } reviews
+        <div className="reviews book__reviews">
+          { reviews.length } reviews
         </div>
       </section>
     </article>
-
-  return content;
+  )
 };
 
 export default Book;

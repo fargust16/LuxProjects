@@ -31,7 +31,7 @@ export default class Rating extends Component {
     const {mark} = this.state;
 
     return (
-      <fieldset className="Rating book-description__rating">
+      <fieldset className="rating book-description__rating">
         <StructRatingControls maxMark="5" currMark={ mark } onChange={ (e) => this.handleChangeRating(e) } />
       </fieldset>
       );
@@ -80,7 +80,7 @@ const calcRating = (reviewArr) => {
 
   let mark = 0;
   reviewArr.map(elem => {
-    return mark += parseInt(elem.Rating, 10);
+    return mark += parseInt(elem.rating, 10);
   })
 
   let sumMark = mark / reviewArr.length,

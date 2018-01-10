@@ -10,6 +10,7 @@
     "babel-jest": "20.0.3",
     "babel-loader": "7.1.2",
     "babel-preset-react-app": "3.1.0",
+    "babel-preset-stage-0": "^6.24.1",
     "babel-runtime": "6.26.0",
     "body-parser": "^1.18.2",
     "case-sensitive-paths-webpack-plugin": "2.1.1",
@@ -50,6 +51,8 @@
     "react-router-dom": "4.2.2",
     "react-router-page-transition": "^3.0.2",
     "react-scroll": "1.7.3",
+    "react-text-truncate": "^0.12.1",
+    "react-truncate": "^2.3.0",
     "reset-css": "^2.2.1",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.6.2",
@@ -60,10 +63,9 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "start": "concurrently \"node scripts/start.js\" \"nodemon server\" ",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom",
-    "server": "nodemon server"
+    "test": "node scripts/test.js --env=jsdom"
   },
   "proxy": "http://localhost:9000",
   "devDependencies": {
@@ -114,7 +116,8 @@
   },
   "babel": {
     "presets": [
-      "react-app"
+      "react-app",
+      "stage-0"
     ]
   },
   "eslintConfig": {

@@ -25,14 +25,14 @@ export default class Header extends Component {
   render() {
     const {isMenuVisible} = this.state;
     return (
-      <article className={ isMenuVisible ? "Header-wrap_active-menu Header-wrap" : "Header-wrap" }>
-        <header className="Header home-page__header">
-          <Link to="/" className="Header__logo" onClick={ (isShow) => this.handleDisplayMenu(false) }>
+      <article className={ isMenuVisible ? "header-wrap_active-menu header-wrap" : "header-wrap" }>
+        <header className="header home-page__header">
+          <Link to="/" className="header__logo" onClick={ (isShow) => this.handleDisplayMenu(false) }>
             <h1>Online Library</h1>
           </Link>
           <i className={ classNames({
-                           'Header__close-btn': isMenuVisible,
-                           'Header__open-btn': !isMenuVisible
+                           'header__close-btn': isMenuVisible,
+                           'header__open-btn': !isMenuVisible
                          }) } onClick={ (isShow) => this.handleDisplayMenu(!isMenuVisible) }></i>
           <Menu isShow={ isMenuVisible } handleDisplayMenu={ () => this.handleDisplayMenu() } />
         </header>

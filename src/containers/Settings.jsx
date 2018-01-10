@@ -20,19 +20,19 @@ export default class Settings extends Component {
     const {username} = this.state;
 
     return (
-      <main className="Settings other-pages__block">
+      <main className="settings other-pages__block">
         <div className="main-header">
           <span className="main-header__text">Settings</span>
         </div>
-        <div className="Settings__header">
-          <span className="Settings__info">Email address</span>
-          <div className="Settings__email">
+        <div className="settings__header">
+          <span className="settings__info">Email address</span>
+          <div className="settings__email">
             {username}
           </div>
         </div>
-        <article className="options Settings__options">
+        <article className="options settings__options">
           <form action="" method="POST">
-            <Option optionName="Change password" subClass="Settings__form" needButtons={ true }>
+            <Option optionName="Change password" subClass="settings__form" needButtons={ true }>
               <input type="email"
                 name="email"
                 className="field option__field"
@@ -45,7 +45,7 @@ export default class Settings extends Component {
             </Option>
           </form>
           <form action="" method="POST">
-            <Option optionName="Change password" subClass="Settings__form" needButtons={ true }>
+            <Option optionName="Change password" subClass="settings__form" needButtons={ true }>
               <input type="password"
                 name="old-pass"
                 className="field option__field"

@@ -1,9 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import './ControlButtons.scss';
 
 export const ControlButtons = ({transformFunc, btnDirect, currentSwitchPos, endSwitchPos, btnSubClass}) => {
+
+  ControlButtons.propTypes = {
+    btnDirect: PropTypes.number,
+    currentSwitchPos: PropTypes.number,
+    endSwitchPos: PropTypes.number,
+    btnSubClass: PropTypes.string
+  }
+
   let btnView;
 
   if ((currentSwitchPos === endSwitchPos && btnDirect === -1) || (currentSwitchPos === 0 && btnDirect === 1)) {

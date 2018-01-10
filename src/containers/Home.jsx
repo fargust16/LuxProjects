@@ -15,6 +15,8 @@ export default class Home extends Component {
     }
   }
 
+  //TODO state don`t get in time to change, when quikly switch to another path
+
   componentDidMount() {
     getAllBooks().then(
       books => this.setState({
@@ -28,7 +30,7 @@ export default class Home extends Component {
     const {books} = this.state;
     
     return (
-      <article ref={(div) => {this._homeBlock = div}} className="Home">
+      <article ref={(div) => {this._homeBlock = div}} className="home">
         <section className="home-page">
           <main className="main home-page__main">
             <Category categoryId={ categoryId } books={ books } />

@@ -51,19 +51,19 @@ export default class Option extends Component {
     let alwaysOpen = closeVar || false;
 
     return (
-      <section className="Option">
+      <section className="option">
         <BlockHeader optionName={ optionName } isShowOption={ showOption } handleChangeView={ (isOpen) => this.handleShowExternalOptions(alwaysOpen) } />
         <div className={ classNames(subClass || '', {
-                           'Option__content': showOption,
-                           'Option__content_hide': !showOption
+                           'option__content': showOption,
+                           'option__content_hide': !showOption
                          }) }>
           { children }
           { needButtons ?
-            <div className="Option__buttons">
-              <button className="Option__button button btn-clear" type="reset" onClick={ (isOpen) => this.handleShowExternalOptions(alwaysOpen) }>
+            <div className="option__buttons">
+              <button className="option__button button btn-clear" type="reset" onClick={ (isOpen) => this.handleShowExternalOptions(alwaysOpen) }>
                 Cancel
               </button>
-              <button className="Option__button button btn-submit" type="submit">
+              <button className="option__button button btn-submit" type="submit">
                 Save changes
               </button>
             </div>

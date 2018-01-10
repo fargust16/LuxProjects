@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { getBookText } from '../services/api';
 import { instanceOf } from 'prop-types';
+import { getBookText } from '../services/api';
 import { withCookies, Cookies } from 'react-cookie';
 import classNames from 'classnames';
+import TextTruncate from 'react-text-truncate';
 
 import { ControlButtons } from './ControlButtons.jsx';
 
@@ -22,7 +23,7 @@ class ReadBook extends Component {
       text: ' ',
       textOnPage: '',
       currentPage: 0,
-      textSize: 500
+      textSize: 1
     }
 
     this.calcCountOfTextCols = this.calcCountOfTextCols.bind(this);
@@ -53,7 +54,7 @@ class ReadBook extends Component {
       book => {
         this.setState({
           book: book,
-          text: book.Text
+          text: book.text
         })
         this.calcCountOfTextCols();
       }
@@ -82,13 +83,13 @@ class ReadBook extends Component {
     });
   }
 
-  calcCountOfTextCols() {
+/*  calcCountOfTextColsTT() {
     const {text} = this.state;
 
-    let textBlockWidth = parseInt(getComputedStyle(this._bookText).width, 10),
-      countOfStrEl = Math.floor((textBlockWidth - 30) / 7.9);
+    let textBlockWidth = this._calcBlockOffsetWidth(this._bookText),
+      countOfStrEl = Math.floor(textBlockWidth / 7.7);
 
-    let textBlockHeight = parseInt(getComputedStyle(this._bookText).height, 10),
+    let textBlockHeight = this._calcBlockOffsetHeight(this._bookText),
       countOfStr = Math.floor(textBlockHeight / 20);
 
     let textSizeTemp = countOfStrEl * countOfStr;
@@ -108,6 +109,30 @@ class ReadBook extends Component {
     this.setState({
       textSize: textSizeTemp
     })
+  }*/
+
+
+  calcCountOfTextCols() {
+    let linesCount = Math.floor(this._calcBlockOffsetHeight(this._bookText) / 20);
+
+    this.setState({
+      textSize: linesCount
+    })
+  }
+
+
+  _calcBlockOffsetWidth(block) {
+    let paddings = parseInt(getComputedStyle(block).paddingRight, 10) + parseInt(getComputedStyle(block).paddingLeft, 10),
+      bOffset = block.offsetWidth - paddings;
+
+    return bOffset;
+  }
+
+  _calcBlockOffsetHeight(block) {
+    let margins = parseInt(getComputedStyle(block).marginTop, 10) + parseInt(getComputedStyle(block).marginBottom, 10),
+      bOffset = block.offsetHeight - margins;
+
+    return bOffset;
   }
 
   componentWillUnmount() {
@@ -126,47 +151,44 @@ class ReadBook extends Component {
 
     let endOfSwitch = Math.floor(text.length / textSize);
 
-    let pageClass = classNames('ReadBook__content', {
-      'ReadBook__content_full-text': currentPage !== 0
+    let pageClass = classNames('read-book__content', {
+      'read-book__content_full-text': currentPage !== 0
     })
 
-    let textOnPage = text.substr(currentPage * textSize, textSize);
+    //let textOnPage = text.substr(currentPage * textSize, textSize);
+
+    let textOnPage = text;
 
     return (
-      <main className="ReadBook other-pages__block">
+      <main className="read-book other-pages__block">
         { currentPage === 0 ?
           <section className="main-header">
-            <span className="main-header__text Book__title">{ book.Title }</span>
+            <span className="main-header__text book__title">{ book.title }</span>
             <br />
-            <span className="main-header__text Book__author">{ book.Author }</span>
+            <span className="main-header__text book__author">{ book.author }</span>
           </section>
           : '' }
         <section ref={ (div) => {
                          this._bookText = div;
                        } } className={ pageClass }>
-          <TextPage text={ textOnPage } />
+          <TextTruncate line={ textSize }
+            truncateText="…"
+            text={textOnPage}
+            textTruncateChild={ <a href="#">Read on</a> } />
           <ControlButtons transformFunc={ (direct) => this.switchTextPage(1) }
             btnDirect={ -1 }
-            btnSubClass="ReadBook__button"
+            btnSubClass="read-book__button"
             currentSwitchPos={ currentPage }
             endSwitchPos={ endOfSwitch } />
           <ControlButtons transformFunc={ (direct) => this.switchTextPage(-1) }
             btnDirect={ 1 }
-            btnSubClass="ReadBook__button"
+            btnSubClass="read-book__button"
             currentSwitchPos={ currentPage }
             endSwitchPos={ endOfSwitch } />
         </section>
       </main>
       );
   }
-}
-
-const TextPage = ({text}) => {
-  return (
-    <p>
-      { text }
-    </p>
-  )
 }
 
 export default withCookies(ReadBook);

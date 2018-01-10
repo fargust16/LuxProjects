@@ -29,26 +29,26 @@ export default class Menu extends Component {
     const {isShow, handleDisplayMenu, menuLinks} = this.props;
 
     return (
-      <nav className={ isShow ? "Menu Menu_open" : "Menu Menu_close" }>
-        <div className="Menu__profile">
+      <nav className={ isShow ? "menu menu_open" : "menu menu_close" }>
+        <div className="menu__profile">
           { (isLoggedIn()) ?
-            <div className="Menu__profile-link" onClick={ () => logout() }>
+            <div className="menu__profile-link" onClick={ () => logout() }>
               Sign Out
             </div>
             :
-            <div className="Menu__profile-link" onClick={ (isShowForm) => this.handleShowAuthForm(true) }>
+            <div className="menu__profile-link" onClick={ (isShowForm) => this.handleShowAuthForm(true) }>
               Sign In
             </div> }
         </div>
-        <ul className="Menu__options">
+        <ul className="menu__options">
           { menuLinks.map((link, i) => {
-              let liClass = classNames('Menu__option', {
-                'Menu__option_hide': link.isRequired && !isLoggedIn()
+              let liClass = classNames('menu__option', {
+                'menu__option_hide': link.isRequired && !isLoggedIn()
               });
             
               return (
                 <li key={ i } className={ liClass } onClick={ (isShow) => handleDisplayMenu(false) }>
-                  <Link className="Menu__option-link" to={ link.path }>
+                  <Link className="menu__option-link" to={ link.path }>
                     { link.name }
                   </Link>
                 </li>

@@ -40,46 +40,47 @@ class BookDescription extends Component {
 
   render() {
     const {book} = this.state;
+
     return (
       <article>
-        <main className="Book-description other-pages__block">
-          <section className="Book-description__info">
-            <img className="Book-description__book-cover" src={ "/images/" + (book.Cover ? book.Cover : '') } alt="book`s name" />
-            <div className="Book-description__main-info">
-              <div className="Book-description__title">
-                { book.Title }
+        <main className="book-description other-pages__block">
+          <section className="book-description__info">
+            <img className="book-description__book-cover" src={ "/images/" + (book.cover ? book.cover : '') } alt="book`s name" />
+            <div className="book-description__main-info">
+              <div className="book-description__title">
+                { book.title }
               </div>
-              <div className="Book-description__author">
-                { book.Author }
+              <div className="book-description__author">
+                { book.author }
               </div>
-              <section className="Book-description__control-info">
-                <div className="Book-description__ISBN">
+              <section className="book-description__control-info">
+                <div className="book-description__ISBN">
                   <span>ISBN:</span>&nbsp;<span>{ book.ISBN }</span>
                 </div>
-                <div className="Book-description__publish-date">
-                  <span>Pablishing date:</span>&nbsp;<span>{ moment(new Date(book.ReleaseDate)).format('DD.MM.YYYY') }</span>
+                <div className="book-description__publish-date">
+                  <span>Pablishing date:</span>&nbsp;<span>{ moment(new Date(book.releaseDate)).format('DD.MM.YYYY') }</span>
                 </div>
               </section>
-              <div className="Book-description__text" id="fill_text">
-                { book.Text }
+              <div className="book-description__text" id="fill_text">
+                { book.text }
               </div>
-              <span className="Book-description__text-more">see more</span>
+              <span className="book-description__text-more">see more</span>
             </div>
           </section>
-          <div className="Book-description__reviews">
-            <Rating rating={ book.Reviews } />
-            <span className="reviews Book-description__reviews-count">{ book.Reviews ? book.Reviews.length : 'count' } reviews</span>
+          <div className="book-description__reviews">
+            <Rating rating={ book.reviews } />
+            <span className="reviews book-description__reviews-count">{ book.reviews ? book.reviews.length : 'count' } reviews</span>
           </div>
-          <div className="Book-description__buttons">
-            <Link to={ `/books/read/${book.Id}` } className="Book-description__button button btn-read">
+          <div className="book-description__buttons">
+            <Link to={ `/books/read/${book.id}` } className="book-description__button button btn-read">
               start reading now
             </Link>
-            <Link to="#download" className="Book-description__button button btn-download">
+            <Link to="#download" className="book-description__button button btn-download">
               download
             </Link>
           </div>
         </main>
-        <Comments comments={ book.Comments } />
+        <Comments comments={ book.comments } />
       </article>
       );
   }

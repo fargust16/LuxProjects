@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import * as Scroll from 'react-scroll';
 import classNames from 'classnames';
@@ -16,6 +17,14 @@ var scroll = Scroll.animateScroll;
 
 export default class Comments extends Component {
 
+  static propTypes = {
+    comments: PropTypes.array
+  };
+
+  static defaultProps = {
+    comments: []
+  };
+
   constructor(props) {
     super(props);
     let comTemp = this.props.comments;
@@ -24,8 +33,8 @@ export default class Comments extends Component {
       showCom: window.innerWidth >= ON_HIDE_WIDTH ? true : false,
       showComBtns: false,
       commentsOffset: 0,
-      comments: comTemp || [],
-      commentText: '',
+      comments: comTemp,
+      commenttext: '',
       maxComments: 5,
       isAuth: false
     }
@@ -33,9 +42,9 @@ export default class Comments extends Component {
     this.resizeWindow = this.resizeWindow.bind(this);
   }
 
-  handleCommentTextChange(e) {
+  handleCommenttextChange(e) {
     this.setState({
-      commentText: e.target.value
+      commenttext: e.target.value
     });
   }
 
@@ -73,8 +82,8 @@ export default class Comments extends Component {
   }
 
   postNewComment() {
-    const {comments, commentText} = this.state;
-    if (commentText === '') return;
+    const {comments, commenttext} = this.state;
+    if (commenttext === '') return;
 
     let authors = ['Lewis Carroll', 'Paulo Coelho', 'Joanne Rowling', 'Chack Pallaniuk'];
     let authorTemp = authors[Math.floor(Math.random() * authors.length)];
@@ -82,11 +91,11 @@ export default class Comments extends Component {
 
     this.setState({
       comments: [{
-        Text: commentText,
-        Author: authorTemp,
-        PostDate: postDate
+        text: commenttext,
+        author: authorTemp,
+        postDate: postDate
       }, ...comments],
-      commentText: '',
+      commenttext: '',
       showComBtns: false
     });
   }
@@ -105,7 +114,7 @@ export default class Comments extends Component {
 
     this.setState({
       showComBtns: isShow,
-      commentText: !isShow ? '' : this.state.commentText
+      commenttext: !isShow ? '' : this.state.commenttext
     });
   }
 
@@ -130,7 +139,7 @@ export default class Comments extends Component {
   }
 
   render() {
-    const {comments, showCom, showComBtns, commentText, maxComments, isAuth} = this.state;
+    const {comments, showCom, showComBtns, commenttext, maxComments, isAuth} = this.state;
 
     let contentClass = classNames('comments__content', {
       'comments__content_hide': !showCom
@@ -143,18 +152,18 @@ export default class Comments extends Component {
     return (
       <section ref={ (div) => {
                  this._comments_block = div
-               } } className="Comments other-pages__comments">
-        <BlockHeader optionName="Comments" isShowOption={ showCom } handleChangeView={ () => this.showComments() } />
+               } } className="comments other-pages__comments">
+        <BlockHeader optionName="comments" isShowOption={ showCom } handleChangeView={ () => this.showComments() } />
         <section className={ contentClass }>
-          <div className="new-comment Comments__new-comment">
+          <div className="new-comment comments__new-comment">
             <img className="comment__user-image" src="" alt="" />
             <div className="new-comment__desc">
               <textarea className="field new-comment__text"
                 placeholder="leave a comment"
                 onFocus={ (e, isShow) => this.showCommentsButtons(e, true) }
                 onClick={ (isShowForm) => this.handleShowAuthForm(!isLoggedIn()) }
-                onChange={ (e) => this.handleCommentTextChange(e) }
-                value={ commentText }></textarea>
+                onChange={ (e) => this.handleCommenttextChange(e) }
+                value={ commenttext }></textarea>
               <footer className={ buttonsClass }>
                 <button className={ classNames('new-comment__button btn-clear', {
                                       'button': window.innerWidth >= ON_HIDE_WIDTH
@@ -163,7 +172,7 @@ export default class Comments extends Component {
                 </button>
                 <button className={ classNames('new-comment__button btn-send', {
                                       'button': window.innerWidth >= ON_HIDE_WIDTH
-                                    }) } onClick={ () => this.postNewComment() } disabled={ this.state.commentText === '' }>
+                                    }) } onClick={ () => this.postNewComment() } disabled={ this.state.commenttext === '' }>
                   Send comment
                 </button>
               </footer>
@@ -176,8 +185,8 @@ export default class Comments extends Component {
                 <InputComments {...comment} n={ i } key={ i } />
               )
             }) }
-          <div className={ classNames('button Comments__showMore-btn', {
-                             'Comments__showMore-btn_hide': maxComments >= comments.length
+          <div className={ classNames('button comments__showMore-btn', {
+                             'comments__showMore-btn_hide': maxComments >= comments.length
                            }) } onClick={ () => this.handleMoreComments() }>
             show more
           </div>
@@ -188,18 +197,25 @@ export default class Comments extends Component {
   }
 }
 
-const InputComments = ({Author, Text, PostDate, n}) => {
-  let postDateTemp = new Date(PostDate);
+const InputComments = ({author, text, postDate, n}) => {
+
+  InputComments.propTypes = {
+    author: PropTypes.string,
+    text: PropTypes.string,
+    n: PropTypes.number
+  }
+
+  let postDateTemp = new Date(postDate);
 
   return (
     <div className="comment" key={ n }>
       <img className="comment__user-image" src="" alt="" />
       <div className="comment__desc">
         <p className="comment__author">
-          { Author }<span className="comment__time">{ moment(postDateTemp, "YYYYMMDD").fromNow() }</span>
+          { author }<span className="comment__time">{ moment(postDateTemp, "YYYYMMDD").fromNow() }</span>
         </p>
         <p className="comment__text">
-          { Text }
+          { text }
         </p>
       </div>
     </div>

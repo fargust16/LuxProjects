@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import Header from './containers/Header.jsx';
@@ -40,28 +40,25 @@ const PrivateMatchWithFade = ({component: Component, transition, ...rest}) => (
                 ) } {...rest} />
 );
 
-export default class App extends Component {
+const App = () => (
+  <Router history={ history }>
+    <div className="app">
+      <Header />
+      <Search />
+      <Switch>
+        <MatchWithFade exact path="/" component={ Home } />
+        <MatchWithFade path="/books/categories/:categoryId" component={ Home } />
+        <InnerContainer>
+          <PrivateMatchWithFade path="/books/add-book" component={ AddBook } />
+          <MatchWithFade path="/books/recent" component={ Recent } />
+          <MatchWithFade path="/support" component={ Support } />
+          <PrivateMatchWithFade path="/settings" component={ Settings } />
+          <MatchWithFade path="/books/view/:bookId" component={ BookDescription } />
+          <MatchWithFade path="/books/read/:bookId" component={ ReadBook } />
+        </InnerContainer>
+      </Switch>
+    </div>
+  </Router>
+);
 
-  render() {
-    return (
-      <Router history={ history }>
-        <div className="app">
-          <Header />
-          <Search />
-          <Switch>
-            <MatchWithFade exact path="/" component={ Home } />
-            <MatchWithFade path="/books/categories/:categoryId" component={ Home } />
-            <InnerContainer>
-              <PrivateMatchWithFade path="/books/add-book" component={ AddBook } />
-              <MatchWithFade path="/books/recent" component={ Recent } />
-              <MatchWithFade path="/support" component={ Support } />
-              <PrivateMatchWithFade path="/settings" component={ Settings } />
-              <MatchWithFade path="/books/view/:bookId" component={ BookDescription } />
-              <MatchWithFade path="/books/read/:bookId" component={ ReadBook } />
-            </InnerContainer>
-          </Switch>
-        </div>
-      </Router>
-      );
-  }
-}
+export default App;

@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {ControlButtons} from './ControlButtons.jsx';
 import './Slider.scss';
 
 export default class Slider extends Component {
+
+  static defaultProps = {
+    blocks: []
+  }
+
+  static propTypes = {
+    blocks: PropTypes.array
+  }
+
   constructor(props) {
     super(props);
 
@@ -39,12 +49,12 @@ export default class Slider extends Component {
       visibleBlockCount: visibleBlockCountTemp
     });
 
-    this._switcher.style = window.innerWidth > switchHideWidth ? 'transform: translate(0)' : 'transform: translate(' + switcherStartTransform + 'px, 0) translateZ(0)';
+    this._switcher.style = window.innerWidth >= switchHideWidth ? 'transform: translate(0)' : 'transform: translate(' + switcherStartTransform + 'px, 0) translateZ(0)';
   }
 
   getSwitchPos(event) {
     const {switchHideWidth} = this.state;
-    if (window.innerWidth > switchHideWidth) return;
+    if (window.innerWidth >= switchHideWidth) return;
 
     let pointAtEvent = event.changedTouches[0].clientX;
 
@@ -64,7 +74,7 @@ export default class Slider extends Component {
 
   localSwitchTransform(pointAtEvent) {
     const {switchHideWidth} = this.state;
-    if (window.innerWidth > switchHideWidth) return;
+    if (window.innerWidth >= switchHideWidth) return;
 
     const {touchStartPoint, currentStep, stepSize} = this.state;
 
@@ -177,8 +187,13 @@ export default class Slider extends Component {
 }
 
 const Dots = ({dotCount, currentStep}) => {
-  let content = [];
 
+  Dots.propTypes = {
+    dotCount: PropTypes.number,
+    currentStep: PropTypes.number
+  }
+
+  let content = [];
 
   for (let i = dotCount - 1; i >= 0; i--) {
     content[i] = (

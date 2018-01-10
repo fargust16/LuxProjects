@@ -5,32 +5,32 @@ export default class Search extends Component {
 
   render() {
     return (
-      <div className="Search home-page__search">
-        <div className="Search__box-shadow">
-          <label htmlFor="search-field" className="Search__field-ico">
+      <div className="search home-page__search">
+        <div className="search__box-shadow">
+          <label htmlFor="search-field" className="search__field-ico">
             <input id="search-field"
               type="text"
-              className="Search__field"
+              className="search__field"
               name="search"
               placeholder="Find a solution" />
           </label>
-          <label htmlFor="search-options" className="Search__options-ico">
-            <select id="search-options" className="Search__options">
-              <option className="Search__option" value="all">
+          <label htmlFor="search-options" className="search__options-ico">
+            <select id="search-options" className="search__options">
+              <option className="search__option" value="all">
                 All
               </option>
-              <option className="Search__option" value="title">
+              <option className="search__option" value="title">
                 Title
               </option>
-              <option className="Search__option" value="author">
+              <option className="search__option" value="author">
                 Author
               </option>
-              <option className="Search__option" value="ISBN">
+              <option className="search__option" value="ISBN">
                 ISBN
               </option>
             </select>
           </label>
-          <div className="button Search__button">
+          <div className="button search__button">
             Search
           </div>
         </div>

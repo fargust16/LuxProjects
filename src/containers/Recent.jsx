@@ -37,11 +37,11 @@ class Recent extends Component {
     const {books} = this.state;
 
     return (
-      <main className="Recent other-pages__block">
+      <main className="recent other-pages__block">
         <div className="main-header">
           <span className="main-header__text">Recently</span>
         </div>
-        <article className="Recent__content">
+        <article className="recent__content">
           <RecentBooks books={ books } />
         </article>
       </main>
@@ -58,25 +58,25 @@ const RecentBooks = ({books}) => {
 
   books.forEach((elem, i) => {
     content[i] = (
-      <section key={i} className="Recent__category">
-        <BlockHeader optionName={ moment(new Date(elem.viewDate)).format('DD.MM.YYYY') } isShowOption={ true } className="Recent__category-date" />
-        <div className="books Recent__books">
+      <section key={i} className="recent__category">
+        <BlockHeader optionName={ moment(new Date(elem.viewDate)).format('DD.MM.YYYY') } isShowOption={ true } className="recent__category-date" />
+        <div className="books recent__books">
           { elem.books.map(book => {
               return (
-                <div key={ book.Id } className="Recent__book book">
-                  <div className="Recent__book-info book-info">
-                    <Link to={`/books/view/${book.Id}`} className="Book__title Recent__book-title">
+                <div key={ book.Id } className="recent__book book">
+                  <div className="recent__book-info book-info">
+                    <Link to={`/books/view/${book.Id}`} className="book__title recent__book-title">
                       { book.Title }
                     </Link>
-                    <p className="Recent__book-author">
+                    <p className="recent__book-author">
                       { book.Author }
                     </p>
-                    <p className="Recent__book-description">
+                    <p className="recent__book-description">
                       { book.Text }
                     </p>
-                    <progress className="Recent__book-progress" max="100" value="37"></progress>
+                    <progress className="recent__book-progress" max="100" value="37"></progress>
                   </div>
-                  <img src="/images/books-cover.png" className="Recent__book-cover book-cover" alt="" />
+                  <img src="/images/books-cover.png" className="recent__book-cover book-cover" alt="" />
                 </div>
                 );
             }) }
