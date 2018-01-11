@@ -2,6 +2,22 @@
 
 .read-book {
   height: calc(100vh - 193px);
+  max-height: 623px;
+  user-select: none;
+  position: relative;
+
+  &::before {
+    @include desktop {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 5px;
+      height: 100%;
+      transform: translateX(-50%);
+      background: $primary-color;
+    }
+  }
 
   @include small {
     height: calc(100vh - 163px);
@@ -11,23 +27,40 @@
     height: calc(100vh - 120px);
   }
 
+  &__header {
+    &_hide {
+      display: none;
+    }
+  }
+
   &__content {
     position: relative;
     margin-top: 12px;
     padding: 0 15px;
-
-    height: calc(100% - 60px);
+    height: calc(100% - 55px);
     overflow: hidden;
-
     text-align: justify;
-
     font-size: 1em;
-    line-height: 1.25em;
-    word-spacing: 1px;
+    line-height: 1.25em;    
 
     &_full-text {
       height: 100%;
       margin-top: 0;
+    }
+  }
+
+  &__pages {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
+
+  &__page {
+    width: 100%;
+
+    @include desktop {
+      width: 48%
     }
   }
 
