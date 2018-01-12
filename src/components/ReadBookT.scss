@@ -3,6 +3,7 @@
 .read-book {
   height: calc(100vh - 193px);
   max-height: 713px;
+  user-select: none;
   position: relative;
 
   @include desktop {
@@ -39,14 +40,38 @@
 
   &__content {
     position: relative;
+    margin-top: 10px;
     padding: 0 15px;
-    height: 100%;
+    height: calc(100% - 53px);
     overflow: hidden;
     text-align: justify;
     font-size: 1em;
     line-height: 1.25em;
-    word-wrap: break-word;
-    column-width: 400px;
+    word-wrap: break-word; 
+
+    &_full-text {
+      height: 100%;
+      margin-top: 0;
+    }
+  }
+
+  &__pages {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  &__page {
+    width: 100%;
+    text-align: justify;
+    font-size: 1em;
+    line-height: 1.25em;
+
+    @include desktop {
+      width: 48%
+    }
   }
 
   &__text {

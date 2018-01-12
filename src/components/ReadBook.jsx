@@ -4,8 +4,9 @@ import { getBookText } from '../services/api';
 import { withCookies, Cookies } from 'react-cookie';
 import classNames from 'classnames';
 
+import ReadMore from './ReadMore.jsx';
 import { ControlButtons } from './ControlButtons.jsx';
-import {ON_DOUBLE_READ_PAGE_WIDTH} from '../constants/UIConstants.js';
+import { ON_DOUBLE_READ_PAGE_WIDTH } from '../constants/UIConstants.js';
 
 import './ReadBook.scss';
 
@@ -22,95 +23,59 @@ class ReadBook extends Component {
       book: {},
       text: ' ',
       currentPage: 0,
-      currPageSize: 0,
-      startReadPos: 0,
-      endReadPos: 0
+      avgStringElems: 0
     }
 
-    this.calcCountOfTextCols = this.calcCountOfTextCols.bind(this);
+    this.avgCountOfStringElems = this.avgCountOfStringElems.bind(this);
   }
 
   switchTextPage(direct) {
-    const {currentPage} = this.state;
-
+    const {currentPage, readOffset} = this.state;
     let curPageTemp = parseInt((currentPage + direct), 10);
 
     this.setState({
       currentPage: curPageTemp
     })
 
-    this.calcCountOfTextCols(curPageTemp);
+    this.handleSuperFunctionPlsWork(curPageTemp);
   }
 
-  saveCurrPage(currentPage, startReadPos) {
+  saveCurrPage(readOffset) {
     const {bookId} = this.props.match.params;
     const {cookies} = this.props;
 
-    cookies.set('currentPage', currentPage, {
-      path: '/books/read/' + bookId
-    });
-
-    cookies.set('startReadPos', startReadPos, {
+    cookies.set('readOffset', readOffset, {
       path: '/books/read/' + bookId
     });
   }
 
-  calcCountOfTextColsTT(currentPage) {
-    let curPage = parseInt(currentPage, 10);
-    let pageSize = Math.floor(this._calcBlockOffsetHeight(this._bookCont, curPage) / 20);
+  avgCountOfStringElems(curPage) {
+    const {text, currentPage} = this.state;
 
-    this.setState({
-      currPageSize: pageSize
-    })
-  }
+    let curPageTemp = curPage || currentPage;
 
-  calcCountOfTextCols(curPage) {
-    const {text, endReadPos, startReadPos, currentPage} = this.state;
+    let stringElemWidth = 10,
+      stringHeigh = 20;
 
     let textBlockWidth = this._calcBlockOffsetWidth(this._bookCont),
-      countOfStrEl = Math.floor(textBlockWidth / 8.5);
+      countOfElems = Math.floor(textBlockWidth / stringElemWidth);
 
-    let textBlockHeight = this._calcBlockOffsetHeight(this._bookCont, curPage),
-      countOfStr = Math.floor(textBlockHeight / 20);
+    let textBlockHeight = this._calcBlockOffsetHeight(this._bookCont),
+      countOfStr = Math.floor(textBlockHeight / stringHeigh);
 
-    let currPageSizeTemp = countOfStrEl * countOfStr;
-
-    while (text[currPageSizeTemp] !== ' ') {
-      currPageSizeTemp--;
-
-      if (currPageSizeTemp <= 0) {
-        console.log('main oops:', text);
-        currPageSizeTemp = 1;
-        break;
-      }
-    }
-
-    let startReadPosTemp;
-
-    if (currentPage - parseInt(curPage, 10) === 0) {
-      startReadPosTemp = startReadPos;
-    } else if (currentPage - parseInt(curPage, 10) < 0) {
-      startReadPosTemp = endReadPos;
-    } else {
-      startReadPosTemp = startReadPos - currPageSizeTemp;
-    }
-
-    let endReadPosTemp = startReadPosTemp + currPageSizeTemp;
-
-
-    this.saveCurrPage(curPage, startReadPosTemp); // save to cookie pages data
+    let avgStringElemsTemp = countOfElems * countOfStr;
 
     this.setState({
-      currPageSize: currPageSizeTemp,
-      startReadPos: startReadPosTemp,
-      endReadPos: endReadPosTemp
+      avgStringElems: avgStringElemsTemp
     })
+
+    //console.log(avgStringElemsTemp);
+    this.handleSuperFunctionPlsWork(curPageTemp);
   }
 
-  _calcBlockOffsetHeight(block, currentPage) {
-    let header = !currentPage || currentPage === 0 ? 54 : 0
+  _calcBlockOffsetHeight(block) {
     let paddings = parseInt(getComputedStyle(block).paddingTop, 10) + parseInt(getComputedStyle(block).paddingBottom, 10),
-      bOffset = block.offsetHeight - (paddings + header);
+      bOffset = block.offsetHeight - paddings;
 
     return bOffset;
   }
@@ -122,22 +87,34 @@ class ReadBook extends Component {
     return bOffset;
   }
 
+  handleSuperFunctionPlsWork(curPage) {
+    let bOffset = this._calcBlockOffsetHeight(this._bookCont),
+      readOffset = curPage * bOffset;
+
+    //console.log('curPage: ' + curPage + '\nreadOffset: ' + readOffset + '\nbOffset: ' + bOffset);
+
+    this._bWithText.style = 'transform: translateY(' + -readOffset + 'px)';
+
+    this.setState({
+      readOffset: readOffset
+    })
+
+    this.saveCurrPage(readOffset); // save to cookie pages data
+  }
+
   componentWillMount() {
     const {bookId} = this.props.match.params;
     const {cookies} = this.props;
 
-    let curPage = cookies.get('currentPage', {
-        path: 'books/read/' + bookId
-      }) || 0;
-
-    let startReadPos = cookies.get('startReadPos', {
+    let readOffset = cookies.get('readOffset', {
         path: 'books/read/' + bookId
       }) || 0;
 
     this.setState({
-      currentPage: parseInt(curPage, 10),
-      startReadPos: parseInt(startReadPos, 10)
+      readOffset: parseInt(readOffset, 10)
     })
+
+    window && window.addEventListener('resize', this.avgCountOfStringElems, true);
   }
 
   componentDidMount() {
@@ -149,9 +126,23 @@ class ReadBook extends Component {
           book: book,
           text: book.text
         })
-        this.calcCountOfTextCols(this.state.currentPage);
+        this._defineFirstCalcReadOffset();
       }
     );
+  }
+
+  _defineFirstCalcReadOffset() {
+    const {readOffset} = this.state;
+    let bOffset = this._calcBlockOffsetHeight(this._bookCont),
+      rOffset = parseInt(readOffset, 10),
+      curPage = Math.floor(rOffset / bOffset);
+
+    this.setState({
+      currentPage: curPage,
+      readOffset: rOffset
+    })
+
+    this.avgCountOfStringElems(curPage);
   }
 
   componentWillUnmount() {
@@ -162,15 +153,17 @@ class ReadBook extends Component {
       path: '/books/read/' + bookId
     })
 
-    cookies.remove('startReadPos', {
+    cookies.remove('readOffset', {
       path: '/books/read/' + bookId
     })
+
+    window && window.removeEventListener('resize', this.avgCountOfStringElems, true);
   }
 
   render() {
-    const {book, text, currentPage, currPageSize, startReadPos, endReadPos} = this.state;
+    const {book, text, currentPage, avgStringElems} = this.state;
 
-    let endOfSwitch = Math.floor(text.length / currPageSize);
+    let endOfSwitch = Math.ceil(text.length / avgStringElems);
 
     let pageClass = classNames('read-book__content', {
       'read-book__content_full-text': currentPage !== 0
@@ -180,19 +173,18 @@ class ReadBook extends Component {
       'read-book__header_hide': currentPage !== 0
     })
 
-    let textOnPage = text.substring(startReadPos, endReadPos);
+    //console.log(text.substr(text.length - 10));
 
     return (
       <main ref={ (div) => {
               this._bookCont = div;
             } } className="read-book other-pages__block">
-        <section className={ headerClass }>
-          <span className="main-header__text book__title">{ book.title }</span>
-          <br />
-          <span className="main-header__text book__author">{ book.author }</span>
-        </section>
         <section className={ pageClass }>
-          <BookPages pageCount={ window.innerWidth >= ON_DOUBLE_READ_PAGE_WIDTH ? 2 : 1 } text={ textOnPage } />
+          <div ref={ (div) => {
+                       this._bWithText = div
+                     } }>
+            { text }
+          </div>
           <ControlButtons transformFunc={ (direct) => this.switchTextPage(1) }
             btnDirect={ -1 }
             btnSubClass="read-book__button"
@@ -210,42 +202,3 @@ class ReadBook extends Component {
 }
 
 export default withCookies(ReadBook);
-
-const BookPages = ({pageCount, text}) => {
-
-  let textOnPage = Math.floor(text.length / pageCount),
-    textArr = [],
-    startRead = 0;
-
-  while(text[textOnPage] !== ' ') {
-    textOnPage++;
-
-    if (textOnPage >= text.length) {
-      //console.log('oops:', text);
-      textOnPage = text.length;
-      break;
-    }
-  }
-
-  for (let i = 0; i < pageCount; i++) {
-    textArr[i] = text.substr(startRead, textOnPage);
-    startRead = textOnPage;
-    textOnPage = text.length;
-  }
-
-  let content = null;
-
-  content = textArr.map((el,i) => {
-    return (
-      <div className="read-book__page" key={i}>
-        { el }
-      </div>
-    )
-  })
-
-  return (
-    <div className="read-book__pages">
-      { content }
-    </div>
-  )
-}
