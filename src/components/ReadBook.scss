@@ -2,7 +2,7 @@
 
 .read-book {
   height: calc(100vh - 193px);
-  max-height: 713px;
+  max-height: 720px;
   position: relative;
 
   @include desktop {
@@ -20,6 +20,7 @@
       height: 100%;
       transform: translateX(-50%);
       background: $primary-color;
+      box-shadow: $box-shadow;
     }
   }
 
@@ -47,6 +48,7 @@
     line-height: 1.25em;
     word-wrap: break-word;
     column-width: 400px;
+    column-gap: 50px;
   }
 
   &__text {

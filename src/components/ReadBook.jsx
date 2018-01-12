@@ -4,9 +4,7 @@ import { getBookText } from '../services/api';
 import { withCookies, Cookies } from 'react-cookie';
 import classNames from 'classnames';
 
-import ReadMore from './ReadMore.jsx';
 import { ControlButtons } from './ControlButtons.jsx';
-import { ON_DOUBLE_READ_PAGE_WIDTH } from '../constants/UIConstants.js';
 
 import './ReadBook.scss';
 
@@ -23,21 +21,23 @@ class ReadBook extends Component {
       book: {},
       text: ' ',
       currentPage: 0,
-      avgStringElems: 0
+      endOfSwitch: 0,
+      resizeEnd: 0
     }
 
-    this.avgCountOfStringElems = this.avgCountOfStringElems.bind(this);
+    this.handleOnResizeReadOffset = this.handleOnResizeReadOffset.bind(this);
+    this.onResizeEnd = this.onResizeEnd.bind(this);
   }
 
   switchTextPage(direct) {
-    const {currentPage, readOffset} = this.state;
+    const {currentPage} = this.state;
     let curPageTemp = parseInt((currentPage + direct), 10);
 
     this.setState({
       currentPage: curPageTemp
     })
 
-    this.handleSuperFunctionPlsWork(curPageTemp);
+    this.handleSuperFunctionPlsWork(curPageTemp, direct);
   }
 
   saveCurrPage(readOffset) {
@@ -49,28 +49,41 @@ class ReadBook extends Component {
     });
   }
 
-  avgCountOfStringElems(curPage) {
-    const {text, currentPage} = this.state;
+  handleOnResizeReadOffset() {
+    const {readOffset} = this.state;
 
-    let curPageTemp = curPage || currentPage;
+    this.handleChangeBookSize();
 
-    let stringElemWidth = 10,
-      stringHeigh = 20;
+    this._bWithText.style = 'transform: translateY(' + -readOffset + 'px)';
+  }
 
-    let textBlockWidth = this._calcBlockOffsetWidth(this._bookCont),
-      countOfElems = Math.floor(textBlockWidth / stringElemWidth);
+  handleChangeBookSize() {
+    this._bookCont.style.height = '100%';
 
-    let textBlockHeight = this._calcBlockOffsetHeight(this._bookCont),
-      countOfStr = Math.floor(textBlockHeight / stringHeigh);
+    let contentSize = this._calcBlockOffsetHeight(this._bookCont),
+      sizeOfStr = 20,
+      rountContSize = contentSize - (contentSize % sizeOfStr);
 
-    let avgStringElemsTemp = countOfElems * countOfStr;
+    this._bookCont.style.height = rountContSize + 'px';
+
+    this._defineFirstCalcReadOffset();
+    this.calcEndOfSwitch();
+  }
+
+
+  _defineFirstCalcReadOffset() {
+    const {readOffset} = this.state;
+
+    let bOffset = this._calcBlockOffsetHeight(this._bookCont) * 2,
+      rOffset = parseInt(readOffset, 10),
+      curPage = Math.ceil(rOffset / bOffset);
 
     this.setState({
-      avgStringElems: avgStringElemsTemp
+      currentPage: curPage,
+      readOffset: rOffset
     })
 
-    //console.log(avgStringElemsTemp);
-    this.handleSuperFunctionPlsWork(curPageTemp);
+    console.log('bOffset: ' + bOffset + '\nrOffset: ' + rOffset + '\ncurPage: ' + curPage);
   }
 
   _calcBlockOffsetHeight(block) {
@@ -81,25 +94,51 @@ class ReadBook extends Component {
   }
 
   _calcBlockOffsetWidth(block) {
+    let gaps = 50;
     let paddings = parseInt(getComputedStyle(block).paddingLeft, 10) + parseInt(getComputedStyle(block).paddingRight, 10),
-      bOffset = block.offsetWidth - paddings;
+      bOffset = block.offsetWidth - (paddings + gaps);
 
     return bOffset;
   }
 
-  handleSuperFunctionPlsWork(curPage) {
-    let bOffset = this._calcBlockOffsetHeight(this._bookCont),
-      readOffset = curPage * bOffset;
+  handleSuperFunctionPlsWork(curPage, direct) {
+    const {readOffset} = this.state;
+    let bOffset = this._calcBlockOffsetHeight(this._bookCont) * 2,
+      readOffsetT = readOffset + bOffset * direct;
 
-    //console.log('curPage: ' + curPage + '\nreadOffset: ' + readOffset + '\nbOffset: ' + bOffset);
+    if(readOffsetT < 0) readOffsetT = 0;
 
-    this._bWithText.style = 'transform: translateY(' + -readOffset + 'px)';
+    console.log('curPage: ' + curPage + '\nreadOffset: ' + readOffsetT + '\nbOffset: ' + bOffset);
+
+    this._bWithText.style = 'transform: translateY(' + -readOffsetT + 'px)';
 
     this.setState({
-      readOffset: readOffset
+      readOffset: readOffsetT
     })
 
-    this.saveCurrPage(readOffset); // save to cookie pages data
+    this.saveCurrPage(readOffsetT); // save to cookie pages data
+  }
+
+  calcEndOfSwitch() {
+    let textOffset = this._calcBlockOffsetHeight(this._bWithText),
+      bOffset = this._calcBlockOffsetHeight(this._bookCont) * 2,
+      endOfSwitch = Math.floor(textOffset / bOffset);
+
+    this.setState({
+      endOfSwitch: endOfSwitch
+    })
+
+    console.log('full: ' + textOffset +'\nblock: '+ bOffset +'\nend: '+ endOfSwitch)
+  }
+
+  onResizeEnd() {
+    const {resizeEnd} = this.state;
+
+    clearTimeout(resizeEnd);
+
+    this.setState({
+      resizeEnd: setTimeout(this.handleOnResizeReadOffset, 100)
+    });
   }
 
   componentWillMount() {
@@ -114,7 +153,7 @@ class ReadBook extends Component {
       readOffset: parseInt(readOffset, 10)
     })
 
-    window && window.addEventListener('resize', this.avgCountOfStringElems, true);
+    window && window.addEventListener('resize', this.onResizeEnd, true);
   }
 
   componentDidMount() {
@@ -126,30 +165,16 @@ class ReadBook extends Component {
           book: book,
           text: book.text
         })
-        this._defineFirstCalcReadOffset();
+        this.handleOnResizeReadOffset();
       }
     );
-  }
-
-  _defineFirstCalcReadOffset() {
-    const {readOffset} = this.state;
-    let bOffset = this._calcBlockOffsetHeight(this._bookCont),
-      rOffset = parseInt(readOffset, 10),
-      curPage = Math.floor(rOffset / bOffset);
-
-    this.setState({
-      currentPage: curPage,
-      readOffset: rOffset
-    })
-
-    this.avgCountOfStringElems(curPage);
   }
 
   componentWillUnmount() {
     const {bookId} = this.props.match.params;
     const {cookies} = this.props;
 
-    cookies.remove('currentPage', {
+    cookies.remove('startReadPos', {
       path: '/books/read/' + bookId
     })
 
@@ -157,29 +182,25 @@ class ReadBook extends Component {
       path: '/books/read/' + bookId
     })
 
-    window && window.removeEventListener('resize', this.avgCountOfStringElems, true);
+    window && window.removeEventListener('resize', this.onResizeEnd, true);
   }
 
   render() {
-    const {book, text, currentPage, avgStringElems} = this.state;
-
-    let endOfSwitch = Math.ceil(text.length / avgStringElems);
+    const {text, currentPage, endOfSwitch, readOffset} = this.state;
 
     let pageClass = classNames('read-book__content', {
       'read-book__content_full-text': currentPage !== 0
     })
 
-    let headerClass = classNames('main-header read-book__header', {
+    /*let headerClass = classNames('main-header read-book__header', {
       'read-book__header_hide': currentPage !== 0
-    })
-
-    //console.log(text.substr(text.length - 10));
+    })*/
 
     return (
-      <main ref={ (div) => {
-              this._bookCont = div;
-            } } className="read-book other-pages__block">
-        <section className={ pageClass }>
+      <main className="read-book other-pages__block">
+        <section ref={ (div) => {
+                         this._bookCont = div;
+                       } } className={ pageClass }>
           <div ref={ (div) => {
                        this._bWithText = div
                      } }>
