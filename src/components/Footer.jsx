@@ -9,14 +9,14 @@ export default class Footer extends Component {
     return (
       <footer className="footer">
         <div className="footer__rss rss">
-          <ul> We on social net
+          <ul className="footer__links"> We on social net
             <li>
-              <a href="https://tumblr.com" target="_blank">
+              <a href="https://tumblr.com" rel="noopener noreferrer" target="_blank">
                 tumblr
               </a>
             </li>
             <li>
-              <a href="https://vk.com" target="_blank">
+              <a href="https://vk.com" rel="noopener noreferrer" target="_blank">
                 vk
               </a>
             </li>

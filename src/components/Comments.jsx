@@ -185,9 +185,9 @@ export default class Comments extends Component {
                 <InputComments {...comment} n={ i } key={ i } />
               )
             }) }
-          <div className={ classNames('button comments__showMore-btn', {
-                             'comments__showMore-btn_hide': maxComments >= comments.length
-                           }) } onClick={ () => this.handleMoreComments() }>
+          <div className={ classNames('comments__more-btn', {
+                             'comments__more-btn_hide': maxComments >= comments.length
+                           }, 'button') } onClick={ () => this.handleMoreComments() }>
             show more
           </div>
         </section>

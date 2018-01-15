@@ -9,16 +9,19 @@
   display: flex;
   flex-flow: row nowrap;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: space-around;
   background: rgba(255, 255, 255, 1);
   font-family: $font-stack;
   font-size: 14px;
   line-height: 18px;
-  text-align: center;
   box-shadow: $box-shadow;
+  margin: auto;
 
   &__rss {
     flex: 1 0 auto;
+  }
+
+  &__links li {
   }
 
   &__info {
@@ -30,5 +33,6 @@
 
   &__contacts {
     flex: 1 0 auto;
+    text-align: right;
   }
 }

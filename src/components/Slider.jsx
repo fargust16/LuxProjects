@@ -197,9 +197,9 @@ const Dots = ({dotCount, currentStep}) => {
 
   for (let i = dotCount - 1; i >= 0; i--) {
     content[i] = (
-      <i className={ classNames('fa fa-circle switcher__dot', {
+      <div className={ classNames('switcher__dot', {
                  'switcher__dot_active': i === currentStep
-               }) } key={ i } aria-hidden='true'></i>
+               }) } key={ i } aria-hidden='true'></div>
     );
   }
 

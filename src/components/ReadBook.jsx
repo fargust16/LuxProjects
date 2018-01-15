@@ -83,7 +83,7 @@ class ReadBook extends Component {
       readOffset: rOffset
     })
 
-    console.log('bOffset: ' + bOffset + '\nrOffset: ' + rOffset + '\ncurPage: ' + curPage);
+    //console.log('bOffset: ' + bOffset + '\nrOffset: ' + rOffset + '\ncurPage: ' + curPage);
   }
 
   _calcBlockOffsetHeight(block) {
@@ -108,7 +108,7 @@ class ReadBook extends Component {
 
     if(readOffsetT < 0) readOffsetT = 0;
 
-    console.log('curPage: ' + curPage + '\nreadOffset: ' + readOffsetT + '\nbOffset: ' + bOffset);
+    //console.log('curPage: ' + curPage + '\nreadOffset: ' + readOffsetT + '\nbOffset: ' + bOffset);
 
     this._bWithText.style = 'transform: translateY(' + -readOffsetT + 'px)';
 
@@ -128,7 +128,7 @@ class ReadBook extends Component {
       endOfSwitch: endOfSwitch
     })
 
-    console.log('full: ' + textOffset +'\nblock: '+ bOffset +'\nend: '+ endOfSwitch)
+    //console.log('full: ' + textOffset +'\nblock: '+ bOffset +'\nend: '+ endOfSwitch)
   }
 
   onResizeEnd() {
@@ -186,7 +186,7 @@ class ReadBook extends Component {
   }
 
   render() {
-    const {text, currentPage, endOfSwitch, readOffset} = this.state;
+    const {text, currentPage, endOfSwitch} = this.state;
 
     let pageClass = classNames('read-book__content', {
       'read-book__content_full-text': currentPage !== 0

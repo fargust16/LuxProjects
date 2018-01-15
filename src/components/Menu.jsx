@@ -18,6 +18,10 @@ export default class Menu extends Component {
     }
   }
 
+  testUserFunction(e) {
+    this.props.getPassword(e.target.innerText);
+  }
+
   handleShowAuthForm(isShowForm) {
     this.setState({
       isAuth: isShowForm
@@ -25,8 +29,7 @@ export default class Menu extends Component {
   }
 
   render() {
-
-    const {isShow, handleDisplayMenu, menuLinks} = this.props;
+    const {isShow, handleDisplayMenu, menuLinks, username, password, fetching} = this.props;
 
     return (
       <nav className={ isShow ? "menu menu_open" : "menu menu_close" }>
@@ -54,6 +57,15 @@ export default class Menu extends Component {
                 </li>
               )
             }) }
+          <li className="menu__option" onClick={ ::this.testUserFunction }>
+            <span className="menu__option-link">{ username }</span>
+          </li>
+          <li className="menu__option">
+            { fetching ?
+              <span className="menu__option-link">Loading...</span>
+              :
+              <span className="menu__option-link">Your password is { password }</span> }
+          </li>
         </ul>
         { this.state.isAuth ? <AuthForm onSubmit={ login } onClose={ (isShowForm) => this.handleShowAuthForm(false) } /> : '' }
       </nav>
