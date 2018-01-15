@@ -4,6 +4,7 @@ import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import Header from './containers/Header.jsx';
 import Search from './components/Search.jsx';
 import Home from './containers/Home.jsx';
+import Footer from './components/Footer.jsx';
 
 import InnerContainer from './containers/InnerContainer.jsx';
 import AddBook from './containers/AddBook.jsx';
@@ -18,6 +19,8 @@ import FadeIn from './components/FadeIn.jsx';
 
 import { isLoggedIn } from './services/AuthService';
 import history from './history';
+
+import './App.scss';
 
 
 const MatchWithFade = ({component: Component, transition, ...rest}) => (
@@ -57,6 +60,7 @@ const App = () => (
           <MatchWithFade path="/books/read/:bookId" component={ ReadBook } />
         </InnerContainer>
       </Switch>
+      <Footer />
     </div>
   </Router>
 );
