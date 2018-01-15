@@ -4,11 +4,11 @@ import { Provider } from 'react-redux';
 import { CookiesProvider } from 'react-cookie'
 import WebFont from 'webfontloader';
 
+import './style.scss';
+
 import App from './App.jsx';
 import registerServiceWorker from './registerServiceWorker';
 import { configureStore } from './store/configureStore';
-
-import './style.scss';
 
 WebFont.load({
   google: {
@@ -19,11 +19,11 @@ WebFont.load({
 const store = configureStore();
 
 ReactDOM.render(
-  <CookiesProvider>
-    <Provider store={ store }>
+  <Provider store={ store }>
+    <CookiesProvider>
       <App />
-    </Provider>
-  </CookiesProvider>,
+    </CookiesProvider>
+  </Provider>,
   document.getElementById('root')
 );
 registerServiceWorker();
