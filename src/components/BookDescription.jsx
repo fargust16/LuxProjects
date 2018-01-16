@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { instanceOf } from 'prop-types';
 import { Link } from 'react-router-dom';
-import { withCookies, Cookies } from 'react-cookie';
 import moment from 'moment';
 
-import { getBookInfo } from '../services/api';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as bookActions from '../actions/BookActions';
 
 import Rating from './Rating.jsx';
 import Comments from './Comments.jsx';
@@ -13,33 +13,21 @@ import './BookDescription.scss';
 
 class BookDescription extends Component {
 
-  static propTypes = {
-    cookies: instanceOf(Cookies).isRequired
-  };
-
   constructor(props) {
     super(props);
 
     this.state = {
-      book: {}
+
     }
   }
 
   componentWillMount() {
     const {bookId} = this.props.match.params;
-
-
-    getBookInfo(parseInt(bookId, 10)).then(
-      book => {
-        this.setState({
-          book: book
-        });
-      }
-    );
+    this.props.bookActions.handleGetBookInfo(parseInt(bookId, 10))
   }
 
   render() {
-    const {book} = this.state;
+    const {book} = this.props.books;
 
     return (
       <article>
@@ -55,10 +43,10 @@ class BookDescription extends Component {
               </div>
               <section className="book-description__control-info">
                 <div className="book-description__ISBN">
-                  <span>ISBN:</span>&nbsp;<span>{ book.ISBN }</span>
+                  <span>ISBN:</span> <span>{ book.ISBN }</span>
                 </div>
                 <div className="book-description__publish-date">
-                  <span>Pablishing date:</span>&nbsp;<span>{ moment(new Date(book.releaseDate)).format('DD.MM.YYYY') }</span>
+                  <span>Pablishing date:</span> <span>{ moment(new Date(book.releaseDate)).format('DD.MM.YYYY') }</span>
                 </div>
               </section>
               <div className="book-description__text" id="fill_text">
@@ -86,4 +74,16 @@ class BookDescription extends Component {
   }
 }
 
-export default withCookies(BookDescription);
+function mapStateToProps(state) {
+  return {
+    books: state.books
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    bookActions: bindActionCreators(bookActions, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BookDescription)

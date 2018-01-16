@@ -4,7 +4,9 @@ import { withCookies, Cookies } from 'react-cookie';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
-import { getRecentBooks } from '../services/api';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as bookActions from '../actions/BookActions';
 
 import BlockHeader from '../components/BlockHeader.jsx';
 import './Recent.scss';
@@ -19,22 +21,15 @@ class Recent extends Component {
     super(props);
 
     this.state = {
-      books: []
     }
   }
 
   componentDidMount() {
-    getRecentBooks().then(
-      books => {
-        this.setState({
-          books: books
-        });
-      }
-    );
+    this.props.bookActions.handleGetRecentBooks();
   }
 
   render() {
-    const {books} = this.state;
+    const {books} = this.props.books;
 
     return (
       <main className="recent other-pages__block">
@@ -49,7 +44,19 @@ class Recent extends Component {
   }
 }
 
-export default withCookies(Recent);
+function mapStateToProps(state) {
+  return {
+    books: state.books
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    bookActions: bindActionCreators(bookActions, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withCookies(Recent))
 
 const RecentBooks = ({books}) => {
   if (books.length === 0) return null;

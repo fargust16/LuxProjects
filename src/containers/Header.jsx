@@ -24,7 +24,6 @@ class Header extends Component {
   }
 
   handleShowAuthForm(isShowForm) {
-    //console.log(isShowForm);
     this.setState({
       isAuth: isShowForm
     })
@@ -36,15 +35,10 @@ class Header extends Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
-    //console.log(nextProps.user);
-    //nextProps.user.username ? this.handleShowAuthForm(false) : this.handleShowAuthForm(false);
-  }
-
   render() {
     const {isMenuVisible, isAuth} = this.state;
     const {handleLogIn, handleLogOut} = this.props.userActions;
-    const {username, error, fetching} = this.props.user;
+    const {error, fetching} = this.props.user;
 
     return (
       <article className={ isMenuVisible ? "header-wrap_active-menu header-wrap" : "header-wrap" }>

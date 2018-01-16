@@ -56,7 +56,6 @@ class AuthForm extends Component {
   handleOnSignIn(e) {
     e.preventDefault();
     const {email, pswd} = this.state;
-    const {fetching, error} = this.props;
 
     let authParams = {
       email: email,
@@ -74,14 +73,14 @@ class AuthForm extends Component {
   componentWillReceiveProps(nextProps) {
     if(!nextProps.fetching && !nextProps.error) {
       this.props.onClose()
+    } else if(!nextProps.fetching && nextProps.error) {
+      this.handleShowTips()
     }
   }
 
   render() {
     const {showSignInForm, email, pswd, rePswd, isTipsShow} = this.state;
     const {onClose, error, fetching} = this.props;
-
-    console.log(fetching)
 
     return (
       <article className="modal-block">
@@ -106,7 +105,8 @@ class AuthForm extends Component {
               pswdVar={ pswd }
               handleChangePswd={ (e) => this.handleChangePswd(e) }
               isTipsShow={ isTipsShow }
-              error={ error } />
+              error={ error }
+              fetching={fetching} />
             :
             <SignUpForm handleOnSignUp={ (e) => this.handleOnSignUp(e) }
               emailVar={ email }
@@ -124,7 +124,7 @@ class AuthForm extends Component {
 
 export default AuthForm;
 
-const SignInForm = ({handleOnSignIn, emailVar, handleChangeEmail, pswdVar, handleChangePswd, isTipsShow, error}) => {
+const SignInForm = ({handleOnSignIn, emailVar, handleChangeEmail, pswdVar, handleChangePswd, isTipsShow, error, fetching}) => {
 
   SignInForm.propTypes = {
     emailVar: PropTypes.string,
@@ -150,7 +150,7 @@ const SignInForm = ({handleOnSignIn, emailVar, handleChangeEmail, pswdVar, handl
         onChange={ handleChangePswd }
         required />
       <span className={ classNames('modal-block__tips', {
-                          'modal-block__tips_show': error
+                          'modal-block__tips_show': error && isTipsShow
                         }) }>{ error }. <br />Please, try again.</span>
       <div className="modal-block__content-help">
         Forgotten your password?

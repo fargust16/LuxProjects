@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { instanceOf } from 'prop-types';
-import { getBookText } from '../services/api';
 import { withCookies, Cookies } from 'react-cookie';
 import classNames from 'classnames';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as bookActions from '../actions/BookActions';
 
 import { ControlButtons } from './ControlButtons.jsx';
 
@@ -159,15 +162,13 @@ class ReadBook extends Component {
   componentDidMount() {
     const {bookId} = this.props.match.params;
 
-    getBookText(parseInt(bookId, 10)).then(
-      book => {
-        this.setState({
-          book: book,
-          text: book.text
-        })
-        this.handleOnResizeReadOffset();
-      }
-    );
+    this.props.bookActions.handleGetBookInfo(parseInt(bookId, 10));
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(!nextProps.fetching) {
+      this.handleOnResizeReadOffset();
+    }
   }
 
   componentWillUnmount() {
@@ -186,7 +187,8 @@ class ReadBook extends Component {
   }
 
   render() {
-    const {text, currentPage, endOfSwitch} = this.state;
+    const {currentPage, endOfSwitch} = this.state;
+    const {book} = this.props.books;
 
     let pageClass = classNames('read-book__content', {
       'read-book__content_full-text': currentPage !== 0
@@ -204,7 +206,7 @@ class ReadBook extends Component {
           <div ref={ (div) => {
                        this._bWithText = div
                      } }>
-            { text }
+            { book.text }
           </div>
           <ControlButtons transformFunc={ (direct) => this.switchTextPage(1) }
             btnDirect={ -1 }
@@ -222,4 +224,16 @@ class ReadBook extends Component {
   }
 }
 
-export default withCookies(ReadBook);
+function mapStateToProps(state) {
+  return {
+    books: state.books
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    bookActions: bindActionCreators(bookActions, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withCookies(ReadBook))
