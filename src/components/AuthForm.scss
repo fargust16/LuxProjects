@@ -64,12 +64,14 @@
   }
 
   &__tips {
+    display: none;
     padding: 2px 0 10px;
     font-size: 14px;
     color: $primary-color;
+    text-align: center;
 
-    &_hide {
-      display: none;
+    &_show {
+      display: inline-block;
     }
   }
 

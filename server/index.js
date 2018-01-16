@@ -39,8 +39,9 @@ app.get('/books/read/:id', (req, res) => {
 app.post('/users', (req, res) => {
   const {email, password} = req.body;
 
-  let userId = users.find(el => el.username === email && el.password === password);
-  res.send(userId);
+  let user = users.find(el => el.username === email && el.password === password);
+  
+  res.send(user);
 });
 
 const PORT = process.env.PORT || 9000;

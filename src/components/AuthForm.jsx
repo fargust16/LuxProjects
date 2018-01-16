@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import './AuthForm.scss';
 
 class AuthForm extends Component {
-  
+
   constructor(props) {
     super(props);
 
@@ -56,18 +56,14 @@ class AuthForm extends Component {
   handleOnSignIn(e) {
     e.preventDefault();
     const {email, pswd} = this.state;
+    const {fetching, error} = this.props;
 
     let authParams = {
       email: email,
       password: md5(pswd)
     };
 
-    this.props.onSubmit(authParams).then(user => {
-      user ?
-        this.props.onClose()
-        :
-        this.handleShowTips();
-    });
+    this.props.onSignIn(authParams);
   }
 
   handleOnSignUp(e) {
@@ -75,9 +71,17 @@ class AuthForm extends Component {
     return;
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(!nextProps.fetching && !nextProps.error) {
+      this.props.onClose()
+    }
+  }
+
   render() {
     const {showSignInForm, email, pswd, rePswd, isTipsShow} = this.state;
-    const {onClose} = this.props;
+    const {onClose, error, fetching} = this.props;
+
+    console.log(fetching)
 
     return (
       <article className="modal-block">
@@ -101,7 +105,8 @@ class AuthForm extends Component {
               handleChangeEmail={ (e) => this.handleChangeEmail(e) }
               pswdVar={ pswd }
               handleChangePswd={ (e) => this.handleChangePswd(e) }
-              isTipsShow={ isTipsShow } />
+              isTipsShow={ isTipsShow }
+              error={ error } />
             :
             <SignUpForm handleOnSignUp={ (e) => this.handleOnSignUp(e) }
               emailVar={ email }
@@ -119,12 +124,13 @@ class AuthForm extends Component {
 
 export default AuthForm;
 
-const SignInForm = ({handleOnSignIn, emailVar, handleChangeEmail, pswdVar, handleChangePswd, isTipsShow}) => {
+const SignInForm = ({handleOnSignIn, emailVar, handleChangeEmail, pswdVar, handleChangePswd, isTipsShow, error}) => {
 
   SignInForm.propTypes = {
     emailVar: PropTypes.string,
     pswdVar: PropTypes.string,
-    isTipsShow: PropTypes.bool
+    isTipsShow: PropTypes.bool,
+    error: PropTypes.string
   };
 
   return (
@@ -144,8 +150,8 @@ const SignInForm = ({handleOnSignIn, emailVar, handleChangeEmail, pswdVar, handl
         onChange={ handleChangePswd }
         required />
       <span className={ classNames('modal-block__tips', {
-                          'modal-block__tips_hide': !isTipsShow
-                        }) }>The password or email address did not match.</span>
+                          'modal-block__tips_show': error
+                        }) }>{ error }. <br />Please, try again.</span>
       <div className="modal-block__content-help">
         Forgotten your password?
       </div>
