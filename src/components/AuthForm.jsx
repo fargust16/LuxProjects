@@ -4,6 +4,8 @@ import md5 from 'js-md5';
 
 import classNames from 'classnames';
 
+import Loading from './Loading.jsx';
+
 import './AuthForm.scss';
 
 class AuthForm extends Component {
@@ -71,9 +73,9 @@ class AuthForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(!nextProps.fetching && !nextProps.error) {
+    if (!nextProps.fetching && !nextProps.error) {
       this.props.onClose()
-    } else if(!nextProps.fetching && nextProps.error) {
+    } else if (!nextProps.fetching && nextProps.error) {
       this.handleShowTips()
     }
   }
@@ -106,7 +108,7 @@ class AuthForm extends Component {
               handleChangePswd={ (e) => this.handleChangePswd(e) }
               isTipsShow={ isTipsShow }
               error={ error }
-              fetching={fetching} />
+              fetching={ fetching } />
             :
             <SignUpForm handleOnSignUp={ (e) => this.handleOnSignUp(e) }
               emailVar={ email }
@@ -139,6 +141,7 @@ const SignInForm = ({handleOnSignIn, emailVar, handleChangeEmail, pswdVar, handl
         type="email"
         name="email"
         placeholder="email"
+        autoComplete="email"
         value={ emailVar }
         onChange={ handleChangeEmail }
         required />
@@ -146,18 +149,26 @@ const SignInForm = ({handleOnSignIn, emailVar, handleChangeEmail, pswdVar, handl
         type="password"
         name="password"
         placeholder="password"
+        autoComplete="password"
         value={ pswdVar }
         onChange={ handleChangePswd }
         required />
       <span className={ classNames('modal-block__tips', {
-                          'modal-block__tips_show': error && isTipsShow
+                          'modal-block__tips_show': error && isTipsShow && !fetching
                         }) }>{ error }. <br />Please, try again.</span>
       <div className="modal-block__content-help">
         Forgotten your password?
       </div>
-      <button className="button btn-submit modal-block__content-btn" type="submit">
+      <button className="button btn-submit modal-block__content-btn" type="submit" disabled={ fetching ? true : false }>
         Sign In
       </button>
+      { fetching ?
+        <div className="modal-block__loading">
+          <div className="modal-block__loading-content">
+            <Loading />
+          </div>
+        </div>
+        : '' }
     </form>
     );
 };

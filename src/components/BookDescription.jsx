@@ -13,14 +13,6 @@ import './BookDescription.scss';
 
 class BookDescription extends Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-
-    }
-  }
-
   componentWillMount() {
     const {bookId} = this.props.match.params;
     this.props.bookActions.handleGetBookInfo(parseInt(bookId, 10))
@@ -74,16 +66,11 @@ class BookDescription extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
+export default connect(
+  state => ({
     books: state.books
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
+  }),
+  dispatch => ({
     bookActions: bindActionCreators(bookActions, dispatch)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(BookDescription)
+  })
+)(BookDescription)

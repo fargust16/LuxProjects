@@ -21,7 +21,34 @@
     flex: 1 0 auto;
   }
 
-  &__links li {
+  &__link {
+    text-decoration: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+    
+    &_tumblr {
+      &::before {
+        @include awesome-icon(relative, "\F174" , 16px);
+        display: inline-block;
+        width: 20px;
+        color: rgb(43,160,199);
+      }
+    }
+
+    &_vk {
+      &::before {
+        @include awesome-icon(relative, "\F189" , 16px);
+        display: inline-block;
+        width: 20px;
+        color: rgb(43,160,199);
+      }
+    }
+
+    & > a {
+      
+    }
   }
 
   &__info {

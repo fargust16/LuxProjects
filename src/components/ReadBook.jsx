@@ -224,16 +224,11 @@ class ReadBook extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
+export default connect(
+  state => ({
     books: state.books
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
+  }),
+  dispatch => ({
     bookActions: bindActionCreators(bookActions, dispatch)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(withCookies(ReadBook))
+  })
+)(withCookies(ReadBook))

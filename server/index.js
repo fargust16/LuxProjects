@@ -41,7 +41,7 @@ app.post('/users', (req, res) => {
 
   let user = users.find(el => el.username === email && el.password === password);
   
-  res.send(user);
+  setTimeout(() => res.send(user), 2000);
 });
 
 const PORT = process.env.PORT || 9000;

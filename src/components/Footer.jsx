@@ -11,12 +11,12 @@ export default class Footer extends Component {
         <div className="footer__rss rss">
           <ul className="footer__links"> We on social net
             <li>
-              <a href="https://tumblr.com" rel="noopener noreferrer" target="_blank">
+              <a className="footer__link footer__link_tumblr" href="https://tumblr.com" rel="noopener noreferrer" target="_blank">
                 tumblr
               </a>
             </li>
             <li>
-              <a href="https://vk.com" rel="noopener noreferrer" target="_blank">
+              <a className="footer__link footer__link_vk" href="https://vk.com" rel="noopener noreferrer" target="_blank">
                 vk
               </a>
             </li>

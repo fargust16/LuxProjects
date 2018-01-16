@@ -44,19 +44,14 @@ class Recent extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
+export default connect(
+  state => ({
     books: state.books
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
+  }),
+  dispatch => ({
     bookActions: bindActionCreators(bookActions, dispatch)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(withCookies(Recent))
+  })
+)(withCookies(Recent))
 
 const RecentBooks = ({books}) => {
   if (books.length === 0) return null;

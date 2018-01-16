@@ -62,16 +62,11 @@ class Header extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
+export default connect(
+  state => ({
     user: state.user
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
+  }),
+  dispatch => ({
     userActions: bindActionCreators(userActions, dispatch)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header)
+  })
+)(Header)
