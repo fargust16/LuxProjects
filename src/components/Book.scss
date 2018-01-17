@@ -24,10 +24,14 @@
   border-radius: 5px;
 
   &__cover {
-    width: 100px;
+    min-width: 100px;
+    max-height: 130px;
+    height: 100%;
 
     @include tablet {
-      width: 120px;
+      min-width: 120px;
+      max-height: 156px;
+      height: 100%;
     }
   }
 
@@ -39,6 +43,7 @@
   &__title {
     text-decoration: none;
     color: $primary-color;
+    font-size: 14px;
   }
 
   &__author {
@@ -47,11 +52,12 @@
   }
 
   &__desc {
-    @include multi-textblock(12px, 1.15em, 6);
+    @include multi-textblock(12px, 1.15em);
+    max-height: 67px;
     margin-top: 5px;
 
     @include tablet {
-     -webkit-line-clamp: 8;
+      max-height: 92px;
     }
   }
 

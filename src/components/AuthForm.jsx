@@ -85,17 +85,17 @@ class AuthForm extends Component {
     const {onClose, error, fetching} = this.props;
 
     return (
-      <article className="modal-block">
-        <main className="modal-block__main">
-          <i className="modal-block__cancel" onClick={ onClose }></i>
-          <ul className="modal-block__menu">
-            <li className={ classNames('modal-block__menu-option sign-in', {
-                              'modal-block__active-option': showSignInForm
+      <article className="auth-form">
+        <main className="auth-form__main">
+          <i className="auth-form__cancel" onClick={ onClose }></i>
+          <ul className="auth-form__menu">
+            <li className={ classNames('auth-form__menu-option sign-in', {
+                              'auth-form__active-option': showSignInForm
                             }) } onClick={ (type) => this.handleChangeSignType(false) }>
               Sign In
             </li>
-            <li className={ classNames('modal-block__menu-option sign-up', {
-                              'modal-block__active-option': !showSignInForm
+            <li className={ classNames('auth-form__menu-option sign-up', {
+                              'auth-form__active-option': !showSignInForm
                             }) } onClick={ (type) => this.handleChangeSignType(true) }>
               Sign Up
             </li>
@@ -136,8 +136,8 @@ const SignInForm = ({handleOnSignIn, emailVar, handleChangeEmail, pswdVar, handl
   };
 
   return (
-    <form id="sign-in" className="modal-block__content" onSubmit={ handleOnSignIn }>
-      <input className="field modal-block__content-email"
+    <form id="sign-in" className="auth-form__content" onSubmit={ handleOnSignIn }>
+      <input className="field auth-form__content-email"
         type="email"
         name="email"
         placeholder="email"
@@ -145,7 +145,7 @@ const SignInForm = ({handleOnSignIn, emailVar, handleChangeEmail, pswdVar, handl
         value={ emailVar }
         onChange={ handleChangeEmail }
         required />
-      <input className="field modal-block__content-password"
+      <input className="field auth-form__content-password"
         type="password"
         name="password"
         placeholder="password"
@@ -153,18 +153,18 @@ const SignInForm = ({handleOnSignIn, emailVar, handleChangeEmail, pswdVar, handl
         value={ pswdVar }
         onChange={ handleChangePswd }
         required />
-      <span className={ classNames('modal-block__tips', {
-                          'modal-block__tips_show': error && isTipsShow && !fetching
+      <span className={ classNames('auth-form__tips', {
+                          'auth-form__tips_show': error && isTipsShow && !fetching
                         }) }>{ error }. <br />Please, try again.</span>
-      <div className="modal-block__content-help">
+      <div className="auth-form__content-help">
         Forgotten your password?
       </div>
-      <button className="button btn-submit modal-block__content-btn" type="submit" disabled={ fetching ? true : false }>
+      <button className="button btn-submit auth-form__content-btn" type="submit" disabled={ fetching ? true : false }>
         Sign In
       </button>
       { fetching ?
-        <div className="modal-block__loading">
-          <div className="modal-block__loading-content">
+        <div className="auth-form__loading">
+          <div className="auth-form__loading-content">
             <Loading />
           </div>
         </div>
@@ -182,32 +182,32 @@ const SignUpForm = ({handleOnSignUp, emailVar, handleChangeEmail, pswdVar, handl
   };
 
   return (
-    <form id="sign-up" className="modal-block__content">
-      <input className="field modal-block__content-email"
+    <form id="sign-up" className="auth-form__content">
+      <input className="field auth-form__content-email"
         type="email"
         name="email"
         placeholder="email"
         value={ emailVar }
         onChange={ handleChangeEmail }
         required />
-      <input className="field modal-block__content-password"
+      <input className="field auth-form__content-password"
         type="password"
         name="password"
         placeholder="password"
         value={ pswdVar }
         onChange={ handleChangePswd }
         required />
-      <input className="field modal-block__content-password"
+      <input className="field auth-form__content-password"
         type="password"
         name="confirm-password"
         placeholder="confirm password"
         value={ rePswdVar }
         onChange={ handleChangeRePswd }
         required />
-      <div className="modal-block__content-help" onClick={ handleChangeSignType }>
+      <div className="auth-form__content-help" onClick={ handleChangeSignType }>
         Already have an account?
       </div>
-      <button className="button btn-submit modal-block__content-btn" type="submit">
+      <button className="button btn-submit auth-form__content-btn" type="submit">
         Sign Up
       </button>
     </form>

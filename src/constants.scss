@@ -45,17 +45,15 @@ $bold: 600;
 }
 
 %multi-text {
-    display: -webkit-box;
+    display: block;
     overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-box-orient: vertical;
+    height: 100%;
 }
 
-@mixin multi-textblock($fSize, $lHeight, $colCount) {
+@mixin multi-textblock($fSize, $lHeight) {
     @extend %multi-text;
     font-size: $fSize;
-    line-height: $lHeight;
-    -webkit-line-clamp: $colCount; 
+    line-height: $lHeight; 
 }
 
 @mixin awesome-icon($position, $content , $size) {

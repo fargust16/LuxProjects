@@ -1,6 +1,6 @@
 @import '../constants.scss';
 
-.modal-block {
+.auth-form {
   position: fixed;
   top: 0;
   left: 0;
@@ -14,11 +14,18 @@
     top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 400px;
+    width: 300px;
     background-color: #fff;
     border: $border;
     border-radius: 8px;
     padding: $main-padding;
+    display: flex;
+    flex-flow: column wrap;
+
+
+    @include small {
+      width: 400px;
+    }
   }
 
   &__cancel {
@@ -46,7 +53,11 @@
 
   &__menu-option {
     padding: 10px;
-    font-size: 24px;
+    font-size: 20px;
+
+    @include small {
+      font-size: 24px;
+    }
 
     &:hover {
       cursor: pointer;

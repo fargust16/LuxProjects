@@ -52,10 +52,10 @@ export default class Option extends Component {
 
     return (
       <section className="option">
-        <BlockHeader optionName={ optionName } isShowOption={ showOption } handleChangeView={ (isOpen) => this.handleShowExternalOptions(alwaysOpen) } />
+        <BlockHeader optionName={ optionName } isShowOption={ showOption || alwaysOpen } handleChangeView={ (isOpen) => this.handleShowExternalOptions(alwaysOpen) } />
         <div className={ classNames(subClass || '', {
-                           'option__content': showOption,
-                           'option__content_hide': !showOption
+                           'option__content': showOption || alwaysOpen,
+                           'option__content_hide': !showOption && !alwaysOpen
                          }) }>
           { children }
           { needButtons ?

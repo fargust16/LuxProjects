@@ -23,7 +23,7 @@ const getAllBooks = () => {
 };
 
 const auth = (authData) => {
-  const url = `${BASE_URL}/users/`;
+  const url = `${BASE_URL}/users`;
   return axios.post(url, authData).then(response => response.data);
 };
 

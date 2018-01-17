@@ -49,7 +49,7 @@ export default class Slider extends Component {
       visibleBlockCount: visibleBlockCountTemp
     });
 
-    this._switcher.style = window.innerWidth >= switchHideWidth ? 'transform: translate(0)' : 'transform: translate(' + switcherStartTransform + 'px, 0) translateZ(0)';
+    this._switcher.style.transform = window.innerWidth >= switchHideWidth ? 'translate(0)' : 'translate(' + switcherStartTransform + 'px, 0) translateZ(0)';
   }
 
   getSwitchPos(event) {

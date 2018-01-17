@@ -57,7 +57,7 @@ class ReadBook extends Component {
 
     this.handleChangeBookSize();
 
-    this._bWithText.style = 'transform: translateY(' + -readOffset + 'px)';
+    this._bWithText.style.transform = 'translateY(' + -readOffset + 'px)';
   }
 
   handleChangeBookSize() {

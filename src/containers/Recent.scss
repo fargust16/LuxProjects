@@ -56,9 +56,10 @@
   }
 
   &__book-description {
-    @include multi-textblock(12px, 1.2em, 4);
+    @include multi-textblock(12px, 1.2em);
     flex-grow: 1;
     margin-top: 5px;
+    max-height: 58px;
   }
 
   &__book-progress {

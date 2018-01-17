@@ -9,7 +9,7 @@ export default class Footer extends Component {
     return (
       <footer className="footer">
         <div className="footer__rss rss">
-          <ul className="footer__links"> We on social net
+          <ul className="footer__links"> Our rss
             <li>
               <a className="footer__link footer__link_tumblr" href="https://tumblr.com" rel="noopener noreferrer" target="_blank">
                 tumblr
@@ -27,7 +27,7 @@ export default class Footer extends Component {
           <span>© 2018. <Link to="/"> Online-library </Link></span>
         </div>
         <div className="footer__contacts">
-          <ul> Contacts us
+          <ul> Contacts
             <li>
               <Link to="/support">
                 support

@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import * as Scroll from 'react-scroll';
 import classNames from 'classnames';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import * as userActions from '../actions/UserActions';
 
 import AuthForm from './AuthForm.jsx';
 
-import { login, isLoggedIn } from '../services/AuthService';
+import { isLoggedIn } from '../services/AuthService';
 
 import { ON_HIDE_WIDTH } from '../constants/UIConstants.js';
 
@@ -15,7 +19,7 @@ import './Comments.scss';
 
 var scroll = Scroll.animateScroll;
 
-export default class Comments extends Component {
+class Comments extends Component {
 
   static propTypes = {
     comments: PropTypes.array
@@ -68,7 +72,7 @@ export default class Comments extends Component {
       this.setState({
         commentsOffset: window.pageYOffset
       });
-      scroll.scrollTo(this.refs._comments_block.offsetTop - 150, {
+      scroll.scrollTo(this._comments_block.offsetTop - 150, {
         duration: 500,
         delay: 50,
         smooth: true
@@ -140,6 +144,8 @@ export default class Comments extends Component {
 
   render() {
     const {comments, showCom, showComBtns, commenttext, maxComments, isAuth} = this.state;
+    const {handleLogIn} = this.props.userActions;
+    const {error, fetching} = this.props.user;
 
     let contentClass = classNames('comments__content', {
       'comments__content_hide': !showCom
@@ -153,7 +159,7 @@ export default class Comments extends Component {
       <section ref={ (div) => {
                  this._comments_block = div
                } } className="comments other-pages__comments">
-        <BlockHeader optionName="comments" isShowOption={ showCom } handleChangeView={ () => this.showComments() } />
+        <BlockHeader optionName="comments" isShowOption={ showCom } handleChangeView={ ::this.showComments } />
         <section className={ contentClass }>
           <div className="new-comment comments__new-comment">
             <img className="comment__user-image" src="" alt="" />
@@ -191,11 +197,21 @@ export default class Comments extends Component {
             show more
           </div>
         </section>
-        { isAuth ? <AuthForm onSubmit={ login } onClose={ (isShowForm) => this.handleShowAuthForm(false) } /> : '' }
+        { isAuth ? <AuthForm onSignIn={ handleLogIn } error={ error } fetching={fetching} onClose={ (isShowForm) => this.handleShowAuthForm(false) } /> : '' }
       </section>
       );
   }
 }
+
+export default connect(
+  state => ({
+    user: state.user
+  }),
+  dispatch => ({
+    userActions: bindActionCreators(userActions, dispatch)
+  })
+)(Comments)
+
 
 const InputComments = ({author, text, postDate, n}) => {
 
