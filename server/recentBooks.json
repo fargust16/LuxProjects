@@ -3,25 +3,103 @@
     "viewDate": "12/24/2017",
     "books": [
       {
-        "Id": "2",
-        "Title": "Alice in Wonderland",
-        "Author": "Lewis Carroll",
-        "Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt bibendum purus sed tristique. Pellentesque a lacinia augue. Mauris gravida urna eu neque interdum, et consectetur leo varius. Donec vitae posuere lorem, ac tincidunt ipsum. Maecenas auctor pretium ex, ac imperdiet dui pharetra in. Pellentesque justo est, cursus id pellentesque in, imperdiet eu velit. Ut rhoncus condimentum velit id tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean nisl turpis, dapibus aliquam tellus quis, blandit condimentum dolor. Maecenas dignissim euismod eros, et facilisis lorem pharetra et. Ut libero felis, tincidunt malesuada luctus id, aliquam in urna.",
-        "Cover": "books-cover.png"
+        "id": "2",
+        "title": "Alice in Wonderland",
+        "author": "Lewis Carroll",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt bibendum purus sed tristique. Pellentesque a lacinia augue. Mauris gravida urna eu neque interdum, et consectetur leo varius. Donec vitae posuere lorem, ac tincidunt ipsum. Maecenas auctor pretium ex, ac imperdiet dui pharetra in. Pellentesque justo est, cursus id pellentesque in, imperdiet eu velit. Ut rhoncus condimentum velit id tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean nisl turpis, dapibus aliquam tellus quis, blandit condimentum dolor. Maecenas dignissim euismod eros, et facilisis lorem pharetra et. Ut libero felis, tincidunt malesuada luctus id, aliquam in urna.",
+        "cover": "books-cover.png",
+        "reviews": [
+          {
+            "id": "1",
+            "rating": "5"
+          },
+          {
+            "id": "2",
+            "rating": "4"
+          },
+          {
+            "id": "3",
+            "rating": "3"
+          },
+          {
+            "id": "4",
+            "rating": "5"
+          },
+          {
+            "id": "5",
+            "rating": "4"
+          },
+          {
+            "id": "6",
+            "rating": "5"
+          }
+        ]
       },
       {
-        "Id": "1",
-        "Title": "The Alchemist",
-        "Author": "Paulo Coelho",
-        "Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt bibendum purus sed tristique. Pellentesque a lacinia augue. Mauris gravida urna eu neque interdum, et consectetur leo varius. Donec vitae posuere lorem, ac tincidunt ipsum. Maecenas auctor pretium ex, ac imperdiet dui pharetra in. Pellentesque justo est, cursus id pellentesque in, imperdiet eu velit. Ut rhoncus condimentum velit id tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean nisl turpis, dapibus aliquam tellus quis, blandit condimentum dolor. Maecenas dignissim euismod eros, et facilisis lorem pharetra et. Ut libero felis, tincidunt malesuada luctus id, aliquam in urna.",
-        "Cover": "books-cover.png"
+        "id": "1",
+        "title": "The Alchemist",
+        "author": "Paulo Coelho",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt bibendum purus sed tristique. Pellentesque a lacinia augue. Mauris gravida urna eu neque interdum, et consectetur leo varius. Donec vitae posuere lorem, ac tincidunt ipsum. Maecenas auctor pretium ex, ac imperdiet dui pharetra in. Pellentesque justo est, cursus id pellentesque in, imperdiet eu velit. Ut rhoncus condimentum velit id tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean nisl turpis, dapibus aliquam tellus quis, blandit condimentum dolor. Maecenas dignissim euismod eros, et facilisis lorem pharetra et. Ut libero felis, tincidunt malesuada luctus id, aliquam in urna.",
+        "cover": "books-cover.png",
+        "reviews": [
+          {
+            "id": "1",
+            "rating": "5"
+          },
+          {
+            "id": "2",
+            "rating": "4"
+          },
+          {
+            "id": "3",
+            "rating": "3"
+          },
+          {
+            "id": "4",
+            "rating": "5"
+          },
+          {
+            "id": "5",
+            "rating": "4"
+          },
+          {
+            "id": "6",
+            "rating": "5"
+          }
+        ]
       },
       {
-        "Id": "3",
-        "Title": "Harry Potter",
-        "Author": "Joanne Rowling",
-        "Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt bibendum purus sed tristique. Pellentesque a lacinia augue. Mauris gravida urna eu neque interdum, et consectetur leo varius. Donec vitae posuere lorem, ac tincidunt ipsum. Maecenas auctor pretium ex, ac imperdiet dui pharetra in. Pellentesque justo est, cursus id pellentesque in, imperdiet eu velit. Ut rhoncus condimentum velit id tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean nisl turpis, dapibus aliquam tellus quis, blandit condimentum dolor. Maecenas dignissim euismod eros, et facilisis lorem pharetra et. Ut libero felis, tincidunt malesuada luctus id, aliquam in urna.",
-        "Cover": "books-cover.png"
+        "id": "3",
+        "title": "Harry Potter",
+        "author": "Joanne Rowling",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt bibendum purus sed tristique. Pellentesque a lacinia augue. Mauris gravida urna eu neque interdum, et consectetur leo varius. Donec vitae posuere lorem, ac tincidunt ipsum. Maecenas auctor pretium ex, ac imperdiet dui pharetra in. Pellentesque justo est, cursus id pellentesque in, imperdiet eu velit. Ut rhoncus condimentum velit id tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean nisl turpis, dapibus aliquam tellus quis, blandit condimentum dolor. Maecenas dignissim euismod eros, et facilisis lorem pharetra et. Ut libero felis, tincidunt malesuada luctus id, aliquam in urna.",
+        "cover": "books-cover.png",
+        "reviews": [
+          {
+            "id": "1",
+            "rating": "5"
+          },
+          {
+            "id": "2",
+            "rating": "4"
+          },
+          {
+            "id": "3",
+            "rating": "3"
+          },
+          {
+            "id": "4",
+            "rating": "5"
+          },
+          {
+            "id": "5",
+            "rating": "4"
+          },
+          {
+            "id": "6",
+            "rating": "5"
+          }
+        ]
       }
     ]
   },
@@ -29,18 +107,70 @@
     "viewDate": "11/20/2017",
     "books": [
       {
-        "Id": "1",
-        "Title": "The Alchemist",
-        "Author": "Paulo Coelho",
-        "Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt bibendum purus sed tristique. Pellentesque a lacinia augue. Mauris gravida urna eu neque interdum, et consectetur leo varius. Donec vitae posuere lorem, ac tincidunt ipsum. Maecenas auctor pretium ex, ac imperdiet dui pharetra in. Pellentesque justo est, cursus id pellentesque in, imperdiet eu velit. Ut rhoncus condimentum velit id tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean nisl turpis, dapibus aliquam tellus quis, blandit condimentum dolor. Maecenas dignissim euismod eros, et facilisis lorem pharetra et. Ut libero felis, tincidunt malesuada luctus id, aliquam in urna.",
-        "Cover": "books-cover.png"
+        "id": "1",
+        "title": "The Alchemist",
+        "author": "Paulo Coelho",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt bibendum purus sed tristique. Pellentesque a lacinia augue. Mauris gravida urna eu neque interdum, et consectetur leo varius. Donec vitae posuere lorem, ac tincidunt ipsum. Maecenas auctor pretium ex, ac imperdiet dui pharetra in. Pellentesque justo est, cursus id pellentesque in, imperdiet eu velit. Ut rhoncus condimentum velit id tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean nisl turpis, dapibus aliquam tellus quis, blandit condimentum dolor. Maecenas dignissim euismod eros, et facilisis lorem pharetra et. Ut libero felis, tincidunt malesuada luctus id, aliquam in urna.",
+        "cover": "books-cover.png",
+        "reviews": [
+          {
+            "id": "1",
+            "rating": "5"
+          },
+          {
+            "id": "2",
+            "rating": "4"
+          },
+          {
+            "id": "3",
+            "rating": "3"
+          },
+          {
+            "id": "4",
+            "rating": "5"
+          },
+          {
+            "id": "5",
+            "rating": "4"
+          },
+          {
+            "id": "6",
+            "rating": "5"
+          }
+        ]
       },
       {
-        "Id": "3",
-        "Title": "Harry Potter",
-        "Author": "Joanne Rowling",
-        "Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt bibendum purus sed tristique. Pellentesque a lacinia augue. Mauris gravida urna eu neque interdum, et consectetur leo varius. Donec vitae posuere lorem, ac tincidunt ipsum. Maecenas auctor pretium ex, ac imperdiet dui pharetra in. Pellentesque justo est, cursus id pellentesque in, imperdiet eu velit. Ut rhoncus condimentum velit id tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean nisl turpis, dapibus aliquam tellus quis, blandit condimentum dolor. Maecenas dignissim euismod eros, et facilisis lorem pharetra et. Ut libero felis, tincidunt malesuada luctus id, aliquam in urna.",
-        "Cover": "books-cover.png"
+        "id": "3",
+        "title": "Harry Potter",
+        "author": "Joanne Rowling",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt bibendum purus sed tristique. Pellentesque a lacinia augue. Mauris gravida urna eu neque interdum, et consectetur leo varius. Donec vitae posuere lorem, ac tincidunt ipsum. Maecenas auctor pretium ex, ac imperdiet dui pharetra in. Pellentesque justo est, cursus id pellentesque in, imperdiet eu velit. Ut rhoncus condimentum velit id tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean nisl turpis, dapibus aliquam tellus quis, blandit condimentum dolor. Maecenas dignissim euismod eros, et facilisis lorem pharetra et. Ut libero felis, tincidunt malesuada luctus id, aliquam in urna.",
+        "cover": "books-cover.png",
+        "reviews": [
+          {
+            "id": "1",
+            "rating": "5"
+          },
+          {
+            "id": "2",
+            "rating": "4"
+          },
+          {
+            "id": "3",
+            "rating": "3"
+          },
+          {
+            "id": "4",
+            "rating": "5"
+          },
+          {
+            "id": "5",
+            "rating": "4"
+          },
+          {
+            "id": "6",
+            "rating": "5"
+          }
+        ]
       }
     ]
   }

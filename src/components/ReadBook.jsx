@@ -188,7 +188,7 @@ class ReadBook extends Component {
 
   render() {
     const {currentPage, endOfSwitch} = this.state;
-    const {book} = this.props.books;
+    const {text} = this.props.book;
 
     let pageClass = classNames('read-book__content', {
       'read-book__content_full-text': currentPage !== 0
@@ -206,7 +206,7 @@ class ReadBook extends Component {
           <div ref={ (div) => {
                        this._bWithText = div
                      } }>
-            { book.text }
+            { text }
           </div>
           <ControlButtons transformFunc={ (direct) => this.switchTextPage(1) }
             btnDirect={ -1 }
@@ -226,7 +226,7 @@ class ReadBook extends Component {
 
 export default connect(
   state => ({
-    books: state.books
+    book: state.books.bookById
   }),
   dispatch => ({
     bookActions: bindActionCreators(bookActions, dispatch)

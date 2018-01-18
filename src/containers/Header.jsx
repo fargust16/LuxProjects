@@ -70,3 +70,12 @@ export default connect(
     userActions: bindActionCreators(userActions, dispatch)
   })
 )(Header)
+
+/*export default connect(
+  state => ({
+    user: state.user
+  }),
+  dispatch => ({
+    userActions: (dispatch) => dispatch(userActions.handleLogIn())
+  })
+)(Header)*/

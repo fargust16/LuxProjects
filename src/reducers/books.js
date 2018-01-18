@@ -9,8 +9,9 @@ import { GET_ALL_BOOKS_REQUEST,
   GET_BOOK_BY_ID_FAIL } from '../constants/Book';
 
 const initialState = {
-  books: [],
-  book: {},
+  allBooks: [],
+  bookById: {},
+  recBooks: [],
   error: '',
   fetching: false
 }
@@ -27,7 +28,7 @@ export default function books(state = initialState, action) {
     case GET_ALL_BOOKS_SUCCESS:
       return {
         ...state,
-        books: action.payload,
+        allBooks: action.payload,
         error: '',
         fetching: false
       }
@@ -48,7 +49,7 @@ export default function books(state = initialState, action) {
     case GET_BOOK_BY_ID_SUCCESS:
       return {
         ...state,
-        book: action.payload,
+        bookById: action.payload,
         error: ''
       }
 
@@ -67,7 +68,7 @@ export default function books(state = initialState, action) {
     case GET_RECENT_BOOKS_SUCCESS:
       return {
         ...state,
-        books: action.payload,
+        recBooks: action.payload,
         error: ''
       }
 

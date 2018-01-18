@@ -81,13 +81,3 @@ export function handleGetRecentBooks() {
       });
   }
 }
-
-/*import { GET_ALL_BOOKS_REQUEST, 
-  GET_ALL_BOOKS_SUCCESS, 
-  GET_ALL_BOOKS_FAIL, 
-  GET_BOOK_BY_ID_REQUEST,
-  GET_BOOK_BY_ID_SUCCESS, 
-  GET_BOOK_BY_ID_FAIL, 
-  GET_BOOKS_IN_CATEGORY_REQUEST, 
-  GET_BOOKS_IN_CATEGORY_SUCCESS, 
-  GET_BOOKS_IN_CATEGORY_FAIL } from '../constants/Book';*/

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
-import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 import { connect } from 'react-redux';
@@ -9,27 +8,21 @@ import { bindActionCreators } from 'redux';
 import * as bookActions from '../actions/BookActions';
 
 import BlockHeader from '../components/BlockHeader.jsx';
+import Book from '../components/Book.jsx';
 import './Recent.scss';
 
 class Recent extends Component {
 
   static propTypes = {
     cookies: instanceOf(Cookies).isRequired
-  }
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-    }
-  }
+  };
 
   componentDidMount() {
     this.props.bookActions.handleGetRecentBooks();
   }
 
   render() {
-    const {books} = this.props.books;
+    const {recBooks} = this.props.books;
 
     return (
       <main className="recent other-pages__block">
@@ -37,7 +30,7 @@ class Recent extends Component {
           <span className="main-header__text">Recently</span>
         </div>
         <article className="recent__content">
-          <RecentBooks books={ books } />
+          <RecentBooks books={ recBooks } />
         </article>
       </main>
       );
@@ -60,26 +53,12 @@ const RecentBooks = ({books}) => {
 
   books.forEach((elem, i) => {
     content[i] = (
-      <section key={i} className="recent__category">
+      <section key={ i } className="recent__category">
         <BlockHeader optionName={ moment(new Date(elem.viewDate)).format('DD.MM.YYYY') } isShowOption={ true } className="recent__category-date" />
         <div className="books recent__books">
-          { elem.books.map(book => {
+          { elem.books.map((book, i) => {
               return (
-                <div key={ book.Id } className="recent__book book">
-                  <div className="recent__book-info book-info">
-                    <Link to={`/books/view/${book.Id}`} className="book__title recent__book-title">
-                      { book.Title }
-                    </Link>
-                    <p className="recent__book-author">
-                      { book.Author }
-                    </p>
-                    <p className="recent__book-description">
-                      { book.Text }
-                    </p>
-                    <progress className="recent__book-progress" max="100" value="37"></progress>
-                  </div>
-                  <img src="/images/books-cover.png" className="recent__book-cover book-cover" alt="" />
-                </div>
+                <Book {...book} key={ i } subClass="recent__book" />
                 );
             }) }
         </div>

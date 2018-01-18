@@ -69,7 +69,7 @@ const Results = ({books, categoryId, categoryName}) => {
 
   booksCont = books.map((book, i) => {
     return (
-      <Book {...book} key={ i } categoryId={ categoryId } />
+      <Book {...book} key={ i } subClass={ categoryId ? 'category__book' : 'switcher__book' } />
       );
   })
 
