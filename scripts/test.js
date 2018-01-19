@@ -24,5 +24,5 @@ if (!process.env.CI && argv.indexOf('--coverage') < 0) {
 }
 
 
-//jest.run(argv);
+jest.run(argv);
 

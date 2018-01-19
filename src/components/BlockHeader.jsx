@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import classNames from 'classnames';  
 
 import './BlockHeader.scss';
 
@@ -8,6 +8,7 @@ const BlockHeader = ({isShowOption, optionName, handleChangeView, subClass}) => 
 
   BlockHeader.propTypes = {
     isShowOption: PropTypes.bool.isRequired,
+    handleChangeView: PropTypes.func,
     optionName: PropTypes.string,
     subClass: PropTypes.string
   };

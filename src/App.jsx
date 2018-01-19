@@ -1,7 +1,5 @@
 import React from 'react';
-import { Router, Route, Switch, Redirect } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { configureStore } from './store/configureStore';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 import Header from './containers/Header.jsx';
 import Search from './components/Search.jsx';
@@ -20,7 +18,7 @@ import ReadBook from './containers/ReadBook.jsx';
 import FadeIn from './components/FadeIn.jsx';
 
 import { isLoggedIn } from './services/AuthService';
-import history from './history';
+
 
 import './App.scss';
 
@@ -45,30 +43,24 @@ const PrivateMatchWithFade = ({component: Component, transition, ...rest}) => (
                 ) } {...rest} />
 );
 
-const store = configureStore();
-
 const App = () => (
-  <Provider store={ store }>
-    <Router history={ history }>
-      <div className="app">
-        <Header />
-        <Search />
-        <Switch>
-          <MatchWithFade exact path="/" component={ Home } /> {/*to run app.test.js change path to /books*/}
-          <MatchWithFade path="/books/categories/:categoryId" component={ Home } />
-          <InnerContainer>
-            <PrivateMatchWithFade path="/books/add-book" component={ AddBook } />
-            <MatchWithFade path="/books/recent" component={ Recent } />
-            <MatchWithFade path="/support" component={ Support } />
-            <PrivateMatchWithFade path="/settings" component={ Settings } />
-            <MatchWithFade path="/books/view/:bookId" component={ BookDescription } />
-            <MatchWithFade path="/books/read/:bookId" component={ ReadBook } />
-          </InnerContainer>
-        </Switch>
-        <Footer />
-      </div>
-    </Router>
-  </Provider>
+  <div className="app">
+    <Header />
+    <Search />
+    <Switch>
+      <MatchWithFade exact path="/" component={ Home } />
+      <MatchWithFade path="/books/categories/:categoryId" component={ Home } />
+      <InnerContainer>
+        <PrivateMatchWithFade path="/books/add-book" component={ AddBook } />
+        <MatchWithFade path="/books/recent" component={ Recent } />
+        <MatchWithFade path="/support" component={ Support } />
+        <PrivateMatchWithFade path="/settings" component={ Settings } />
+        <MatchWithFade path="/books/view/:bookId" component={ BookDescription } />
+        <MatchWithFade path="/books/read/:bookId" component={ ReadBook } />
+      </InnerContainer>
+    </Switch>
+    <Footer />
+  </div>
 );
 
 export default App;
