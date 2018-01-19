@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import BlockHeader from './BlockHeader.jsx';
 
-import { ON_HIDE_WIDTH } from '../constants/UIConstants.js';
+import { ON_HIDE_WIDTH } from '../constants/UI.js';
 
 import './Option.scss';
 

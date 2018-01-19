@@ -4,7 +4,8 @@ import md5 from 'js-md5';
 
 import classNames from 'classnames';
 
-import Loading from './Loading.jsx';
+import SignIn from '../components/SignIn.jsx';
+import SignUp from '../components/SignUp.jsx';
 
 import './AuthForm.scss';
 
@@ -101,7 +102,7 @@ class AuthForm extends Component {
             </li>
           </ul>
           { showSignInForm ?
-            <SignInForm handleOnSignIn={ (e) => this.handleOnSignIn(e) }
+            <SignIn handleOnSignIn={ ::this.handleOnSignIn}
               emailVar={ email }
               handleChangeEmail={ (e) => this.handleChangeEmail(e) }
               pswdVar={ pswd }
@@ -110,7 +111,7 @@ class AuthForm extends Component {
               error={ error }
               fetching={ fetching } />
             :
-            <SignUpForm handleOnSignUp={ (e) => this.handleOnSignUp(e) }
+            <SignUp handleOnSignUp={ (e) => this.handleOnSignUp(e) }
               emailVar={ email }
               handleChangeEmail={ (e) => this.handleChangeEmail(e) }
               pswdVar={ pswd }
@@ -125,91 +126,3 @@ class AuthForm extends Component {
 }
 
 export default AuthForm;
-
-const SignInForm = ({handleOnSignIn, emailVar, handleChangeEmail, pswdVar, handleChangePswd, isTipsShow, error, fetching}) => {
-
-  SignInForm.propTypes = {
-    emailVar: PropTypes.string,
-    pswdVar: PropTypes.string,
-    isTipsShow: PropTypes.bool,
-    error: PropTypes.string
-  };
-
-  return (
-    <form id="sign-in" className="auth-form__content" onSubmit={ handleOnSignIn }>
-      <input className="field auth-form__content-email"
-        type="email"
-        name="email"
-        placeholder="email"
-        autoComplete="email"
-        value={ emailVar }
-        onChange={ handleChangeEmail }
-        required />
-      <input className="field auth-form__content-password"
-        type="password"
-        name="password"
-        placeholder="password"
-        autoComplete="password"
-        value={ pswdVar }
-        onChange={ handleChangePswd }
-        required />
-      <span className={ classNames('auth-form__tips', {
-                          'auth-form__tips_show': error && isTipsShow && !fetching
-                        }) }>{ error }. <br />Please, try again.</span>
-      <div className="auth-form__content-help">
-        Forgotten your password?
-      </div>
-      <button className="button btn-submit auth-form__content-btn" type="submit" disabled={ fetching ? true : false }>
-        Sign In
-      </button>
-      { fetching ?
-        <div className="auth-form__loading">
-          <div className="auth-form__loading-content">
-            <Loading />
-          </div>
-        </div>
-        : '' }
-    </form>
-    );
-};
-
-const SignUpForm = ({handleOnSignUp, emailVar, handleChangeEmail, pswdVar, handleChangePswd, rePswdVar, handleChangeRePswd, handleChangeSignType}) => {
-
-  SignUpForm.propTypes = {
-    emailVar: PropTypes.string,
-    pswdVar: PropTypes.string,
-    rePswdVar: PropTypes.string
-  };
-
-  return (
-    <form id="sign-up" className="auth-form__content">
-      <input className="field auth-form__content-email"
-        type="email"
-        name="email"
-        placeholder="email"
-        value={ emailVar }
-        onChange={ handleChangeEmail }
-        required />
-      <input className="field auth-form__content-password"
-        type="password"
-        name="password"
-        placeholder="password"
-        value={ pswdVar }
-        onChange={ handleChangePswd }
-        required />
-      <input className="field auth-form__content-password"
-        type="password"
-        name="confirm-password"
-        placeholder="confirm password"
-        value={ rePswdVar }
-        onChange={ handleChangeRePswd }
-        required />
-      <div className="auth-form__content-help" onClick={ handleChangeSignType }>
-        Already have an account?
-      </div>
-      <button className="button btn-submit auth-form__content-btn" type="submit">
-        Sign Up
-      </button>
-    </form>
-    );
-};

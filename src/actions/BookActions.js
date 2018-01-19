@@ -1,12 +1,5 @@
-import { GET_ALL_BOOKS_REQUEST, 
-  GET_ALL_BOOKS_SUCCESS, 
-  GET_ALL_BOOKS_FAIL, 
-  GET_RECENT_BOOKS_REQUEST, 
-  GET_RECENT_BOOKS_SUCCESS, 
-  GET_RECENT_BOOKS_FAIL, 
-  GET_BOOK_BY_ID_REQUEST, 
-  GET_BOOK_BY_ID_SUCCESS, 
-  GET_BOOK_BY_ID_FAIL } from '../constants/Book';
+import { GET_ALL_BOOKS_SUCCESS, GET_ALL_BOOKS_FAIL, GET_RECENT_BOOKS_SUCCESS, GET_RECENT_BOOKS_FAIL, GET_BOOK_BY_ID_SUCCESS, GET_BOOK_BY_ID_FAIL } from '../constants/Book';
+import { loadStart, loadEnd } from './LoadActions';
 
 import * as api from '../services/api';
 
@@ -14,12 +7,13 @@ export function handleGetAllBooks() {
 
   return (dispatch) => {
 
-    dispatch({
-      type: GET_ALL_BOOKS_REQUEST
-    })
+    loadStart(dispatch);
 
     api.getAllBooks()
       .then(data => {
+
+        loadEnd(dispatch);
+
         dispatch({
           type: GET_ALL_BOOKS_SUCCESS,
           payload: data
@@ -38,12 +32,11 @@ export function handleGetBookInfo(bookId) {
 
   return (dispatch) => {
 
-    dispatch({
-      type: GET_BOOK_BY_ID_REQUEST
-    })
+    loadStart(dispatch);
 
     api.getBookInfo(bookId)
       .then(data => {
+        loadEnd(dispatch);
         dispatch({
           type: GET_BOOK_BY_ID_SUCCESS,
           payload: data
@@ -62,12 +55,11 @@ export function handleGetRecentBooks() {
 
   return (dispatch) => {
 
-    dispatch({
-      type: GET_RECENT_BOOKS_REQUEST
-    })
+    loadStart(dispatch);
 
     api.getRecentBooks()
       .then(data => {
+        loadEnd(dispatch);
         dispatch({
           type: GET_RECENT_BOOKS_SUCCESS,
           payload: data

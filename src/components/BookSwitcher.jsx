@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import { ON_SWITCHER_OFF_WIDTH } from '../constants/UIConstants.js';
+import { ON_SWITCHER_OFF_WIDTH } from '../constants/UI.js';
 
 import Slider from './Slider.jsx';
 import Book from './Book.jsx';

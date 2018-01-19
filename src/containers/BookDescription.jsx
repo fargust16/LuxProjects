@@ -8,9 +8,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as bookActions from '../actions/BookActions';
 
-import { CalcLinesOfDesc } from './Book.jsx';
-import Rating from './Rating.jsx';
-import Comments from './Comments.jsx';
+import { CalcLinesOfDesc } from '../components/Book.jsx';
+import Rating from '../components/Rating.jsx';
+import Comments from '../components/Comments.jsx';
 
 import './BookDescription.scss';
 

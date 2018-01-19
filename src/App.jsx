@@ -14,8 +14,8 @@ import Recent from './containers/Recent.jsx';
 import Support from './containers/Support.jsx';
 import Settings from './containers/Settings.jsx';
 
-import BookDescription from './components/BookDescription.jsx';
-import ReadBook from './components/ReadBook.jsx';
+import BookDescription from './containers/BookDescription.jsx';
+import ReadBook from './containers/ReadBook.jsx';
 
 import FadeIn from './components/FadeIn.jsx';
 

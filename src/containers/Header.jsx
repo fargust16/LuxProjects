@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import classNames from 'classnames';
 
 import Menu from '../components/Menu';
-import AuthForm from '../components/AuthForm.jsx';
+import AuthForm from './AuthForm.jsx';
 
 import * as userActions from '../actions/UserActions';
 import { isLoggedIn } from '../services/AuthService';
@@ -38,7 +38,8 @@ class Header extends Component {
   render() {
     const {isMenuVisible, isAuth} = this.state;
     const {handleLogIn, handleLogOut} = this.props.userActions;
-    const {error, fetching} = this.props.user;
+    const {error} = this.props.user;
+    const {fetching} = this.props.load;
 
     return (
       <article className={ isMenuVisible ? "header-wrap_active-menu header-wrap" : "header-wrap" }>
@@ -64,18 +65,10 @@ class Header extends Component {
 
 export default connect(
   state => ({
-    user: state.user
+    user: state.user,
+    load: state.load
   }),
   dispatch => ({
     userActions: bindActionCreators(userActions, dispatch)
   })
 )(Header)
-
-/*export default connect(
-  state => ({
-    user: state.user
-  }),
-  dispatch => ({
-    userActions: (dispatch) => dispatch(userActions.handleLogIn())
-  })
-)(Header)*/

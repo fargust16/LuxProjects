@@ -8,11 +8,11 @@ import { bindActionCreators } from 'redux';
 
 import * as userActions from '../actions/UserActions';
 
-import AuthForm from './AuthForm.jsx';
+import AuthForm from '../containers/AuthForm.jsx';
 
 import { isLoggedIn } from '../services/AuthService';
 
-import { ON_HIDE_WIDTH } from '../constants/UIConstants.js';
+import { ON_HIDE_WIDTH } from '../constants/UI.js';
 
 import BlockHeader from './BlockHeader.jsx';
 import './Comments.scss';

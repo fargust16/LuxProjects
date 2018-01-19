@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as bookActions from '../actions/BookActions';
 
-import { ControlButtons } from './ControlButtons.jsx';
+import { ControlButtons } from '../components/ControlButtons.jsx';
 
 import './ReadBook.scss';
 
