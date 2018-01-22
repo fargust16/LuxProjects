@@ -4,9 +4,12 @@ import user from './user';
 import books from './books';
 import load from './load';
 
+import { routerReducer } from 'react-router-redux';
+
 export default combineReducers({
 	page,
 	user,
 	books,
-	load
+	load,
+	routing: routerReducer
 })

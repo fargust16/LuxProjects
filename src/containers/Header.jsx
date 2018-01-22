@@ -56,7 +56,10 @@ class Header extends Component {
             username={ isLoggedIn() }
             handleShowAuthForm={ ::this.handleShowAuthForm }
             handleDisplayMenu={ () => this.handleDisplayMenu() } />
-          { isAuth ? <AuthForm onSignIn={ handleLogIn } error={ error } fetching={fetching} onClose={ (isShowForm) => this.handleShowAuthForm(false) } /> : '' }
+          { isAuth ? <AuthForm onSignIn={ handleLogIn }
+                       error={ error }
+                       fetching={ fetching }
+                       onClose={ (isShowForm) => this.handleShowAuthForm(false) } /> : '' }
         </header>
       </article>
       );

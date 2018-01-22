@@ -5,6 +5,7 @@ import { CookiesProvider } from 'react-cookie'
 import WebFont from 'webfontloader';
 import { Provider } from 'react-redux';
 import { configureStore } from './store/configureStore';
+import { syncHistoryWithStore } from 'react-router-redux';
 
 import './style.scss';
 import history from './history';
@@ -18,13 +19,14 @@ WebFont.load({
   }
 });
 
-
 const store = configureStore();
+
+const syncHistory = syncHistoryWithStore(history, store)
 
 ReactDOM.render(
   <Provider store={ store }>
     <CookiesProvider>
-      <Router history={ history }>
+      <Router history={ syncHistory }>
         <App />
       </Router>
     </CookiesProvider>
