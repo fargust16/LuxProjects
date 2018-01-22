@@ -6,7 +6,9 @@ import ClampLines from 'react-clamp-lines';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import * as bookActions from '../actions/BookActions';
+import * as userActions from '../actions/UserActions';
 
 import { CalcLinesOfDesc } from '../components/Book.jsx';
 import Rating from '../components/Rating.jsx';
@@ -74,6 +76,9 @@ class BookDescription extends Component {
 
   render() {
     const {id, cover = '', title, author, ISBN, releaseDate, text, reviews = [], comments = []} = this.props.book;
+    const {error, username} = this.props.user;
+    const {fetching} = this.props.load;
+    const {handleLogIn} = this.props.userActions;
     const {descLines, showMoreText} = this.state;
 
     let blockInfoClass = classNames('book-description__main-info', {
@@ -134,7 +139,11 @@ class BookDescription extends Component {
             </Link>
           </div>
         </main>
-        <Comments comments={ comments } />
+        <Comments comments={ comments }
+          username={username}
+          error={ error }
+          fetching={ fetching }
+          handleLogIn={ handleLogIn } />
       </article>
       );
   }
@@ -142,9 +151,12 @@ class BookDescription extends Component {
 
 export default connect(
   state => ({
-    book: state.books.bookById
+    book: state.books.bookById,
+    user: state.user,
+    load: state.load
   }),
   dispatch => ({
-    bookActions: bindActionCreators(bookActions, dispatch)
+    bookActions: bindActionCreators(bookActions, dispatch),
+    userActions: bindActionCreators(bookActions, dispatch)
   })
 )(BookDescription)

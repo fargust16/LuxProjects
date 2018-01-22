@@ -56,11 +56,11 @@ class Book extends Component {
   }
 
   componentWillMount() {
-    window && window.addEventListener('resize', this.onResizeEnd, false);
+    window.addEventListener('resize', this.onResizeEnd, false);
   }
 
   componentWillUnmount() {
-    window && window.removeEventListener('resize', this.onResizeEnd, false);
+    window.removeEventListener('resize', this.onResizeEnd, false);
   }
 
   render() {

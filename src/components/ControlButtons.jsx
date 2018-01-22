@@ -16,9 +16,9 @@ export const ControlButtons = ({transformFunc, btnDirect, currentSwitchPos, endS
   let btnView;
 
   if ((currentSwitchPos === endSwitchPos && btnDirect === -1) || (currentSwitchPos === 0 && btnDirect === 1)) {
-    btnView = false
+    btnView = false;
   } else {
-    btnView = true
+    btnView = true;
   }
 
   let btnClass = classNames(btnSubClass, {

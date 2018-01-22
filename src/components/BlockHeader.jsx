@@ -8,7 +8,7 @@ const BlockHeader = ({isShowOption, optionName, handleChangeView, subClass}) => 
 
   BlockHeader.propTypes = {
     isShowOption: PropTypes.bool.isRequired,
-    handleChangeView: PropTypes.func,
+    handleChangeView: PropTypes.func.isRequired,
     optionName: PropTypes.string,
     subClass: PropTypes.string
   };

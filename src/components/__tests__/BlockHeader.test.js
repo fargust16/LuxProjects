@@ -10,7 +10,7 @@ describe('A suite', function() {
     expect(
       shallow(<BlockHeader isShowOption={ true } handleChangeView={ callback } />)
         .is('div.block-header.category__name'))
-      .toBe(1);
+      .toBe(true);
   });
   it('shows Unnamed block when no option is defined', () => {
     let callback = sinon.spy();

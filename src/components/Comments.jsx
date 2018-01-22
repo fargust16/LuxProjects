@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import * as Scroll from 'react-scroll';
 import classNames from 'classnames';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-
-import * as userActions from '../actions/UserActions';
 
 import AuthForm from '../containers/AuthForm.jsx';
 
@@ -38,7 +34,7 @@ class Comments extends Component {
       showComBtns: false,
       commentsOffset: 0,
       comments: comTemp,
-      commenttext: '',
+      commentText: '',
       maxComments: 5,
       isAuth: false
     }
@@ -46,9 +42,9 @@ class Comments extends Component {
     this.resizeWindow = this.resizeWindow.bind(this);
   }
 
-  handleCommenttextChange(e) {
+  handleCommentTextChange(e) {
     this.setState({
-      commenttext: e.target.value
+      commentText: e.target.value
     });
   }
 
@@ -86,20 +82,19 @@ class Comments extends Component {
   }
 
   postNewComment() {
-    const {comments, commenttext} = this.state;
-    if (commenttext === '') return;
+    const {comments, commentText} = this.state;
+    if (commentText === '') return;
 
-    let authors = ['Lewis Carroll', 'Paulo Coelho', 'Joanne Rowling', 'Chack Pallaniuk'];
-    let authorTemp = authors[Math.floor(Math.random() * authors.length)];
+    let author = this.props.username;
     let postDate = new Date();
 
     this.setState({
       comments: [{
-        text: commenttext,
-        author: authorTemp,
+        text: commentText,
+        author: author,
         postDate: postDate
       }, ...comments],
-      commenttext: '',
+      commentText: '',
       showComBtns: false
     });
   }
@@ -111,14 +106,9 @@ class Comments extends Component {
   }
 
   showCommentsButtons(e, isShow) {
-    if (!isLoggedIn()) {
-      e.target.blur();
-      return
-    }
-
     this.setState({
       showComBtns: isShow,
-      commenttext: !isShow ? '' : this.state.commenttext
+      commentText: !isShow ? '' : this.state.commentText
     });
   }
 
@@ -143,9 +133,8 @@ class Comments extends Component {
   }
 
   render() {
-    const {comments, showCom, showComBtns, commenttext, maxComments, isAuth} = this.state;
-    const {handleLogIn} = this.props.userActions;
-    const {error, fetching} = this.props.user;
+    const {comments, showCom, showComBtns, commentText, maxComments, isAuth} = this.state;
+    const {error, fetching, handleLogIn} = this.props;
 
     let contentClass = classNames('comments__content', {
       'comments__content_hide': !showCom
@@ -168,9 +157,9 @@ class Comments extends Component {
                 placeholder="leave a comment"
                 onFocus={ (e, isShow) => this.showCommentsButtons(e, true) }
                 onClick={ (isShowForm) => this.handleShowAuthForm(!isLoggedIn()) }
-                onChange={ (e) => this.handleCommenttextChange(e) }
-                value={ commenttext }></textarea>
-              <footer className={ buttonsClass }>
+                onChange={ (e) => this.handleCommentTextChange(e) }
+                value={ commentText }></textarea>
+              <div className={ buttonsClass }>
                 <button className={ classNames('new-comment__button btn-clear', {
                                       'button': window.innerWidth >= ON_HIDE_WIDTH
                                     }) } onClick={ (isShow) => this.showCommentsButtons(false) }>
@@ -178,10 +167,10 @@ class Comments extends Component {
                 </button>
                 <button className={ classNames('new-comment__button btn-send', {
                                       'button': window.innerWidth >= ON_HIDE_WIDTH
-                                    }) } onClick={ () => this.postNewComment() } disabled={ this.state.commenttext === '' }>
+                                    }) } onClick={ () => this.postNewComment() } disabled={ this.state.commentText === '' }>
                   Send comment
                 </button>
-              </footer>
+              </div>
             </div>
           </div>
           { comments.map((comment, i) => {
@@ -197,20 +186,16 @@ class Comments extends Component {
             show more
           </div>
         </section>
-        { isAuth ? <AuthForm onSignIn={ handleLogIn } error={ error } fetching={fetching} onClose={ (isShowForm) => this.handleShowAuthForm(false) } /> : '' }
+        { isAuth ? <AuthForm onSignIn={ handleLogIn }
+                     error={ error }
+                     fetching={ fetching }
+                     onClose={ (isShowForm) => this.handleShowAuthForm(false) } /> : '' }
       </section>
       );
   }
 }
 
-export default connect(
-  state => ({
-    user: state.user
-  }),
-  dispatch => ({
-    userActions: bindActionCreators(userActions, dispatch)
-  })
-)(Comments)
+export default Comments;
 
 
 const InputComments = ({author, text, postDate, n}) => {

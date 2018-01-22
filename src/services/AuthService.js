@@ -1,5 +1,5 @@
 import { auth } from '../services/api';
-import history from '../history';
+//import history from '../history';
 import jwt from 'jwt-simple';
 import { reactLocalStorage as localStorage } from 'reactjs-localstorage';
 
