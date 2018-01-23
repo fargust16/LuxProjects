@@ -12,7 +12,7 @@ const SignUp = ({handleOnSignUp, emailVar, handleChangeEmail, pswdVar, handleCha
   };
 
   return (
-    <form id="sign-up" className="sign-form">
+    <form id="sign-up" className="sign-form" onSubmit={handleOnSignUp}>
       <input className="field sign-form__email"
         type="email"
         name="email"
