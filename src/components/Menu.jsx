@@ -7,7 +7,10 @@ import './Menu.scss';
 const Menu = ({isShow, handleDisplayMenu, handleShowAuthForm, menuLinks, username, handleLogOut}) => {
 
   return (
-    <nav className={ isShow ? "menu menu_open" : "menu menu_close" }>
+    <nav className={classNames('menu', {
+      'menu_open': isShow, 
+      'menu_close': !isShow 
+    })} >
       <div className="menu__profile">
         { username ?
           <div className="menu__profile-link" onClick={ () => handleLogOut() }>
