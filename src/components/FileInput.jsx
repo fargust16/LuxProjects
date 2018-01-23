@@ -8,6 +8,7 @@ export default class FileInput extends Component {
     let fileApi = (window.File && window.FileReader && window.FileList && window.Blob) ? true : false,
       fileName;
 
+    debugger
     if (fileApi && this._sourceField.files[0]) {
       fileName = this._sourceField.files[0].name;
     } else {

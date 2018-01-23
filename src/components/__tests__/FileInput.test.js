@@ -1,3 +1,4 @@
+import 'jsdom-global/register';
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import sinon from 'sinon';
@@ -28,5 +29,12 @@ describe('A FileInput suite', () => {
         .is('label.field.source.test-class')
     ).toBe(true);
   });
-  
+
+  it('should changed mark text when file is does not choosen', () => {
+    const wrapper = mount(<FileInput />);
+
+    wrapper.find('.source__field').first().simulate('change');
+
+    expect(wrapper.find('.source__title').text()).toBe('Файл не выбран');
+  });
 })

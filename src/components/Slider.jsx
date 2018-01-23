@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {ControlButtons} from './ControlButtons.jsx';
+import { ON_SWITCHER_OFF_WIDTH } from '../constants/UI.js';
+
+import ControlButtons from './ControlButtons.jsx';
 import './Slider.scss';
 
 export default class Slider extends Component {
@@ -18,13 +20,13 @@ export default class Slider extends Component {
   constructor(props) {
     super(props);
 
-    const {hideWidth, blocks} = this.props;
+    const {blocks} = this.props;
 
     this.state = {
       blocks: [{
         ...blocks
       }],
-      switchHideWidth: hideWidth,
+      switchHideWidth: ON_SWITCHER_OFF_WIDTH,
       visibleBlockCount: 1,
       touchStartPoint: 0,
       touchEndPoint: 0,

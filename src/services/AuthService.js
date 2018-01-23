@@ -1,5 +1,5 @@
 import { auth } from '../services/api';
-//import history from '../history';
+import history from '../history';
 import jwt from 'jwt-simple';
 import { reactLocalStorage as localStorage } from 'reactjs-localstorage';
 
@@ -11,8 +11,6 @@ export const login = (authParams) => {
   return auth(authParams).then(user => {
     if (user) {
       setIdToken(user);
-
-      //eslint-disable-next-line
       history.push(window.location.pathname)
     }
     return user;
@@ -21,8 +19,6 @@ export const login = (authParams) => {
 
 export const logout = () => {
   clearIdToken();
-
-  //eslint-disable-next-line
   history.push('/')
 }
 

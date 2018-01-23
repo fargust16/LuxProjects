@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import './ControlButtons.scss';
 
-export const ControlButtons = ({transformFunc, btnDirect, currentSwitchPos, endSwitchPos, btnSubClass}) => {
+const ControlButtons = ({transformFunc, btnDirect, currentSwitchPos, endSwitchPos, btnSubClass}) => {
 
   ControlButtons.propTypes = {
     btnDirect: PropTypes.number,
@@ -32,3 +32,5 @@ export const ControlButtons = ({transformFunc, btnDirect, currentSwitchPos, endS
     <div className={ btnClass } onClick={ transformFunc }></div>
     );
 };
+
+export default ControlButtons;
