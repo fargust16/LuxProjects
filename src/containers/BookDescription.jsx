@@ -14,6 +14,8 @@ import { CalcLinesOfDesc } from '../components/Book.jsx';
 import Rating from '../components/Rating.jsx';
 import Comments from '../components/Comments.jsx';
 
+import CustomLink from '../components/CustomLink.jsx';
+
 import './BookDescription.scss';
 
 class BookDescription extends Component {
@@ -89,7 +91,7 @@ class BookDescription extends Component {
       <article>
         <main className="book-description other-pages__block">
           <section className="book-description__info">
-            <img className="book-description__book-cover" src={ "/images/" + cover } alt="book`s name" />
+            <img className="book-description__book-cover" src={`/images/${cover}`} alt="book`s name" />
             <div ref={ (div) => {
                          this._bookInfo = div
                        } } className={ blockInfoClass }>
@@ -107,7 +109,7 @@ class BookDescription extends Component {
                   <span>Pablishing date:</span> <span>{ moment(new Date(releaseDate)).format('DD.MM.YYYY') }</span>
                 </div>
               </section>
-              <div onClick={ ::this.handleShowMore }>
+              <div className="book-description__more-text" onClick={ ::this.handleShowMore }>
                 { descLines && text
                   ? <ClampLines text={ text }
                       lines={ descLines }
@@ -131,12 +133,8 @@ class BookDescription extends Component {
             <span className="reviews book-description__reviews-count">{ reviews.length } reviews</span>
           </div>
           <div className="book-description__buttons">
-            <Link to={ `/books/read/${id}` } className="book-description__button button btn-read">
-              start reading now
-            </Link>
-            <Link to="#download" className="book-description__button button btn-download">
-              download
-            </Link>
+            <CustomLink pathTo={`/books/read/${id}`} className="book-description__button button btn-read" text="start reading now" />
+            <CustomLink pathTo='#download' className="book-description__button button btn-download" text="download" />
           </div>
         </main>
         <Comments comments={ comments }
@@ -157,6 +155,6 @@ export default connect(
   }),
   dispatch => ({
     bookActions: bindActionCreators(bookActions, dispatch),
-    userActions: bindActionCreators(bookActions, dispatch)
+    userActions: bindActionCreators(userActions, dispatch)
   })
 )(BookDescription)

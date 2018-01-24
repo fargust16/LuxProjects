@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import history from '../history';
+//import history from '../history';
 
 import Slider from './Slider.jsx';
 import Book from './Book.jsx';
+
+import CustomLink from './CustomLink.jsx';
 
 import './BookSwitcher.scss';
 
@@ -18,13 +19,8 @@ export default class BookSwitcher extends Component {
     books: PropTypes.array
   };
 
-  handleOnLinkClick(path) {
-    if(path.indexOf('undefined') + 1) return;
-    history.push(path);
-  }
-
   render() {
-    return <Results {...this.props} handleOnLinkClick={::this.handleOnLinkClick} />
+    return <Results {...this.props} />
   }
 }
 
@@ -41,7 +37,7 @@ const ViewBooksInCategory = ({books}) => {
     );
 };
 
-const ViewBooksInHome = ({books, categoryName, handleOnLinkClick}) => {
+const ViewBooksInHome = ({books, categoryName}) => {
 
   ViewBooksInHome.propTypes = {
     books: PropTypes.array,
@@ -53,14 +49,14 @@ const ViewBooksInHome = ({books, categoryName, handleOnLinkClick}) => {
   return (
     <div className="books home-page__books">
       { !blocks.length ? blocks : <Slider blocks={ blocks } /> }
-      <div onClick={(path) => handleOnLinkClick(`/books/categories/${categoryName}`)} className="switcher__see-more">
-        more
-      </div>
+
+      <CustomLink pathTo={`/books/categories/${categoryName}`} className="switcher__see-more" text="more" />
+
     </div>
     );
 };
 
-const Results = ({books, categoryId, categoryName, handleOnLinkClick}) => {
+const Results = ({books, categoryId, categoryName}) => {
 
   Results.propTypes = {
     books: PropTypes.array,
@@ -80,7 +76,7 @@ const Results = ({books, categoryId, categoryName, handleOnLinkClick}) => {
   content = categoryId ?
     <ViewBooksInCategory books={ booksCont } />
     :
-    <ViewBooksInHome books={ booksCont } handleOnLinkClick={handleOnLinkClick} categoryName={ categoryName } />
+    <ViewBooksInHome books={ booksCont } categoryName={ categoryName } />
 
   return (
     <div className="category__results-books">

@@ -19,7 +19,6 @@ import FadeIn from './components/FadeIn.jsx';
 
 import { isLoggedIn } from './services/AuthService';
 
-
 import './App.scss';
 
 
@@ -63,4 +62,4 @@ const App = () => (
   </div>
 );
 
-export default App;
+export default App

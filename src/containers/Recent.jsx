@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { instanceOf } from 'prop-types';
-import { withCookies, Cookies } from 'react-cookie';
 import moment from 'moment';
 
 import { connect } from 'react-redux';
@@ -12,10 +10,6 @@ import Book from '../components/Book.jsx';
 import './Recent.scss';
 
 class Recent extends Component {
-
-  static propTypes = {
-    cookies: instanceOf(Cookies).isRequired
-  };
 
   componentDidMount() {
     this.props.bookActions.handleGetRecentBooks();
@@ -44,7 +38,7 @@ export default connect(
   dispatch => ({
     bookActions: bindActionCreators(bookActions, dispatch)
   })
-)(withCookies(Recent))
+)(Recent)
 
 const RecentBooks = ({books}) => {
   if (books.length === 0) return null;

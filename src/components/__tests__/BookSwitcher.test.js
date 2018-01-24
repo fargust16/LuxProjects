@@ -30,16 +30,4 @@ describe('A BookSwitcher suite', () => {
 
     expect(wrapper.find('div.category__books').length).toBe(1);
   });
-
-  it('should calls callback when click on see more', () => {
-    const wrapper = mount(<BookSwitcher />);
-    const inst = wrapper.instance();
-    const callback = sinon.spy(inst, 'handleOnLinkClick');
-
-    inst.forceUpdate();
-
-    wrapper.find('div.switcher__see-more').simulate('click');
-
-    expect(callback.called).toBe(true);
-  });
 })

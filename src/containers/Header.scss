@@ -31,16 +31,12 @@
   background-color: #900;
   z-index: 12;
 
-  &__open-btn {
+  &__menu-btn {
     position: absolute;
     top: 22px;
     right: $main-padding + 2;
     font-size: 20px;
     color: #fff;
-
-    &:before {
-      @include awesome-icon(relative, '\f0c9' , inherit)
-    }
 
     &:hover {
       cursor: pointer;
@@ -49,25 +45,17 @@
     @include desktop {
       display: none;
     }
-  }
 
-  &__close-btn {
-    position: absolute;
-    top: 22px;
-    right: $main-padding + 2;
-    font-size: 20px;
-    color: #fff;
-
-    &:before {
-      @include awesome-icon(relative, '\f00d' , inherit)
+    &_open {
+      &:before {
+        @include awesome-icon(relative, '\f0c9' , inherit)
+      }
     }
 
-    &:hover {
-      cursor: pointer;
-    }
-
-    @include desktop {
-      display: none;
+    &_close {
+      &:before {
+        @include awesome-icon(relative, '\f00d' , inherit)
+      }
     }
   }
 

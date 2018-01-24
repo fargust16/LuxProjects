@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import classNames from 'classnames';
@@ -9,6 +8,8 @@ import AuthForm from './AuthForm.jsx';
 
 import * as userActions from '../actions/UserActions';
 import { isLoggedIn } from '../services/AuthService';
+
+import CustomLink from '../components/CustomLink.jsx';
 
 import './Header.scss';
 
@@ -44,12 +45,10 @@ class Header extends Component {
     return (
       <article className={ isMenuVisible ? "header-wrap_active-menu header-wrap" : "header-wrap" }>
         <header className="header home-page__header">
-          <Link to="/" className="header__logo" onClick={ (isShow) => this.handleDisplayMenu(false) }>
-            <h1>Online Library</h1>
-          </Link>
-          <i className={ classNames({
-                           'header__close-btn': isMenuVisible,
-                           'header__open-btn': !isMenuVisible
+          <CustomLink pathTo="/" className="header__logo" onClick={ (isShow) => this.handleDisplayMenu(false) } text="Online Library" />
+          <i className={ classNames('header__menu-btn', {
+                           'header__menu-btn_close': isMenuVisible,
+                           'header__menu-btn_open': !isMenuVisible
                          }) } onClick={ (isShow) => this.handleDisplayMenu(!isMenuVisible) }></i>
           <Menu isShow={ isMenuVisible }
             handleLogOut={ handleLogOut }

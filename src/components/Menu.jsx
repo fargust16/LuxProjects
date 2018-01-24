@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
+import CustomLink from './CustomLink.jsx';
+
 import './Menu.scss';
 
 const Menu = ({isShow, handleDisplayMenu, handleShowAuthForm, menuLinks, username, handleLogOut}) => {
@@ -29,9 +31,7 @@ const Menu = ({isShow, handleDisplayMenu, handleShowAuthForm, menuLinks, usernam
           
             return (
               <li key={ i } className={ liClass } onClick={ (isShow) => handleDisplayMenu(false) }>
-                <Link className="menu__option-link" to={ link.path }>
-                  { link.name }
-                </Link>
+                <CustomLink className="menu__option-link" pathTo={ link.path } text={ link.name } />
               </li>
             )
           }) }
