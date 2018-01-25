@@ -44,8 +44,7 @@ export function handleLogOut() {
 
     if (!isLoggedIn()) {
       dispatch({
-        type: LOGOUT_SUCCESS,
-        payload: ''
+        type: LOGOUT_SUCCESS
       })
     } else {
       let err = 'Somethings wrong';
