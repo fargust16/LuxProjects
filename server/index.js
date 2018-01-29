@@ -9,6 +9,11 @@ const books = require('./books.json');
 const recentBooks = require('./recentBooks.json');
 const users = require('./users.json');
 
+//const authUser = require('./utils/DataBaseUtils');
+
+var pgp = require("pg-promise")( /*options*/ );
+var db = pgp("postgres://Adolmatov:A75320902394a@localhost:5432/online-library");
+
 const app = express();
 
 // Setup logger
@@ -39,9 +44,19 @@ app.get('/books/read/:id', (req, res) => {
 app.post('/users', (req, res) => {
   const {email, password} = req.body;
 
-  let user = users.find(el => el.username === email && el.password === password);
-  
-  setTimeout(() => res.send(user), 2000);
+  /*authUser(email, password, (err, result) => {
+    res.send(result);
+  })*/
+
+  let params = ['*', 'users', email, password];
+  db.query('SELECT $1:name FROM $2:name', params)
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((error) => {
+      res.send(error);
+      console.log(error);
+    });
 });
 
 const PORT = process.env.PORT || 9000;

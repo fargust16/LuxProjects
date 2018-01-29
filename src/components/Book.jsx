@@ -68,8 +68,8 @@ class Book extends Component {
     const {descLines} = this.state;
 
     return (
-      <article className={ classNames('book', subClass ) }>
-        <img src={ "/images/" + (cover ? cover : '') } className="book__cover" alt={ title } />
+      <article className={ classNames('book', subClass) }>
+        <img src={ `/images/${cover}` } className="book__cover" alt={ title } />
         <section ref={ (div) => {
                          this._bookInfo = div
                        } } className="book__info">
@@ -89,9 +89,9 @@ class Book extends Component {
                 ref={ (div) => {
                         this._clampText = div
                       } } />
-            : <div className="book__desc" ref={ (div) => {
-                                                this._clampText = div
-                                              } }>
+            : <div ref={ (div) => {
+                         this._clampText = div
+                       } } className="book__desc">
                 { text }
               </div> }
           <div className="reviews book__reviews">
@@ -113,10 +113,8 @@ export const CalcLinesOfDesc = (parentBlock, textBlock, marginBot) => {
   };
 
   let bookDescSize = parentBlock.offsetHeight + parentBlock.offsetTop - (block.offsetTop + marginBot),
-      bookDescLineHeight = _calcTextLineHeight(block),
-      descLines = Math.floor(bookDescSize / bookDescLineHeight);
-
-  //console.log('parentBlock.offsetHeight: ' + parentBlock.offsetHeight + '\nparentBlock.offsetTop: ' + parentBlock.offsetTop + '\nblock.offsetTop: ' + block.offsetTop + '\nbookDescSize: ' + bookDescSize) 
+    bookDescLineHeight = _calcTextLineHeight(block),
+    descLines = Math.floor(bookDescSize / bookDescLineHeight);
 
   return descLines;
 }
