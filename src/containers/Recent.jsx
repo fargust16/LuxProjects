@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import moment from 'moment';
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import * as bookActions from '../actions/BookActions';
 
 import BlockHeader from '../components/BlockHeader.jsx';
@@ -11,56 +11,58 @@ import './Recent.scss';
 
 class Recent extends Component {
 
-  componentDidMount() {
-    this.props.bookActions.handleGetRecentBooks();
-  }
+    componentDidMount() {
+        this.props.bookActions.handleGetRecentBooks();
+    }
 
-  render() {
-    const {recBooks} = this.props.books;
+    render() {
+        const {recBooks} = this.props.books;
 
-    return (
-      <main className="recent other-pages__block">
-        <div className="main-header">
-          <span className="main-header__text">Recently</span>
-        </div>
-        <article className="recent__content">
-          <RecentBooks books={ recBooks } />
-        </article>
-      </main>
-      );
-  }
+        return (
+            <main className="recent other-pages__block">
+                <div className="main-header">
+                    <span className="main-header__text">Recently</span>
+                </div>
+                <article className="recent__content">
+                    <RecentBooks books={recBooks}/>
+                </article>
+            </main>
+        );
+    }
 }
 
 export default connect(
-  state => ({
-    books: state.books
-  }),
-  dispatch => ({
-    bookActions: bindActionCreators(bookActions, dispatch)
-  })
+    state => ({
+        books: state.books
+    }),
+    dispatch => ({
+        bookActions: bindActionCreators(bookActions, dispatch)
+    })
 )(Recent)
 
 const RecentBooks = ({books}) => {
-  if (books.length === 0) return null;
+    if (books.length === 0) return null;
 
-  let content = [];
+    let content = [];
 
-  books.forEach((elem, i) => {
-    content[i] = (
-      <section key={ i } className="recent__category">
-        <BlockHeader optionName={ moment(new Date(elem.viewDate)).format('DD.MM.YYYY') } isShowOption={ true } className="recent__category-date" />
-        <div className="books recent__books">
-          { elem.books.map((book, i) => {
-              return (
-                <Book {...book} key={ i } subClass="recent__book" />
-                );
-            }) }
-        </div>
-      </section>
-    );
-  });
+    books.forEach((elem, i) => {
+        let blockName = elem.viewDate;
+        content[i] = (
+            <section key={i} className="recent__category">
+                <BlockHeader optionName={moment(new Date(blockName)).format('DD.MM.YYYY')} isShowOption={true}
+                             className="recent__category-date" handleChangeView={()=>{}}/>
+                <div className="books recent__books">
+                    {elem.books.map((book, i) => {
+                        return (
+                            <Book {...book} key={i} subClass="recent__book"/>
+                        );
+                    })}
+                </div>
+            </section>
+        );
+    });
 
-  return content;
+    return content;
 };
 
 

@@ -27,7 +27,12 @@ const auth = (authData) => {
   return axios.post(url, authData).then(response => response.data);
 };
 
-export { getBookInfo, getRecentBooks, getBookText, getAllBooks, auth };
+const signUp = (authData) => {
+    const url = `${BASE_URL}/add-user`;
+    return axios.post(url, authData).then(response => response.data);
+};
+
+export { getBookInfo, getRecentBooks, getBookText, getAllBooks, auth, signUp };
 
 export const setRecentBook = (readBook) => {
   let myInit = {

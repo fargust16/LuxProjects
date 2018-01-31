@@ -11,8 +11,10 @@ const users = require('./users.json');
 
 //const authUser = require('./utils/DataBaseUtils');
 
-var pgp = require("pg-promise")( /*options*/ );
-var db = pgp("postgres://Adolmatov:A75320902394a@localhost:5432/online-library");
+const pgp = require("pg-promise")(/*options*/);
+const db = pgp("postgres://Adolmatov:A75320902394a@localhost:5432/online-library");
+
+const sha512 = require('js-sha512');
 
 const app = express();
 
@@ -26,41 +28,65 @@ app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
 
 app.get('/books', (req, res) => {
-  res.send(books);
+    res.send(books);
 });
 
 app.get('/books/view/:id', (req, res) => {
-  res.send(books[req.params.id]);
+    res.send(books[req.params.id]);
 });
 
 app.get('/books/recent/', (req, res) => {
-  res.send(recentBooks);
+    res.send(recentBooks);
 });
 
 app.get('/books/read/:id', (req, res) => {
-  res.send(books[req.params.id]);
+    res.send(books[req.params.id]);
 });
 
 app.post('/users', (req, res) => {
-  const {email, password} = req.body;
+    const {email, password} = req.body;
 
-  /*authUser(email, password, (err, result) => {
-    res.send(result);
-  })*/
+    let params = ['*', 'users', email];
+    db.query('SELECT $1:name FROM $2:name WHERE username LIKE \'%$3:value%\'', params)
+        .then((data) => {
+            let dataTemp = data.find(el => el);
+            params.push(sha512(dataTemp.salt + password));
+            //console.log(params)
+            db.query('SELECT $1:name FROM $2:name WHERE username LIKE \'%$3:value%\' and password LIKE \'%$4:value%\'', params)
+                .then((nextData) => {
+                    res.send(nextData[0]);
+                    //console.log(nextData[0]);
+                })
+                .catch((nextError) => {
+                    res.send(nextError);
+                    //console.log(error);
+                });
+        })
+        .catch((error) => {
+            res.send(error);
+        });
+});
 
-  let params = ['*', 'users', email, password];
-  db.query('SELECT $1:name FROM $2:name', params)
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((error) => {
-      res.send(error);
-      console.log(error);
-    });
+app.post('/add-user', (req, res) => {
+    const {email, password, salt} = req.body;
+
+    let params = ['users', email, password, salt];
+
+    db.one('INSERT INTO $1:name(' +
+        'id, username, password, salt) ' +
+        'VALUES (default, \'$2:value\', \'$3:value\', \'$4:value\')', params)
+        .then((data) => {
+            res.send(data);
+            //console.log(data);
+        })
+        .catch((error) => {
+            res.send(error);
+            //console.log(error);
+        });
 });
 
 const PORT = process.env.PORT || 9000;
 
 app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}!`);
+    console.log(`App listening on port ${PORT}!`);
 });

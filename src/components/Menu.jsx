@@ -1,44 +1,43 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
 import CustomLink from './CustomLink.jsx';
 
 import './Menu.scss';
 
-const Menu = ({isShow, handleDisplayMenu, handleShowAuthForm, menuLinks, username, handleLogOut}) => {
+const Menu = ({menuIsOpen, handleDisplayMenu, handleShowAuthForm, menuLinks, username, handleLogOut}) => {
 
-  return (
-    <nav className={classNames('menu', {
-      'menu_open': isShow, 
-      'menu_close': !isShow 
-    })} >
-      <div className="menu__profile">
-        { username ?
-          <div className="menu__profile-link" onClick={ () => handleLogOut() }>
-            Sign Out
-          </div>
-          :
-          <div className="menu__profile-link" onClick={ (isShowForm) => handleShowAuthForm(true) }>
-            Sign In
-          </div> }
-      </div>
-      <ul className="menu__options">
-        { menuLinks.map((link, i) => {
-            let liClass = classNames('menu__option', {
-              'menu__option_hide': link.isRequired && !username
-            });
-          
-            return (
-              <li key={ i } className={ liClass } onClick={ (isShow) => handleDisplayMenu(false) }>
-                <CustomLink className="menu__option-link" pathTo={ link.path } text={ link.name } />
-              </li>
-            )
-          }) }
-      </ul>
-    </nav>
+    return (
+        <nav className={classNames('menu', {
+            'menu_open': menuIsOpen,
+            'menu_close': !menuIsOpen
+        })}>
+            <div className="menu__profile">
+                {username ?
+                    <div className="menu__profile-link" onClick={() => handleLogOut()}>
+                        Sign Out
+                    </div>
+                    :
+                    <div className="menu__profile-link" onClick={() => handleShowAuthForm(true)}>
+                        Sign In
+                    </div>}
+            </div>
+            <ul className="menu__options">
+                {menuLinks.map((link, i) => {
+                    let liClass = classNames('menu__option', {
+                        'menu__option_hide': link.isRequired && !username
+                    });
+
+                    return (
+                        <li key={i} className={liClass} onClick={() => handleDisplayMenu(false)}>
+                            <CustomLink className="menu__option-link" pathTo={link.path} text={link.name}/>
+                        </li>
+                    )
+                })}
+            </ul>
+        </nav>
     );
-}
+};
 
 Menu.defaultProps = {
   menuLinks: [
@@ -68,6 +67,6 @@ Menu.defaultProps = {
       isRequired: false
     },
   ]
-}
+};
 
 export default Menu;

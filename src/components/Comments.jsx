@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import * as Scroll from 'react-scroll';
@@ -6,193 +6,195 @@ import classNames from 'classnames';
 
 import AuthForm from '../containers/AuthForm.jsx';
 
-import { isLoggedIn } from '../services/AuthService';
+import {isLoggedIn} from '../services/AuthService';
 
-import { ON_HIDE_WIDTH } from '../constants/UI.js';
+import {ON_HIDE_WIDTH} from '../constants/UI.js';
 
 import BlockHeader from './BlockHeader.jsx';
 import './Comments.scss';
 
-var scroll = Scroll.animateScroll;
+const scroll = Scroll.animateScroll;
 
 class Comments extends Component {
 
-  static propTypes = {
-    comments: PropTypes.array
-  };
+    static propTypes = {
+        comments: PropTypes.array
+    };
 
-  static defaultProps = {
-    comments: []
-  };
+    static defaultProps = {
+        comments: []
+    };
 
-  constructor(props) {
-    super(props);
-    let comTemp = this.props.comments;
+    constructor(props) {
+        super(props);
+        let comTemp = this.props.comments;
 
-    this.state = {
-      showCom: window.innerWidth >= ON_HIDE_WIDTH ? true : false,
-      showComBtns: false,
-      commentsOffset: 0,
-      comments: comTemp,
-      commentText: '',
-      maxComments: 5,
-      isAuth: false
+        this.state = {
+            showCom: window.innerWidth >= ON_HIDE_WIDTH,
+            showComments: false,
+            commentsOffset: 0,
+            comments: comTemp,
+            commentText: '',
+            maxComments: 5,
+            isAuth: false
+        };
+
+        this.resizeWindow = this.resizeWindow.bind(this);
     }
 
-    this.resizeWindow = this.resizeWindow.bind(this);
-  }
-
-  handleCommentTextChange(e) {
-    this.setState({
-      commentText: e.target.value
-    });
-  }
-
-  handleMoreComments() {
-    const {comments, maxComments} = this.state;
-
-    this.setState({
-      maxComments: maxComments >= comments.length ? maxComments : maxComments + 5
-    })
-  }
-
-  showComments() {
-    if (window.innerWidth >= ON_HIDE_WIDTH) return;
-    const {showCom} = this.state;
-
-    this.setState({
-      showCom: !showCom
-    });
-
-    if (!showCom) {
-      this.setState({
-        commentsOffset: window.pageYOffset
-      });
-      scroll.scrollTo(this._comments_block.offsetTop - 150, {
-        duration: 500,
-        delay: 50,
-        smooth: true
-      })
-    } else {
-      scroll.scrollTo(this.state.commentsOffset - 1, {
-        duration: 0,
-        delay: 0
-      })
+    handleCommentTextChange(e) {
+        this.setState({
+            commentText: e.target.value
+        });
     }
-  }
 
-  postNewComment() {
-    const {comments, commentText} = this.state;
-    if (commentText === '') return;
+    handleMoreComments() {
+        const {comments, maxComments} = this.state;
 
-    let author = this.props.username;
-    let postDate = new Date();
+        this.setState({
+            maxComments: maxComments >= comments.length ? maxComments : maxComments + 5
+        })
+    }
 
-    this.setState({
-      comments: [{
-        text: commentText,
-        author: author,
-        postDate: postDate
-      }, ...comments],
-      commentText: '',
-      showComBtns: false
-    });
-  }
+    showComments() {
+        if (window.innerWidth >= ON_HIDE_WIDTH) return;
+        const {showCom} = this.state;
 
-  resizeWindow() {
-    this.setState({
-      showCom: window.innerWidth >= ON_HIDE_WIDTH ? true : false
-    });
-  }
+        this.setState({
+            showCom: !showCom
+        });
 
-  showCommentsButtons(e, isShow) {
-    this.setState({
-      showComBtns: isShow,
-      commentText: !isShow ? '' : this.state.commentText
-    });
-  }
+        if (!showCom) {
+            this.setState({
+                commentsOffset: window.pageYOffset
+            });
+            scroll.scrollTo(this._comments_block.offsetTop - 150, {
+                duration: 500,
+                delay: 50,
+                smooth: true
+            })
+        } else {
+            scroll.scrollTo(this.state.commentsOffset - 1, {
+                duration: 0,
+                delay: 0
+            })
+        }
+    }
 
-  handleShowAuthForm(isShowForm) {
-    this.setState({
-      isAuth: isShowForm
-    })
-  }
+    postNewComment() {
+        const {comments, commentText} = this.state;
+        if (commentText === '') return;
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      comments: nextProps.comments
-    })
-  }
+        let author = this.props.username;
+        let postDate = new Date();
 
-  componentWillMount() {
-    window && window.addEventListener('resize', this.resizeWindow, false);
-  }
+        this.setState({
+            comments: [{
+                text: commentText,
+                author: author,
+                postDate: postDate
+            }, ...comments],
+            commentText: '',
+            showComments: false
+        });
+    }
 
-  componentWillUnmount() {
-    window && window.removeEventListener('resize', this.resizeWindow, false);
-  }
+    resizeWindow() {
+        this.setState({
+            showCom: window.innerWidth >= ON_HIDE_WIDTH
+        });
+    }
 
-  render() {
-    const {comments, showCom, showComBtns, commentText, maxComments, isAuth} = this.state;
-    const {error, fetching, handleLogIn} = this.props;
+    showCommentsButtons(e, isShow) {
+        this.setState({
+            showComments: isShow,
+            commentText: !isShow ? '' : this.state.commentText
+        });
+    }
 
-    let contentClass = classNames('comments__content', {
-      'comments__content_hide': !showCom
-    }, this.props.className);
+    handleShowAuthForm(isShowForm) {
+        this.setState({
+            isAuth: isShowForm
+        })
+    }
 
-    let buttonsClass = classNames('new-comment__buttons', {
-      'new-comment__buttons_hide': !showComBtns
-    }, this.props.className);
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            comments: nextProps.comments
+        })
+    }
 
-    return (
-      <section ref={ (div) => {
-                 this._comments_block = div
-               } } className="comments other-pages__comments">
-        <BlockHeader optionName="comments" isShowOption={ showCom } handleChangeView={ ::this.showComments } />
-        <section className={ contentClass }>
-          <div className="new-comment comments__new-comment">
-            <img className="comment__user-image" src="" alt="" />
-            <div className="new-comment__desc">
-              <textarea className="field new-comment__text"
-                placeholder="leave a comment"
-                onFocus={ (e, isShow) => this.showCommentsButtons(e, true) }
-                onClick={ (isShowForm) => this.handleShowAuthForm(!isLoggedIn()) }
-                onChange={ (e) => this.handleCommentTextChange(e) }
-                value={ commentText }></textarea>
-              <div className={ buttonsClass }>
-                <button className={ classNames('new-comment__button btn-clear', {
-                                      'button': window.innerWidth >= ON_HIDE_WIDTH
-                                    }) } onClick={ (isShow) => this.showCommentsButtons(false) }>
-                  Cancel
-                </button>
-                <button className={ classNames('new-comment__button btn-send', {
-                                      'button': window.innerWidth >= ON_HIDE_WIDTH
-                                    }) } onClick={ () => this.postNewComment() } disabled={ this.state.commentText === '' }>
-                  Send comment
-                </button>
-              </div>
-            </div>
-          </div>
-          { comments.map((comment, i) => {
-              if (i >= maxComments) return '';
-            
-              return (
-                <InputComments {...comment} n={ i } key={ i } />
-              )
-            }) }
-          <div className={ classNames('comments__more-btn', {
-                             'comments__more-btn_hide': maxComments >= comments.length
-                           }, 'button') } onClick={ () => this.handleMoreComments() }>
-            show more
-          </div>
-        </section>
-        { isAuth ? <AuthForm onSignIn={ handleLogIn }
-                     error={ error }
-                     fetching={ fetching }
-                     onClose={ (isShowForm) => this.handleShowAuthForm(false) } /> : '' }
-      </section>
-      );
-  }
+    componentWillMount() {
+        window && window.addEventListener('resize', this.resizeWindow, false);
+    }
+
+    componentWillUnmount() {
+        window && window.removeEventListener('resize', this.resizeWindow, false);
+    }
+
+    render() {
+        const {comments, showCom, showComments, commentText, maxComments, isAuth} = this.state;
+        const {error, fetching, handleLogIn} = this.props;
+
+        let contentClass = classNames('comments__content', {
+            'comments__content_hide': !showCom
+        }, this.props.className);
+
+        let buttonsClass = classNames('new-comment__buttons', {
+            'new-comment__buttons_hide': !showComments
+        }, this.props.className);
+
+        return (
+            <section ref={(div) => {
+                this._comments_block = div
+            }} className="comments other-pages__comments">
+                <BlockHeader optionName="comments" isShowOption={showCom} handleChangeView={::this.showComments}/>
+                <section className={contentClass}>
+                    <div className="new-comment comments__new-comment">
+                        <img className="comment__user-image" src="" alt=""/>
+                        <div className="new-comment__desc">
+                            <textarea className="field new-comment__text"
+                                      placeholder="leave a comment"
+                                      onFocus={(e) => this.showCommentsButtons(e, true)}
+                                      onClick={() => this.handleShowAuthForm(!isLoggedIn())}
+                                      onChange={(e) => this.handleCommentTextChange(e)}
+                                      value={commentText}/>
+                            <div className={buttonsClass}>
+                                <button className={classNames('new-comment__button btn-clear', {
+                                    'button': window.innerWidth >= ON_HIDE_WIDTH
+                                })} onClick={() => this.showCommentsButtons(false)}>
+                                    Cancel
+                                </button>
+                                <button className={classNames('new-comment__button btn-send', {
+                                    'button': window.innerWidth >= ON_HIDE_WIDTH
+                                })} onClick={() => this.postNewComment()} disabled={this.state.commentText === ''}>
+                                    Send comment
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    {comments.map((comment, i) => {
+                        if (i >= maxComments) return '';
+
+                        return (
+                            <InputComments {...comment} n={i} key={i}/>
+                        )
+                    })}
+                    <div className={classNames('comments__more-btn', {
+                        'comments__more-btn_hide': maxComments >= comments.length
+                    }, 'button')} onClick={() => this.handleMoreComments()}>
+                        show more
+                    </div>
+                </section>
+                {!isAuth
+                    ? ''
+                    : <AuthForm onSignIn={handleLogIn}
+                                error={error}
+                                fetching={fetching}
+                                onClose={() => this.handleShowAuthForm(false)}/>}
+            </section>
+        );
+    }
 }
 
 export default Comments;
@@ -200,25 +202,25 @@ export default Comments;
 
 const InputComments = ({author, text, postDate, n}) => {
 
-  InputComments.propTypes = {
-    author: PropTypes.string,
-    text: PropTypes.string,
-    n: PropTypes.number
-  }
+    InputComments.propTypes = {
+        author: PropTypes.string,
+        text: PropTypes.string,
+        n: PropTypes.number
+    };
 
-  let postDateTemp = new Date(postDate);
+    let postDateTemp = new Date(postDate);
 
-  return (
-    <div className="comment" key={ n }>
-      <img className="comment__user-image" src="" alt="" />
-      <div className="comment__desc">
-        <p className="comment__author">
-          { author }<span className="comment__time">{ moment(postDateTemp, "YYYYMMDD").fromNow() }</span>
-        </p>
-        <p className="comment__text">
-          { text }
-        </p>
-      </div>
-    </div>
+    return (
+        <div className="comment" key={n}>
+            <img className="comment__user-image" src="" alt=""/>
+            <div className="comment__desc">
+                <p className="comment__author">
+                    {author}<span className="comment__time">{moment(postDateTemp, "YYYYMMDD").fromNow()}</span>
+                </p>
+                <p className="comment__text">
+                    {text}
+                </p>
+            </div>
+        </div>
     );
 };
