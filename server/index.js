@@ -85,6 +85,61 @@ app.post('/add-user', (req, res) => {
         });
 });
 
+app.post('/update-user-username', (req, res) => {
+    const {id, password, newEmail} = req.body;
+    let params = ['users', id, password, newEmail],
+        customQuery = 'UPDATE $1:name SET username=\'$4:value\' WHERE id=\'$2:value\' and password=\'$3:value\'';
+
+    db.query(customQuery, params)
+        .then(() => {
+            db.one('SELECT * FROM $1:name WHERE id=\'$2:value\' and password=\'$3:value\'', params)
+                .then((data) => {
+                    res.send(data);
+                    //console.log(data);
+                })
+                .catch((error) => {
+                    let customErr = error;
+                    customErr.received = 'username';
+                    res.send(customErr);
+                    console.log(customErr);
+                });
+        })
+        .catch((err) => {
+            res.send(err);
+            //console.log(err);
+        });
+
+
+});
+
+app.post('/update-user-password', (req, res) => {
+    const {id, password, newPassword} = req.body;
+
+    let pass = newPassword.password,
+        salt = newPassword.salt,
+        params = ['users', id, password, pass, salt],
+        customQuery = 'UPDATE $1:name SET password=\'$4:value\', salt=\'$5:value\' WHERE id=\'$2:value\' and password=\'$3:value\' ';
+
+    db.query(customQuery, params)
+        .then(() => {
+            db.one('SELECT * FROM $1:name WHERE id=\'$2:value\' and password=\'$4:value\'', params)
+                .then((data) => {
+                    res.send(data);
+                    //console.log(data);
+                })
+                .catch((error) => {
+                    let customErr = error;
+                    customErr.received = 'password';
+                    res.send(customErr);
+                    console.log(customErr);
+                });
+        })
+        .catch((err) => {
+            res.send(err);
+            //console.log(err);
+        });
+});
+
 const PORT = process.env.PORT || 9000;
 
 app.listen(PORT, () => {

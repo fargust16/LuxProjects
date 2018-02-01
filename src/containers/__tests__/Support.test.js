@@ -1,7 +1,6 @@
 import 'jsdom-global/register';
 import React from 'react';
-import { shallow, mount, render } from 'enzyme';
-import sinon from 'sinon';
+import { mount } from 'enzyme';
 
 import CustomProvider from '../../CustomProvider.jsx';
 import Support from '../Support.jsx';

@@ -1,0 +1,41 @@
+@import '../constants.scss';
+
+.PopUp {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background-color: rgba(3,3,3,.85);
+
+  &__content {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background-color: #fff;
+    border: $border;
+    border-radius: 8px;
+    padding: $main-padding;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    @include small {
+      width: 400px;
+    }
+  }
+
+  &__message {
+    color: $primary-color;
+    font-size: 20px;
+    padding: 20px;
+  }
+
+  &__button {
+  }
+}
+

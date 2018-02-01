@@ -148,7 +148,7 @@ class AuthForm extends Component {
     }
 }
 
-const StrongPassGenerator = (password) => {
+export const StrongPassGenerator = (password) => {
     let pass, salt, passSalt;
 
     pass = sha512(password);

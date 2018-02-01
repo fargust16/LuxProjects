@@ -24,6 +24,12 @@
     display: block;
   }
 
+  &__tips {
+    text-align: center;
+    color: $primary-color;
+    font-size: 16px;
+  }
+
   &__buttons {
     display: flex;
     flex-flow: column wrap;

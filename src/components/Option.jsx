@@ -22,10 +22,13 @@ export default class Option extends Component {
     handleShowExternalOptions(isOpen) {
         if (isOpen) return;
         const {showOption} = this.state;
+        const {onCancel} = this.props;
 
         this.setState({
             showOption: !showOption
         });
+
+        onCancel();
     }
 
     resizeWindow() {
@@ -46,7 +49,7 @@ export default class Option extends Component {
 
     render() {
         const {showOption} = this.state;
-        const {children, optionName, subClass, closeVar, needButtons} = this.props;
+        const {children, optionName, subClass, closeVar, needButtons, error, errorValid, tipsIsShow} = this.props;
 
         let alwaysOpen = closeVar || false;
 
@@ -59,6 +62,7 @@ export default class Option extends Component {
                     'option__content_hide': !showOption && !alwaysOpen
                 })}>
                     {children}
+                    <div className="option__tips">{(error || errorValid) && tipsIsShow ? (error || errorValid) : ''}</div>
                     {needButtons ?
                         <div className="option__buttons">
                             <button className="option__button button btn-clear" type="reset"

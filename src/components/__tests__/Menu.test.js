@@ -20,7 +20,7 @@ describe('A Menu suite', function() {
   });
 
   it('should has open modif in className when props isShow = true', () => {
-    const wrapper = shallow(<Menu isShow={true} />);
+    const wrapper = shallow(<Menu menuIsOpen={true} />);
 
     expect(wrapper.find('.menu_open').length).toBe(1);
   });
