@@ -1,16 +1,7 @@
-import {
-    LOGIN_SUCCESS,
-    LOGIN_FAIL,
-    LOGOUT_SUCCESS,
-    LOGOUT_FAIL,
-    SIGNUP_SUCCESS,
-    SIGNUP_FAIL,
-    USER_DATA_UPDATE_SUCCESS,
-    USER_DATA_UPDATE_FAIL
-} from '../constants/User';
+import * as ActionTypes from '../constants/User';
 import {loadStart, loadEnd} from './LoadActions';
 
-import {login, logout, isLoggedIn} from '../services/AuthService';
+import {login, logout, isLoggedIn, setIdToken} from '../services/AuthService';
 import {signUp, updateUserData} from '../services/api';
 
 export const handleLogIn = (authData) => {
@@ -23,23 +14,25 @@ export const handleLogIn = (authData) => {
             .then(data => {
                 if (data) {
                     dispatch({
-                        type: LOGIN_SUCCESS,
+                        type: ActionTypes.LOGIN_SUCCESS,
                         payload: data
                     })
                 } else {
                     let err = 'The password or email address did not match';
                     dispatch({
-                        type: LOGIN_FAIL,
+                        type: ActionTypes.LOGIN_FAIL,
                         payload: err
                     })
                 }
+                loadEnd(dispatch);
             })
-            .catch(err => dispatch({
-                type: LOGIN_FAIL,
-                payload: err
-            }));
-
-        loadEnd(dispatch);
+            .catch(err => {
+                dispatch({
+                    type: ActionTypes.LOGIN_FAIL,
+                    payload: err
+                });
+                loadEnd(dispatch);
+            });
     }
 };
 
@@ -52,24 +45,27 @@ export const handleSignUp = (authData) => {
             .then(data => {
                 if (!data.detail) {
                     dispatch({
-                        type: SIGNUP_SUCCESS,
+                        type: ActionTypes.SIGNUP_SUCCESS,
                         payload: data
                     })
                 } else {
                     let err = 'User with this email already exist';
                     //let err = data.detail;
                     dispatch({
-                        type: SIGNUP_FAIL,
+                        type: ActionTypes.SIGNUP_FAIL,
                         payload: err
                     })
                 }
+                loadEnd(dispatch);
             })
-            .catch(err => dispatch({
-                type: SIGNUP_FAIL,
-                payload: err
-            }));
+            .catch(err => {
+                dispatch({
+                    type: ActionTypes.SIGNUP_FAIL,
+                    payload: err
+                });
 
-        loadEnd(dispatch);
+                loadEnd(dispatch);
+            });
     }
 };
 
@@ -81,12 +77,12 @@ export const handleLogOut = () => {
 
         if (!isLoggedIn()) {
             dispatch({
-                type: LOGOUT_SUCCESS
+                type: ActionTypes.LOGOUT_SUCCESS
             })
         } else {
             let err = 'Somethings wrong';
             dispatch({
-                type: LOGOUT_FAIL,
+                type: ActionTypes.LOGOUT_FAIL,
                 payload: err
             })
         }
@@ -95,34 +91,67 @@ export const handleLogOut = () => {
     }
 };
 
-export const handleUpdateUserData = (userData) => {
-    return (dispatch) => {
-        loadStart(dispatch);
+export const handleEmailChange = (userData) => (dispatch) => {
+    loadStart(dispatch);
 
-        updateUserData(userData)
-            .then(data => {
-                if(!data.received) {
-                    dispatch({
-                        type: USER_DATA_UPDATE_SUCCESS,
-                        payload: data
-                    })
-                }
-                else{
-                    let err = `The ${data.received} did not changed. Some data entergit incorrect.`;
-                    dispatch({
-                        type: USER_DATA_UPDATE_FAIL,
-                        payload: err,
-                        optionType: data.received
-                    })
-                }
-            })
-            .catch(err => {
+
+
+    updateUserData(userData)
+        .then(data => {
+            if (!data.received) {
                 dispatch({
-                    type: USER_DATA_UPDATE_FAIL,
-                    payload: err
+                    type: ActionTypes.USER_EMAIL_CHANGE_SUCCESS,
+                    payload: data
+                });
+                setIdToken(data);
+            }
+            else {
+                let err = `The ${data.received} did not changed. Some data is incorrect.`;
+                dispatch({
+                    type: ActionTypes.USER_EMAIL_CHANGE_FAIL,
+                    payload: err,
+                    optionType: data.received
                 })
+            }
+            loadEnd(dispatch);
+        })
+        .catch(err => {
+            dispatch({
+                type: ActionTypes.USER_EMAIL_CHANGE_FAIL,
+                payload: err
             });
+            loadEnd(dispatch);
+        });
+};
 
-        loadEnd(dispatch);
-    }
+export const handlePasswordChange = (userData) => (dispatch) => {
+
+    loadStart(dispatch);
+
+    updateUserData(userData)
+        .then(data => {
+            if (!data.received) {
+                dispatch({
+                    type: ActionTypes.USER_PASSWORD_CHANGE_SUCCESS,
+                    payload: data
+                });
+                setIdToken(data);
+            }
+            else {
+                let err = `The ${data.received} did not changed. Some data is incorrect.`;
+                dispatch({
+                    type: ActionTypes.USER_PASSWORD_CHANGE_FAIL,
+                    payload: err,
+                    optionType: data.received
+                })
+            }
+            loadEnd(dispatch);
+        })
+        .catch(err => {
+            dispatch({
+                type: ActionTypes.USER_PASSWORD_CHANGE_FAIL,
+                payload: err
+            });
+            loadEnd(dispatch);
+        });
 };

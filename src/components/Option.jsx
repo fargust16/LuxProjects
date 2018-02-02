@@ -62,7 +62,7 @@ export default class Option extends Component {
                     'option__content_hide': !showOption && !alwaysOpen
                 })}>
                     {children}
-                    <div className="option__tips">{(error || errorValid) && tipsIsShow ? (error || errorValid) : ''}</div>
+                    <div className="option__tips">{(error || errorValid) && tipsIsShow ? (error + errorValid) : ''}</div>
                     {needButtons ?
                         <div className="option__buttons">
                             <button className="option__button button btn-clear" type="reset"

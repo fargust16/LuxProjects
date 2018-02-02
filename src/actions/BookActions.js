@@ -11,19 +11,18 @@ export function handleGetAllBooks() {
 
     api.getAllBooks()
       .then(data => {
-
-        loadEnd(dispatch);
-
         dispatch({
           type: GET_ALL_BOOKS_SUCCESS,
           payload: data
-        })
+        });
+        loadEnd(dispatch);
       })
       .catch(err => {
         dispatch({
           type: GET_ALL_BOOKS_FAIL,
           payload: err
-        })
+        });
+        loadEnd(dispatch);
       });
   }
 }
@@ -36,17 +35,18 @@ export function handleGetBookInfo(bookId) {
 
     api.getBookInfo(bookId)
       .then(data => {
-        loadEnd(dispatch);
         dispatch({
           type: GET_BOOK_BY_ID_SUCCESS,
           payload: data
-        })
+        });
+        loadEnd(dispatch);
       })
       .catch(err => {
         dispatch({
           type: GET_BOOK_BY_ID_FAIL,
           payload: err
-        })
+        });
+        loadEnd(dispatch);
       });
   }
 }
@@ -59,17 +59,18 @@ export function handleGetRecentBooks() {
 
     api.getRecentBooks()
       .then(data => {
-        loadEnd(dispatch);
         dispatch({
           type: GET_RECENT_BOOKS_SUCCESS,
           payload: data
-        })
+        });
+        loadEnd(dispatch);
       })
       .catch(err => {
         dispatch({
           type: GET_RECENT_BOOKS_FAIL,
           payload: err
-        })
+        });
+        loadEnd(dispatch);
       });
   }
 }

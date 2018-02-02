@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Option from '../components/Option.jsx';
 import './Settings.scss';
 import * as userActions from "../actions/UserActions";
+import * as settingActions from "../actions/SettingActions";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import sha512 from "js-sha512";
@@ -10,88 +11,11 @@ import {PopUp} from '../components/PopUp';
 
 class Settings extends Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            emailTipsIsShow: false,
-            pswdTipsIsShow: false,
-            newEmail: '',
-            pswdOnEmail: '',
-            pswdOnPswd: '',
-            newPswd: '',
-            rePswd: '',
-            errorValid: '',
-            confirmMessage: '',
-            changeIsSuccess: false
-        }
-    }
-
-    handleChangeEmail(e) {
-        this.setState({
-            newEmail: e.target.value,
-            emailTipsIsShow: false
-        })
-    }
-
-    handleChangePswdOnEmail(e) {
-        this.setState({
-            pswdOnEmail: e.target.value,
-            emailTipsIsShow: false
-        })
-    }
-
-    handleChangePswdOnPswd(e) {
-        this.setState({
-            pswdOnPswd: e.target.value,
-            pswdTipsIsShow: false
-        })
-    }
-
-    handleChangeNewPswd(e) {
-        this.setState({
-            newPswd: e.target.value,
-            pswdTipsIsShow: false
-        })
-    }
-
-    handleChangeRePswd(e) {
-        this.setState({
-            rePswd: e.target.value,
-            pswdTipsIsShow: false
-        })
-    }
-
-    handleOnSuccessChanged() {
-        this.setState({
-            changeIsSuccess: true
-        })
-    }
-
-    handleOnCancelEmail() {
-        this.setState({
-            newEmail: '',
-            pswdOnEmail: ''
-        })
-    }
-
-    handleOnCancelPswd() {
-        this.setState({
-            newPswd: '',
-            pswdOnPswd: '',
-            rePswd: ''
-        })
-    }
-
-    handleRemoveOnFocus(e) {
-        e.target.removeAttribute('readOnly');
-    }
-
     handleOnEmailChange(e) {
         e.preventDefault();
-        const {newEmail, pswdOnEmail} = this.state;
+        const {newEmail, pswdOnEmail} = this.props.settings;
         const {id, salt} = this.props.user.username;
-        const {handleUpdateUserData} = this.props.userActions;
+        const {handleEmailChange} = this.props.userActions;
 
         let pass = sha512(pswdOnEmail);
         pass = sha512(salt + pass);
@@ -103,20 +27,18 @@ class Settings extends Component {
             password: pass
         };
 
-        handleUpdateUserData(userData);
+        handleEmailChange(userData);
     }
 
     handleOnPasswordChange(e) {
         e.preventDefault();
-        const {pswdOnPswd, newPswd, rePswd} = this.state;
+        const {pswdOnPswd, newPswd, rePswd} = this.props.settings;
         const {id, salt} = this.props.user.username;
-        const {handleUpdateUserData} = this.props.userActions;
+        const {handlePasswordChange} = this.props.userActions;
+        const {validPasswordsFail} = this.props.settingActions;
 
         if (newPswd !== rePswd) {
-            this.setState({
-                errorValid: 'Passwords does not match',
-                isTipsShow: true
-            });
+            validPasswordsFail();
             return;
         }
 
@@ -132,39 +54,20 @@ class Settings extends Component {
             newPassword: newPass
         };
 
-        handleUpdateUserData(userData);
-    }
-
-    handleOnSubmitChanged() {
-        this.setState({
-            changeIsSuccess: false,
-            emailTipsIsShow: false,
-            pswdTipsIsShow: false
-        });
-    }
-
-    componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
-        let err = nextProps.user.error;
-        if(err.length !== 0) {
-            this.setState({
-                emailTipsIsShow: err.search('username') !==  -1,
-                pswdTipsIsShow: err.search('password') !==  -1
-            });
-        } else if (nextProps.user.error.length === 0) {
-            this.handleOnSuccessChanged();
-            this.setState({confirmMessage: 'Changed Success'})
-            this.handleOnCancelEmail();
-            this.handleOnCancelPswd();
-        }
+        handlePasswordChange(userData);
     }
 
     render() {
         const {username} = this.props.user.username;
         const {error} = this.props.user;
-        const {pswdOnEmail, newEmail, pswdOnPswd, newPswd, emailTipsIsShow, pswdTipsIsShow, rePswd, errorValid, confirmMessage, changeIsSuccess} = this.state;
+        const {fetching} = this.props.load;
 
-        console.log(`${changeIsSuccess}`);
+        const {newEmail, pswdOnEmail, pswdOnPswd, newPswd, emailTipsIsShow, pswdTipsIsShow, rePswd, errorValid,
+            confirmMessage, changeIsSuccess} = this.props.settings;
+
+        const {changeNewEmail, changeEmailPassword, changePswdPassword, changeNewPassword, changeReNewPassword,
+            cancelChangeEmail, cancelChangePassword, submitChanges} = this.props.settingActions;
+
         return (
             <main className="settings other-pages__block">
                 <div className="main-header">
@@ -184,20 +87,18 @@ class Settings extends Component {
                                 errorValid={errorValid}
                                 error={error}
                                 tipsIsShow={emailTipsIsShow}
-                                onCancel={::this.handleOnCancelEmail}>
+                                onCancel={() => cancelChangeEmail()}>
                             <input type="email"
                                    name="test-email"
                                    className="field option__field"
                                    placeholder="new email address"
-                                   onChange={(e) => this.handleChangeEmail(e)}
+                                   onChange={(e) => changeNewEmail(e.target.value)}
                                    value={newEmail}
-                                   readOnly
-                                   onFocus={(e) => this.handleRemoveOnFocus(e)}
                                    required/>
                             <input type="password"
                                    className="field option__field"
                                    placeholder="current password"
-                                   onChange={(e) => this.handleChangePswdOnEmail(e)}
+                                   onChange={(e) => changeEmailPassword(e.target.value)}
                                    value={pswdOnEmail}
                                    required/>
                         </Option>
@@ -209,30 +110,30 @@ class Settings extends Component {
                                 errorValid={errorValid}
                                 error={error}
                                 tipsIsShow={pswdTipsIsShow}
-                                onCancel={::this.handleOnCancelPswd}>
+                                onCancel={() => cancelChangePassword()}>
                             <input type="password"
                                    className="field option__field"
                                    placeholder="current password"
-                                   onChange={(e) => this.handleChangePswdOnPswd(e)}
+                                   onChange={(e) => changePswdPassword(e.target.value)}
                                    value={pswdOnPswd}
                                    required/>
                             <input type="password"
                                    className="field option__field"
                                    placeholder="new password"
-                                   onChange={(e) => this.handleChangeNewPswd(e)}
+                                   onChange={(e) => changeNewPassword(e.target.value)}
                                    value={newPswd}
                                    required/>
                             <input type="password"
                                    className="field option__field"
                                    placeholder="confirm new password"
-                                   onChange={(e) => this.handleChangeRePswd(e)}
+                                   onChange={(e) => changeReNewPassword(e.target.value)}
                                    value={rePswd}
                                    required/>
                         </Option>
                     </form>
                 </article>
-                {changeIsSuccess
-                    ? <PopUp message='Changed success' onSubmit={::this.handleOnSubmitChanged}/>
+                {changeIsSuccess && !fetching
+                    ? <PopUp message={confirmMessage} onSubmit={() => submitChanges()}/>
                     : ''}
             </main>
         );
@@ -242,9 +143,12 @@ class Settings extends Component {
 export default connect(
     state => ({
         user: state.user,
-        load: state.load
+        load: state.load,
+        settings: state.settings
     }),
     dispatch => ({
-        userActions: bindActionCreators(userActions, dispatch)
+        userActions: bindActionCreators(userActions, dispatch),
+        settingActions: bindActionCreators(settingActions, dispatch),
+
     })
 )(Settings)
