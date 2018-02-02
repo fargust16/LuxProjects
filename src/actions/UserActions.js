@@ -108,7 +108,7 @@ export const handleUpdateUserData = (userData) => {
                     })
                 }
                 else{
-                    let err = `The ${data.received} did not changed. Some data enter incorrect.`
+                    let err = `The ${data.received} did not changed. Some data entergit incorrect.`;
                     dispatch({
                         type: USER_DATA_UPDATE_FAIL,
                         payload: err,
