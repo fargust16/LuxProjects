@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as bookActions from '../actions/BookActions';
+import * as readBookActions from '../actions/ReadBookActions';
 
 import ControlButtons from '../components/ControlButtons.jsx';
 
@@ -20,40 +21,22 @@ class ReadBook extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            book: {},
-            text: ' ',
-            currentPage: 0,
-            endOfSwitch: 0,
-            resizeEnd: 0
-        };
-
         this.handleOnResizeReadOffset = this.handleOnResizeReadOffset.bind(this);
         this.onResizeEnd = this.onResizeEnd.bind(this);
     }
 
     switchTextPage(direct) {
-        const {currentPage} = this.state;
+        const {currentPage} = this.props.readBook;
+        const {nextBookPage} = this.props.readBookActions;
         let curPageTemp = parseInt((currentPage + direct), 10);
 
-        this.setState({
-            currentPage: curPageTemp
-        });
+        nextBookPage(curPageTemp);
 
-        this.handleSuperFunctionPlsWork(curPageTemp, direct);
-    }
-
-    saveCurrPage(readOffset) {
-        const {bookId} = this.props.match.params;
-        const {cookies} = this.props;
-
-        cookies.set('readOffset', readOffset, {
-            path: '/books/read/' + bookId
-        });
+        this.handleChangeReadOffset(curPageTemp, direct);
     }
 
     handleOnResizeReadOffset() {
-        const {readOffset} = this.state;
+        const {readOffset} = this.props.readBook;
 
         this.handleChangeBookSize();
 
@@ -75,16 +58,15 @@ class ReadBook extends Component {
 
 
     _defineFirstCalcReadOffset() {
-        const {readOffset} = this.state;
+        const {readOffset} = this.props.readBook;
+        const {nextBookPage, changeReadOffset} = this.props.readBookActions;
 
         let bOffset = this._calcBlockOffsetHeight(this._bookCont) * 2,
             rOffset = parseInt(readOffset, 10),
             curPage = Math.ceil(rOffset / bOffset);
 
-        this.setState({
-            currentPage: curPage,
-            readOffset: rOffset
-        })
+        nextBookPage(curPage);
+        changeReadOffset(rOffset);
 
         //console.log('bOffset: ' + bOffset + '\nrOffset: ' + rOffset + '\ncurPage: ' + curPage);
     }
@@ -97,8 +79,10 @@ class ReadBook extends Component {
         return bOffset;
     }
 
-    handleSuperFunctionPlsWork(curPage, direct) {
-        const {readOffset} = this.state;
+    handleChangeReadOffset(curPage, direct) {
+        const {readOffset} = this.props.readBook;
+        const {changeReadOffset} = this.props.readBookActions;
+
         let bOffset = this._calcBlockOffsetHeight(this._bookCont) * 2,
             readOffsetT = readOffset + bOffset * direct;
 
@@ -108,23 +92,19 @@ class ReadBook extends Component {
 
         this._bWithText.style = 'transform: translateY(' + -readOffsetT + 'px)';
 
-        this.setState({
-            readOffset: readOffsetT
-        });
-
-        this.saveCurrPage(readOffsetT); // save to cookie pages data
+        changeReadOffset(readOffsetT);
     }
 
     calcEndOfSwitch() {
+        const {changeEndOfSwitch} = this.props.readBookActions;
+
         let textOffset = this._calcBlockOffsetHeight(this._bWithText),
             bOffset = this._calcBlockOffsetHeight(this._bookCont) * 2,
             endOfSwitch = Math.floor(textOffset / bOffset);
 
-        this.setState({
-            endOfSwitch: endOfSwitch
-        })
+        changeEndOfSwitch(endOfSwitch);
 
-        //console.log('full: ' + textOffset +'\nblock: '+ bOffset +'\nend: '+ endOfSwitch)
+        //console.log('full: ' + textOffset +'\nblock: '+ bOffset +'\nend: '+ endOfSwitch);
     }
 
     onResizeEnd() {
@@ -138,49 +118,23 @@ class ReadBook extends Component {
     }
 
     componentWillMount() {
-        const {bookId} = this.props.match.params;
-        const {cookies} = this.props;
-
-        let readOffset = cookies.get('readOffset', {
-            path: 'books/read/' + bookId
-        }) || 0;
-
-        this.setState({
-            readOffset: parseInt(readOffset, 10)
-        });
-
-        window && window.addEventListener('resize', this.onResizeEnd, true);
+        window && window.addEventListener('resize', this.onResizeEnd, false);
     }
 
     componentDidMount() {
         const {bookId} = this.props.match.params;
 
         this.props.bookActions.handleGetBookInfo(parseInt(bookId, 10));
-    }
 
-    componentWillReceiveProps(nextProps) {
-        if (!nextProps.fetching) {
-            this.handleOnResizeReadOffset();
-        }
+        this.handleOnResizeReadOffset();
     }
 
     componentWillUnmount() {
-        const {bookId} = this.props.match.params;
-        const {cookies} = this.props;
-
-        cookies.remove('startReadPos', {
-            path: '/books/read/' + bookId
-        });
-
-        cookies.remove('readOffset', {
-            path: '/books/read/' + bookId
-        });
-
-        window && window.removeEventListener('resize', this.onResizeEnd, true);
+        window && window.removeEventListener('resize', this.onResizeEnd, false);
     }
 
     render() {
-        const {currentPage, endOfSwitch} = this.state;
+        const {currentPage, endOfSwitch} = this.props.readBook;
         const {text} = this.props.book;
 
         let pageClass = classNames('read-book__content', {
@@ -219,9 +173,12 @@ class ReadBook extends Component {
 
 export default connect(
     state => ({
-        book: state.books.bookById
+        book: state.books.bookById,
+        load: state.load,
+        readBook: state.readBook
     }),
     dispatch => ({
-        bookActions: bindActionCreators(bookActions, dispatch)
+        bookActions: bindActionCreators(bookActions, dispatch),
+        readBookActions: bindActionCreators(readBookActions, dispatch)
     })
 )(withCookies(ReadBook))

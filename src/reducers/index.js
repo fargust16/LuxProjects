@@ -4,11 +4,13 @@ import user from './user';
 import books from './books';
 import load from './load';
 import settings from './settings';
+import readBook from './readBook';
 
 export default combineReducers({
     page,
     user,
     books,
     load,
-    settings
+    settings,
+    readBook
 })

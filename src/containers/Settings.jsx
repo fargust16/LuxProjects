@@ -132,9 +132,7 @@ class Settings extends Component {
                         </Option>
                     </form>
                 </article>
-                {changeIsSuccess && !fetching
-                    ? <PopUp message={confirmMessage} onSubmit={() => submitChanges()}/>
-                    : ''}
+                {changeIsSuccess && !fetching && <PopUp message={confirmMessage} onSubmit={() => submitChanges()}/>}
             </main>
         );
     }

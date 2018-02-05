@@ -1,7 +1,5 @@
 import * as ActionTypes from '../constants/Settings';
-import {USER_EMAIL_CHANGE_SUCCESS, USER_EMAIL_CHANGE_FAIL, USER_PASSWORD_CHANGE_REQUEST, USER_PASSWORD_CHANGE_SUCCESS, USER_PASSWORD_CHANGE_FAIL} from '../constants/User';
-import {StrongPassGenerator} from "../containers/AuthForm";
-import sha512 from "js-sha512";
+import {USER_EMAIL_CHANGE_SUCCESS, USER_EMAIL_CHANGE_FAIL, USER_PASSWORD_CHANGE_SUCCESS, USER_PASSWORD_CHANGE_FAIL} from '../constants/User';
 
 const initialState = {
     emailTipsIsShow: false,
