@@ -5,6 +5,7 @@ import books from './books';
 import load from './load';
 import settings from './settings';
 import readBook from './readBook';
+import comments from './comments';
 
 export default combineReducers({
     page,
@@ -12,5 +13,6 @@ export default combineReducers({
     books,
     load,
     settings,
-    readBook
+    readBook,
+    comments
 })

@@ -8,6 +8,7 @@ import {bindActionCreators} from 'redux';
 
 import * as bookActions from '../actions/BookActions';
 import * as userActions from '../actions/UserActions';
+import * as commentActions from '../actions/CommentActions';
 
 import {CalcLinesOfDesc} from '../components/Book.jsx';
 import Rating from '../components/Rating.jsx';
@@ -143,7 +144,9 @@ class BookDescription extends Component {
                           username={username}
                           error={error}
                           fetching={fetching}
-                          handleLogIn={handleLogIn}/>
+                          handleLogIn={handleLogIn}
+                          commentActions = {this.props.commentActions}
+                          commentVariables={this.props.comments}/>
             </article>
         );
     }
@@ -153,10 +156,12 @@ export default connect(
     state => ({
         book: state.books.bookById,
         user: state.user,
-        load: state.load
+        load: state.load,
+        comments: state.comments
     }),
     dispatch => ({
         bookActions: bindActionCreators(bookActions, dispatch),
-        userActions: bindActionCreators(userActions, dispatch)
+        userActions: bindActionCreators(userActions, dispatch),
+        commentActions: bindActionCreators(commentActions, dispatch)
     })
 )(BookDescription)

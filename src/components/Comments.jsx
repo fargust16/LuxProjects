@@ -35,7 +35,7 @@ class Comments extends Component {
             commentsOffset: 0,
             comments: comTemp,
             commentText: '',
-            maxComments: 5,
+            //maxComments: 5,
             isAuth: false
         };
 
@@ -49,11 +49,15 @@ class Comments extends Component {
     }
 
     handleMoreComments() {
-        const {comments, maxComments} = this.state;
+        const {comments} = this.state;
+        const {maxComments} = this.props.commentVariables;
+        const {showMoreComments} = this.props.commentActions;
 
-        this.setState({
+        showMoreComments(maxComments >= comments.length ? maxComments : maxComments + 5);
+
+        /*this.setState({
             maxComments: maxComments >= comments.length ? maxComments : maxComments + 5
-        })
+        })*/
     }
 
     showComments() {
@@ -133,8 +137,11 @@ class Comments extends Component {
     }
 
     render() {
-        const {comments, showCom, showComments, commentText, maxComments, isAuth} = this.state;
+        const {comments, showCom, showComments, commentText, isAuth} = this.state;
         const {error, fetching, handleLogIn} = this.props;
+        const {maxComments} = this.props.commentVariables;
+
+        console.log(this.props);
 
         let contentClass = classNames('comments__content', {
             'comments__content_hide': !showCom
