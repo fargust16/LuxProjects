@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import {instanceOf} from 'prop-types';
-import {withCookies, Cookies} from 'react-cookie';
 import classNames from 'classnames';
 
 import {connect} from 'react-redux';
@@ -13,10 +11,6 @@ import ControlButtons from '../components/ControlButtons.jsx';
 import './ReadBook.scss';
 
 class ReadBook extends Component {
-
-    static propTypes = {
-        cookies: instanceOf(Cookies).isRequired
-    };
 
     constructor(props) {
         super(props);
@@ -181,4 +175,4 @@ export default connect(
         bookActions: bindActionCreators(bookActions, dispatch),
         readBookActions: bindActionCreators(readBookActions, dispatch)
     })
-)(withCookies(ReadBook))
+)(ReadBook);
