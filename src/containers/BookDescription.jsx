@@ -9,6 +9,7 @@ import {bindActionCreators} from 'redux';
 import * as bookActions from '../actions/BookActions';
 import * as userActions from '../actions/UserActions';
 import * as commentActions from '../actions/CommentActions';
+import * as headerActions from '../actions/HeaderActions';
 
 import {CalcLinesOfDesc} from '../components/Book.jsx';
 import Rating from '../components/Rating.jsx';
@@ -78,10 +79,12 @@ class BookDescription extends Component {
 
     render() {
         const {id, cover = '', title, author, ISBN, releaseDate, text, reviews = [], comments = []} = this.props.book;
-        const {error, username} = this.props.user;
+        const {error} = this.props.user;
         const {fetching} = this.props.load;
-        const {handleLogIn} = this.props.userActions;
         const {descLines, showMoreText} = this.state;
+
+        const {handleLogIn} = this.props.userActions;
+        const {changeDisplayAuth} = this.props.headerActions;
 
         let blockInfoClass = classNames('book-description__main-info', {
             'book-description__main-info_more': showMoreText
@@ -141,12 +144,13 @@ class BookDescription extends Component {
                     </div>
                 </main>
                 <Comments comments={comments}
-                          username={username}
+                          {...this.props.comments}
+                          {...this.props.user}
                           error={error}
                           fetching={fetching}
                           handleLogIn={handleLogIn}
-                          commentActions = {this.props.commentActions}
-                          commentVariables={this.props.comments}/>
+                          commentActions={this.props.commentActions}
+                          showAuthForm={changeDisplayAuth}/>
             </article>
         );
     }
@@ -162,6 +166,7 @@ export default connect(
     dispatch => ({
         bookActions: bindActionCreators(bookActions, dispatch),
         userActions: bindActionCreators(userActions, dispatch),
-        commentActions: bindActionCreators(commentActions, dispatch)
+        commentActions: bindActionCreators(commentActions, dispatch),
+        headerActions: bindActionCreators(headerActions, dispatch)
     })
 )(BookDescription)

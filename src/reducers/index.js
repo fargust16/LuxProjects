@@ -6,6 +6,7 @@ import load from './load';
 import settings from './settings';
 import readBook from './readBook';
 import comments from './comments';
+import header from './header';
 
 export default combineReducers({
     page,
@@ -14,5 +15,6 @@ export default combineReducers({
     load,
     settings,
     readBook,
-    comments
+    comments,
+    header
 })
