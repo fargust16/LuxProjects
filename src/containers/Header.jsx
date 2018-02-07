@@ -4,10 +4,11 @@ import {bindActionCreators} from 'redux';
 import classNames from 'classnames';
 
 import Menu from '../components/Menu';
-import AuthForm from './AuthForm';
+import AuthForm from '../components/AuthForm';
 
 import * as userActions from '../actions/UserActions';
 import * as headerActions from '../actions/HeaderActions';
+import * as authFormActions from '../actions/AuthFormActions';
 
 import {isLoggedIn} from '../services/AuthService';
 
@@ -38,8 +39,10 @@ class Header extends Component {
                       username={isLoggedIn()}
                       handleShowAuthForm={changeDisplayAuth}
                       handleDisplayMenu={() => changeDisplayMenu()}/>
-                {authIsOpen && <AuthForm onSignIn={handleLogIn} onSignUp={handleSignUp} error={error} fetching={fetching}
-                                          onClose={() => changeDisplayAuth(false)}/>}
+                {authIsOpen &&
+                <AuthForm onSignIn={handleLogIn} onSignUp={handleSignUp} error={error} fetching={fetching}
+                          onClose={() => changeDisplayAuth(false)}
+                          authFormActions={this.props.authFormActions} {...this.props.auth}/>}
             </header>
         </article>;
     }
@@ -49,10 +52,12 @@ export default connect(
     state => ({
         user: state.user,
         load: state.load,
-        header: state.header
+        header: state.header,
+        auth: state.auth
     }),
     dispatch => ({
         userActions: bindActionCreators(userActions, dispatch),
-        headerActions: bindActionCreators(headerActions, dispatch)
+        headerActions: bindActionCreators(headerActions, dispatch),
+        authFormActions: bindActionCreators(authFormActions, dispatch)
     })
 )(Header)

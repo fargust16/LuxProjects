@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import sinon from 'sinon';
 
-import AuthForm from '../AuthForm.jsx';
+import AuthForm from '../../components/AuthForm.jsx';
 
 describe('A AuthForm suite', function() {
   it('should render without throwing an error', () => {

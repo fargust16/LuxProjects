@@ -7,13 +7,6 @@ import './AddBook.scss';
 
 export default class AddBook extends Component {
 
-    handleOnCancelMain() {
-        this.setState({
-            newEmail: '',
-            pswdOnEmail: ''
-        })
-    }
-
     render() {
 
         return (
@@ -22,7 +15,9 @@ export default class AddBook extends Component {
                     <span className="main-header__text">Add a new book</span>
                 </div>
                 <form action="" method="POST" className="options add-book__options">
-                    <Option optionName="main data" subClass="add-book__external-options" closeVar={true} onCancel={()=>{}}>
+                    <Option optionName="main data" subClass="add-book__external-options" closeVar={true}
+                            onCancel={() => {
+                            }}>
                         <input type="text"
                                name="title"
                                placeholder="title"
@@ -43,7 +38,9 @@ export default class AddBook extends Component {
                                    id="publish-date"/>
                         </label>
                     </Option>
-                    <Option optionName="external options" subClass="add-book__external-options" onCancel={::this.handleOnCancelMain}>
+                    <Option optionName="external options" subClass="add-book__external-options"
+                            onCancel={() => {
+                            }}>
                         <input type="text"
                                name="genre"
                                placeholder="genre"

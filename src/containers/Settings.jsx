@@ -6,7 +6,7 @@ import * as settingActions from "../actions/SettingActions";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import sha512 from "js-sha512";
-import {StrongPassGenerator} from './AuthForm';
+import {StrongPassGenerator} from '../components/AuthForm';
 import {PopUp} from '../components/PopUp';
 
 class Settings extends Component {

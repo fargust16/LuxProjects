@@ -13,8 +13,8 @@ const SignUp = ({handleOnSignUp, emailVar, handleChangeEmail, pswdVar, handleCha
         errorValid: PropTypes.string
     };
 
-    console.log(`pswdVar: ${pswdVar}\nrePswdVar: ${rePswdVar}\nerrorValid: ${errorValid}`);
-    console.log(`fetching: ${fetching}\nisTipsShow: ${isTipsShow}\nerror: ${error}`);
+    /*console.log(`pswdVar: ${pswdVar}\nrePswdVar: ${rePswdVar}\nerrorValid: ${errorValid}`);
+    console.log(`fetching: ${fetching}\nisTipsShow: ${isTipsShow}\nerror: ${error}`);*/
 
     return (
         <form id="sign-up" className="sign-form" onSubmit={handleOnSignUp}>
