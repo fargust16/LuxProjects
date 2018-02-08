@@ -28,7 +28,25 @@ app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
 
 app.get('/books', (req, res) => {
-    res.send(books);
+    //res.send(books);
+
+    let struct = [
+        'books.id, books.title, genres.genre, isbn, release_date as releaseDate, text, cover, topics, array_to_json(array_agg(row_to_json(reviews))) as reviews, users.username as uploadBy',
+        'books, genres, users, reviews',
+        'genres.id = books.fk_genre AND users.id = books.fk_uploaded_by AND books.id = reviews.fk_book',
+        'books.id, genres.id, users.username'
+    ];
+
+    db.query('SELECT $1:value FROM $2:value ' +
+        'WHERE $3:value GROUP BY $4:value', struct)
+        .then(data => {
+            res.send(data);
+            //console.log(data);
+        })
+        .catch(error => {
+            res.send(error);
+            //console.log(error);
+        })
 });
 
 app.get('/books/view/:id', (req, res) => {
