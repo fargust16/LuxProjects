@@ -37,15 +37,22 @@ app.get('/books', (req, res) => {
         'books.id, genres.id, users.username'
     ];
 
-    db.query('SELECT $1:value FROM $2:value ' +
-        'WHERE $3:value GROUP BY $4:value', struct)
+    /*db.query('SELECT $1:value FROM $2:value ' +
+        'WHERE $3:value GROUP BY $4:value', struct)*/
+
+    db.query('SELECT ${columns:name}, array_to_json(array_agg(row_to_json(reviews))) as reviews FROM ${tables:name} WHERE genre_id = fk_genre AND user_id = fk_uploaded_by AND book_id = fk_book GROUP BY ${group:name}', {
+        columns: ['book_id', 'title', 'genre', 'isbn', 'release_date', 'text', 'cover',
+            'topics', 'username'],
+        tables: ['books', 'users', 'genres', 'reviews'],
+        group: ['book_id', 'genre_id', 'username']
+    })
         .then(data => {
             res.send(data);
             //console.log(data);
         })
         .catch(error => {
             res.send(error);
-            //console.log(error);
+            console.log(error);
         })
 });
 
