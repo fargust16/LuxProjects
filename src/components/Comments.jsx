@@ -146,7 +146,7 @@ class Comments extends Component {
 export default Comments;
 
 
-const InputComments = ({author, text, postDate, n}) => {
+const InputComments = ({author, text, post_date, n}) => {
 
     InputComments.propTypes = {
         author: PropTypes.string,
@@ -154,7 +154,7 @@ const InputComments = ({author, text, postDate, n}) => {
         n: PropTypes.number
     };
 
-    let postDateTemp = new Date(postDate);
+    let postDateTemp = new Date(post_date);
 
     return (
         <div className="comment" key={n}>

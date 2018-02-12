@@ -94,7 +94,7 @@ class Book extends Component {
                             {text}
                         </div>}
                     <div className="reviews book__reviews">
-                        {reviews.length} reviews
+                        {reviews ? reviews.length : '0'} reviews
                     </div>
                 </section>
             </article>

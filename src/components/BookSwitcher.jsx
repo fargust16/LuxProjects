@@ -66,7 +66,7 @@ const Results = ({books, categoryId, categoryName}) => {
     let content,
         booksCont;
 
-    booksCont = books.map((book, i) => {
+    booksCont = books && books.map((book, i) => {
         return (
             <Book {...book} key={i} subClass={categoryId ? 'category__book' : 'switcher__book'}/>
         );

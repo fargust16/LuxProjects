@@ -28,44 +28,27 @@ app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
 
 app.get('/books', (req, res) => {
-    //res.send(books);
 
     let struct = {
         columns: ['b.book_id', 'b.title', 'g.genre', 'b.isbn', 'b.release_date', 'b.description', 'b.text', 'b.cover',
             'b.topics']
     };
 
-    db.query('SELECT bg.*, r.rev, com.com ' +
-        'FROM (SELECT b.book_id as book_id, b.title, g.genre, b.isbn, b.release_date, b.description, ' +
-        'b.text, b.cover, b.topics FROM books as b, genres as g WHERE b.genre_id = g.genre_id) bg ' +
+    db.query('SELECT bg.*, r.reviews ' +
+        'FROM (SELECT b.id, b.title, g.genre, b.isbn, b.release_date, b.description, ' +
+        'b.text, b.cover, b.topics FROM books as b, genres as g WHERE b.genre_id = g.id) bg ' +
         ' LEFT JOIN ' +
-        '   ( SELECT book_id, array_to_json(array_agg(row_to_json(reviews))) as rev FROM  reviews ' +
+        '   ( SELECT book_id, array_to_json(array_agg(row_to_json(reviews))) as reviews FROM  reviews ' +
         '   GROUP BY book_id ) r ' +
-        ' ON bg.book_id = r.book_id ' +
-        ' LEFT JOIN ' +
-        '  ( SELECT book_id, array_to_json(array_agg(row_to_json(book_comments))) as com FROM book_comments ' +
-        '   GROUP BY book_id ) AS com ' +
-        ' ON bg.book_id = com.book_id', struct)
+        ' ON bg.id = r.book_id ', struct)
         .then(data => {
             res.send(data);
             //console.log(data);
         })
         .catch(error => {
-            res.send(error);
-            console.log(error);
+            res.status(400).send(Error(error));
+            console.log(Error(error));
         })
-
-    /*db.query('SELECT ${columns:name}, array_to_json(array_agg(row_to_json(reviews))) as reviews FROM ${tables:name} ' +
-        'WHERE genre_id = fk_genre AND user_id = fk_uploaded_by GROUP BY ${group:name}' +
-        'ORDER BY fk_book', struct)
-        .then(data => {
-            res.send(data);
-            //console.log(data);
-        })
-        .catch(error => {
-            res.send(error);
-            console.log(error);
-        })*/
 });
 
 app.post('/books/add-new-book', (req, res) => {
@@ -82,12 +65,61 @@ app.post('/books/add-new-book', (req, res) => {
             res.send(data);
         })
         .catch(error => {
-            res.send(error);
+            res.send(Error(error));
         })
 });
 
 app.get('/books/view/:id', (req, res) => {
-    res.send(books[req.params.id]);
+    //res.send(books[req.params.id]);
+
+    let struct = {
+        bookId: req.params.id,
+        columns: ['b.book_id', 'b.title', 'g.genre', 'b.isbn', 'b.release_date', 'b.description', 'b.text', 'b.cover',
+            'b.topics']
+    };
+
+    db.one('SELECT bg.*, r.reviews, com.comments ' +
+        'FROM ' +
+        '   ( SELECT b.id, b.title, g.genre, b.isbn, b.release_date, b.description, b.text, b.cover, b.topics ' +
+        '    FROM books as b, genres as g ' +
+        '    WHERE b.genre_id = g.id' +
+        '   ) bg ' +
+
+        '   LEFT JOIN ' +
+
+        '     ( SELECT book_id, array_to_json(array_agg(row_to_json(reviews))) as reviews ' +
+        '       FROM  reviews ' +
+        '       GROUP BY book_id ' +
+        '     ) r ' +
+
+        '   ON bg.id = r.book_id ' +
+
+        '   LEFT JOIN ' +
+
+        '     ( SELECT bc.book_id, array_to_json(array_agg(row_to_json(com))) as comments ' +
+        '       FROM book_comments as bc ' +
+
+        '       LEFT JOIN'+
+
+        '         ( SELECT bc.id, bc.book_id, bc.text, bc.post_date, u.id as user_id, u.username as author ' +
+        '           FROM book_comments as bc, users as u '+
+        '           WHERE bc.user_id = u.id AND bc.book_id = ${bookId:value} ' +
+        '         ) com ' +
+
+        '       ON bc.user_id = com.user_id ' +
+        '      GROUP BY bc.book_id ' +
+        '      ) com ' +
+
+        '   ON bg.id = com.book_id ' +
+        'WHERE id = ${bookId:value} ', struct)
+        .then(data => {
+            res.send(data);
+            //console.log(data);
+        })
+        .catch(error => {
+            res.status(400).send(Error(error));
+            console.log(Error(error));
+        })
 });
 
 app.get('/books/recent/', (req, res) => {

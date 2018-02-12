@@ -78,7 +78,7 @@ class BookDescription extends Component {
     }
 
     render() {
-        const {id, cover = '', title, author, ISBN, releaseDate, text, reviews = [], comments = []} = this.props.book;
+        const {id, cover = '', title, author, isbn, release_date, text, reviews = [], comments = []} = this.props.book;
         const {error} = this.props.user;
         const {fetching} = this.props.load;
         const {descLines, showMoreText} = this.state;
@@ -106,11 +106,11 @@ class BookDescription extends Component {
                             </div>
                             <section className="book-description__control-info">
                                 <div className="book-description__ISBN">
-                                    <span>ISBN:</span> <span>{ISBN}</span>
+                                    <span>ISBN:</span>&nbsp;<span>{isbn}</span>
                                 </div>
                                 <div className="book-description__publish-date">
-                                    <span>Pablishing date:</span>
-                                    <span>{moment(new Date(releaseDate)).format('DD.MM.YYYY')}</span>
+                                    <span>Pablishing date:</span>&nbsp;
+                                    <span>{moment(new Date(release_date)).format('DD.MM.YYYY')}</span>
                                 </div>
                             </section>
                             <div className="book-description__more-text" onClick={::this.handleShowMore}>

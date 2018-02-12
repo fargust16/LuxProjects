@@ -3,7 +3,7 @@ import axios from 'axios';
 const BASE_URL = 'http://localhost:3000';
 
 const getBookInfo = (bookId) => {
-    const url = `${BASE_URL}/books/view/${bookId - 1}`;
+    const url = `${BASE_URL}/books/view/${bookId}`;
     return axios.get(url).then(response => response.data);
 };
 
@@ -13,7 +13,7 @@ const getRecentBooks = () => {
 };
 
 const getBookText = (bookId) => {
-    const url = `${BASE_URL}/books/read/${bookId - 1}`;
+    const url = `${BASE_URL}/books/read/${bookId}`;
     return axios.get(url).then(response => response.data);
 };
 
