@@ -51,7 +51,7 @@ app.get('/books', (req, res) => {
         })
 });
 
-app.post('/books/add-new-book', (req, res) => {
+app.put('/books/add-book', (req, res) => {
     const {title, author, genre, isbn, releaseDate, description, text, cover, topics, userId} = req.body;
 
     let params = {
@@ -60,17 +60,17 @@ app.post('/books/add-new-book', (req, res) => {
         values: ['default', title, author, genre, isbn, releaseDate, description, text, cover, topics, userId]
     };
 
-    db.query('INSERT INTO books(${columns:name}) VALUES (${values:name}) RETURNING book_id', params)
+    db.one('INSERT INTO books(${columns:name}) VALUES (${values:name}) RETURNING book_id', params)
         .then(data => {
             res.send(data);
         })
         .catch(error => {
-            res.send(Error(error));
+            res.status(400).send(Error(error));
+            console.log(Error(error));
         })
 });
 
 app.get('/books/view/:id', (req, res) => {
-    //res.send(books[req.params.id]);
 
     let struct = {
         bookId: req.params.id,
@@ -78,40 +78,80 @@ app.get('/books/view/:id', (req, res) => {
             'b.topics']
     };
 
-    db.one('SELECT bg.*, r.reviews, com.comments ' +
-        'FROM ' +
-        '   ( SELECT b.id, b.title, g.genre, b.isbn, b.release_date, b.description, b.text, b.cover, b.topics ' +
-        '    FROM books as b, genres as g ' +
-        '    WHERE b.genre_id = g.id' +
-        '   ) bg ' +
+    db.one('SELECT bg.*, reviews, comments ' +
+        'FROM ( SELECT b.*, g.genre FROM books as b, genres as g WHERE b.genre_id = g.id ) as bg ' +
+        '    LEFT JOIN ' +
+        '    ( SELECT book_id, array_to_json(array_agg(row_to_json(reviews))) as reviews ' +
+        '      FROM reviews ' +
+        '      GROUP BY book_id ' +
+        '    ) rev ' +
+        '    ON bg.id = rev.book_id ' +
+        '    LEFT JOIN ' +
+        '    ( SELECT bc.book_id, ' +
+        '        array_to_json( ' +
+        '            array_agg( ' +
+        '              ( SELECT row_to_json(data) ' +
+        '                FROM (select bc.id, bc.text, bc.post_date, u.username as author) as data ' +
+        '              ) ' +
+        '            ) ' +
+        '        ) as comments ' +
+        '     FROM users as u, book_comments as bc ' +
+        '     WHERE u.id = bc.user_id ' +
+        '     GROUP BY bc.book_id ' +
+        '    ) bcu ' +
+        '    ON bg.id = bcu.book_id ' +
+        'WHERE bg.id = ${bookId:value}', struct)
+        .then(data => {
+            res.send(data);
+            //console.log(data);
+        })
+        .catch(error => {
+            res.status(400).send(Error(error));
+            //console.log(error);
+        })
+});
 
-        '   LEFT JOIN ' +
+app.put('/books/add-comment', (req, res) => {
+    const {book_id, user_id, comment_text} = req.body;
+    let params = {
+        user_id,
+        book_id,
+        text: comment_text
+    };
 
-        '     ( SELECT book_id, array_to_json(array_agg(row_to_json(reviews))) as reviews ' +
-        '       FROM  reviews ' +
-        '       GROUP BY book_id ' +
-        '     ) r ' +
+    db.one('INSERT INTO book_comments(id, user_id, book_id, text, post_date) ' +
+        '    VALUES (default, ${user_id:value}, ${book_id:value}, \'${text:value}\', default) RETURNING id', params)
+        .then(data => {
+            res.send(data);
+            //console.log(data);
+        })
+        .catch(error => {
+            res.status(400).send(Error(error));
+            //console.log(error);
+        })
+});
 
-        '   ON bg.id = r.book_id ' +
+app.get('/books/recent/:id', (req, res) => {
 
-        '   LEFT JOIN ' +
-
-        '     ( SELECT bc.book_id, array_to_json(array_agg(row_to_json(com))) as comments ' +
-        '       FROM book_comments as bc ' +
-
-        '       LEFT JOIN'+
-
-        '         ( SELECT bc.id, bc.book_id, bc.text, bc.post_date, u.id as user_id, u.username as author ' +
-        '           FROM book_comments as bc, users as u '+
-        '           WHERE bc.user_id = u.id AND bc.book_id = ${bookId:value} ' +
-        '         ) com ' +
-
-        '       ON bc.user_id = com.user_id ' +
-        '      GROUP BY bc.book_id ' +
-        '      ) com ' +
-
-        '   ON bg.id = com.book_id ' +
-        'WHERE id = ${bookId:value} ', struct)
+    db.query('SELECT rec.view_date, ' +
+        '   array_to_json( ' +
+        '     array_agg( ' +
+        '       ( SELECT row_to_json(data) ' +
+        '         FROM (select b.id, b.title, b.author, b.cover, b.description, rec.view_date, rev.reviews) as data ' +
+        '        ) ' +
+        '     ) ' +
+        '   ) as books ' +
+        ' FROM users as u, recent_views as rec, books as b ' +
+        '  LEFT JOIN ' +
+        '    (SELECT array_to_json(array_agg(r)) as reviews, b.id as book_id ' +
+        '     FROM books as b, reviews as r ' +
+        '     WHERE b.id = r.book_id ' +
+        '     GROUP BY b.id ' +
+        '    ) rev ' +
+        '  ON rev.book_id = b.id ' +
+        'WHERE u.id = rec.user_id AND b.id = rec.book_id ' +
+        'GROUP BY u.id, rec.view_date ' +
+        'HAVING u.id = ${id:value}', req.params)
         .then(data => {
             res.send(data);
             //console.log(data);
@@ -120,10 +160,26 @@ app.get('/books/view/:id', (req, res) => {
             res.status(400).send(Error(error));
             console.log(Error(error));
         })
+
 });
 
-app.get('/books/recent/', (req, res) => {
-    res.send(recentBooks);
+app.put('/books/add-recent', (req, res) => {
+    const {book_id, user_id} = req.body;
+    let params = {
+        user_id,
+        book_id
+    };
+
+    db.one('INSERT INTO recent_views(id, user_id, book_id, view_date) ' +
+        '    VALUES (default, ${user_id:value}, ${book_id:value}, default) RETURNING id', params)
+        .then(data => {
+            res.send(data);
+            //console.log(data);
+        })
+        .catch(error => {
+            res.status(400).send(Error(error));
+            //console.log(error);
+        })
 });
 
 app.get('/books/read/:id', (req, res) => {
@@ -154,7 +210,7 @@ app.post('/users', (req, res) => {
         });
 });
 
-app.post('/add-user', (req, res) => {
+app.put('/add-user', (req, res) => {
     const {email, password, salt} = req.body;
 
     let params = ['users', email, password, salt];

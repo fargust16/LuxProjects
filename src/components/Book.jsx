@@ -17,9 +17,8 @@ class Book extends Component {
         author: PropTypes.string,
         cover: PropTypes.string,
         title: PropTypes.string,
-        text: PropTypes.string,
-        reviews: PropTypes.array,
-        id: PropTypes.string
+        description: PropTypes.string,
+        reviews: PropTypes.array
     };
 
     constructor(props) {
@@ -63,7 +62,7 @@ class Book extends Component {
     }
 
     render() {
-        const {subClass, author, cover, title, text, reviews, id} = this.props;
+        const {subClass, author, cover, title, description, reviews, id} = this.props;
         const {descLines} = this.state;
 
         return (
@@ -79,7 +78,7 @@ class Book extends Component {
                         {author}
                     </div>
                     {descLines
-                        ? <ClampLines text={text}
+                        ? <ClampLines text={description}
                                       lines={descLines}
                                       ellipsis="..."
                                       lessText="Collapse"
@@ -91,7 +90,7 @@ class Book extends Component {
                         : <div ref={(div) => {
                             this._clampText = div
                         }} className="book__desc">
-                            {text}
+                            {description}
                         </div>}
                     <div className="reviews book__reviews">
                         {reviews ? reviews.length : '0'} reviews

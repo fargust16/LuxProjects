@@ -51,7 +51,7 @@ const App = () => (
       <MatchWithFade path="/books/categories/:categoryId" component={ Home } />
       <InnerContainer>
         <PrivateMatchWithFade path="/books/add-book" component={ AddBook } />
-        <MatchWithFade path="/books/recent" component={ Recent } />
+        <PrivateMatchWithFade path="/books/recent" component={ Recent } />
         <MatchWithFade path="/support" component={ Support } />
         <PrivateMatchWithFade path="/settings" component={ Settings } />
         <MatchWithFade path="/books/view/:bookId" component={ BookDescription } />

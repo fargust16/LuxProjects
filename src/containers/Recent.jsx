@@ -12,7 +12,8 @@ import './Recent.scss';
 class Recent extends Component {
 
     componentDidMount() {
-        this.props.bookActions.handleGetRecentBooks();
+        const {id} = this.props.user.username;
+        this.props.bookActions.handleGetRecentBooks(id);
     }
 
     render() {
@@ -33,7 +34,8 @@ class Recent extends Component {
 
 export default connect(
     state => ({
-        books: state.books
+        books: state.books,
+        user: state.user
     }),
     dispatch => ({
         bookActions: bindActionCreators(bookActions, dispatch)
@@ -46,15 +48,16 @@ const RecentBooks = ({books}) => {
     let content = [];
 
     books.forEach((elem, i) => {
-        let blockName = elem.viewDate;
+        const {books, view_date} = elem;
+        let blockName = view_date;
         content[i] = (
             <section key={i} className="recent__category">
                 <BlockHeader optionName={moment(new Date(blockName)).format('DD.MM.YYYY')} isShowOption={true}
                              className="recent__category-date" handleChangeView={()=>{}}/>
                 <div className="books recent__books">
-                    {elem.books.map((book, i) => {
+                    {books.map((book, i) => {
                         return (
-                            <Book {...book} key={i} subClass="recent__book"/>
+                            <Book {...book} key={i} subClass="recent__book" />
                         );
                     })}
                 </div>

@@ -7,8 +7,8 @@ const getBookInfo = (bookId) => {
     return axios.get(url).then(response => response.data);
 };
 
-const getRecentBooks = () => {
-    const url = `${BASE_URL}/books/recent/`;
+const getRecentBooks = (userId) => {
+    const url = `${BASE_URL}/books/recent/${userId}`;
     return axios.get(url).then(response => response.data);
 };
 

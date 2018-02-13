@@ -57,13 +57,13 @@ export function handleGetBookInfo(bookId) {
     }
 }
 
-export function handleGetRecentBooks() {
+export function handleGetRecentBooks(userId) {
 
     return (dispatch) => {
 
         loadStart(dispatch);
 
-        api.getRecentBooks()
+        api.getRecentBooks(userId)
             .then(data => {
                 dispatch({
                     type: GET_RECENT_BOOKS_SUCCESS,

@@ -85,7 +85,7 @@ class Comments extends Component {
             commentsIsShow, showAuthForm } = this.props;
         const { changeCommentText, showCommentButtons, showMoreComments } = this.props.commentActions;
 
-        let viewComments = maxComments >= comments.length ? maxComments : maxComments + 5;
+        let viewComments = maxComments >= (comments && comments.length) ? maxComments : maxComments + 5;
 
         let contentClass = classNames('comments__content', {
             'comments__content_hide': !commentsIsShow
@@ -125,7 +125,7 @@ class Comments extends Component {
                             </div>
                         </div>
                     </div>
-                    {comments.map((comment, i) => {
+                    {comments && comments.map((comment, i) => {
                         if (i >= maxComments) return '';
 
                         return (
@@ -133,7 +133,7 @@ class Comments extends Component {
                         )
                     })}
                     <div className={classNames('comments__more-btn', {
-                        'comments__more-btn_hide': maxComments >= comments.length
+                        'comments__more-btn_hide': maxComments >= (comments && comments.length)
                     }, 'button')} onClick={() => showMoreComments(viewComments)}>
                         show more
                     </div>

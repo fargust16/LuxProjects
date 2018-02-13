@@ -134,7 +134,7 @@ class BookDescription extends Component {
                     </section>
                     <div className="book-description__reviews">
                         <Rating rating={reviews}/>
-                        <span className="reviews book-description__reviews-count">{reviews.length} reviews</span>
+                        <span className="reviews book-description__reviews-count">{reviews ? reviews.length : 0} reviews</span>
                     </div>
                     <div className="book-description__buttons">
                         <CustomLink pathTo={`/books/read/${id}`} className="book-description__button button btn-read"

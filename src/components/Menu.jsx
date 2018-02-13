@@ -54,7 +54,7 @@ Menu.defaultProps = {
     {
       name: 'Recent',
       path: '/books/recent',
-      isRequired: false
+      isRequired: true
     },
     {
       name: 'Settings',
