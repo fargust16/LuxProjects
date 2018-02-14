@@ -8,6 +8,7 @@ import readBook from './readBook';
 import comments from './comments';
 import header from './header';
 import auth from './auth';
+import addBook from './addBook';
 
 export default combineReducers({
     page,
@@ -18,5 +19,6 @@ export default combineReducers({
     readBook,
     comments,
     header,
-    auth
+    auth,
+    addBook
 })

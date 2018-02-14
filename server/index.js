@@ -4,6 +4,7 @@ const morgan = require('morgan');
 //const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
+const fs = require('fs');
 
 const books = require('./books.json');
 const recentBooks = require('./recentBooks.json');
@@ -52,15 +53,33 @@ app.get('/books', (req, res) => {
 });
 
 app.put('/books/add-book', (req, res) => {
-    const {title, author, genre, isbn, releaseDate, description, text, cover, topics, userId} = req.body;
+    const {title, author, genre, isbn, release_date, description, text_file, cover, topics, user_id} = req.body;
 
     let params = {
         table: 'books',
-        columns: ['book_id', 'title', 'author', 'fk_genre', 'isbn', 'release_date', 'description', 'text', 'cover', 'topics', 'fk_uploaded_by'],
-        values: ['default', title, author, genre, isbn, releaseDate, description, text, cover, topics, userId]
+        columns: ['title', 'author', 'genre_id', 'isbn', 'release_date', 'description', 'text', 'cover',
+            'topics', 'uploaded_by'],
+        title, author, genre, isbn, release_date, description, text_file, cover, topics, user_id
     };
 
-    db.one('INSERT INTO books(${columns:name}) VALUES (${values:name}) RETURNING book_id', params)
+    console.log(req.body);
+
+    db.one('INSERT INTO books(${columns:name}) ' +
+        'VALUES (${title}, ${author}, ${genre}, ${isbn}, ${release_date}, ' +
+        '${description}, ${text_file}, ${cover}, ${topics:value}, ${user_id}) ' +
+        'RETURNING id', params)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(error => {
+            res.status(400).send(Error(error));
+            console.log(Error(error));
+        })
+});
+
+app.put('/books/add-review', (req, res) => {
+
+    db.one('INSERT INTO reviews(book_id, rating) VALUES (${book_id}, ${rating}) RETURNING id', req.body)
         .then(data => {
             res.send(data);
         })
@@ -112,11 +131,11 @@ app.get('/books/view/:id', (req, res) => {
 });
 
 app.put('/books/add-comment', (req, res) => {
-    const {book_id, user_id, comment_text} = req.body;
+    const {book_id, user_id, text} = req.body;
     let params = {
         user_id,
         book_id,
-        text: comment_text
+        text
     };
 
     db.one('INSERT INTO book_comments(id, user_id, book_id, text, post_date) ' +
@@ -127,7 +146,7 @@ app.put('/books/add-comment', (req, res) => {
         })
         .catch(error => {
             res.status(400).send(Error(error));
-            //console.log(error);
+            console.log(error);
         })
 });
 

@@ -52,19 +52,19 @@ class Comments extends Component {
     }
 
     postNewComment() {
-        const {newCommentText} = this.props;
-        const {username} = this.props.username;
-        let postDate, newComment;
-
-        postDate = new Date();
+        const {newCommentText, handleAddComment, bookId} = this.props;
+        const {id, username} = this.props.username;
+        let newComment;
 
         newComment = {
             text: newCommentText,
+            user_id: id,
             author: username,
-            postDate: postDate
+            post_date: new Date(),
+            book_id: bookId
         };
 
-        console.log(newComment);
+        handleAddComment(newComment);
     }
 
     resizeWindow() {
@@ -125,7 +125,7 @@ class Comments extends Component {
                             </div>
                         </div>
                     </div>
-                    {comments && comments.map((comment, i) => {
+                    {comments && comments.sort((a, b) => b.id - a.id).map((comment, i) => {
                         if (i >= maxComments) return '';
 
                         return (

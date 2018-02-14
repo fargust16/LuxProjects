@@ -1,4 +1,5 @@
 import * as ActionTypes from '../constants/AuthForm';
+import {LOGIN_FAIL} from '../constants/User';
 
 const initialState = {
     signInIsShow: true,
@@ -32,6 +33,9 @@ export default function auth(state = initialState, action) {
 
         case ActionTypes.VALID_AUTH_PASSWORDS_FAIL:
             return {...state, errorValid: 'Passwords does not match', isTipsShow: true };
+
+        case LOGIN_FAIL:
+            return {...state, isTipsShow: true };
 
         default:
             return state;

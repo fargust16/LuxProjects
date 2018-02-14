@@ -87,6 +87,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "esformatter-jsx": "8.0.1",
     "extract-text-webpack-plugin": "3.0.2",
+    "fs": "0.0.1-security",
     "jsdom": "11.6.0",
     "jsdom-global": "3.0.2",
     "node-sass": "4.7.2",

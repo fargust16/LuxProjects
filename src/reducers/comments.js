@@ -1,4 +1,5 @@
 import * as ActionTypes from '../constants/Comments';
+import {ADD_COMMENT_SUCCESS} from '../constants/Book';
 
 const initialState = {
     commentsIsShow: true,
@@ -26,6 +27,9 @@ export default function comments(state = initialState, action) {
 
         case ActionTypes.CHANGE_COMMENTS_OFFSET:
             return {...state, commentsOffset: action.payload};
+
+        case ADD_COMMENT_SUCCESS:
+            return {...state, newCommentText: '', buttonsIsShow: false};
 
         default:
             return state;

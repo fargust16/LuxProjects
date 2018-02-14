@@ -85,6 +85,7 @@ class BookDescription extends Component {
 
         const {handleLogIn} = this.props.userActions;
         const {changeDisplayAuth} = this.props.headerActions;
+        const {handleAddNewComment} = this.props.bookActions;
 
         let blockInfoClass = classNames('book-description__main-info', {
             'book-description__main-info_more': showMoreText
@@ -144,13 +145,15 @@ class BookDescription extends Component {
                     </div>
                 </main>
                 <Comments comments={comments}
+                          bookId={id}
                           {...this.props.comments}
                           {...this.props.user}
                           error={error}
                           fetching={fetching}
                           handleLogIn={handleLogIn}
                           commentActions={this.props.commentActions}
-                          showAuthForm={changeDisplayAuth}/>
+                          showAuthForm={changeDisplayAuth}
+                          handleAddComment={handleAddNewComment}/>
             </article>
         );
     }

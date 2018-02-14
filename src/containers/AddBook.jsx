@@ -1,20 +1,52 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as addBookActions from '../actions/AddBookActions';
 
 import Option from '../components/Option.jsx';
 import FileInput from '../components/FileInput.jsx';
 
 import './AddBook.scss';
 
-export default class AddBook extends Component {
+class AddBook extends Component {
+
+    handleAddBook(e) {
+        e.preventDefault();
+        const {handleAddNewBook} = this.props.addBookActions;
+        const {title, author, genre, isbn, release_date, description, text_file, cover, topics} = this.props.addBook;
+        const {id} = this.props.user.username;
+
+        let newBook = {
+            title,
+            author,
+            genre,
+            isbn,
+            release_date,
+            description,
+            text_file,
+            cover,
+            topics,
+            user_id: id
+        };
+
+        handleAddNewBook(newBook);
+    }
 
     render() {
+        const {title, author, genre, isbn, release_date, description, cover, topics} = this.props.addBook;
+        const {
+            changeTitle, changeAuthor, changeGenre, changeCover, changeTopics,
+            changeDescription, changeText, changeIsbn, changeReleaseDate
+        } = this.props.addBookActions;
+
+        //console.log(textFile);
 
         return (
             <main className="add-book other-pages__block">
                 <div className="main-header">
                     <span className="main-header__text">Add a new book</span>
                 </div>
-                <form action="" method="POST" className="options add-book__options">
+                <form method="POST" className="options add-book__options" onSubmit={(e) => this.handleAddBook(e)}>
                     <Option optionName="main data" subClass="add-book__external-options" closeVar={true}
                             onCancel={() => {
                             }}>
@@ -22,20 +54,31 @@ export default class AddBook extends Component {
                                name="title"
                                placeholder="title"
                                className="field option__field"
+                               value={title}
+                               onChange={(e) => changeTitle(e.target.value)}
                                required/>
                         <input type="text"
                                name="author"
                                placeholder="author"
                                className="field option__field"
+                               value={author}
+                               onChange={(e) => changeAuthor(e.target.value)}
                                required/>
-                        <FileInput subClass="option__field"/>
-                        <textarea className="field add-book__description" placeholder="description" rows="4"/>
+                        <FileInput subClass="option__field"
+                                   onFileLoad={changeText}/>
+                        <textarea className="field add-book__description"
+                                  value={description}
+                                  onChange={(e) => changeDescription(e.target.value)}
+                                  placeholder="description"
+                                  rows="4"/>
                         <label htmlFor="publish-date" className="add-book__date-header">
                             Publishing
                             <input type="date"
                                    name="publish-date"
                                    className="field add-book__date-field"
-                                   id="publish-date"/>
+                                   id="publish-date"
+                                   value={release_date}
+                                   onChange={(e) => changeReleaseDate(e.target.value)}/>
                         </label>
                     </Option>
                     <Option optionName="external options" subClass="add-book__external-options"
@@ -44,15 +87,27 @@ export default class AddBook extends Component {
                         <input type="text"
                                name="genre"
                                placeholder="genre"
-                               className="field option__genre"/>
+                               className="field option__genre"
+                               value={genre}
+                               onChange={(e) => changeGenre(e.target.value)}/>
                         <input type="text"
                                name="topics"
                                placeholder="topics"
-                               className="field option__topics"/>
+                               className="field option__topics"
+                               value={topics}
+                               onChange={(e) => changeTopics(e.target.value)}/>
                         <input type="text"
                                name="cover-image"
                                placeholder="cover-image"
-                               className="field option__cover-image"/>
+                               className="field option__cover-image"
+                               value={cover}
+                               onChange={(e) => changeCover(e.target.value)}/>
+                        <input type="text"
+                               name="isbn"
+                               placeholder="ISBN"
+                               className="field option__isbn"
+                               value={isbn}
+                               onChange={(e) => changeIsbn(e.target.value)}/>
                     </Option>
                     <div className="field captcha add-book__captcha">
                         <input type="checkbox"
@@ -71,3 +126,13 @@ export default class AddBook extends Component {
         );
     }
 }
+
+export default connect(
+    state => ({
+        addBook: state.addBook,
+        user: state.user
+    }),
+    dispatch => ({
+        addBookActions: bindActionCreators(addBookActions, dispatch)
+    })
+)(AddBook)
