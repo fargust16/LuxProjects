@@ -65,8 +65,10 @@ class BookDescription extends Component {
     componentDidMount() {
         const {bookId} = this.props.match.params;
         this.props.bookActions.handleGetBookInfo(parseInt(bookId, 10));
+    }
 
-        this.handleSetLinesOfText(this._bookInfo, this._clampText);
+    componentWillReceiveProps(nextProps) {
+        nextProps && nextProps.book && this.handleSetLinesOfText(this._bookInfo, this._clampText);
     }
 
     componentWillMount() {
@@ -78,14 +80,14 @@ class BookDescription extends Component {
     }
 
     render() {
-        const {id, cover = '', title, author, isbn, release_date, text, reviews = [], comments = []} = this.props.book;
+        const {id, cover = '', title, author, isbn, release_date, description, text, reviews = [], comments = []} = this.props.book;
         const {error} = this.props.user;
         const {fetching} = this.props.load;
         const {descLines, showMoreText} = this.state;
 
         const {handleLogIn} = this.props.userActions;
         const {changeDisplayAuth} = this.props.headerActions;
-        const {handleAddNewComment} = this.props.bookActions;
+        const {handleAddNewComment, handleAddReview} = this.props.bookActions;
 
         let blockInfoClass = classNames('book-description__main-info', {
             'book-description__main-info_more': showMoreText
@@ -95,7 +97,7 @@ class BookDescription extends Component {
             <article>
                 <main className="book-description other-pages__block">
                     <section className="book-description__info">
-                        <img className="book-description__book-cover" src={`/images/${cover}`} alt="book`s name"/>
+                        <img className="book-description__book-cover" src={`${cover}`} alt="book`s name"/>
                         <div ref={(div) => {
                             this._bookInfo = div
                         }} className={blockInfoClass}>
@@ -110,13 +112,13 @@ class BookDescription extends Component {
                                     <span>ISBN:</span>&nbsp;<span>{isbn}</span>
                                 </div>
                                 <div className="book-description__publish-date">
-                                    <span>Pablishing date:</span>&nbsp;
+                                    <span>Release date:</span>&nbsp;
                                     <span>{moment(new Date(release_date)).format('DD.MM.YYYY')}</span>
                                 </div>
                             </section>
                             <div className="book-description__more-text" onClick={::this.handleShowMore}>
-                                {descLines && text
-                                    ? <ClampLines text={text}
+                                {descLines && description
+                                    ? <ClampLines text={description}
                                                   lines={descLines}
                                                   ellipsis="..."
                                                   moreText="see more"
@@ -128,20 +130,21 @@ class BookDescription extends Component {
                                     : <div ref={(div) => {
                                         this._clampText = div
                                     }} className="book-description__text">
-                                        {text}
+                                        {description}
                                     </div>}
                             </div>
                         </div>
                     </section>
                     <div className="book-description__reviews">
-                        <Rating rating={reviews}/>
+                        <Rating rating={reviews} handleAddReview={handleAddReview} bookId={id}/>
                         <span className="reviews book-description__reviews-count">{reviews ? reviews.length : 0} reviews</span>
                     </div>
                     <div className="book-description__buttons">
                         <CustomLink pathTo={`/books/read/${id}`} className="book-description__button button btn-read"
                                     text="start reading now"/>
-                        <CustomLink pathTo='#download' className="book-description__button button btn-download"
-                                    text="download"/>
+                        <a className="book-description__button button btn-download"
+                           href={`data:text/plain;charset=utf-8,%EF%BB%BF${encodeURIComponent(text)}`}
+                           download={`${title}.txt`}>download</a>
                     </div>
                 </main>
                 <Comments comments={comments}

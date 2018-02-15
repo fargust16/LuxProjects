@@ -97,3 +97,26 @@ export const handleAddNewComment = (commentData) => (dispatch) => {
             loadEnd(dispatch);
         })
 };
+
+export const handleAddReview = (review) => (dispatch) => {
+    loadStart(dispatch);
+
+    api.addReview(review)
+        .then(data => {
+            dispatch({
+                type: ActionTypes.ADD_REVIEW_SUCCESS,
+                payload: data,
+                review: review
+            });
+
+            loadEnd(dispatch);
+        })
+        .catch(err => {
+            dispatch({
+                type: ActionTypes.ADD_REVIEW_FAIL,
+                payload: err
+            });
+
+            loadEnd(dispatch);
+        })
+};

@@ -37,6 +37,10 @@
     }
   }
 
+  &__date-header-text {
+    white-space: nowrap;
+  }
+
   &__date-field {
     margin-left: 10px;
     padding: 4px;

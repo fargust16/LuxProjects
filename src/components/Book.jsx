@@ -67,7 +67,7 @@ class Book extends Component {
 
         return (
             <article className={classNames('book', subClass)}>
-                <img src={`/images/${cover}`} className="book__cover" alt={title}/>
+                <img src={`${cover}`} className="book__cover" alt={title}/>
                 <section ref={(div) => {
                     this._bookInfo = div
                 }} className="book__info">
@@ -77,7 +77,7 @@ class Book extends Component {
                     <div className="book__author">
                         {author}
                     </div>
-                    {descLines
+                    {descLines && description
                         ? <ClampLines text={description}
                                       lines={descLines}
                                       ellipsis="..."

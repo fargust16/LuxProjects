@@ -17,6 +17,7 @@ export default function books(state = initialState, action) {
             return {
                 ...state,
                 allBooks: action.payload,
+                bookById: {},
                 error: '',
             };
 
@@ -46,7 +47,7 @@ export default function books(state = initialState, action) {
             return { ...state, error: action.payload };
 
         case ActionTypes.ADD_COMMENT_SUCCESS:
-            let newComments = state.bookById.comments.concat(action.comment);
+            let newComments = state.bookById.comments ? state.bookById.comments.concat(action.comment) : [action.comment];
             newComments[newComments.length - 1].id = action.payload.id || 0;
 
             return {
@@ -56,6 +57,22 @@ export default function books(state = initialState, action) {
             };
 
         case ActionTypes.ADD_COMMENT_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            };
+
+        case ActionTypes.ADD_REVIEW_SUCCESS:
+            let newReview = state.bookById.reviews ? state.bookById.reviews.concat(action.review) : [action.review];
+            newReview[newReview.length - 1].id = action.payload.id || 0;
+
+            return {
+                ...state,
+                bookById: {...state.bookById, reviews: newReview},
+                error: '',
+            };
+
+        case ActionTypes.ADD_REVIEW_FAIL:
             return {
                 ...state,
                 error: action.payload

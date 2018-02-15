@@ -52,6 +52,24 @@ app.get('/books', (req, res) => {
         })
 });
 
+app.get('/books/get-genres', (req, res) => {
+
+    let params ={
+        table: 'genres',
+        column: '*'
+    };
+
+    db.query('SELECT ${column:name} FROM ${table:name}', params)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(400).send(err);
+            console.log(err);
+        })
+
+});
+
 app.put('/books/add-book', (req, res) => {
     const {title, author, genre, isbn, release_date, description, text_file, cover, topics, user_id} = req.body;
 
@@ -62,11 +80,9 @@ app.put('/books/add-book', (req, res) => {
         title, author, genre, isbn, release_date, description, text_file, cover, topics, user_id
     };
 
-    console.log(req.body);
-
     db.one('INSERT INTO books(${columns:name}) ' +
         'VALUES (${title}, ${author}, ${genre}, ${isbn}, ${release_date}, ' +
-        '${description}, ${text_file}, ${cover}, ${topics:value}, ${user_id}) ' +
+        '${description}, ${text_file}, ${cover}, ${topics}, ${user_id}) ' +
         'RETURNING id', params)
         .then(data => {
             res.send(data);

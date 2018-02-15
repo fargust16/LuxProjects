@@ -2,21 +2,28 @@ import * as ActionTypes from '../constants/AddBook';
 import {LOAD_START} from "../constants/Load";
 
 const initialState = {
-    title: "",
-    author: "",
-    genre: "",
-    isbn: "",
-    release_date: "",
-    description: "",
-    text_file: "",
-    cover: "",
+    allGenres: '',
+    title: '',
+    author: '',
+    genre: '',
+    isbn: '',
+    release_date: '',
+    description: '',
+    text_file: '',
+    cover: '',
     topics: [],
-    error: ""
+    error: ''
 };
 
 export default function addBook(state = initialState, action) {
 
     switch (action.type) {
+
+        case ActionTypes.GET_LIST_OF_GENRES_SUCCESS:
+            return { ...state, allGenres: action.payload, error: ''};
+
+        case ActionTypes.GET_LIST_OF_GENRES_FAIL:
+            return { ...state, error: action.payload};
 
         case ActionTypes.CHANGE_TITLE_TEXT:
             return { ...state, title: action.payload};
@@ -46,13 +53,13 @@ export default function addBook(state = initialState, action) {
             return { ...state, topics: action.payload};
 
         case ActionTypes.ADD_BOOK_SUCCESS:
-            return { ...state, userBooks: action.payload, error: null};
+            return { ...state, userBooks: action.payload, error: ''};
 
         case ActionTypes.ADD_BOOK_FAIL:
             return { ...state, error: action.payload };
 
         case LOAD_START:
-            return {...state, error: ""};
+            return {...state, error: ''};
 
         default:
             return state;

@@ -13,27 +13,29 @@ class AddBook extends Component {
     handleAddBook(e) {
         e.preventDefault();
         const {handleAddNewBook} = this.props.addBookActions;
-        const {title, author, genre, isbn, release_date, description, text_file, cover, topics} = this.props.addBook;
+        const {title, author, genre, isbn, release_date, description, text_file, cover} = this.props.addBook;
         const {id} = this.props.user.username;
 
         let newBook = {
-            title,
-            author,
-            genre,
-            isbn,
-            release_date,
-            description,
-            text_file,
-            cover,
-            topics,
+            title, author, genre, text_file,
+            isbn: isbn || null,
+            release_date: release_date || null,
+            description: description || null,
+            cover: cover || null,
+            topics: null, //check to send object!!!!!!!!!!!!!!!!!!!!!!!!!
             user_id: id
         };
 
         handleAddNewBook(newBook);
     }
 
+    componentDidMount() {
+        const {getListOfGenres} = this.props.addBookActions;
+        getListOfGenres();
+    }
+
     render() {
-        const {title, author, genre, isbn, release_date, description, cover, topics} = this.props.addBook;
+        const {title, author, genre, isbn, release_date, description, cover, topics, allGenres} = this.props.addBook;
         const {
             changeTitle, changeAuthor, changeGenre, changeCover, changeTopics,
             changeDescription, changeText, changeIsbn, changeReleaseDate
@@ -64,6 +66,10 @@ class AddBook extends Component {
                                value={author}
                                onChange={(e) => changeAuthor(e.target.value)}
                                required/>
+                        <GenresDropBox value={genre}
+                                       onChange={(e) => changeGenre(e.target.value)}
+                                       className="field option__field"
+                                       genres={allGenres}/>
                         <FileInput subClass="option__field"
                                    onFileLoad={changeText}/>
                         <textarea className="field add-book__description"
@@ -72,7 +78,7 @@ class AddBook extends Component {
                                   placeholder="description"
                                   rows="4"/>
                         <label htmlFor="publish-date" className="add-book__date-header">
-                            Publishing
+                            <span className="add-book__date-header-text">Release date</span>
                             <input type="date"
                                    name="publish-date"
                                    className="field add-book__date-field"
@@ -85,12 +91,6 @@ class AddBook extends Component {
                             onCancel={() => {
                             }}>
                         <input type="text"
-                               name="genre"
-                               placeholder="genre"
-                               className="field option__genre"
-                               value={genre}
-                               onChange={(e) => changeGenre(e.target.value)}/>
-                        <input type="text"
                                name="topics"
                                placeholder="topics"
                                className="field option__topics"
@@ -98,7 +98,7 @@ class AddBook extends Component {
                                onChange={(e) => changeTopics(e.target.value)}/>
                         <input type="text"
                                name="cover-image"
-                               placeholder="cover-image"
+                               placeholder="cover image (URL)"
                                className="field option__cover-image"
                                value={cover}
                                onChange={(e) => changeCover(e.target.value)}/>
@@ -136,3 +136,11 @@ export default connect(
         addBookActions: bindActionCreators(addBookActions, dispatch)
     })
 )(AddBook)
+
+const GenresDropBox = ({genres, value, onChange, className}) => {
+    return <select className={className} value={value} name="genres" onChange={(e) => onChange(e)} required>
+        <option value='' disabled={true}>Choose the genre</option>
+        {genres && genres.map(genre => <option value={genre.id} key={genre.id}>{genre.genre}</option>)}
+    </select>
+};
+

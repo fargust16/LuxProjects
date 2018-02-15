@@ -67,9 +67,19 @@ class Comments extends Component {
         handleAddComment(newComment);
     }
 
+    handleShowAuth(condition) {
+        const {showAuthForm} = this.props;
+
+        condition && showAuthForm();
+    }
+
     resizeWindow() {
         const {changeCommentsView} = this.props.commentActions;
-        changeCommentsView(window.innerWidth >= ON_HIDE_WIDTH);
+        const {commentsIsShow} = this.props;
+
+        let condition = window.innerWidth >= ON_HIDE_WIDTH;
+
+        commentsIsShow !== condition && changeCommentsView(condition);
     }
 
     componentWillMount() {
@@ -82,7 +92,7 @@ class Comments extends Component {
 
     render() {
         const { comments, maxComments, newCommentText, buttonsIsShow,
-            commentsIsShow, showAuthForm } = this.props;
+            commentsIsShow } = this.props;
         const { changeCommentText, showCommentButtons, showMoreComments } = this.props.commentActions;
 
         let viewComments = maxComments >= (comments && comments.length) ? maxComments : maxComments + 5;
@@ -108,7 +118,7 @@ class Comments extends Component {
                             <textarea className="field new-comment__text"
                                       placeholder="leave a comment"
                                       onFocus={() => showCommentButtons(true)}
-                                      onClick={() => showAuthForm(!isLoggedIn())}
+                                      onClick={() => this.handleShowAuth(!isLoggedIn())}
                                       onChange={(e) => changeCommentText(e.target.value)}
                                       value={newCommentText}/>
                             <div className={buttonsClass}>

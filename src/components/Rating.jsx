@@ -22,9 +22,21 @@ export default class Rating extends Component {
     }
 
     handleChangeRating(e) {
+        const {handleAddReview, bookId} = this.props;
+
+        let newMark = parseFloat(e.target.value);
+
         this.setState({
-            mark: parseFloat(e.target.value)
-        })
+            mark: newMark
+        });
+
+        let newRating = {
+            book_id: bookId,
+            rating: newMark
+        };
+
+        handleAddReview(newRating);
+
     }
 
     render() {
@@ -80,7 +92,7 @@ const calcRating = (reviewArr) => {
 
     let mark = 0;
     reviewArr.map(elem => {
-        return mark += parseInt(elem.rating, 10);
+        return mark += elem.rating;
     });
 
     let sumMark, parseToHalf;

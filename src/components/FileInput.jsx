@@ -40,7 +40,7 @@ export default class FileInput extends Component {
                 <mark ref={(mark) => {
                     this._sourceTitle = mark
                 }} className="source__title">
-                    Файл не выбран
+                    No file selected
                 </mark>
                 <input type="file"
                        id="source"
@@ -49,7 +49,8 @@ export default class FileInput extends Component {
                        }}
                        name="source"
                        className="source__field"
-                       onChange={() => this.handleFileInput()}/>
+                       onChange={() => this.handleFileInput()}
+                       required/>
             </label>
         );
     }

@@ -2,6 +2,28 @@ import * as ActionTypes from "../constants/AddBook";
 import {loadEnd, loadStart} from "./LoadActions";
 import * as api from "../services/api";
 
+export const getListOfGenres = () => (dispatch) => {
+    loadStart(dispatch);
+
+    api.getListOfGenres()
+    .then(data => {
+        dispatch({
+            type: ActionTypes.GET_LIST_OF_GENRES_SUCCESS,
+            payload: data,
+        });
+
+        loadEnd(dispatch);
+    })
+    .catch(err => {
+        dispatch({
+            type: ActionTypes.GET_LIST_OF_GENRES_FAIL,
+            payload: err
+        });
+
+        loadEnd(dispatch);
+    })
+};
+
 export const changeTitle = (data) => (dispatch) => dispatch({
     type: ActionTypes.CHANGE_TITLE_TEXT,
     payload: data,

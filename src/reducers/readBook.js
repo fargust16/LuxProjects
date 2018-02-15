@@ -1,4 +1,5 @@
 import * as ActionTypes from '../constants/ReadBook';
+import {GET_ALL_BOOKS_SUCCESS} from '../constants/Book';
 
 const initialState = {
     currentPage: 0,
@@ -22,6 +23,9 @@ export default function settings(state = initialState, action) {
 
         case ActionTypes.CHANGE_READ_OFFSET:
             return {...state, readOffset: action.payload};
+
+        case GET_ALL_BOOKS_SUCCESS:
+            return {...state, currentPage: 0, endOfSwitch: 0, resizeEnd: 0, readOffset: 0};
 
         default:
             return state;

@@ -21,6 +21,6 @@ export const showCommentButtons = (buttonsIsShow) => (dispatch) => dispatch({
 });
 
 export const changeCommentsOffset = (commentsOffset) => (dispatch) => dispatch({
-    type: ActionTypes.SHOW_COMMENT_BUTTONS,
+    type: ActionTypes.CHANGE_COMMENTS_OFFSET,
     payload: commentsOffset
 });

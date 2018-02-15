@@ -32,6 +32,11 @@ const addComment = (commentData) => {
     return axios.put(url, commentData).then(response => response.data);
 };
 
+const addReview = (review) => {
+    const url = `${BASE_URL}/books/add-review`;
+    return axios.put(url, review).then(response => response.data);
+};
+
 const auth = (authData) => {
     const url = `${BASE_URL}/users`;
     return axios.post(url, authData).then(response => response.data);
@@ -48,7 +53,13 @@ const updateUserData = (userData) => {
     return axios.post(url, userData).then(response => response.data);
 };
 
-export {getBookInfo, getRecentBooks, addComment, getAllBooks, auth, signUp, updateUserData, addBook, getBookText};
+const getListOfGenres = () => {
+    const url = `${BASE_URL}/books/get-genres`;
+    return axios.get(url).then(response => response.data);
+};
+
+export {getBookInfo, getRecentBooks, addComment, getAllBooks, auth, signUp, updateUserData, addBook,
+    getBookText, addReview, getListOfGenres};
 
 export const setRecentBook = (readBook) => {
     let myInit = {
