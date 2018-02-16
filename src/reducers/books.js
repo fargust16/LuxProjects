@@ -78,6 +78,12 @@ export default function books(state = initialState, action) {
                 error: action.payload
             };
 
+        case ActionTypes.ADD_RECENT_BOOK_SUCCESS:
+            return state;
+
+        case ActionTypes.ADD_RECENT_BOOK_FAIL:
+            return {...state, error: action.payload};
+
         default:
             return state;
     }

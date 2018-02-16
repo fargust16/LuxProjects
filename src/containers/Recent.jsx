@@ -47,7 +47,11 @@ const RecentBooks = ({books}) => {
 
     let content = [];
 
-    books.forEach((elem, i) => {
+    let booksSort = books.sort((a, b) => {
+        return new Date(b.view_date) - new Date(a.view_date)
+    });
+
+    booksSort.forEach((elem, i) => {
         const {books, view_date} = elem;
         let blockName = view_date;
         content[i] = (
@@ -67,30 +71,3 @@ const RecentBooks = ({books}) => {
 
     return content;
 };
-
-
-/*  formatRecent(books) {
-    if (books.length === 0) return books;
-
-    let distinctCallback = (acc, cur) => acc.includes(cur) ? acc : [...acc, cur];
-
-    let booksId = books.map(el => el.viewDate).reduce(distinctCallback, []).map(viewDateT => {
-      let id = books.filter(el => el.viewDate === viewDateT).map(el => el.bookId).reduce(distinctCallback, []);
-      return {
-        viewDate: viewDateT,
-        booksId: id
-      }
-    });
-
-    return booksId;
-  }
-
-  componentWillMount() {
-    const {cookies} = this.props;
-
-    let booksView = cookies.get('recentBooks') || []
-
-    this.setState({
-      booksView: this.formatRecent(booksView)
-    })
-  }*/

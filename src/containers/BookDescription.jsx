@@ -64,7 +64,14 @@ class BookDescription extends Component {
 
     componentDidMount() {
         const {bookId} = this.props.match.params;
-        this.props.bookActions.handleGetBookInfo(parseInt(bookId, 10));
+        const {id} = this.props.user.username;
+        const {handleAddRecentBook, handleGetBookInfo} = this.props.bookActions;
+
+        let book_id = parseInt(bookId, 10);
+
+        handleGetBookInfo(book_id);
+
+        id && handleAddRecentBook({book_id: book_id, user_id: id});
     }
 
     componentWillReceiveProps(nextProps) {
@@ -173,6 +180,6 @@ export default connect(
         bookActions: bindActionCreators(bookActions, dispatch),
         userActions: bindActionCreators(userActions, dispatch),
         commentActions: bindActionCreators(commentActions, dispatch),
-        headerActions: bindActionCreators(headerActions, dispatch)
+        headerActions: bindActionCreators(headerActions, dispatch),
     })
 )(BookDescription)

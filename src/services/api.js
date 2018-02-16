@@ -18,18 +18,23 @@ const getBookText = (bookId) => {
 };
 
 const getAllBooks = () => {
-    const url = `${BASE_URL}/books`;
+    const url = `${BASE_URL}/books/all-books`;
     return axios.get(url).then(response => response.data);
 };
 
 const addBook = (bookData) => {
     const url = `${BASE_URL}/books/add-book`;
-    return axios.put(url, bookData).then(response => response.data);
+    return axios.post(url, bookData).then(response => response.data);
+};
+
+const addRecentBook = (recentData) => {
+    const url = `${BASE_URL}/books/add-recent-book`;
+    return axios.put(url, recentData).then(response => response.data);
 };
 
 const addComment = (commentData) => {
     const url = `${BASE_URL}/books/add-comment`;
-    return axios.put(url, commentData).then(response => response.data);
+    return axios.post(url, commentData).then(response => response.data);
 };
 
 const addReview = (review) => {
@@ -37,20 +42,20 @@ const addReview = (review) => {
     return axios.put(url, review).then(response => response.data);
 };
 
-const auth = (authData) => {
-    const url = `${BASE_URL}/users`;
+const signIn = (authData) => {
+    const url = `${BASE_URL}/users/sign-in`;
     return axios.post(url, authData).then(response => response.data);
 };
 
 const signUp = (authData) => {
-    const url = `${BASE_URL}/add-user`;
+    const url = `${BASE_URL}/users/add-user`;
     return axios.put(url, authData).then(response => response.data);
 };
 
 const updateUserData = (userData) => {
     const type = userData.type;
-    const url = `${BASE_URL}/update-user-${type}`;
-    return axios.post(url, userData).then(response => response.data);
+    const url = `${BASE_URL}/users/update-user-${type}`;
+    return axios.put(url, userData).then(response => response.data);
 };
 
 const getListOfGenres = () => {
@@ -58,24 +63,11 @@ const getListOfGenres = () => {
     return axios.get(url).then(response => response.data);
 };
 
-export {getBookInfo, getRecentBooks, addComment, getAllBooks, auth, signUp, updateUserData, addBook,
-    getBookText, addReview, getListOfGenres};
-
-export const setRecentBook = (readBook) => {
-    let myInit = {
-        method: 'POST',
-        headers: {
-            "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-        },
-        body: readBook
-    }
-
-    return fetch('/books/read/', myInit)
-        .then((response) => response.json())
-        .then((responseJson) => {
-            return responseJson
-        })
-        .catch((error) => {
-            console.error(error);
-        });
+const mailToSupport = (mailData) => {
+    const url = `${BASE_URL}/mail-to-support`;
+    return axios.post(url, mailData).then(response => response.data);
 };
+
+
+export {getBookInfo, getRecentBooks, addComment, getAllBooks, signIn, signUp, updateUserData, addBook,
+    getBookText, addReview, getListOfGenres, mailToSupport, addRecentBook};

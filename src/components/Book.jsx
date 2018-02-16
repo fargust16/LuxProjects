@@ -17,8 +17,7 @@ class Book extends Component {
         author: PropTypes.string,
         cover: PropTypes.string,
         title: PropTypes.string,
-        description: PropTypes.string,
-        reviews: PropTypes.array
+        description: PropTypes.string
     };
 
     constructor(props) {
@@ -93,7 +92,7 @@ class Book extends Component {
                             {description}
                         </div>}
                     <div className="reviews book__reviews">
-                        {reviews ? reviews.length : '0'} reviews
+                        {reviews} reviews
                     </div>
                 </section>
             </article>

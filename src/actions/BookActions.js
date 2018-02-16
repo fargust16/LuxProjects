@@ -120,3 +120,25 @@ export const handleAddReview = (review) => (dispatch) => {
             loadEnd(dispatch);
         })
 };
+
+export const handleAddRecentBook = (recentData) => (dispatch) => {
+    loadStart(dispatch);
+
+    api.addRecentBook(recentData)
+        .then(data => {
+            dispatch({
+                type: ActionTypes.ADD_RECENT_BOOK_SUCCESS,
+                payload: data
+            });
+
+            loadEnd(dispatch);
+        })
+        .catch(err => {
+            dispatch({
+                type: ActionTypes.ADD_RECENT_BOOK_FAIL,
+                payload: err
+            });
+
+            loadEnd(dispatch);
+        })
+};

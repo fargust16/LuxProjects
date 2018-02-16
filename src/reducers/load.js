@@ -1,20 +1,20 @@
-import { LOAD_START, LOAD_END } from '../constants/Load';
+import {LOAD_START, LOAD_END} from '../constants/Load';
 
 const initialState = {
-  fetching: false
+    fetching: false
 };
 
 export default function load(state = initialState, action) {
 
-  switch (action.type) {
-    
-    case LOAD_START:
-      return { ...state, fetching: true };
+    switch (action.type) {
 
-    case LOAD_END:
-      return { ...state, fetching: false };
+        case LOAD_START:
+            return {...state, fetching: true};
 
-    default:
-      return state;
-  }
+        case LOAD_END:
+            return {...state, fetching: false};
+
+        default:
+            return state;
+    }
 }

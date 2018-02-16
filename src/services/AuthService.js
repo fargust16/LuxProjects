@@ -1,4 +1,4 @@
-import {auth} from '../services/api';
+import {signIn} from '../services/api';
 import history from '../history';
 import jwt from 'jwt-simple';
 
@@ -7,7 +7,7 @@ const SECRET = 'secretPhrase';
 const myStorage = window.localStorage;
 
 export const login = (authParams) => {
-    return auth(authParams).then(user => {
+    return signIn(authParams).then(user => {
         if (user.id) {
             setIdToken(user);
             history.push(window.location.pathname);

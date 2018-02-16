@@ -28,18 +28,16 @@ app.use(bodyParser.json());
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
 
-app.get('/books', (req, res) => {
+app.get('/books/all-books', (req, res) => {
 
     let struct = {
-        columns: ['b.book_id', 'b.title', 'g.genre', 'b.isbn', 'b.release_date', 'b.description', 'b.text', 'b.cover',
-            'b.topics']
+        columns: ['title', 'genre', 'description', 'cover', 'topics']
     };
 
     db.query('SELECT bg.*, r.reviews ' +
-        'FROM (SELECT b.id, b.title, g.genre, b.isbn, b.release_date, b.description, ' +
-        'b.text, b.cover, b.topics FROM books as b, genres as g WHERE b.genre_id = g.id) bg ' +
+        'FROM (SELECT b.id, ${columns:name} FROM books as b, genres as g WHERE b.genre_id = g.id) bg ' +
         ' LEFT JOIN ' +
-        '   ( SELECT book_id, array_to_json(array_agg(row_to_json(reviews))) as reviews FROM  reviews ' +
+        '   ( SELECT book_id, count(reviews) as reviews FROM reviews ' +
         '   GROUP BY book_id ) r ' +
         ' ON bg.id = r.book_id ', struct)
         .then(data => {
@@ -70,7 +68,7 @@ app.get('/books/get-genres', (req, res) => {
 
 });
 
-app.put('/books/add-book', (req, res) => {
+app.post('/books/add-book', (req, res) => {
     const {title, author, genre, isbn, release_date, description, text_file, cover, topics, user_id} = req.body;
 
     let params = {
@@ -93,7 +91,7 @@ app.put('/books/add-book', (req, res) => {
         })
 });
 
-app.put('/books/add-review', (req, res) => {
+app.post('/books/add-review', (req, res) => {
 
     db.one('INSERT INTO reviews(book_id, rating) VALUES (${book_id}, ${rating}) RETURNING id', req.body)
         .then(data => {
@@ -146,7 +144,7 @@ app.get('/books/view/:id', (req, res) => {
         })
 });
 
-app.put('/books/add-comment', (req, res) => {
+app.post('/books/add-comment', (req, res) => {
     const {book_id, user_id, text} = req.body;
     let params = {
         user_id,
@@ -178,12 +176,12 @@ app.get('/books/recent/:id', (req, res) => {
         '   ) as books ' +
         ' FROM users as u, recent_views as rec, books as b ' +
         '  LEFT JOIN ' +
-        '    (SELECT array_to_json(array_agg(r)) as reviews, b.id as book_id ' +
+        '    (SELECT count(r) as reviews, b.id ' +
         '     FROM books as b, reviews as r ' +
         '     WHERE b.id = r.book_id ' +
         '     GROUP BY b.id ' +
         '    ) rev ' +
-        '  ON rev.book_id = b.id ' +
+        '  USING(id) ' +
         'WHERE u.id = rec.user_id AND b.id = rec.book_id ' +
         'GROUP BY u.id, rec.view_date ' +
         'HAVING u.id = ${id:value}', req.params)
@@ -221,7 +219,7 @@ app.get('/books/read/:id', (req, res) => {
     res.send(books[req.params.id]);
 });
 
-app.post('/users', (req, res) => {
+app.post('/users/sign-in', (req, res) => {
     const {email, password} = req.body;
 
     let params = ['*', 'users', email];
@@ -237,15 +235,15 @@ app.post('/users', (req, res) => {
                 })
                 .catch((nextError) => {
                     res.send(nextError);
-                    //console.log(error);
+                    console.log(error);
                 });
         })
         .catch((error) => {
-            res.send(error);
+            res.status(400).send(error);
         });
 });
 
-app.put('/add-user', (req, res) => {
+app.put('/users/add-user', (req, res) => {
     const {email, password, salt} = req.body;
 
     let params = ['users', email, password, salt];
@@ -258,12 +256,12 @@ app.put('/add-user', (req, res) => {
             //console.log(data);
         })
         .catch((error) => {
-            res.send(error);
-            //console.log(error);
+            res.status(400).send(error);
+            console.log(error);
         });
 });
 
-app.post('/update-user-username', (req, res) => {
+app.put('/users/update-user-username', (req, res) => {
     const {id, password, newEmail} = req.body;
     let params = ['users', id, password, newEmail],
         customQuery = 'UPDATE $1:name SET username=\'$4:value\' WHERE id=\'$2:value\' and password=\'$3:value\'';
@@ -283,14 +281,14 @@ app.post('/update-user-username', (req, res) => {
                 });
         })
         .catch((err) => {
-            res.send(err);
-            //console.log(err);
+            res.status(400).send(err);
+            console.log(err);
         });
 
 
 });
 
-app.post('/update-user-password', (req, res) => {
+app.put('/users/update-user-password', (req, res) => {
     const {id, password, newPassword} = req.body;
 
     let pass = newPassword.password,
@@ -313,9 +311,43 @@ app.post('/update-user-password', (req, res) => {
                 });
         })
         .catch((err) => {
-            res.send(err);
-            //console.log(err);
+            res.status(400).send(err);
+            console.log(err);
         });
+});
+
+app.put('/books/add-recent-book', (req, res) => {
+    const {book_id, user_id} = req.body;
+
+    let params = {
+        columns: ['view_date', 'book_id', 'user_id'],
+        book_id,
+        user_id
+    };
+
+    db.one('INSERT INTO recent_views (${columns:name}) ' +
+        'VALUES (default, ${book_id:value}, ${user_id:value}) ' +
+        'ON CONFLICT (${columns:name}) DO UPDATE SET view_date = default ' +
+        'RETURNING *;', params)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(error => {
+            res.status(400).send(error);
+            console.log(error);
+        })
+});
+
+app.post('/mail-to-support', (req, res) => {
+
+    db.one('INSERT INTO support(subject, message) VALUES (${subject}, ${message}) RETURNING id', req.body)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(400).send(Error(err));
+            console.log(err);
+        })
 });
 
 const PORT = process.env.PORT || 9000;
