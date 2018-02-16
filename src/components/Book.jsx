@@ -92,7 +92,7 @@ class Book extends Component {
                             {description}
                         </div>}
                     <div className="reviews book__reviews">
-                        {reviews} reviews
+                        {reviews || 0} reviews
                     </div>
                 </section>
             </article>

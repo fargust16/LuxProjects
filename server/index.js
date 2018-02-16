@@ -23,7 +23,10 @@ const app = express();
 app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
 
 // to parse .json
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+
+/*app.use(express.urlencoded({limit: '50mb'}));*/
 
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
@@ -34,12 +37,20 @@ app.get('/books/all-books', (req, res) => {
         columns: ['title', 'genre', 'description', 'cover', 'topics']
     };
 
-    db.query('SELECT bg.*, r.reviews ' +
-        'FROM (SELECT b.id, ${columns:name} FROM books as b, genres as g WHERE b.genre_id = g.id) bg ' +
-        ' LEFT JOIN ' +
-        '   ( SELECT book_id, count(reviews) as reviews FROM reviews ' +
-        '   GROUP BY book_id ) r ' +
-        ' ON bg.id = r.book_id ', struct)
+    db.query('SELECT bg.genre, bg.genre_id, ' +
+        '  array_to_json( ' +
+        '      array_agg( ' +
+        '          (SELECT data FROM (SELECT bg.*, r.reviews) as data) ' +
+        '      )) as books ' +
+        'FROM (SELECT b.id, b.title, g.genre, g.id as genre_id, b.description, b.cover, b.topics ' +
+        '      FROM books as b, genres as g ' +
+        '      WHERE b.genre_id = g.id) bg ' +
+        '  LEFT JOIN ' +
+        '  ( SELECT book_id, count(reviews) as reviews ' +
+        '    FROM  reviews ' +
+        '    GROUP BY book_id ) r ' +
+        '  ON bg.id = r.book_id ' +
+        'GROUP BY bg.genre, bg.genre_id', struct)
         .then(data => {
             res.send(data);
             //console.log(data);
@@ -91,7 +102,7 @@ app.post('/books/add-book', (req, res) => {
         })
 });
 
-app.post('/books/add-review', (req, res) => {
+app.put('/books/add-review', (req, res) => {
 
     db.one('INSERT INTO reviews(book_id, rating) VALUES (${book_id}, ${rating}) RETURNING id', req.body)
         .then(data => {

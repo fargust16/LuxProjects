@@ -17,11 +17,17 @@ class Home extends Component {
         const {categoryId} = this.props.match.params;
         const {allBooks} = this.props.books;
 
+        let booksOnPage = categoryId
+            ? allBooks && allBooks.filter(category => category.genre_id === parseInt(categoryId, 10))
+            : allBooks && allBooks;
+
         return (
             <article className="home">
                 <section className="home-page">
                     <main className="main home-page__main">
-                        <Category categoryId={categoryId} books={allBooks}/>
+                        {booksOnPage.map(category => <Category key={category.genre_id} categoryName={category.genre}
+                                                               genreId={category.genre_id} books={category.books}
+                                                               openCategoryId={categoryId}/>)}
                     </main>
                 </section>
             </article>

@@ -9,16 +9,17 @@ import './Category.scss';
 export default class Category extends Component {
 
     static propTypes = {
-        categoryId: PropTypes.string,
+        categoryId: PropTypes.number,
+        categoryName: PropTypes.string,
         books: PropTypes.array
     };
 
     render() {
-        const {categoryId, books} = this.props;
+        const {categoryName} = this.props;
         return (
             <section className="category main__category">
-                <BlockHeader optionName="recommended books" isShowOption={true} handleChangeView={()=>{}}/>
-                <BookSwitcher categoryName="recommended books" books={books} categoryId={categoryId}/>
+                <BlockHeader optionName={categoryName} isShowOption={true} handleChangeView={()=>{}}/>
+                <BookSwitcher {...this.props}/>
             </section>
         );
     }

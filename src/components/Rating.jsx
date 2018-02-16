@@ -69,7 +69,7 @@ const StructRatingControls = ({maxMark, onChange, currMark}) => {
                             name="rating"
                             value={j}
                             checked={currMark === j}
-                            onChange={onChange}/>,
+                            onClick={onChange}/>,
             "label": <label key={--keyForStars}
                             className={j % 1 === 0 ? 'full' : 'half'}
                             htmlFor={'star' + j}

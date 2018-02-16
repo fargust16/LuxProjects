@@ -36,11 +36,11 @@ const ViewBooksInCategory = ({books}) => {
     );
 };
 
-const ViewBooksInHome = ({books, categoryName}) => {
+const ViewBooksInHome = ({books, genreId}) => {
 
     ViewBooksInHome.propTypes = {
         books: PropTypes.array,
-        categoryName: PropTypes.string
+        genreId: PropTypes.number
     };
 
     let blocks = books.length ? [...books] : books;
@@ -49,17 +49,18 @@ const ViewBooksInHome = ({books, categoryName}) => {
         <div className="books home-page__books">
             {!blocks.length ? blocks : <Slider blocks={blocks}/>}
 
-            <CustomLink pathTo={`/books/categories/${categoryName}`} className="switcher__see-more" text="more"/>
+            {books.length > 3 && <CustomLink pathTo={`/books/categories/${genreId}`} className="switcher__see-more" text="more"/>}
 
         </div>
     );
 };
 
-const Results = ({books, categoryId, categoryName}) => {
+const Results = ({books, openCategoryId, genreId, categoryName}) => {
 
     Results.propTypes = {
         books: PropTypes.array,
-        categoryId: PropTypes.string,
+        openCategoryId: PropTypes.string,
+        genreId: PropTypes.number,
         categoryName: PropTypes.string
     };
 
@@ -68,15 +69,15 @@ const Results = ({books, categoryId, categoryName}) => {
 
     booksCont = books && books.map((book, i) => {
         return (
-            <Book {...book} key={i} subClass={categoryId ? 'category__book' : 'switcher__book'}/>
+            <Book {...book} key={i} subClass={openCategoryId ? 'category__book' : 'switcher__book'}/>
         );
     });
 
-    content = categoryId
+    content = openCategoryId
         ?
         <ViewBooksInCategory books={booksCont}/>
         :
-        <ViewBooksInHome books={booksCont} categoryName={categoryName}/>;
+        <ViewBooksInHome books={booksCont} genreId={genreId} categoryName={categoryName}/>;
 
     return (
         <div className="category__results-books">
