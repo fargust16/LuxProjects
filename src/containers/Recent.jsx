@@ -53,13 +53,13 @@ const RecentBooks = ({books}) => {
 
     booksSort.forEach((elem, i) => {
         const {books, view_date} = elem;
-        let blockName = view_date;
+        let blockName = moment(new Date(view_date)).format('DD.MM.YYYY');
         content[i] = (
             <section key={i} className="recent__category">
-                <BlockHeader optionName={moment(new Date(blockName)).format('DD.MM.YYYY')} isShowOption={true}
+                <BlockHeader optionName={blockName} isShowOption={true}
                              className="recent__category-date" handleChangeView={()=>{}}/>
                 <div className="books recent__books">
-                    {books.map((book, i) => {
+                    {books.sort((a, b) => b.recent_id - a.recent_id).map((book, i) => {
                         return (
                             <Book {...book} key={i} subClass="recent__book" />
                         );

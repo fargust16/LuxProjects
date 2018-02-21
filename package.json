@@ -50,6 +50,7 @@
     "react-dom": "16.2.0",
     "react-fontawesome": "1.6.1",
     "react-history": "^0.18.2",
+    "react-html-parser": "^2.0.2",
     "react-line-clamp": "1.2.6",
     "react-redux": "^5.0.6",
     "react-router-dom": "4.2.2",

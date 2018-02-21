@@ -23,16 +23,8 @@
   }
 
   &__book {
-    width: 260px;
-    display: flex;
-    flex-flow: row;
-    box-sizing: border-box;
     flex: 2 0 auto;
     margin: 5px;
-
-    @include tablet {
-        width: 338px;
-    }
 
     &:nth-child(2) {
         margin-top: 5px;

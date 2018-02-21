@@ -26,7 +26,7 @@ describe('A BookSwitcher suite', () => {
 
   it('should view category page when props categoryId contain some value typeoff string', () => {
     const someVal = 'first';
-    const wrapper = mount(<BookSwitcher categoryId={someVal} />);
+    const wrapper = mount(<BookSwitcher openCategoryId={someVal} />);
 
     expect(wrapper.find('div.category__books').length).toBe(1);
   });

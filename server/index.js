@@ -7,7 +7,6 @@ const path = require('path');
 const fs = require('fs');
 
 const books = require('./books.json');
-const recentBooks = require('./recentBooks.json');
 const users = require('./users.json');
 
 //const authUser = require('./utils/DataBaseUtils');
@@ -181,7 +180,7 @@ app.get('/books/recent/:id', (req, res) => {
         '   array_to_json( ' +
         '     array_agg( ' +
         '       ( SELECT row_to_json(data) ' +
-        '         FROM (select b.id, b.title, b.author, b.cover, b.description, rec.view_date, rev.reviews) as data ' +
+        '         FROM (select b.id, rec.id as recent_id, b.title, b.author, b.cover, b.description, rec.view_date, rev.reviews) as data ' +
         '        ) ' +
         '     ) ' +
         '   ) as books ' +
@@ -207,27 +206,48 @@ app.get('/books/recent/:id', (req, res) => {
 
 });
 
-app.put('/books/add-recent', (req, res) => {
+app.put('/books/add-recent-book', (req, res) => {
     const {book_id, user_id} = req.body;
+
     let params = {
-        user_id,
-        book_id
+        columns: ['view_date', 'book_id', 'user_id'],
+        book_id,
+        user_id
     };
 
-    db.one('INSERT INTO recent_views(id, user_id, book_id, view_date) ' +
-        '    VALUES (default, ${user_id:value}, ${book_id:value}, default) RETURNING id', params)
+    db.one('INSERT INTO recent_views (${columns:name}) ' +
+        'VALUES (default, ${book_id:value}, ${user_id:value}) ' +
+        'ON CONFLICT (${columns:name}) DO UPDATE SET view_date = default ' +
+        'RETURNING *;', params)
         .then(data => {
             res.send(data);
-            //console.log(data);
         })
         .catch(error => {
-            res.status(400).send(Error(error));
-            //console.log(error);
+            res.status(400).send(error);
+            console.log(error);
         })
 });
 
-app.get('/books/read/:id', (req, res) => {
-    res.send(books[req.params.id]);
+app.post('/books/read/:id', (req, res) => {
+    const {fromPos, forPos} = req.body;
+    const {id} = req.params;
+
+    let params = {
+        id,
+        fromPos,
+        forPos
+    };
+
+    db.one('SELECT id, substring(text from ${fromPos:value} for ${forPos:value}) as text ' +
+        'FROM books ' +
+        'WHERE id = ${id:value}', params)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(400).send(err);
+            console.log(err);
+        })
 });
 
 app.post('/users/sign-in', (req, res) => {
@@ -327,28 +347,6 @@ app.put('/users/update-user-password', (req, res) => {
         });
 });
 
-app.put('/books/add-recent-book', (req, res) => {
-    const {book_id, user_id} = req.body;
-
-    let params = {
-        columns: ['view_date', 'book_id', 'user_id'],
-        book_id,
-        user_id
-    };
-
-    db.one('INSERT INTO recent_views (${columns:name}) ' +
-        'VALUES (default, ${book_id:value}, ${user_id:value}) ' +
-        'ON CONFLICT (${columns:name}) DO UPDATE SET view_date = default ' +
-        'RETURNING *;', params)
-        .then(data => {
-            res.send(data);
-        })
-        .catch(error => {
-            res.status(400).send(error);
-            console.log(error);
-        })
-});
-
 app.post('/mail-to-support', (req, res) => {
 
     db.one('INSERT INTO support(subject, message) VALUES (${subject}, ${message}) RETURNING id', req.body)
@@ -361,8 +359,73 @@ app.post('/mail-to-support', (req, res) => {
         })
 });
 
+app.get('/search-results/:query', (req, res) => {
+    const {query} = req.params;
+
+    let word = query.replace(/\s+/g, '|'),
+        type = word.slice(word.lastIndexOf('=') + 1, word.length).toLowerCase(),
+        searchStr = word.substr(word.indexOf('=') + 1, word.indexOf('type') - 5),
+        columns = ['text', 'title', 'author', 'isbn'],
+        weightTitle = ['A', 'B', 'C', 'D'];
+    let weights, options;
+
+    if(type === 'all') {
+        type = 'text';
+        weights = columns.map((el, i) => {
+            return `to_tsvector(coalesce(${el}, ''))`
+        });
+        weights = weights.join(" || ");
+        options = "StartSel=<mark>, StopSel=</mark>, MaxFragments=2, ShortWord=10, FragmentDelimiter=<p>...</p>," +
+            " MaxWords=35, MinWords=1, HighlightAll=True";
+    } else {
+        weights = `to_tsvector(coalesce(${type}, ''))`;
+        options = "StartSel=<mark>, StopSel=</mark>, MaxFragments=0, ShortWord=3, FragmentDelimiter=<p>...</p>," +
+            " MaxWords=35, MinWords=1, HighlightAll=True";
+    }
+
+    //console.log(`text: ${searchStr}, type: ${type}, weight: ${weights}`);
+    if(!type || !searchStr) res.status(400).send('enter valid string');
+    let params = {
+        options,
+        queryStr: searchStr,
+        weights,
+        type
+    };
+
+    db.query('SELECT foo.*, left(foo.text, 500) as text, ts_headline(${type:name}, query, ${options}) as ${type:name}, rank ' +
+        'FROM (SELECT b.id, b.title, b.text, b.cover, b.author, b.isbn, query, ts_rank_cd(ti, query) as rank ' +
+        '      FROM (SELECT b_ti.* FROM (SELECT books.*, setweight(${weights:value}, \'A\') as ti FROM books) as b_ti) as b, ' +
+        '                  to_tsquery(${queryStr}) query ' +
+        '      WHERE query @@ ti ' +
+        '      ORDER BY rank DESC ' +
+        '      LIMIT 10) AS foo;', params)
+       .then(data => {
+           res.send(data);
+       })
+       .catch(err => {
+           res.send(err);
+           console.log(err);
+       })
+});
+
 const PORT = process.env.PORT || 9000;
 
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}!`);
 });
+
+
+/*
+let params = {
+    options: "StartSel=<mark>, StopSel=</mark>, MaxFragments=1, ShortWord=0, FragmentDelimiter=<p>...</p>," +
+    " MaxWords=75, MinWords=1, HighlightAll=True",
+    query: searchStr,
+    type
+};
+
+db.query('SELECT id, title, cover, author, ts_headline(${type:name}, query, ${options}) as entrance, rank ' +
+    'FROM (SELECT b.id, b.title, b.text, b.cover, b.author, query, ts_rank_cd(to_tsvector(${type:name}), query) AS rank ' +
+    '      FROM books as b, to_tsquery(${query}) query ' +
+    '      WHERE query @@ to_tsvector(${type:name}) ' +
+    '      ORDER BY rank DESC ' +
+    '      LIMIT 10) AS foo;', params)*/

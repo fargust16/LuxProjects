@@ -15,6 +15,10 @@ class ReadBook extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+          resizeActionEnd: 0
+        };
+
         this.handleOnResizeReadOffset = this.handleOnResizeReadOffset.bind(this);
         this.onResizeEnd = this.onResizeEnd.bind(this);
     }
@@ -73,6 +77,14 @@ class ReadBook extends Component {
         return bOffset;
     }
 
+    _calcBlockOffsetWidth(block) {
+        let paddings, bOffset;
+        paddings = parseInt(getComputedStyle(block).paddingLeft, 10) + parseInt(getComputedStyle(block).paddingRight, 10);
+        bOffset = block.offsetWidth - paddings;
+
+        return bOffset;
+    }
+
     handleChangeReadOffset(curPage, direct) {
         const {readOffset} = this.props.readBook;
         const {changeReadOffset} = this.props.readBookActions;
@@ -102,13 +114,10 @@ class ReadBook extends Component {
     }
 
     onResizeEnd() {
-        const {resizeEnd} = this.state;
+        const {resizeActionEnd} = this.state;
 
-        clearTimeout(resizeEnd);
-
-        this.setState({
-            resizeEnd: setTimeout(this.handleOnResizeReadOffset, 100)
-        });
+        clearTimeout(resizeActionEnd);
+        this.setState({resizeActionEnd: setTimeout(this.handleOnResizeReadOffset, 100)})
     }
 
     componentWillMount() {
@@ -117,8 +126,20 @@ class ReadBook extends Component {
 
     componentDidMount() {
         const {bookId} = this.props.match.params;
+        const {readOffset, currentPage} = this.props.readBook;
 
-        this.props.bookActions.handleGetBookInfo(parseInt(bookId, 10));
+        let bHeight = this._calcBlockOffsetHeight(this._bookCont),
+            bWidth = this._calcBlockOffsetWidth(this._bookCont);
+
+        let forPos = bHeight * (bWidth / 50);
+
+        let textParams = {
+            fromPos: readOffset,
+            forPos
+        };
+
+        console.log(textParams);
+        this.props.bookActions.handleGetBookText(bookId, textParams);
 
         this.handleOnResizeReadOffset();
     }
@@ -167,7 +188,7 @@ class ReadBook extends Component {
 
 export default connect(
     state => ({
-        book: state.books.bookById,
+        book: state.books.readBook,
         load: state.load,
         readBook: state.readBook
     }),

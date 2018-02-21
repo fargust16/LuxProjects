@@ -38,10 +38,10 @@ describe('A Menu suite', function() {
     expect(wrapper.find('.menu__profile-link').text()).toBe('Sign Out');
   });
 
-  it('should render 2 links with hide modif in className, when username is undefined', () => {
+  it('should render 3 links with hide modif in className, when username is undefined', () => {
     const wrapper = shallow(<Menu />);
 
-    expect(wrapper.find('.menu__option_hide').length).toBe(2);
+    expect(wrapper.find('.menu__option_hide').length).toBe(3);
   });
 
   it('should render all links without hide modif in className, when username is define', () => {

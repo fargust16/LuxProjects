@@ -15,11 +15,20 @@ const scroll = Scroll.animateScroll;
 class Comments extends Component {
 
     static propTypes = {
-        comments: PropTypes.array
+        comments: PropTypes.array,
+        changeCommentText: PropTypes.func,
+        handleAddComment: PropTypes.func,
+        showCommentButtons: PropTypes.func,
+        showAuthForm: PropTypes.func,
+
     };
 
     static defaultProps = {
-        comments: []
+        comments: [],
+        changeCommentText: function () {},
+        handleAddComment: function () {},
+        showCommentButtons: function () {},
+        showAuthForm: function () {},
     };
 
     constructor(props) {
@@ -30,8 +39,7 @@ class Comments extends Component {
     showComments() {
         if (window.innerWidth >= ON_HIDE_WIDTH) return;
 
-        const {commentsIsShow, commentsOffset} = this.props;
-        const {changeCommentsView, changeCommentsOffset} = this.props.commentActions;
+        const {commentsIsShow, commentsOffset, changeCommentsView, changeCommentsOffset} = this.props;
 
         changeCommentsView(!commentsIsShow);
 
@@ -52,14 +60,12 @@ class Comments extends Component {
     }
 
     postNewComment() {
-        const {newCommentText, handleAddComment, bookId} = this.props;
-        const {id, username} = this.props.username;
-        let newComment;
+        const {newCommentText, handleAddComment, bookId, username} = this.props;
 
-        newComment = {
+        let newComment = {
             text: newCommentText,
-            user_id: id,
-            author: username,
+            user_id: username && username.id,
+            author: username && username.username,
             post_date: new Date(),
             book_id: bookId
         };
@@ -74,8 +80,7 @@ class Comments extends Component {
     }
 
     resizeWindow() {
-        const {changeCommentsView} = this.props.commentActions;
-        const {commentsIsShow} = this.props;
+        const {commentsIsShow, changeCommentsView} = this.props;
 
         let condition = window.innerWidth >= ON_HIDE_WIDTH;
 
@@ -92,8 +97,7 @@ class Comments extends Component {
 
     render() {
         const { comments, maxComments, newCommentText, buttonsIsShow,
-            commentsIsShow } = this.props;
-        const { changeCommentText, showCommentButtons, showMoreComments } = this.props.commentActions;
+            commentsIsShow, changeCommentText, showCommentButtons, showMoreComments } = this.props;
 
         let viewComments = maxComments >= (comments && comments.length) ? maxComments : maxComments + 5;
 

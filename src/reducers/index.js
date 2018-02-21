@@ -1,5 +1,4 @@
 import {combineReducers} from 'redux';
-import page from './page';
 import user from './user';
 import books from './books';
 import load from './load';
@@ -10,9 +9,9 @@ import header from './header';
 import auth from './auth';
 import addBook from './addBook';
 import support from './support';
+import search from './search';
 
 export default combineReducers({
-    page,
     user,
     books,
     load,
@@ -22,5 +21,6 @@ export default combineReducers({
     header,
     auth,
     addBook,
-    support
+    support,
+    search
 })

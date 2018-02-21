@@ -5,13 +5,12 @@ import './FileInput.scss';
 export default class FileInput extends Component {
 
     handleFileInput() {
-        const {onFileLoad} = this.props;
-
         let fileApi = !!(window.File && window.FileReader && window.FileList && window.Blob),
             fileName;
 
         if (fileApi && this._sourceField.files[0]) {
             fileName = this._sourceField.files[0].name;
+            this.__readFileText(this._sourceField.files[0]);
         } else {
             fileName = this._sourceField.value.replace("C:\\fakepath\\", '');
         }
@@ -21,9 +20,12 @@ export default class FileInput extends Component {
         } else {
             this._sourceTitle.innerText = fileName;
         }
+    }
 
-        let file = this._sourceField.files[0];
-        let reader = new FileReader();
+    __readFileText(file){
+        const {onFileLoad} = this.props;
+
+        let reader = new window.FileReader();
         reader.readAsText(file, 'CP1251');
         let bookText;
 

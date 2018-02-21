@@ -19,7 +19,7 @@
   flex-flow: row;
   align-items: flex-start;
   padding: 15px 10px;
-  border: 1px solid rgba(0,0,0,.2);
+  border: $border;
   border-radius: 5px;
 
   @include tablet {
@@ -50,7 +50,14 @@
   }
 
   &__author {
+    font-size: 14px;
+    line-height: 1.25em;
+    color: $black;
+  }
+
+  &__isbn {
     font-size: 13px;
+    line-height: 2em;
     color: $black;
   }
 

@@ -25,22 +25,6 @@ describe('A Header suite', function() {
     expect(wrapper.find('.header-wrap').length).toBe(1);
   });
 
-  it('should calls callback when click on menu-btn element', () => {
-    const wrapper = mount(
-      <CustomProvider>
-        <Header />
-      </CustomProvider>
-    );
-    const inst = wrapper.find('Header').instance();
-    const callback = sinon.spy(inst, 'handleDisplayMenu');
-
-    inst.forceUpdate();
-
-    wrapper.find('.header__menu-btn').simulate('click');
-
-    expect(callback.called).toBe(true);
-  });
-
   it('should show open menu button when render', () => {
     const wrapper = mount(
       <CustomProvider>

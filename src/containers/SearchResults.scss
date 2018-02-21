@@ -1,0 +1,38 @@
+@import '../constants';
+
+.search-results {
+  &__content {
+    display: flex;
+    flex-flow: row wrap;
+    padding: $main-padding;
+    height: 100%;
+    overflow: hidden;
+    text-align: justify;
+
+    & mark {
+      background: #ffcc33;
+    }
+  }
+
+  &__row {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    margin: 6px;
+    flex: 1 0 auto;
+    padding: 15px 10px;
+    border: $border;
+    border-radius: 5px;
+  }
+
+  &__row-header {
+    cursor: pointer;
+    line-height: 24px;
+  }
+
+  &__entrance {
+    line-height: 1.25em;
+    white-space: normal;
+    word-break: break-all;
+  }
+}

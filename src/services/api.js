@@ -12,9 +12,9 @@ const getRecentBooks = (userId) => {
     return axios.get(url).then(response => response.data);
 };
 
-const getBookText = (bookId) => {
+const getBookText = (bookId, textParams) => {
     const url = `${BASE_URL}/books/read/${bookId}`;
-    return axios.get(url).then(response => response.data);
+    return axios.post(url, textParams).then(response => response.data);
 };
 
 const getAllBooks = () => {
@@ -68,6 +68,11 @@ const mailToSupport = (mailData) => {
     return axios.post(url, mailData).then(response => response.data);
 };
 
+const getSearchResults = (searchParams) => {
+    const url = `${BASE_URL}/search-results/${searchParams}`;
+    return axios.get(url).then(response => response.data);
+};
+
 
 export {getBookInfo, getRecentBooks, addComment, getAllBooks, signIn, signUp, updateUserData, addBook,
-    getBookText, addReview, getListOfGenres, mailToSupport, addRecentBook};
+    getBookText, addReview, getListOfGenres, mailToSupport, addRecentBook, getSearchResults};

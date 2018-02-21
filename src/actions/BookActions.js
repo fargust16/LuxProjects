@@ -51,6 +51,30 @@ export function handleGetBookInfo(bookId) {
     }
 }
 
+export function handleGetBookText(bookId, textParams) {
+
+    return (dispatch) => {
+
+        loadStart(dispatch);
+
+        api.getBookText(bookId, textParams)
+            .then(data => {
+                dispatch({
+                    type: ActionTypes.GET_READ_BOOK_TEXT_SUCCESS,
+                    payload: data
+                });
+                loadEnd(dispatch);
+            })
+            .catch(err => {
+                dispatch({
+                    type: ActionTypes.GET_READ_BOOK_TEXT_FAIL,
+                    payload: err
+                });
+                loadEnd(dispatch);
+            });
+    }
+}
+
 export function handleGetRecentBooks(userId) {
 
     return (dispatch) => {

@@ -28,7 +28,7 @@ class Header extends Component {
 
         return <article className={menuIsOpen ? 'header-wrap_active-menu header-wrap' : 'header-wrap'}>
             <header className="header home-page__header">
-                <CustomLink pathTo="/" className="header__logo" onClick={() => changeDisplayMenu(false)}
+                <CustomLink pathTo="/" className="header__logo" beforeClick={() => changeDisplayMenu(false)}
                             text="Online Library"/>
                 <i className={classNames('header__menu-btn', {
                     'header__menu-btn_close': menuIsOpen,
@@ -38,11 +38,12 @@ class Header extends Component {
                       handleLogOut={handleLogOut}
                       username={isLoggedIn()}
                       handleShowAuthForm={changeDisplayAuth}
-                      handleDisplayMenu={() => changeDisplayMenu()}/>
+                      handleDisplayMenu={changeDisplayMenu}/>
                 {authIsOpen &&
                 <AuthForm onSignIn={handleLogIn} onSignUp={handleSignUp} error={error} fetching={fetching}
                           onClose={() => changeDisplayAuth(false)}
-                          authFormActions={this.props.authFormActions} {...this.props.auth}/>}
+                          {...this.props.authFormActions}
+                          {...this.props.auth}/>}
             </header>
         </article>;
     }

@@ -35,13 +35,12 @@ class AddBook extends Component {
     }
 
     render() {
-        const {title, author, genre, isbn, release_date, description, cover, topics, allGenres} = this.props.addBook;
+        const {title, author, genre, isbn, release_date, description, cover, topics, allGenres} = this.props.addBookProps;
         const {
             changeTitle, changeAuthor, changeGenre, changeCover, changeTopics,
             changeDescription, changeText, changeIsbn, changeReleaseDate
         } = this.props.addBookActions;
 
-        //console.log(textFile);
 
         return (
             <main className="add-book other-pages__block">
@@ -129,7 +128,7 @@ class AddBook extends Component {
 
 export default connect(
     state => ({
-        addBook: state.addBook,
+        addBookProps: state.addBook,
         user: state.user
     }),
     dispatch => ({

@@ -161,7 +161,7 @@ class BookDescription extends Component {
                           error={error}
                           fetching={fetching}
                           handleLogIn={handleLogIn}
-                          commentActions={this.props.commentActions}
+                          {...this.props.commentActions}
                           showAuthForm={changeDisplayAuth}
                           handleAddComment={handleAddNewComment}/>
             </article>

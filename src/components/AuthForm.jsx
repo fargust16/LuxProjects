@@ -7,6 +7,11 @@ import './AuthForm.scss';
 
 class AuthForm extends Component {
 
+    static defaultProps = {
+        changeSignInFormView: function() {},
+        changeSignUpFormView: function () {}
+    };
+
     handleOnSignIn(e) {
         e.preventDefault();
         const {email, password} = this.props;
@@ -45,12 +50,9 @@ class AuthForm extends Component {
     render() {
         const {
             signInIsShow, signUpIsShow, email, password, rePassword, errorValid, isTipsShow, onClose,
-            error, fetching
-        } = this.props;
-        const {
-            changeSignInFormView, changeSignUpFormView, changeEmail,
+            error, fetching, changeSignInFormView, changeSignUpFormView, changeEmail,
             changePassword, changeRePassword
-        } = this.props.authFormActions;
+        } = this.props;
 
         return (
             <article className="auth-form">
