@@ -1,3 +1,0 @@
-INSERT INTO public.users (id, username, password, salt) VALUES (22, 'mr.sociofob@gmail.com', '55bd790c321fe6be24ae2641c599fb35b5a395905207496dcd7cdd8add708b062bc564d52bc8b241b482e3e8b2244c07f6ec384ab1472e37183f6ddfc93d6685', 'Dqogz');
-INSERT INTO public.users (id, username, password, salt) VALUES (20, 'admin@gmail.com', '16ba1a3fadd2ace8dd0c2dba2a14a9c538319132c941d3c7a30d3401bc993fdc3b6f64df09294eb5f766d3c3d97468d0f3a22fead1aad32722a2d95ad32115fc', 'qsYxC');
-INSERT INTO public.users (id, username, password, salt) VALUES (21, 'fargust22@mail.ru', '94acf4d57d8a20e724c9ba4e7f36236a085bb2f7fb9fcf299893b855c408dadd3a968621842d56adb3f188032717d2c87edc598dd77712b734db07dc6866b00b', 'DRmmI');
