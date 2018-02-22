@@ -238,7 +238,7 @@ app.post('/books/read/:id', (req, res) => {
         forPos
     };
 
-    db.one('SELECT id, substring(text from ${fromPos:value} for ${forPos:value}) as text ' +
+    db.one('SELECT substring(text from ${fromPos:value} for ${forPos:value}) as text, length(text) as textLength ' +
         'FROM books ' +
         'WHERE id = ${id:value}', params)
         .then(data => {

@@ -77,17 +77,9 @@ class ReadBook extends Component {
         return bOffset;
     }
 
-    _calcBlockOffsetWidth(block) {
-        let paddings, bOffset;
-        paddings = parseInt(getComputedStyle(block).paddingLeft, 10) + parseInt(getComputedStyle(block).paddingRight, 10);
-        bOffset = block.offsetWidth - paddings;
-
-        return bOffset;
-    }
-
     handleChangeReadOffset(curPage, direct) {
-        const {readOffset} = this.props.readBook;
-        const {changeReadOffset} = this.props.readBookActions;
+        const {readOffset, maxReadOffset} = this.props.readBook;
+        const {changeReadOffset, changeMaxReadOffset} = this.props.readBookActions;
 
         let bOffset = this._calcBlockOffsetHeight(this._bookCont) * 2,
             readOffsetT = readOffset + bOffset * direct;
@@ -98,19 +90,22 @@ class ReadBook extends Component {
 
         this._bWithText.style = 'transform: translateY(' + -readOffsetT + 'px)';
 
+        if(readOffsetT >= maxReadOffset){
+            this.handleGetNewBookPage(curPage);
+            changeMaxReadOffset(readOffsetT);
+        }
+
         changeReadOffset(readOffsetT);
     }
 
     calcEndOfSwitch() {
         const {changeEndOfSwitch} = this.props.readBookActions;
+        const {text, textLength} = this.props.book;
 
-        let textOffset = this._calcBlockOffsetHeight(this._bWithText),
-            bOffset = this._calcBlockOffsetHeight(this._bookCont) * 2,
-            endOfSwitch = Math.floor(textOffset / bOffset);
+        let endOfSwitch = Math.floor(textLength / text && text.length);
+        console.log(`textLength: ${textLength}, text: ${text}`);
 
-        changeEndOfSwitch(endOfSwitch);
-
-        //console.log('full: ' + textOffset +'\nblock: '+ bOffset +'\nend: '+ endOfSwitch);
+        changeEndOfSwitch(endOfSwitch === 0 ? endOfSwitch : 1);
     }
 
     onResizeEnd() {
@@ -125,23 +120,25 @@ class ReadBook extends Component {
     }
 
     componentDidMount() {
+        const {currentPage} = this.props.readBook;
+
+        this.handleGetNewBookPage(currentPage);
+        this.handleOnResizeReadOffset();
+    }
+
+    handleGetNewBookPage(curPage) {
         const {bookId} = this.props.match.params;
-        const {readOffset, currentPage} = this.props.readBook;
 
-        let bHeight = this._calcBlockOffsetHeight(this._bookCont),
-            bWidth = this._calcBlockOffsetWidth(this._bookCont);
-
-        let forPos = bHeight * (bWidth / 50);
+        let bHeight = this._calcBlockOffsetHeight(this._bookCont);
+        let forPos = parseInt((bHeight/10 * 70), 10) ;
 
         let textParams = {
-            fromPos: readOffset,
-            forPos
+            fromPos: curPage * forPos,
+            forPos: (curPage + 1) * forPos
         };
 
         console.log(textParams);
         this.props.bookActions.handleGetBookText(bookId, textParams);
-
-        this.handleOnResizeReadOffset();
     }
 
     componentWillUnmount() {

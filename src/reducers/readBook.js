@@ -3,9 +3,10 @@ import {GET_ALL_BOOKS_SUCCESS} from '../constants/Book';
 
 const initialState = {
     currentPage: 0,
-    endOfSwitch: 0,
+    endOfSwitch: 1,
     resizeEnd: 0,
-    readOffset: 0
+    readOffset: 0,
+    maxReadOffset: 0
 };
 
 export default function settings(state = initialState, action) {
@@ -22,7 +23,10 @@ export default function settings(state = initialState, action) {
             return {...state, endOfSwitch: action.payload};
 
         case ActionTypes.CHANGE_READ_OFFSET:
-            return {...state, readOffset: action.payload};
+            return { ...state, readOffset: action.payload };
+
+        case ActionTypes.CHANGE_MAX_READ_OFFSET:
+            return {...state, maxReadOffset: action.payload};
 
         case GET_ALL_BOOKS_SUCCESS:
             return {...state, currentPage: 0, endOfSwitch: 0, resizeEnd: 0, readOffset: 0};

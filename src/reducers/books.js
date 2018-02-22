@@ -15,28 +15,35 @@ export default function books(state = initialState, action) {
     switch (action.type) {
 
         case ActionTypes.GET_ALL_BOOKS_SUCCESS:
-            return { ...state,  allBooks: action.payload, bookById: {}, error: '' };
+            return {...state, allBooks: action.payload, bookById: {}, error: ''};
 
         case ActionTypes.GET_ALL_BOOKS_FAIL:
-            return { ...state, error: action.payload };
+            return {...state, error: action.payload};
 
         case ActionTypes.GET_BOOK_BY_ID_SUCCESS:
-            return { ...state, bookById: action.payload, error: ''};
+            return {...state, bookById: action.payload, error: ''};
 
         case ActionTypes.GET_BOOK_BY_ID_FAIL:
-            return { ...state, error: action.payload };
+            return {...state, error: action.payload};
 
         case ActionTypes.GET_READ_BOOK_TEXT_SUCCESS:
-            return { ...state, readBook: action.payload, error: ''};
+            return {...state,
+                readBook: {
+                    ...state.readBook,
+                    text: state.readBook.text ? state.readBook.text + action.payload.text : action.payload.text,
+                    textLength: action.payload.textLength
+                },
+                error: ''
+            };
 
         case ActionTypes.GET_READ_BOOK_TEXT_FAIL:
-            return { ...state, error: action.payload };
+            return {...state, error: action.payload};
 
         case ActionTypes.GET_RECENT_BOOKS_SUCCESS:
-            return { ...state, recBooks: action.payload, error: '' };
+            return {...state, recBooks: action.payload, error: ''};
 
         case ActionTypes.GET_RECENT_BOOKS_FAIL:
-            return { ...state, error: action.payload };
+            return {...state, error: action.payload};
 
         case ActionTypes.ADD_COMMENT_SUCCESS:
             let newComments = state.bookById.comments ? state.bookById.comments.concat(action.comment) : [action.comment];
